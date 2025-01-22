@@ -9,8 +9,9 @@ import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
-import 'package:mainamwal/welcome/presentation/OnBoarding/splash.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/presentation/OnBoarding/splash.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +42,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<BoxBloc>(
           create: (context) => BoxBloc(),
+        ),
+        BlocProvider<FiltesBloc>(
+          create: (context) => FiltesBloc(),
         ),
       ],
       child: BlocBuilder<EnterBloc, EnterState>(

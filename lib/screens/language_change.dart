@@ -1,5 +1,5 @@
 import 'package:mainamwal/generated/l10n.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/widgets/font/black18text.dart';
 
 import 'package:mainamwal/widgets/font/black22text.dart';

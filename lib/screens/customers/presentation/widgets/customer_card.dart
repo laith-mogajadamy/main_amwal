@@ -3,7 +3,8 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/customer.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/acount_statment.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
 import 'package:mainamwal/widgets/font/blue18text.dart';
@@ -104,7 +105,7 @@ class CustomerCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              BlocBuilder<EnterBloc, EnterState>(
+              BlocBuilder<FiltesBloc, FiltersState>(
                 builder: (context, state) {
                   return TextButton(
                     onPressed: () {

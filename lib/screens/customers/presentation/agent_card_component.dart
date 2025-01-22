@@ -4,8 +4,9 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/agent_card.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/aget_card_column.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/black_16_money_text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
@@ -143,7 +144,7 @@ class AgentCardComponent extends StatelessWidget {
                             ],
                           ),
                         ),
-                        BlocBuilder<EnterBloc, EnterState>(
+                        BlocBuilder<FiltesBloc, FiltersState>(
                           builder: (context, state) {
                             return (state.page == "customers")
                                 ? Padding(

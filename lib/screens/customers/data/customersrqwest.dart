@@ -21,7 +21,8 @@ class CustomersReqwest {
       "POSGUID": Preferences.getPOSGUID()!,
     };
     http.Response response = await http.get(url, headers: headers);
-
+    var resmap = jsonDecode(response.body);
+    print(resmap);
     return response;
   }
 

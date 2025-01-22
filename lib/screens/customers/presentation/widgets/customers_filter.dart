@@ -1,15 +1,16 @@
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/widgets/search_text_field.dart';
-import 'package:mainamwal/widgets/select/select_accont_type.dart';
-import 'package:mainamwal/widgets/select/select_agent.dart';
-import 'package:mainamwal/widgets/select/select_city.dart';
-import 'package:mainamwal/widgets/select/select_company.dart';
-import 'package:mainamwal/widgets/select/select_currency.dart';
+import 'package:mainamwal/screens/filters/presentation/select_accont_type.dart';
+import 'package:mainamwal/screens/filters/presentation/select_agent.dart';
+import 'package:mainamwal/screens/filters/presentation/select_city.dart';
+import 'package:mainamwal/screens/filters/presentation/select_company.dart';
+import 'package:mainamwal/screens/filters/presentation/select_currency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -182,10 +183,15 @@ class CustomersFilters extends StatelessWidget {
           SizedBox(
             height: 30.h,
           ),
-          BlocBuilder<EnterBloc, EnterState>(
+          BlocBuilder<FiltesBloc, FiltersState>(
             builder: (context, state) {
               return ElevatedButton(
                 onPressed: () {
+                  print(state.selectedcurrency);
+                  print(state.selectedcompany);
+                  print(state.selectedaccounttype);
+                  print(state.selectedagent);
+                  print(state.selectedcity);
                   if (state.page == 'customers') {
                     context.read<CustomersBloc>().add(
                           GetCustomers(

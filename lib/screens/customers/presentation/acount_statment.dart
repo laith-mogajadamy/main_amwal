@@ -1,13 +1,14 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
-import 'package:mainamwal/model/enter/currency.dart';
+import 'package:mainamwal/model/filters/currency.dart';
 import 'package:mainamwal/model/customers_and_suppliers/customer.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/acount_statment_component.dart';
 import 'package:mainamwal/screens/customers/presentation/agent_card_component.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/acount_statment_bottom_sheet.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/acount_statment_toggle.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/font/orange18text%20.dart';
 import 'package:mainamwal/widgets/font/white18text.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class AcountStatment extends StatefulWidget {
 class _AcountStatmentState extends State<AcountStatment> {
   @override
   Widget build(BuildContext context) {
-    List<Currency> currencys = context.read<EnterBloc>().state.currencys;
+    List<Currency> currencys = context.read<FiltesBloc>().state.currencys;
     Currency currencyname = currencys
         .firstWhere((name) => name.guid == widget.customer.dealingCurrencyGuid);
     Size size = MediaQuery.of(context).size;
@@ -44,7 +45,7 @@ class _AcountStatmentState extends State<AcountStatment> {
           BlocBuilder<CustomersBloc, CustomersState>(
             builder: (context, state) {
               return (!state.acountstatmentpage)
-                  ? BlocBuilder<EnterBloc, EnterState>(
+                  ? BlocBuilder<FiltesBloc, FiltersState>(
                       builder: (context, state) {
                         return IconButton(
                           onPressed: () {

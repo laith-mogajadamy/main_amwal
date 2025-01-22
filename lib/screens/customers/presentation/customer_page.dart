@@ -3,7 +3,8 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_component.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/customers_filter.dart';
-import 'package:mainamwal/welcome/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/widgets/font/white18text.dart';
 import 'package:mainamwal/widgets/search_text_field.dart';
@@ -70,7 +71,7 @@ class CustomerPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  BlocBuilder<EnterBloc, EnterState>(
+                  BlocBuilder<FiltesBloc, FiltersState>(
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
