@@ -57,7 +57,6 @@ class Home extends StatelessWidget {
                       context.read<FiltesBloc>().state.selectedaccounttype,
                 ),
               );
-
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => CustomerPage(
@@ -68,8 +67,26 @@ class Home extends StatelessWidget {
           );
         }
       ],
-      [S.of(context).purchases, "assets/svg/cart orange svg.svg", () {}],
-      [S.of(context).sales, "assets/svg/sales orange svg.svg", () {}],
+      [
+        S.of(context).purchases,
+        "assets/svg/cart orange svg.svg",
+        () {
+          context.read<FiltesBloc>().add(PageChanged(page: 'puchase'));
+          context
+              .read<FiltesBloc>()
+              .add(ClearPurchasesAndSalesFilters(tybe: 'puchase'));
+        }
+      ],
+      [
+        S.of(context).sales,
+        "assets/svg/sales orange svg.svg",
+        () {
+          context.read<FiltesBloc>().add(PageChanged(page: 'sale'));
+          context
+              .read<FiltesBloc>()
+              .add(ClearPurchasesAndSalesFilters(tybe: 'sale'));
+        }
+      ],
       [S.of(context).warehouse, "assets/svg/warehouse orange svg.svg", () {}],
       [S.of(context).generalanalysis, "assets/svg/chart orange svg.svg", () {}],
       [S.of(context).humanresources, "assets/svg/HR orange svg.svg", () {}],

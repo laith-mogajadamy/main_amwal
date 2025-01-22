@@ -101,3 +101,107 @@ class ClearCustomerAndSupliersFilters extends FiltersEvent {
   @override
   List<Object?> get props => [];
 }
+
+class GetTransportCompanies extends FiltersEvent {
+  GetTransportCompanies();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class TransportCompaniesChanged extends FiltersEvent {
+  final TransportCompanies? transportCompanie;
+
+  TransportCompaniesChanged({this.transportCompanie});
+
+  @override
+  List<Object?> get props => [transportCompanie];
+}
+
+class GetProjects extends FiltersEvent {
+  GetProjects();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class ProjectChanged extends FiltersEvent {
+  final Project? project;
+
+  ProjectChanged({this.project});
+
+  @override
+  List<Object?> get props => [project];
+}
+
+class GetDocumentsCategories extends FiltersEvent {
+  final String tybe;
+
+  GetDocumentsCategories({required this.tybe});
+
+  @override
+  List<Object?> get props => [tybe];
+}
+
+class DocumentsCategoriesChanged extends FiltersEvent {
+  final DocumentsCategories? documentsCategorie;
+
+  DocumentsCategoriesChanged({this.documentsCategorie});
+
+  @override
+  List<Object?> get props => [documentsCategorie];
+}
+
+class GetDocuments extends FiltersEvent {
+  final String tybe;
+
+  GetDocuments({required this.tybe});
+
+  @override
+  List<Object?> get props => [tybe];
+}
+
+class DocumentChanged extends FiltersEvent {
+  final Documents? document;
+
+  DocumentChanged({this.document});
+
+  @override
+  List<Object?> get props => [document];
+}
+
+class GetCustomersFilter extends FiltersEvent {
+  final String tybe;
+
+  GetCustomersFilter({required this.tybe});
+
+  @override
+  List<Object?> get props => [tybe];
+}
+
+class CustomersFilterChanged extends FiltersEvent {
+  final CustomersFilter? customer;
+
+  CustomersFilterChanged({this.customer});
+
+  @override
+  List<Object?> get props => [customer];
+}
+
+class PaymentMethodeChanged extends FiltersEvent {
+  final PaymentMethode? paymentMethode;
+
+  PaymentMethodeChanged({this.paymentMethode});
+
+  @override
+  List<Object?> get props => [paymentMethode];
+}
+
+class ClearPurchasesAndSalesFilters extends FiltersEvent {
+  final String tybe;
+
+  ClearPurchasesAndSalesFilters({required this.tybe});
+
+  @override
+  List<Object?> get props => [tybe];
+}

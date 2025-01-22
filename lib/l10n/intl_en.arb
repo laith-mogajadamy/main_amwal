@@ -68,5 +68,8 @@
     "quantity": "quantity",
     "k": "k",
     "unvalidedate": "please select a valide date range",
-    "boxsandbanks": "boxs and banks"
+    "boxsandbanks": "boxs and banks",
+    "all": "all",
+    "delayed": "delayed",
+    "cash": "cash"
 }

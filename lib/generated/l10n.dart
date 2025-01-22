@@ -749,6 +749,36 @@ class S {
       args: [],
     );
   }
+
+  /// `all`
+  String get all {
+    return Intl.message(
+      'all',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `delayed`
+  String get delayed {
+    return Intl.message(
+      'delayed',
+      name: 'delayed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cash`
+  String get cash {
+    return Intl.message(
+      'cash',
+      name: 'cash',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

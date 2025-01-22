@@ -34,10 +34,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "advancedsearch": MessageLookupByLibrary.simpleMessage("بحث متقدم"),
         "agent": MessageLookupByLibrary.simpleMessage("المندوب"),
         "agentcard": MessageLookupByLibrary.simpleMessage("بطاقة العميل"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "balance": MessageLookupByLibrary.simpleMessage("الرصيد"),
         "boxsandbanks":
             MessageLookupByLibrary.simpleMessage("الصناديق والمصارف"),
         "bransh": MessageLookupByLibrary.simpleMessage("الفرع"),
+        "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
         "chnagecompcode":
             MessageLookupByLibrary.simpleMessage("تغيير رمز المؤسسة"),
         "city": MessageLookupByLibrary.simpleMessage("المدينة"),
@@ -51,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "debitentries": MessageLookupByLibrary.simpleMessage("قيود مدينة"),
         "debtor": MessageLookupByLibrary.simpleMessage("مدين"),
+        "delayed": MessageLookupByLibrary.simpleMessage("آجل"),
         "detailed": MessageLookupByLibrary.simpleMessage("تفصيلي"),
         "document": MessageLookupByLibrary.simpleMessage("المستند"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),

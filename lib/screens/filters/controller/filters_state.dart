@@ -21,6 +21,23 @@ class FiltersState extends Equatable {
   final List<Agent> agents;
   final Agent selectedagent;
   //
+  final List<TransportCompanies> transportCompanies;
+  final TransportCompanies selectedtransportCompanie;
+  //
+  final List<Project> projects;
+  final Project selectedproject;
+  //
+  final List<DocumentsCategories> documentsCategories;
+  final DocumentsCategories selectedDocumentsCategorie;
+  //
+  final List<Documents> documents;
+  final Documents selectedDocument;
+  //
+  final List<CustomersFilter> customersFilter;
+  final CustomersFilter selectedcustomer;
+  //
+  final List<PaymentMethode> paymentMethodes;
+  final PaymentMethode selectedpaymentMethodes;
   const FiltersState({
     this.message = '',
     this.page = '',
@@ -42,6 +59,26 @@ class FiltersState extends Equatable {
     this.agents = const [],
     this.selectedagent = const Agent(guid: '', code: '', name: ''),
     //
+    this.transportCompanies = const [],
+    this.selectedtransportCompanie =
+        const TransportCompanies(guid: '', code: '', name: ''),
+    //
+    this.projects = const [],
+    this.selectedproject = const Project(guid: '', code: '', name: ''),
+    //
+    this.documentsCategories = const [],
+    this.selectedDocumentsCategorie =
+        const DocumentsCategories(guid: '', code: '', name: '', iddefault: ''),
+    //
+    this.documents = const [],
+    this.selectedDocument =
+        const Documents(guid: '', code: '', name: '', categoriesGuid: ''),
+    //
+    this.customersFilter = const [],
+    this.selectedcustomer = const CustomersFilter(guid: '', code: '', name: ''),
+    //
+    this.paymentMethodes = const [],
+    this.selectedpaymentMethodes = const PaymentMethode(code: '', name: ''),
   });
 
   FiltersState copyWith({
@@ -68,6 +105,25 @@ class FiltersState extends Equatable {
     List<Agent>? agents,
     Agent? selectedagent,
     //
+    List<TransportCompanies>? transportCompanies,
+    TransportCompanies? selectedtransportCompanie,
+    //
+    List<Project>? projects,
+    Project? selectedproject,
+    //
+    List<DocumentsCategories>? documentsCategories,
+    DocumentsCategories? selectedDocumentsCategorie,
+    //
+
+    List<Documents>? documents,
+    Documents? selectedDocument,
+    //
+
+    List<CustomersFilter>? customersFilter,
+    CustomersFilter? selectedcustomer,
+    //
+    List<PaymentMethode>? paymentMethodes,
+    PaymentMethode? selectedpaymentMethodes,
   }) {
     return FiltersState(
       message: message ?? this.message,
@@ -89,6 +145,26 @@ class FiltersState extends Equatable {
       agents: agents ?? this.agents,
       selectedagent: selectedagent ?? this.selectedagent,
       //
+      transportCompanies: transportCompanies ?? this.transportCompanies,
+      selectedtransportCompanie:
+          selectedtransportCompanie ?? this.selectedtransportCompanie,
+      //
+      projects: projects ?? this.projects,
+      selectedproject: selectedproject ?? this.selectedproject,
+      //
+      documentsCategories: documentsCategories ?? this.documentsCategories,
+      selectedDocumentsCategorie:
+          selectedDocumentsCategorie ?? this.selectedDocumentsCategorie,
+      //
+      documents: documents ?? this.documents,
+      selectedDocument: selectedDocument ?? this.selectedDocument,
+      //
+      customersFilter: customersFilter ?? this.customersFilter,
+      selectedcustomer: selectedcustomer ?? this.selectedcustomer,
+      //
+      paymentMethodes: paymentMethodes ?? this.paymentMethodes,
+      selectedpaymentMethodes:
+          selectedpaymentMethodes ?? this.selectedpaymentMethodes,
     );
   }
 
@@ -113,5 +189,22 @@ class FiltersState extends Equatable {
         agents,
         selectedagent,
         //
+        transportCompanies,
+        selectedtransportCompanie,
+        //
+        projects,
+        selectedproject,
+        //
+        documentsCategories,
+        selectedDocumentsCategorie,
+        //
+        documents,
+        selectedDocument,
+        //
+        customersFilter,
+        selectedcustomer,
+        //
+        paymentMethodes,
+        selectedpaymentMethodes,
       ];
 }
