@@ -13,6 +13,34 @@ class PageChanged extends FiltersEvent {
 }
 
 //
+class FromDateChanged extends FiltersEvent {
+  final String? fromdate;
+
+  FromDateChanged({this.fromdate});
+
+  @override
+  List<Object?> get props => [fromdate];
+}
+
+class ToDateChanged extends FiltersEvent {
+  final String? todate;
+
+  ToDateChanged({this.todate});
+
+  @override
+  List<Object?> get props => [todate];
+}
+
+class DueDateChanged extends FiltersEvent {
+  final String? duedate;
+
+  DueDateChanged({this.duedate});
+
+  @override
+  List<Object?> get props => [duedate];
+}
+
+//
 class GetCurrency extends FiltersEvent {
   GetCurrency();
 
@@ -132,6 +160,31 @@ class ProjectChanged extends FiltersEvent {
 
   @override
   List<Object?> get props => [project];
+}
+
+class Getstores extends FiltersEvent {
+  Getstores();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class FirstStoreChanged extends FiltersEvent {
+  final Store? store;
+
+  FirstStoreChanged({this.store});
+
+  @override
+  List<Object?> get props => [store];
+}
+
+class ScondeStoreChanged extends FiltersEvent {
+  final Store? store;
+
+  ScondeStoreChanged({this.store});
+
+  @override
+  List<Object?> get props => [store];
 }
 
 class GetDocumentsCategories extends FiltersEvent {

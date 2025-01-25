@@ -779,6 +779,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Movement type`
+  String get movementtype {
+    return Intl.message(
+      'Movement type',
+      name: 'movementtype',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invoice type`
+  String get invoicetype {
+    return Intl.message(
+      'Invoice type',
+      name: 'invoicetype',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment method`
+  String get paymentmethod {
+    return Intl.message(
+      'Payment method',
+      name: 'paymentmethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stores`
+  String get stores {
+    return Intl.message(
+      'Stores',
+      name: 'stores',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transportation company`
+  String get transportationcompany {
+    return Intl.message(
+      'Transportation company',
+      name: 'transportationcompany',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `due date`
+  String get duedate {
+    return Intl.message(
+      'due date',
+      name: 'duedate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `project`
+  String get project {
+    return Intl.message(
+      'project',
+      name: 'project',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

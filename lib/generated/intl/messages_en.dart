@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delayed": MessageLookupByLibrary.simpleMessage("delayed"),
         "detailed": MessageLookupByLibrary.simpleMessage("Detailed"),
         "document": MessageLookupByLibrary.simpleMessage("document"),
+        "duedate": MessageLookupByLibrary.simpleMessage("due date"),
         "email": MessageLookupByLibrary.simpleMessage("email"),
         "emailvalidate": MessageLookupByLibrary.simpleMessage(
             "Email or Username is too short"),
@@ -72,8 +73,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "humanresources":
             MessageLookupByLibrary.simpleMessage("human resources"),
+        "invoicetype": MessageLookupByLibrary.simpleMessage("Invoice type"),
         "k": MessageLookupByLibrary.simpleMessage("k"),
         "mobilenumber": MessageLookupByLibrary.simpleMessage("mobile number"),
+        "movementtype": MessageLookupByLibrary.simpleMessage("Movement type"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nodate": MessageLookupByLibrary.simpleMessage("no date"),
         "notes": MessageLookupByLibrary.simpleMessage("notes"),
@@ -81,8 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("openning balance"),
         "passwordvalidate":
             MessageLookupByLibrary.simpleMessage("Password is too short"),
+        "paymentmethod": MessageLookupByLibrary.simpleMessage("Payment method"),
         "payments": MessageLookupByLibrary.simpleMessage("payments"),
         "price": MessageLookupByLibrary.simpleMessage("price"),
+        "project": MessageLookupByLibrary.simpleMessage("project"),
         "purchases": MessageLookupByLibrary.simpleMessage("purchases"),
         "purchasesreturns":
             MessageLookupByLibrary.simpleMessage("purchases returns"),
@@ -101,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "startusingtheapp":
             MessageLookupByLibrary.simpleMessage("start using the app"),
         "stateDate": MessageLookupByLibrary.simpleMessage("State"),
+        "stores": MessageLookupByLibrary.simpleMessage("Stores"),
         "sum": MessageLookupByLibrary.simpleMessage("sum"),
         "suppliers": MessageLookupByLibrary.simpleMessage("suppliers"),
         "thelimitofdebtinabuy":
@@ -109,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The limit of debt in a sale"),
         "to": MessageLookupByLibrary.simpleMessage("to"),
         "total": MessageLookupByLibrary.simpleMessage("total"),
+        "transportationcompany":
+            MessageLookupByLibrary.simpleMessage("Transportation company"),
         "turnonthecameraandscan":
             MessageLookupByLibrary.simpleMessage(" scan the QR code"),
         "unvalidedate": MessageLookupByLibrary.simpleMessage(

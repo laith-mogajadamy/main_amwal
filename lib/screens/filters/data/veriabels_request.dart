@@ -143,6 +143,25 @@ class VeriabelsRequest {
     return response;
   }
 
+  static Future<http.Response> getstores() async {
+    var url = Uri.parse("${Global.url}/accounting/store");
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer ${Preferences.getToken()!}",
+      "p-connection": Preferences.getpconnection()!,
+      "p-host": Preferences.getphost()!,
+      "p-port": Preferences.getpport()!,
+      "p-database": Preferences.getpdatabase()!,
+      "p-username": Preferences.getpusername()!,
+      "p-password": Preferences.getppassword()!,
+      "POSGUID": Preferences.getPOSGUID()!,
+    };
+    http.Response response = await http.get(url, headers: headers);
+
+    return response;
+  }
+
 //
   static Future<http.Response> getdocuments(String type) async {
     var url = Uri.parse("${Global.url}/accounting/dailyPrushAndSale-documents");

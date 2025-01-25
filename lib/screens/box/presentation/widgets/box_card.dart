@@ -8,6 +8,7 @@ import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/box_statment_page.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
+import 'package:mainamwal/widgets/font/orange16text.dart';
 import 'package:mainamwal/widgets/font/orange_16_money_text.dart';
 
 class BoxCard extends StatelessWidget {
@@ -27,14 +28,22 @@ class BoxCard extends StatelessWidget {
         title: FittedBox(
             fit: BoxFit.scaleDown,
             child: Black16text(
-                text: "${box.name} / ${box.companyName} - ${box.code}")),
+                text: "${box.code} / ${box.name} - ${box.companyName}")),
         subtitle: Row(
           children: [
             SvgPicture.asset('assets/svg/coins-orange.svg'),
             SizedBox(
               width: 5.w,
             ),
-            Orange16Moneytext(text: box.closeBalance),
+            Row(
+              children: [
+                Orange16Moneytext(text: box.closeBalance),
+                SizedBox(
+                  width: 5.w,
+                ),
+                Orange16text(text: box.currencyCode),
+              ],
+            ),
           ],
         ),
         isThreeLine: false,

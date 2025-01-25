@@ -1,16 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-class DocumentsCategories extends Equatable {
+class Store extends Equatable {
   final String guid;
   final String code;
   final String name;
-  final bool iddefault;
 
-  const DocumentsCategories({
+  const Store({
     required this.guid,
     required this.code,
     required this.name,
-    required this.iddefault,
   });
 
   @override
@@ -18,6 +16,5 @@ class DocumentsCategories extends Equatable {
         guid,
         code,
         name,
-        iddefault,
       ];
 }

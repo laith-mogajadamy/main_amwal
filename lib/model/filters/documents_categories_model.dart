@@ -13,6 +13,6 @@ class DocumentsCategoriesModel extends DocumentsCategories {
         guid: json['Guid'] ?? '',
         code: json['Code'] ?? '',
         name: json['Name'] ?? '',
-        iddefault: json['id_default'] ?? '',
+        iddefault: json['id_default'] ?? false,
       );
 }

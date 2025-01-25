@@ -56,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delayed": MessageLookupByLibrary.simpleMessage("آجل"),
         "detailed": MessageLookupByLibrary.simpleMessage("تفصيلي"),
         "document": MessageLookupByLibrary.simpleMessage("المستند"),
+        "duedate": MessageLookupByLibrary.simpleMessage("تاريخ الاستحقاق"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailvalidate":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني قصير جدا"),
@@ -68,8 +69,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "humanresources":
             MessageLookupByLibrary.simpleMessage("الموارد البشرية"),
+        "invoicetype": MessageLookupByLibrary.simpleMessage("نوع الفاتورة"),
         "k": MessageLookupByLibrary.simpleMessage("ك"),
         "mobilenumber": MessageLookupByLibrary.simpleMessage("رقم خليوي"),
+        "movementtype": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "nodate": MessageLookupByLibrary.simpleMessage("لايوجد تاريخ"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
@@ -77,8 +80,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرصيد الافتتاحي"),
         "passwordvalidate":
             MessageLookupByLibrary.simpleMessage("كلمة السر قصيرة جدا"),
+        "paymentmethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
         "payments": MessageLookupByLibrary.simpleMessage("مدفوعات"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
+        "project": MessageLookupByLibrary.simpleMessage("المشروع"),
         "purchases": MessageLookupByLibrary.simpleMessage("المشتريات"),
         "purchasesreturns":
             MessageLookupByLibrary.simpleMessage("مرتجع مشتريات"),
@@ -96,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "startusingtheapp":
             MessageLookupByLibrary.simpleMessage("بدء الاستخدام"),
         "stateDate": MessageLookupByLibrary.simpleMessage("المطابقة"),
+        "stores": MessageLookupByLibrary.simpleMessage("المخازن"),
         "sum": MessageLookupByLibrary.simpleMessage("المجموع"),
         "suppliers": MessageLookupByLibrary.simpleMessage("الموردون"),
         "thelimitofdebtinabuy":
@@ -104,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حد الدين في البيع"),
         "to": MessageLookupByLibrary.simpleMessage("الى"),
         "total": MessageLookupByLibrary.simpleMessage("إجمالي"),
+        "transportationcompany":
+            MessageLookupByLibrary.simpleMessage("شركة النقل"),
         "turnonthecameraandscan":
             MessageLookupByLibrary.simpleMessage("تشغيل الكاميرا ومسح QR"),
         "unvalidedate":

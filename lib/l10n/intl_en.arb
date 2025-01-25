@@ -71,5 +71,12 @@
     "boxsandbanks": "boxs and banks",
     "all": "all",
     "delayed": "delayed",
-    "cash": "cash"
+    "cash": "cash",
+    "movementtype": "Movement type",
+    "invoicetype": "Invoice type",
+    "paymentmethod": "Payment method",
+    "stores": "Stores",
+    "transportationcompany": "Transportation company",
+    "duedate": "due date",
+    "project": "project"
 }

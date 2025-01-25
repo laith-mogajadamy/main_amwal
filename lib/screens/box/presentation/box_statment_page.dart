@@ -62,7 +62,7 @@ class BoxStatmentPage extends StatelessWidget {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(size.width / 3, size.height / 20),
+                    fixedSize: Size(size.width / 2.8, size.height / 20),
                     backgroundColor: AppColor.apporange,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.r),

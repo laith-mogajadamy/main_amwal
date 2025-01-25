@@ -1,11 +1,9 @@
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
-import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
-import 'package:mainamwal/widgets/search_text_field.dart';
 import 'package:mainamwal/screens/filters/presentation/select_accont_type.dart';
 import 'package:mainamwal/screens/filters/presentation/select_agent.dart';
 import 'package:mainamwal/screens/filters/presentation/select_city.dart';

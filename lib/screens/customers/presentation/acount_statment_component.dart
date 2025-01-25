@@ -7,7 +7,7 @@ import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/detailed_statment_component.dart';
 import 'package:mainamwal/screens/customers/presentation/total_statment_component.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
-import 'package:mainamwal/screens/customers/presentation/widgets/from_to_date_pick.dart';
+import 'package:mainamwal/screens/customers/presentation/widgets/customer_from_to_date_pick.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/total_filter_change.dart';
 import 'package:mainamwal/widgets/font/black_14_money_text.dart';
 import 'package:mainamwal/widgets/font/blue14text.dart';
@@ -30,7 +30,7 @@ class AcountStatmentComponent extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
-            const FromToDatePick(),
+            const CustomerFromToDatePick(),
             SizedBox(
               height: 10.h,
             ),

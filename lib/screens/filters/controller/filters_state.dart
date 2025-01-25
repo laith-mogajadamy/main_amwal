@@ -4,7 +4,10 @@ class FiltersState extends Equatable {
   final String message;
   //
   final String page;
-
+  //
+  final String fromDate;
+  final String toDate;
+  final String dueDate;
   //
   final List<Currency> currencys;
   final Currency selectedcurrency;
@@ -27,6 +30,10 @@ class FiltersState extends Equatable {
   final List<Project> projects;
   final Project selectedproject;
   //
+  final List<Store> stores;
+  final Store firstSelectedStores;
+  final Store secondSelectedStores;
+  //
   final List<DocumentsCategories> documentsCategories;
   final DocumentsCategories selectedDocumentsCategorie;
   //
@@ -41,7 +48,10 @@ class FiltersState extends Equatable {
   const FiltersState({
     this.message = '',
     this.page = '',
-
+    //
+    this.fromDate = '',
+    this.toDate = '',
+    this.dueDate = '',
     //
     this.currencys = const [],
     this.selectedcurrency = const Currency(guid: '', code: '', iddefault: ''),
@@ -66,9 +76,13 @@ class FiltersState extends Equatable {
     this.projects = const [],
     this.selectedproject = const Project(guid: '', code: '', name: ''),
     //
+    this.stores = const [],
+    this.firstSelectedStores = const Store(guid: '', code: '', name: ''),
+    this.secondSelectedStores = const Store(guid: '', code: '', name: ''),
+    //
     this.documentsCategories = const [],
-    this.selectedDocumentsCategorie =
-        const DocumentsCategories(guid: '', code: '', name: '', iddefault: ''),
+    this.selectedDocumentsCategorie = const DocumentsCategories(
+        guid: '', code: '', name: '', iddefault: false),
     //
     this.documents = const [],
     this.selectedDocument =
@@ -85,7 +99,10 @@ class FiltersState extends Equatable {
     String? message,
     //
     String? page,
-
+    //
+    String? fromDate,
+    String? toDate,
+    String? dueDate,
     //
     String? companyname,
     String? currentFiscalYearCode,
@@ -111,6 +128,10 @@ class FiltersState extends Equatable {
     List<Project>? projects,
     Project? selectedproject,
     //
+    List<Store>? stores,
+    Store? firstSelectedStores,
+    Store? secondSelectedStores,
+    //
     List<DocumentsCategories>? documentsCategories,
     DocumentsCategories? selectedDocumentsCategorie,
     //
@@ -129,6 +150,10 @@ class FiltersState extends Equatable {
       message: message ?? this.message,
       //
       page: page ?? this.page,
+      //
+      fromDate: fromDate ?? this.fromDate,
+      toDate: toDate ?? this.toDate,
+      dueDate: dueDate ?? this.dueDate,
       //
       currencys: currencys ?? this.currencys,
       selectedcurrency: selectedcurrency ?? this.selectedcurrency,
@@ -152,6 +177,11 @@ class FiltersState extends Equatable {
       projects: projects ?? this.projects,
       selectedproject: selectedproject ?? this.selectedproject,
       //
+      stores: stores ?? this.stores,
+      firstSelectedStores: firstSelectedStores ?? this.firstSelectedStores,
+      secondSelectedStores: secondSelectedStores ?? this.secondSelectedStores,
+
+      //
       documentsCategories: documentsCategories ?? this.documentsCategories,
       selectedDocumentsCategorie:
           selectedDocumentsCategorie ?? this.selectedDocumentsCategorie,
@@ -174,6 +204,10 @@ class FiltersState extends Equatable {
         //
         page,
         //
+        fromDate,
+        toDate,
+        dueDate,
+        //
         currencys,
         selectedcurrency,
         //
@@ -194,6 +228,10 @@ class FiltersState extends Equatable {
         //
         projects,
         selectedproject,
+        //
+        stores,
+        firstSelectedStores,
+        secondSelectedStores,
         //
         documentsCategories,
         selectedDocumentsCategorie,

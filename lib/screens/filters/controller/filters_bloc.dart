@@ -21,6 +21,8 @@ import 'package:mainamwal/model/filters/documents_model.dart';
 import 'package:mainamwal/model/filters/payment_methode.dart';
 import 'package:mainamwal/model/filters/project.dart';
 import 'package:mainamwal/model/filters/project_model.dart';
+import 'package:mainamwal/model/filters/store.dart';
+import 'package:mainamwal/model/filters/store_model.dart';
 import 'package:mainamwal/model/filters/transport_companies.dart';
 import 'package:mainamwal/model/filters/transport_companies_model.dart';
 import 'package:mainamwal/screens/filters/data/veriabels_request.dart';
@@ -34,6 +36,24 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
     on<PageChanged>((event, emit) async {
       emit(state.copyWith(
         page: event.page,
+      ));
+    });
+    //
+    on<FromDateChanged>((event, emit) async {
+      emit(state.copyWith(
+        fromDate: event.fromdate,
+      ));
+    });
+    //
+    on<ToDateChanged>((event, emit) async {
+      emit(state.copyWith(
+        toDate: event.todate,
+      ));
+    });
+    //
+    on<DueDateChanged>((event, emit) async {
+      emit(state.copyWith(
+        dueDate: event.duedate,
       ));
     });
     //
@@ -240,16 +260,7 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
       add(GetAgets());
       emit(
         state.copyWith(
-          selectedcurrency: state.currencys.firstWhere(
-            (element) => element.iddefault == '1',
-          ),
-          selectedcompany: state.companys.firstWhere(
-            (element) => element.iddefault == '1',
-          ),
           selectedcity: '',
-          selectedaccounttype: state.accounttypes.firstWhere(
-            (element) => element.val == '0',
-          ),
           selectedagent: Agent(guid: '', code: '', name: ''),
         ),
       );
@@ -277,6 +288,8 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             message: responsemap['message'],
           ),
         );
+        print('transportCompanies');
+        print(state.transportCompanies);
       } else {
         emit(
           state.copyWith(
@@ -313,6 +326,8 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             message: responsemap['message'],
           ),
         );
+        print('projects');
+        print(state.projects);
       } else {
         emit(
           state.copyWith(
@@ -328,9 +343,53 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
       ));
     });
     //
+    //
+    on<Getstores>((event, emit) async {
+      print("Getstores");
+
+      http.Response response = await VeriabelsRequest.getstores();
+      var responsemap = await jsonDecode(response.body);
+      print("message==${state.message}");
+      print("*********");
+      print(responsemap);
+      print("statusCode==${response.statusCode}");
+      print("*********");
+      if (response.statusCode == 200) {
+        emit(
+          state.copyWith(
+            stores: List<StoreModel>.from(
+              (responsemap['data'] as List).map(
+                (e) => StoreModel.fromJson(e),
+              ),
+            ),
+            message: responsemap['message'],
+          ),
+        );
+        print('stores');
+        print(state.stores);
+      } else {
+        emit(
+          state.copyWith(
+            message: responsemap['message'],
+          ),
+        );
+      }
+    });
+    //
+    on<FirstStoreChanged>((event, emit) async {
+      emit(state.copyWith(
+        firstSelectedStores: event.store,
+      ));
+    });
+    //
+    on<ScondeStoreChanged>((event, emit) async {
+      emit(state.copyWith(
+        secondSelectedStores: event.store,
+      ));
+    });
+    //
     on<GetDocumentsCategories>((event, emit) async {
       print("GetDocumentsCategories");
-
       http.Response response =
           await VeriabelsRequest.getdocumentscategories(event.tybe);
       var responsemap = await jsonDecode(response.body);
@@ -353,9 +412,14 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         emit(
           state.copyWith(
               selectedDocumentsCategorie: state.documentsCategories.firstWhere(
-            (element) => element.iddefault == 'true',
+            (element) => element.iddefault == true,
           )),
         );
+        print('documentsCategories');
+        print(state.documentsCategories);
+
+        print('selectedDocumentsCategorie');
+        print(state.selectedDocumentsCategorie);
       } else {
         emit(
           state.copyWith(
@@ -392,6 +456,8 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             message: responsemap['message'],
           ),
         );
+        print('documents');
+        print(state.documents);
       } else {
         emit(
           state.copyWith(
@@ -409,7 +475,6 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
     //
     on<GetCustomersFilter>((event, emit) async {
       print("GetCustomersFilter");
-
       http.Response response =
           await VeriabelsRequest.getfiltercustomers(event.tybe);
       var responsemap = await jsonDecode(response.body);
@@ -429,6 +494,8 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             message: responsemap['message'],
           ),
         );
+        print('customersFilter');
+        print(state.customersFilter);
       } else {
         emit(
           state.copyWith(
@@ -450,7 +517,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
       ));
     });
     //
+
     on<ClearPurchasesAndSalesFilters>((event, emit) async {
+      print("ClearPurchasesAndSalesFilters");
       emit(state.copyWith(
         paymentMethodes: [
           PaymentMethode(code: '0', name: S().all),
@@ -464,22 +533,39 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
       add(GetDocumentsCategories(tybe: event.tybe));
       add(GetDocuments(tybe: event.tybe));
       add(GetAgets());
+      add(Getstores());
+
+      DateTime initdate = DateTime.now();
       emit(
         state.copyWith(
           selectedtransportCompanie:
               TransportCompanies(guid: '', code: '', name: ''),
-          selectedcompany: state.companys.firstWhere(
-            (element) => element.iddefault == '1',
-          ),
+          // selectedcompany: state.companys.firstWhere(
+          //   (element) => element.iddefault == '1',
+          // ),
           selectedproject: Project(guid: '', code: '', name: ''),
-          selectedDocumentsCategorie:
-              DocumentsCategories(guid: '', code: '', name: '', iddefault: ''),
+          // selectedDocumentsCategorie: state.documentsCategories.firstWhere(
+          //   (element) => element.iddefault == true,
+          // ),
           selectedDocument:
               Documents(guid: '', code: '', name: '', categoriesGuid: ''),
           selectedagent: Agent(guid: '', code: '', name: ''),
           selectedpaymentMethodes: PaymentMethode(code: '0', name: S().all),
+          firstSelectedStores: Store(guid: '', code: '', name: ''),
+          secondSelectedStores: Store(guid: '', code: '', name: ''),
+          fromDate:
+              '${initdate.year.toString()}-${initdate.month.toString().padLeft(2, '0')}-${initdate.day.toString().padLeft(2, '0')}',
+          toDate:
+              '${initdate.year.toString()}-${initdate.month.toString().padLeft(2, '0')}-${initdate.day.toString().padLeft(2, '0')}',
+          dueDate: '',
         ),
       );
+      print("state.selectedpaymentMethodes");
+      print(state.selectedpaymentMethodes);
+      print("state.fromDate");
+      print(state.fromDate);
+      print("state.toDate");
+      print(state.toDate);
     });
   }
 }

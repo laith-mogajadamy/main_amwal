@@ -72,5 +72,12 @@
     "boxsandbanks": "الصناديق والمصارف",
     "all": "الكل",
     "delayed": "آجل",
-    "cash": "نقدي"
+    "cash": "نقدي",
+    "movementtype": "نوع الحركة",
+    "invoicetype": "نوع الفاتورة",
+    "paymentmethod": "طريقة الدفع",
+    "stores": "المخازن",
+    "transportationcompany": "شركة النقل",
+    "duedate": "تاريخ الاستحقاق",
+    "project": "المشروع"
 }

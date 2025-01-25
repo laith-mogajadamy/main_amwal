@@ -5,6 +5,8 @@ import 'package:mainamwal/screens/box/presentation/boxs_page.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
+import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/black18text.dart';
 import 'package:flutter/material.dart';
@@ -71,20 +73,74 @@ class Home extends StatelessWidget {
         S.of(context).purchases,
         "assets/svg/cart orange svg.svg",
         () {
-          context.read<FiltesBloc>().add(PageChanged(page: 'puchase'));
+          context.read<FiltesBloc>().add(PageChanged(page: 'pay'));
           context
               .read<FiltesBloc>()
-              .add(ClearPurchasesAndSalesFilters(tybe: 'puchase'));
+              .add(ClearPurchasesAndSalesFilters(tybe: 'pay'));
+          // context.read<PurchasesAndSalesBloc>().add(
+          //       GetDailyPruchasAndSale(
+          //         type: context
+          //             .read<FiltesBloc>()
+          //             .state
+          //             .selectedpaymentMethodes
+          //             .code,
+          //         firstStoreGuid:
+          //             context.read<FiltesBloc>().state.firstSelectedStores.guid,
+          //         customerGuid:
+          //             context.read<FiltesBloc>().state.selectedcustomer.guid,
+          //         agentGuid:
+          //             context.read<FiltesBloc>().state.selectedagent.guid,
+          //         documentGuid:
+          //             context.read<FiltesBloc>().state.selectedDocument.guid,
+          //         categoriesGuid: context
+          //             .read<FiltesBloc>()
+          //             .state
+          //             .selectedDocumentsCategorie
+          //             .guid,
+          //         projectDefaultGuid:
+          //             context.read<FiltesBloc>().state.selectedproject.guid,
+          //         companiesGuid:
+          //             context.read<FiltesBloc>().state.selectedcompany.guid,
+          //         transportCompaniesGuid: context
+          //             .read<FiltesBloc>()
+          //             .state
+          //             .selectedtransportCompanie
+          //             .guid,
+          //         dueDated: context.read<FiltesBloc>().state.dueDate,
+          //         secondStoreGuid: context
+          //             .read<FiltesBloc>()
+          //             .state
+          //             .secondSelectedStores
+          //             .guid,
+          //         dateFrom: context.read<FiltesBloc>().state.fromDate,
+          //         dateTo: context.read<FiltesBloc>().state.toDate,
+          //       ),
+          //     );
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => PurchasesAndSalesPage(
+                title: S.of(context).purchases,
+              ),
+            ),
+          );
         }
       ],
       [
         S.of(context).sales,
         "assets/svg/sales orange svg.svg",
-        () {
+        () async {
           context.read<FiltesBloc>().add(PageChanged(page: 'sale'));
           context
               .read<FiltesBloc>()
               .add(ClearPurchasesAndSalesFilters(tybe: 'sale'));
+
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => PurchasesAndSalesPage(
+                title: S.of(context).sales,
+              ),
+            ),
+          );
         }
       ],
       [S.of(context).warehouse, "assets/svg/warehouse orange svg.svg", () {}],
