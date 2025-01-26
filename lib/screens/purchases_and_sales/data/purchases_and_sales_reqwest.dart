@@ -23,18 +23,18 @@ class PurchasesAndSalesReqwest {
   ) async {
     Map data = {
       "type": type,
-      // "FirstStoreGuid": firstStoreGuid,
-      // "CustomerGuid": customerGuid,
-      // "AgentGuid": agentGuid,
-      // "DocumentGuid": documentGuid,
+      "FirstStoreGuid": firstStoreGuid,
+      "CustomerGuid": customerGuid,
+      "AgentGuid": agentGuid,
+      "DocumentGuid": documentGuid,
       "CategoriesGuid": categoriesGuid,
-      // "ProjectDefaultGuid": projectDefaultGuid,
+      "ProjectDefaultGuid": projectDefaultGuid,
       "companiesGuid": companiesGuid,
-      // "TransportCompaniesGuid": transportCompaniesGuid,
-      // "DueDated": dueDated,
-      // "SecondStoreGuid": secondStoreGuid,
-      // "DateFrom": dateFrom,
-      // "DateTo": dateTo,
+      "TransportCompaniesGuid": transportCompaniesGuid,
+      "DueDated": dueDated,
+      "SecondStoreGuid": secondStoreGuid,
+      "DateFrom": dateFrom,
+      "DateTo": dateTo,
     };
     print(data);
     var body = jsonEncode(data);

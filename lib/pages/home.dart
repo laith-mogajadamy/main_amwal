@@ -5,7 +5,6 @@ import 'package:mainamwal/screens/box/presentation/boxs_page.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/black18text.dart';
@@ -27,14 +26,7 @@ class Home extends StatelessWidget {
         () {
           context.read<FiltesBloc>().add(ClearCustomerAndSupliersFilters());
           context.read<FiltesBloc>().add(PageChanged(page: 'customers'));
-          context.read<CustomersBloc>().add(
-                GetCustomers(
-                  currency: context.read<FiltesBloc>().state.selectedcurrency,
-                  company: context.read<FiltesBloc>().state.selectedcompany,
-                  accountType:
-                      context.read<FiltesBloc>().state.selectedaccounttype,
-                ),
-              );
+
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => CustomerPage(
@@ -51,14 +43,6 @@ class Home extends StatelessWidget {
         () {
           context.read<FiltesBloc>().add(ClearCustomerAndSupliersFilters());
           context.read<FiltesBloc>().add(PageChanged(page: 'suppliers'));
-          context.read<CustomersBloc>().add(
-                GetSuppliers(
-                  currency: context.read<FiltesBloc>().state.selectedcurrency,
-                  company: context.read<FiltesBloc>().state.selectedcompany,
-                  accountType:
-                      context.read<FiltesBloc>().state.selectedaccounttype,
-                ),
-              );
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => CustomerPage(
@@ -77,45 +61,6 @@ class Home extends StatelessWidget {
           context
               .read<FiltesBloc>()
               .add(ClearPurchasesAndSalesFilters(tybe: 'pay'));
-          // context.read<PurchasesAndSalesBloc>().add(
-          //       GetDailyPruchasAndSale(
-          //         type: context
-          //             .read<FiltesBloc>()
-          //             .state
-          //             .selectedpaymentMethodes
-          //             .code,
-          //         firstStoreGuid:
-          //             context.read<FiltesBloc>().state.firstSelectedStores.guid,
-          //         customerGuid:
-          //             context.read<FiltesBloc>().state.selectedcustomer.guid,
-          //         agentGuid:
-          //             context.read<FiltesBloc>().state.selectedagent.guid,
-          //         documentGuid:
-          //             context.read<FiltesBloc>().state.selectedDocument.guid,
-          //         categoriesGuid: context
-          //             .read<FiltesBloc>()
-          //             .state
-          //             .selectedDocumentsCategorie
-          //             .guid,
-          //         projectDefaultGuid:
-          //             context.read<FiltesBloc>().state.selectedproject.guid,
-          //         companiesGuid:
-          //             context.read<FiltesBloc>().state.selectedcompany.guid,
-          //         transportCompaniesGuid: context
-          //             .read<FiltesBloc>()
-          //             .state
-          //             .selectedtransportCompanie
-          //             .guid,
-          //         dueDated: context.read<FiltesBloc>().state.dueDate,
-          //         secondStoreGuid: context
-          //             .read<FiltesBloc>()
-          //             .state
-          //             .secondSelectedStores
-          //             .guid,
-          //         dateFrom: context.read<FiltesBloc>().state.fromDate,
-          //         dateTo: context.read<FiltesBloc>().state.toDate,
-          //       ),
-          //     );
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => PurchasesAndSalesPage(
@@ -202,6 +147,7 @@ class Home extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                             boxShadow: [
                               BoxShadow(
+                                // ignore: deprecated_member_use
                                 color: AppColor.black.withOpacity(0.1),
                                 blurRadius: 20,
                               ),
@@ -243,6 +189,7 @@ class Home extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.r),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: AppColor.black.withOpacity(0.25),
                     blurRadius: 20,
                   ),

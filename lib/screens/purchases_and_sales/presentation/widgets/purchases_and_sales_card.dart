@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/model/purchases_and_sales/daily_pruchas_and_sale.dart';
 import 'package:mainamwal/widgets/font/black14text.dart';
@@ -20,6 +21,8 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime date = DateTime.parse(dailyPruchasAndSale.securitiesDate);
+    String formattedDate = DateFormat('yyyy-MM-dd', "en").format(date);
     return Container(
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
@@ -65,18 +68,10 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                        // border: Border(
-                        //   left: BorderSide(
-                        //     width: 1,
-                        //     color: AppColor.apptitle,
-                        //   ),
-                        // ),
-                        ),
+                    decoration: BoxDecoration(),
                     padding: EdgeInsets.only(left: 5.w),
                     width: size.width / 3.5,
-                    child:
-                        Black16text(text: dailyPruchasAndSale.securitiesDate),
+                    child: Black16text(text: formattedDate),
                   ),
                   Container(
                     color: AppColor.apptitle,

@@ -28,6 +28,8 @@ class PurchasesAndSalesBloc
       if (ptoken!.isNotEmpty) {
         emit(state.copyWith(
           token: ptoken,
+          dailyPruchasAndSale: [],
+          dailyPruchasAndSaleState: RequestState.loading,
         ));
 
         http.Response response =

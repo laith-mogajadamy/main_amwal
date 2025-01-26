@@ -1,9 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_component.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/customers_filter.dart';
-import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/widgets/font/white18text.dart';
@@ -20,6 +20,29 @@ class CustomerPage extends StatelessWidget {
   const CustomerPage({super.key, required this.event, required this.title});
   @override
   Widget build(BuildContext context) {
+    if (context.read<FiltesBloc>().state.page == 'customers') {
+      Future.delayed(Duration(seconds: 2)).then(
+        (value) => context.read<CustomersBloc>().add(
+              GetCustomers(
+                currency: context.read<FiltesBloc>().state.selectedcurrency,
+                company: context.read<FiltesBloc>().state.selectedcompany,
+                accountType:
+                    context.read<FiltesBloc>().state.selectedaccounttype,
+              ),
+            ),
+      );
+    } else {
+      Future.delayed(Duration(seconds: 2)).then(
+        (value) => context.read<CustomersBloc>().add(
+              GetSuppliers(
+                currency: context.read<FiltesBloc>().state.selectedcurrency,
+                company: context.read<FiltesBloc>().state.selectedcompany,
+                accountType:
+                    context.read<FiltesBloc>().state.selectedaccounttype,
+              ),
+            ),
+      );
+    }
     TextEditingController controller = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(

@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 locale: Locale(
                   language,
-                  //'ar'
+                  // 'ar'
                   // state.language,
                 ),
                 localizationsDelegates: const [
