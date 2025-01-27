@@ -22,9 +22,7 @@ void main() async {
 
 String getSystemLanguage() {
   findSystemLocale();
-  print('--------------------');
-  print(Intl.systemLocale.split('_')[0]);
-  return Intl.systemLocale.split('_')[0]; // Returns language code
+  return Intl.systemLocale.split('_')[0];
 }
 
 class MyApp extends StatelessWidget {

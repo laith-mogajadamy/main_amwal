@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 import 'dart:convert';
+import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/account_type.dart';
 import 'package:mainamwal/model/filters/account_type_model.dart';
@@ -126,7 +127,13 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             (element) => element.iddefault == '1',
           )),
         );
+        if (state.page == 'pay' || state.page == 'sale') {
+          add(GetProjects());
+        }
       } else {
+        if (state.page == 'pay' || state.page == 'sale') {
+          add(GetProjects());
+        }
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -237,7 +244,13 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             message: responsemap['message'],
           ),
         );
+        if (state.page == 'pay' || state.page == 'sale') {
+          add(Getstores());
+        }
       } else {
+        if (state.page == 'pay' || state.page == 'sale') {
+          add(Getstores());
+        }
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -290,7 +303,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         );
         print('transportCompanies');
         print(state.transportCompanies);
+        add(GetCompanys());
       } else {
+        add(GetCompanys());
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -328,7 +343,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         );
         print('projects');
         print(state.projects);
+        add(GetDocumentsCategories(tybe: state.page));
       } else {
+        add(GetDocumentsCategories(tybe: state.page));
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -342,7 +359,6 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         selectedproject: event.project,
       ));
     });
-    //
     //
     on<Getstores>((event, emit) async {
       print("Getstores");
@@ -362,6 +378,7 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
                 (e) => StoreModel.fromJson(e),
               ),
             ),
+            storesState: RequestState.loaded,
             message: responsemap['message'],
           ),
         );
@@ -371,6 +388,7 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         emit(
           state.copyWith(
             message: responsemap['message'],
+            storesState: RequestState.error,
           ),
         );
       }
@@ -420,7 +438,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
 
         print('selectedDocumentsCategorie');
         print(state.selectedDocumentsCategorie);
+        add(GetDocuments(tybe: state.page));
       } else {
+        add(GetDocuments(tybe: state.page));
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -458,7 +478,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         );
         print('documents');
         print(state.documents);
+        add(GetAgets());
       } else {
+        add(GetAgets());
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -528,13 +550,6 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         ],
       ));
       add(GetTransportCompanies());
-      add(GetCompanys());
-      add(GetProjects());
-      add(GetDocumentsCategories(tybe: event.tybe));
-      add(GetDocuments(tybe: event.tybe));
-      add(GetAgets());
-      add(Getstores());
-
       DateTime initdate = DateTime.now();
       emit(
         state.copyWith(

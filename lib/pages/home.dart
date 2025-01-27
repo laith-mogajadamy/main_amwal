@@ -5,6 +5,7 @@ import 'package:mainamwal/screens/box/presentation/boxs_page.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/black18text.dart';
@@ -61,6 +62,8 @@ class Home extends StatelessWidget {
           context
               .read<FiltesBloc>()
               .add(ClearPurchasesAndSalesFilters(tybe: 'pay'));
+          context.read<PurchasesAndSalesBloc>().add(ClearDailyPruchasAndSale());
+
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => PurchasesAndSalesPage(
@@ -78,6 +81,7 @@ class Home extends StatelessWidget {
           context
               .read<FiltesBloc>()
               .add(ClearPurchasesAndSalesFilters(tybe: 'sale'));
+          context.read<PurchasesAndSalesBloc>().add(ClearDailyPruchasAndSale());
 
           Navigator.of(context).push(
             MaterialPageRoute(

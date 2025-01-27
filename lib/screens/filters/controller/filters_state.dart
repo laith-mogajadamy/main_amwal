@@ -31,6 +31,7 @@ class FiltersState extends Equatable {
   final Project selectedproject;
   //
   final List<Store> stores;
+  final RequestState storesState;
   final Store firstSelectedStores;
   final Store secondSelectedStores;
   //
@@ -77,6 +78,7 @@ class FiltersState extends Equatable {
     this.selectedproject = const Project(guid: '', code: '', name: ''),
     //
     this.stores = const [],
+    this.storesState = RequestState.loading,
     this.firstSelectedStores = const Store(guid: '', code: '', name: ''),
     this.secondSelectedStores = const Store(guid: '', code: '', name: ''),
     //
@@ -129,6 +131,7 @@ class FiltersState extends Equatable {
     Project? selectedproject,
     //
     List<Store>? stores,
+    RequestState? storesState,
     Store? firstSelectedStores,
     Store? secondSelectedStores,
     //
@@ -178,6 +181,7 @@ class FiltersState extends Equatable {
       selectedproject: selectedproject ?? this.selectedproject,
       //
       stores: stores ?? this.stores,
+      storesState: storesState ?? this.storesState,
       firstSelectedStores: firstSelectedStores ?? this.firstSelectedStores,
       secondSelectedStores: secondSelectedStores ?? this.secondSelectedStores,
 
@@ -230,6 +234,7 @@ class FiltersState extends Equatable {
         selectedproject,
         //
         stores,
+        storesState,
         firstSelectedStores,
         secondSelectedStores,
         //

@@ -56,3 +56,38 @@ class ClearDailyPruchasAndSale extends PurchasesAndSalesEvent {
   @override
   List<Object?> get props => [];
 }
+
+class GetDefDates extends PurchasesAndSalesEvent {
+  final BuildContext context;
+  GetDefDates({required this.context});
+  @override
+  List<Object?> get props => [];
+}
+
+//
+class FromDateChanged extends PurchasesAndSalesEvent {
+  final String? fromdate;
+
+  FromDateChanged({this.fromdate});
+
+  @override
+  List<Object?> get props => [fromdate];
+}
+
+class ToDateChanged extends PurchasesAndSalesEvent {
+  final String? todate;
+
+  ToDateChanged({this.todate});
+
+  @override
+  List<Object?> get props => [todate];
+}
+
+class DueDateChanged extends PurchasesAndSalesEvent {
+  final String? duedate;
+
+  DueDateChanged({this.duedate});
+
+  @override
+  List<Object?> get props => [duedate];
+}

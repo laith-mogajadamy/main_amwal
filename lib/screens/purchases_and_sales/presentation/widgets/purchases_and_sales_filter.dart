@@ -1,7 +1,5 @@
 import 'package:mainamwal/generated/l10n.dart';
-import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/screens/filters/presentation/from_to_date_pick.dart';
 import 'package:mainamwal/screens/filters/presentation/select_customer_filter.dart';
 import 'package:mainamwal/screens/filters/presentation/select_document.dart';
 import 'package:mainamwal/screens/filters/presentation/select_document_category.dart';
@@ -11,6 +9,7 @@ import 'package:mainamwal/screens/filters/presentation/select_project.dart';
 import 'package:mainamwal/screens/filters/presentation/select_seconde_store.dart';
 import 'package:mainamwal/screens/filters/presentation/select_transport_companies.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
+import 'package:mainamwal/screens/purchases_and_sales/presentation/widgets/purchases_and_sales_date_pick.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
@@ -20,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/utils/appcolors.dart';
 
@@ -43,6 +43,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.5),
             blurRadius: 50,
           ),
@@ -85,7 +86,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          FromToDatePick(),
+          PurchasesAndSalesDatePick(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -306,17 +307,27 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                               .state
                               .selectedtransportCompanie
                               .guid,
-                          dueDated: context.read<FiltesBloc>().state.dueDate,
+                          dueDated: context
+                              .read<PurchasesAndSalesBloc>()
+                              .state
+                              .dueDate,
                           secondStoreGuid: context
                               .read<FiltesBloc>()
                               .state
                               .secondSelectedStores
                               .guid,
-                          dateFrom: context.read<FiltesBloc>().state.fromDate,
-                          dateTo: context.read<FiltesBloc>().state.toDate,
+                          dateFrom: context
+                              .read<PurchasesAndSalesBloc>()
+                              .state
+                              .fromDate,
+                          dateTo: context
+                              .read<PurchasesAndSalesBloc>()
+                              .state
+                              .toDate,
                         ),
                       );
                   Navigator.pop(context);
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(size.width / 1.1, size.height / 18),

@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/utils/appcolors.dart';
 
@@ -69,6 +70,7 @@ class CustomersFilters extends StatelessWidget {
                   ),
                   SvgPicture.asset(
                     "assets/svg/sliders.svg",
+                    // ignore: deprecated_member_use
                     color: AppColor.appblueGray,
                   )
                 ],
@@ -215,6 +217,7 @@ class CustomersFilters extends StatelessWidget {
                   }
 
                   Navigator.pop(context);
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(size.width / 1.1, size.height / 18),

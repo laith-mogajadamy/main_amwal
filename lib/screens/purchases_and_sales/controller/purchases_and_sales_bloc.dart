@@ -1,12 +1,16 @@
-import 'dart:convert';
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
-import 'package:bloc/bloc.dart';
+import 'dart:convert';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/model/purchases_and_sales/daily_pruchas_and_sale.dart';
 import 'package:mainamwal/model/purchases_and_sales/daily_pruchas_and_sale_model.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/data/purchases_and_sales_reqwest.dart';
 
 part 'purchases_and_sales_event.dart';
@@ -15,6 +19,89 @@ part 'purchases_and_sales_state.dart';
 class PurchasesAndSalesBloc
     extends Bloc<PurchasesAndSalesEvent, PurchasesAndSalesState> {
   PurchasesAndSalesBloc() : super(const PurchasesAndSalesState()) {
+    on<FromDateChanged>((event, emit) async {
+      emit(state.copyWith(
+        fromDate: event.fromdate,
+      ));
+    });
+    //
+    on<ToDateChanged>((event, emit) async {
+      emit(state.copyWith(
+        toDate: event.todate,
+      ));
+    });
+    //
+    on<DueDateChanged>((event, emit) async {
+      emit(state.copyWith(
+        dueDate: event.duedate,
+      ));
+    });
+    //
+
+    on<GetDefDates>((event, emit) async {
+      print("GetDefDates");
+      http.Response response = await PurchasesAndSalesReqwest.getdefdates();
+      var responsemap = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        emit(state.copyWith(
+          fromDate: responsemap['data']?['CurrentPeriodStartDate'] ?? '',
+          toDate: responsemap['data']?['CurrentPeriodEndDate'] ?? '',
+        ));
+        DateTime now = DateTime.now();
+        DateTime fromDate = DateTime.parse(state.fromDate);
+        DateTime toDate = DateTime.parse(state.toDate);
+        if (now.isBefore(toDate) && now.isAfter(fromDate)) {
+          emit(state.copyWith(
+            fromDate: DateFormat('yyyy-MM-dd', "en").format(now),
+            toDate: DateFormat('yyyy-MM-dd', "en").format(now),
+          ));
+        } else {
+          emit(state.copyWith(
+            fromDate: responsemap['data']?['CurrentPeriodEndDate'] ?? '',
+            toDate: responsemap['data']?['CurrentPeriodEndDate'] ?? '',
+          ));
+        }
+        print("state.fromDate=");
+        print(state.fromDate);
+        print("state.toDate=");
+        print(state.toDate);
+        add(GetDailyPruchasAndSale(
+            type: '0',
+            firstStoreGuid:
+                event.context.read<FiltesBloc>().state.firstSelectedStores.guid,
+            customerGuid:
+                event.context.read<FiltesBloc>().state.selectedcustomer.guid,
+            agentGuid:
+                event.context.read<FiltesBloc>().state.selectedagent.guid,
+            documentGuid:
+                event.context.read<FiltesBloc>().state.selectedDocument.guid,
+            categoriesGuid: event.context
+                .read<FiltesBloc>()
+                .state
+                .selectedDocumentsCategorie
+                .guid,
+            projectDefaultGuid:
+                event.context.read<FiltesBloc>().state.selectedproject.guid,
+            companiesGuid:
+                event.context.read<FiltesBloc>().state.selectedcompany.guid,
+            transportCompaniesGuid: event.context
+                .read<FiltesBloc>()
+                .state
+                .selectedtransportCompanie
+                .guid,
+            dueDated: state.dueDate,
+            secondStoreGuid: event.context
+                .read<FiltesBloc>()
+                .state
+                .secondSelectedStores
+                .guid,
+            dateFrom: state.fromDate,
+            dateTo: state.toDate));
+      } else {
+        emit(state.copyWith());
+      }
+    });
     on<ClearDailyPruchasAndSale>((event, emit) async {
       emit(state.copyWith(
         dailyPruchasAndSale: [],

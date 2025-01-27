@@ -7,13 +7,20 @@ class PurchasesAndSalesState extends Equatable {
   final RequestState dailyPruchasAndSaleState;
   final String dailyPruchasAndSaleMessage;
   //
-
+  final String fromDate;
+  final String toDate;
+  final String dueDate;
+  //
   const PurchasesAndSalesState({
     this.token = '',
     //
     this.dailyPruchasAndSale = const [],
     this.dailyPruchasAndSaleState = RequestState.loading,
     this.dailyPruchasAndSaleMessage = '',
+    //
+    this.fromDate = '',
+    this.toDate = '',
+    this.dueDate = '',
   });
 
   PurchasesAndSalesState copyWith({
@@ -22,6 +29,10 @@ class PurchasesAndSalesState extends Equatable {
     List<DailyPruchasAndSale>? dailyPruchasAndSale,
     RequestState? dailyPruchasAndSaleState,
     String? dailyPruchasAndSaleMessage,
+    //
+    String? fromDate,
+    String? toDate,
+    String? dueDate,
   }) {
     return PurchasesAndSalesState(
       token: token ?? this.token,
@@ -32,6 +43,11 @@ class PurchasesAndSalesState extends Equatable {
           dailyPruchasAndSaleState ?? this.dailyPruchasAndSaleState,
       dailyPruchasAndSaleMessage:
           dailyPruchasAndSaleMessage ?? this.dailyPruchasAndSaleMessage,
+      //
+      fromDate: fromDate ?? this.fromDate,
+      toDate: toDate ?? this.toDate,
+      dueDate: dueDate ?? this.dueDate,
+      //
     );
   }
 
@@ -42,6 +58,10 @@ class PurchasesAndSalesState extends Equatable {
         dailyPruchasAndSale,
         dailyPruchasAndSaleState,
         dailyPruchasAndSaleMessage,
+        //
+        fromDate,
+        toDate,
+        dueDate,
         //
       ];
 }

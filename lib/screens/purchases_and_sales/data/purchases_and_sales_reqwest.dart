@@ -5,6 +5,25 @@ import 'package:mainamwal/core/network/global.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 
 class PurchasesAndSalesReqwest {
+  static Future<http.Response> getdefdates() async {
+    var url = Uri.parse("${Global.url}/accounting/dailyPrushAndSale-defdates");
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer ${Preferences.getToken()!}",
+      "p-connection": Preferences.getpconnection()!,
+      "p-host": Preferences.getphost()!,
+      "p-port": Preferences.getpport()!,
+      "p-database": Preferences.getpdatabase()!,
+      "p-username": Preferences.getpusername()!,
+      "p-password": Preferences.getppassword()!,
+      "POSGUID": Preferences.getPOSGUID()!,
+    };
+    http.Response response = await http.get(url, headers: headers);
+
+    return response;
+  } //
+
   //
   static Future<http.Response> getPurchasesAndSales(
     String type,
