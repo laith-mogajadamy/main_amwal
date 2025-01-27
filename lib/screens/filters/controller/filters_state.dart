@@ -22,6 +22,7 @@ class FiltersState extends Equatable {
   final String selectedcity;
   //
   final List<Agent> agents;
+  final RequestState agentState;
   final Agent selectedagent;
   //
   final List<TransportCompanies> transportCompanies;
@@ -38,6 +39,7 @@ class FiltersState extends Equatable {
   final List<DocumentsCategories> documentsCategories;
   final DocumentsCategories selectedDocumentsCategorie;
   //
+  final List<Documents> orginalDocuments;
   final List<Documents> documents;
   final Documents selectedDocument;
   //
@@ -68,6 +70,7 @@ class FiltersState extends Equatable {
     this.selectedcity = '',
     //
     this.agents = const [],
+    this.agentState = RequestState.loading,
     this.selectedagent = const Agent(guid: '', code: '', name: ''),
     //
     this.transportCompanies = const [],
@@ -86,6 +89,7 @@ class FiltersState extends Equatable {
     this.selectedDocumentsCategorie = const DocumentsCategories(
         guid: '', code: '', name: '', iddefault: false),
     //
+    this.orginalDocuments = const [],
     this.documents = const [],
     this.selectedDocument =
         const Documents(guid: '', code: '', name: '', categoriesGuid: ''),
@@ -122,6 +126,7 @@ class FiltersState extends Equatable {
     String? selectedcity,
     //
     List<Agent>? agents,
+    RequestState? agentState,
     Agent? selectedagent,
     //
     List<TransportCompanies>? transportCompanies,
@@ -138,7 +143,7 @@ class FiltersState extends Equatable {
     List<DocumentsCategories>? documentsCategories,
     DocumentsCategories? selectedDocumentsCategorie,
     //
-
+    List<Documents>? orginalDocuments,
     List<Documents>? documents,
     Documents? selectedDocument,
     //
@@ -171,6 +176,7 @@ class FiltersState extends Equatable {
       selectedcity: selectedcity ?? this.selectedcity,
       //
       agents: agents ?? this.agents,
+      agentState: agentState ?? this.agentState,
       selectedagent: selectedagent ?? this.selectedagent,
       //
       transportCompanies: transportCompanies ?? this.transportCompanies,
@@ -190,6 +196,7 @@ class FiltersState extends Equatable {
       selectedDocumentsCategorie:
           selectedDocumentsCategorie ?? this.selectedDocumentsCategorie,
       //
+      orginalDocuments: orginalDocuments ?? this.orginalDocuments,
       documents: documents ?? this.documents,
       selectedDocument: selectedDocument ?? this.selectedDocument,
       //
@@ -225,6 +232,7 @@ class FiltersState extends Equatable {
         selectedcity,
         //
         agents,
+        agentState,
         selectedagent,
         //
         transportCompanies,
@@ -241,6 +249,7 @@ class FiltersState extends Equatable {
         documentsCategories,
         selectedDocumentsCategorie,
         //
+        orginalDocuments,
         documents,
         selectedDocument,
         //

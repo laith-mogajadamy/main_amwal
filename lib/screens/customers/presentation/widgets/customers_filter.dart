@@ -183,7 +183,7 @@ class CustomersFilters extends StatelessWidget {
           SizedBox(
             height: 30.h,
           ),
-          BlocBuilder<FiltesBloc, FiltersState>(
+          BlocBuilder<FiltersBloc, FiltersState>(
             builder: (context, state) {
               return ElevatedButton(
                 onPressed: () {

@@ -14,7 +14,7 @@ class SelectFirstStore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         List<DropdownMenuItem<Store>> storelist = [];
         for (var i = 0; i < state.stores.length; i++) {
@@ -56,7 +56,7 @@ class SelectFirstStore extends StatelessWidget {
                   ? null
                   : state.firstSelectedStores,
               onChanged: (value) {
-                context.read<FiltesBloc>().add(
+                context.read<FiltersBloc>().add(
                       FirstStoreChanged(
                         store: value,
                       ),

@@ -16,7 +16,7 @@ class SelectAccontType extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         List<DropdownMenuItem<AccountType>> accounttypelist = [];
         for (var i = 0; i < state.companys.length; i++) {
@@ -73,7 +73,7 @@ class SelectAccontType extends StatelessWidget {
                   ? null
                   : state.selectedaccounttype,
               onChanged: (value) {
-                context.read<FiltesBloc>().add(
+                context.read<FiltersBloc>().add(
                       AccountTybeChanged(accounttype: value),
                     );
               },

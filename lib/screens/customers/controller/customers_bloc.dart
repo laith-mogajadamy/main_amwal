@@ -24,6 +24,14 @@ part 'customers_state.dart';
 
 class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
   CustomersBloc() : super(const CustomersState()) {
+    on<ClearCustomers>((event, emit) async {
+      emit(
+        state.copyWith(
+          customers: [],
+          customerState: RequestState.loading,
+        ),
+      );
+    });
     on<GetCustomers>((event, emit) async {
       print("GetCustomers");
       String? ptoken = Preferences.getToken();

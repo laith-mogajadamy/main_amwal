@@ -16,7 +16,7 @@ class SelectCurrency extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         List<DropdownMenuItem<Currency>> currencyslist = [];
         for (var i = 0; i < state.currencys.length; i++) {
@@ -59,7 +59,7 @@ class SelectCurrency extends StatelessWidget {
                   //state.currencys[0]
                   : state.selectedcurrency,
               onChanged: (value) {
-                context.read<FiltesBloc>().add(
+                context.read<FiltersBloc>().add(
                       CurrencyChanged(
                         currency: value,
                       ),

@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<BoxBloc>(
           create: (context) => BoxBloc(),
         ),
-        BlocProvider<FiltesBloc>(
-          create: (context) => FiltesBloc(),
+        BlocProvider<FiltersBloc>(
+          create: (context) => FiltersBloc(),
         ),
         BlocProvider<PurchasesAndSalesBloc>(
           create: (context) => PurchasesAndSalesBloc(),
@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
             builder: (BuildContext context, Widget? child) {
               return MaterialApp(
                 locale: Locale(
-                  language,
-                  // 'ar'
-                  // state.language,
-                ),
+                    // language,
+                    'ar'
+                    // state.language,
+                    ),
                 localizationsDelegates: const [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,

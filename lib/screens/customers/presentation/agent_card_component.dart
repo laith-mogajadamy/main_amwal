@@ -144,7 +144,7 @@ class AgentCardComponent extends StatelessWidget {
                             ],
                           ),
                         ),
-                        BlocBuilder<FiltesBloc, FiltersState>(
+                        BlocBuilder<FiltersBloc, FiltersState>(
                           builder: (context, state) {
                             return (state.page == "customers")
                                 ? Padding(

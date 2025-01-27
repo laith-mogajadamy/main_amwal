@@ -24,7 +24,7 @@ class PurchasesAndSalesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     Size size = MediaQuery.of(context).size;
-    return BlocListener<FiltesBloc, FiltersState>(
+    return BlocListener<FiltersBloc, FiltersState>(
       listenWhen: (previous, current) =>
           previous.storesState != current.storesState,
       listener: (context, state) {
@@ -83,54 +83,54 @@ class PurchasesAndSalesPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    BlocBuilder<FiltesBloc, FiltersState>(
+                    BlocBuilder<FiltersBloc, FiltersState>(
                       builder: (context, state) {
                         return ElevatedButton(
                           onPressed: () {
                             context.read<PurchasesAndSalesBloc>().add(
                                   GetDailyPruchasAndSale(
                                     type: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedpaymentMethodes
                                         .code,
                                     firstStoreGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .firstSelectedStores
                                         .guid,
                                     customerGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedcustomer
                                         .guid,
                                     agentGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedagent
                                         .guid,
                                     documentGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedDocument
                                         .guid,
                                     categoriesGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedDocumentsCategorie
                                         .guid,
                                     projectDefaultGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedproject
                                         .guid,
                                     companiesGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedcompany
                                         .guid,
                                     transportCompaniesGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .selectedtransportCompanie
                                         .guid,
@@ -139,7 +139,7 @@ class PurchasesAndSalesPage extends StatelessWidget {
                                         .state
                                         .dueDate,
                                     secondStoreGuid: context
-                                        .read<FiltesBloc>()
+                                        .read<FiltersBloc>()
                                         .state
                                         .secondSelectedStores
                                         .guid,

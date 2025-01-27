@@ -25,8 +25,9 @@ class Home extends StatelessWidget {
         S.of(context).customers,
         "assets/svg/person orange svg.svg",
         () {
-          context.read<FiltesBloc>().add(ClearCustomerAndSupliersFilters());
-          context.read<FiltesBloc>().add(PageChanged(page: 'customers'));
+          context.read<FiltersBloc>().add(PageChanged(page: 'customers'));
+          context.read<FiltersBloc>().add(ClearCustomerAndSupliersFilters());
+          context.read<CustomersBloc>().add(ClearCustomers());
 
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -42,8 +43,9 @@ class Home extends StatelessWidget {
         S.of(context).suppliers,
         "assets/svg/splayers orange svg.svg",
         () {
-          context.read<FiltesBloc>().add(ClearCustomerAndSupliersFilters());
-          context.read<FiltesBloc>().add(PageChanged(page: 'suppliers'));
+          context.read<FiltersBloc>().add(PageChanged(page: 'suppliers'));
+          context.read<FiltersBloc>().add(ClearCustomerAndSupliersFilters());
+          context.read<CustomersBloc>().add(ClearCustomers());
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => CustomerPage(
@@ -58,12 +60,11 @@ class Home extends StatelessWidget {
         S.of(context).purchases,
         "assets/svg/cart orange svg.svg",
         () {
-          context.read<FiltesBloc>().add(PageChanged(page: 'pay'));
+          context.read<FiltersBloc>().add(PageChanged(page: 'pay'));
           context
-              .read<FiltesBloc>()
+              .read<FiltersBloc>()
               .add(ClearPurchasesAndSalesFilters(tybe: 'pay'));
           context.read<PurchasesAndSalesBloc>().add(ClearDailyPruchasAndSale());
-
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => PurchasesAndSalesPage(
@@ -77,9 +78,9 @@ class Home extends StatelessWidget {
         S.of(context).sales,
         "assets/svg/sales orange svg.svg",
         () async {
-          context.read<FiltesBloc>().add(PageChanged(page: 'sale'));
+          context.read<FiltersBloc>().add(PageChanged(page: 'sale'));
           context
-              .read<FiltesBloc>()
+              .read<FiltersBloc>()
               .add(ClearPurchasesAndSalesFilters(tybe: 'sale'));
           context.read<PurchasesAndSalesBloc>().add(ClearDailyPruchasAndSale());
 

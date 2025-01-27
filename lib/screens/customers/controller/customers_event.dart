@@ -2,6 +2,13 @@ part of 'customers_bloc.dart';
 
 abstract class CustomersEvent extends Equatable {}
 
+class ClearCustomers extends CustomersEvent {
+  ClearCustomers();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class GetCustomers extends CustomersEvent {
   final Currency? currency;
   final Company? company;

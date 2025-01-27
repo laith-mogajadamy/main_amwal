@@ -20,140 +20,142 @@ class CustomerPage extends StatelessWidget {
   const CustomerPage({super.key, required this.event, required this.title});
   @override
   Widget build(BuildContext context) {
-    if (context.read<FiltesBloc>().state.page == 'customers') {
-      Future.delayed(Duration(seconds: 2)).then(
-        (value) => context.read<CustomersBloc>().add(
-              GetCustomers(
-                currency: context.read<FiltesBloc>().state.selectedcurrency,
-                company: context.read<FiltesBloc>().state.selectedcompany,
-                accountType:
-                    context.read<FiltesBloc>().state.selectedaccounttype,
-              ),
-            ),
-      );
-    } else {
-      Future.delayed(Duration(seconds: 2)).then(
-        (value) => context.read<CustomersBloc>().add(
-              GetSuppliers(
-                currency: context.read<FiltesBloc>().state.selectedcurrency,
-                company: context.read<FiltesBloc>().state.selectedcompany,
-                accountType:
-                    context.read<FiltesBloc>().state.selectedaccounttype,
-              ),
-            ),
-      );
-    }
     TextEditingController controller = TextEditingController();
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: AppColor.whiteColorBG,
-      appBar: AppBar(
-        backgroundColor: AppColor.appbuleBG,
-        title: White18text(
-          text: title,
+    return BlocListener<FiltersBloc, FiltersState>(
+      listenWhen: (previous, current) =>
+          previous.agentState != current.agentState,
+      listener: (context, state) {
+        if (context.read<FiltersBloc>().state.page == 'customers') {
+          context.read<CustomersBloc>().add(
+                GetCustomers(
+                  currency: context.read<FiltersBloc>().state.selectedcurrency,
+                  company: context.read<FiltersBloc>().state.selectedcompany,
+                  accountType:
+                      context.read<FiltersBloc>().state.selectedaccounttype,
+                ),
+              );
+        } else {
+          context.read<CustomersBloc>().add(
+                GetSuppliers(
+                  currency: context.read<FiltersBloc>().state.selectedcurrency,
+                  company: context.read<FiltersBloc>().state.selectedcompany,
+                  accountType:
+                      context.read<FiltersBloc>().state.selectedaccounttype,
+                ),
+              );
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColor.whiteColorBG,
+        appBar: AppBar(
+          backgroundColor: AppColor.appbuleBG,
+          title: White18text(
+            text: title,
+          ),
         ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SearchTextField(controller: controller),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        enableDrag: true,
-                        builder: (BuildContext context) {
-                          return CustomersFilters(controller: controller);
-                        },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: Size(size.width / 2.2, size.height / 18),
-                      backgroundColor: AppColor.appblueGray,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.r),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SearchTextField(controller: controller),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          enableDrag: true,
+                          builder: (BuildContext context) {
+                            return CustomersFilters(controller: controller);
+                          },
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(size.width / 2.2, size.height / 18),
+                        backgroundColor: AppColor.appblueGray,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: White16text(
+                                  text: S.of(context).advancedsearch)),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          SvgPicture.asset("assets/svg/sliders.svg")
+                        ],
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            child: White16text(
-                                text: S.of(context).advancedsearch)),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        SvgPicture.asset("assets/svg/sliders.svg")
-                      ],
-                    ),
-                  ),
-                  BlocBuilder<FiltesBloc, FiltersState>(
-                    builder: (context, state) {
-                      return ElevatedButton(
-                        onPressed: () {
-                          if (state.page == 'customers') {
-                            context.read<CustomersBloc>().add(
-                                  GetCustomers(
-                                    name: controller.text.trim(),
-                                    currency: state.selectedcurrency,
-                                    company: state.selectedcompany,
-                                    accountType: state.selectedaccounttype,
-                                    agent: state.selectedagent,
-                                    city: state.selectedcity,
-                                  ),
-                                );
-                          } else {
-                            context.read<CustomersBloc>().add(
-                                  GetSuppliers(
-                                    name: controller.text.trim(),
-                                    currency: state.selectedcurrency,
-                                    company: state.selectedcompany,
-                                    accountType: state.selectedaccounttype,
-                                    agent: state.selectedagent,
-                                    city: state.selectedcity,
-                                  ),
-                                );
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(size.width / 2.2, size.height / 18),
-                          backgroundColor: AppColor.apporange,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.r),
+                    BlocBuilder<FiltersBloc, FiltersState>(
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          onPressed: () {
+                            if (state.page == 'customers') {
+                              context.read<CustomersBloc>().add(
+                                    GetCustomers(
+                                      name: controller.text.trim(),
+                                      currency: state.selectedcurrency,
+                                      company: state.selectedcompany,
+                                      accountType: state.selectedaccounttype,
+                                      agent: state.selectedagent,
+                                      city: state.selectedcity,
+                                    ),
+                                  );
+                            } else {
+                              context.read<CustomersBloc>().add(
+                                    GetSuppliers(
+                                      name: controller.text.trim(),
+                                      currency: state.selectedcurrency,
+                                      company: state.selectedcompany,
+                                      accountType: state.selectedaccounttype,
+                                      agent: state.selectedagent,
+                                      city: state.selectedcity,
+                                    ),
+                                  );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(size.width / 2.2, size.height / 18),
+                            backgroundColor: AppColor.apporange,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
                           ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            White16text(text: S.of(context).search),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Icon(
-                              Icons.search,
-                              color: AppColor.whiteColor,
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              White16text(text: S.of(context).search),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Icon(
+                                Icons.search,
+                                color: AppColor.whiteColor,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: CustomerComponent(
-                event: event,
+              Expanded(
+                child: CustomerComponent(
+                  event: event,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

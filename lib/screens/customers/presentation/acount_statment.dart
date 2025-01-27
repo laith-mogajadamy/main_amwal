@@ -29,7 +29,7 @@ class AcountStatment extends StatefulWidget {
 class _AcountStatmentState extends State<AcountStatment> {
   @override
   Widget build(BuildContext context) {
-    List<Currency> currencys = context.read<FiltesBloc>().state.currencys;
+    List<Currency> currencys = context.read<FiltersBloc>().state.currencys;
     Currency currencyname = currencys
         .firstWhere((name) => name.guid == widget.customer.dealingCurrencyGuid);
     Size size = MediaQuery.of(context).size;
@@ -45,7 +45,7 @@ class _AcountStatmentState extends State<AcountStatment> {
           BlocBuilder<CustomersBloc, CustomersState>(
             builder: (context, state) {
               return (!state.acountstatmentpage)
-                  ? BlocBuilder<FiltesBloc, FiltersState>(
+                  ? BlocBuilder<FiltersBloc, FiltersState>(
                       builder: (context, state) {
                         return IconButton(
                           onPressed: () {

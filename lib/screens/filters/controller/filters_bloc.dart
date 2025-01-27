@@ -31,8 +31,8 @@ import 'package:mainamwal/screens/filters/data/veriabels_request.dart';
 part 'filters_event.dart';
 part 'filters_state.dart';
 
-class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
-  FiltesBloc() : super(const FiltersState()) {
+class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
+  FiltersBloc() : super(const FiltersState()) {
     //
     on<PageChanged>((event, emit) async {
       emit(state.copyWith(
@@ -85,7 +85,10 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             ),
           ),
         );
+        add(GetCompanys());
       } else {
+        add(GetCompanys());
+
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -127,10 +130,16 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             (element) => element.iddefault == '1',
           )),
         );
+        if (state.page == 'suppliers' || state.page == 'customers') {
+          add(GetCitys());
+        }
         if (state.page == 'pay' || state.page == 'sale') {
           add(GetProjects());
         }
       } else {
+        if (state.page == 'suppliers' || state.page == 'customers') {
+          add(GetCitys());
+        }
         if (state.page == 'pay' || state.page == 'sale') {
           add(GetProjects());
         }
@@ -165,7 +174,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             message: responsemap['message'],
           ),
         );
+        add(GetAccountTybe());
       } else {
+        add(GetAccountTybe());
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -208,7 +219,9 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
             ),
           ),
         );
+        add(GetAgets());
       } else {
+        add(GetAgets());
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -225,7 +238,6 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
     //
     on<GetAgets>((event, emit) async {
       print("GetAgets");
-
       http.Response response = await VeriabelsRequest.getagents();
       var responsemap = await jsonDecode(response.body);
       print("message==${state.message}");
@@ -241,6 +253,7 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
                 (e) => AgentModel.fromJson(e),
               ),
             ),
+            agentState: RequestState.loaded,
             message: responsemap['message'],
           ),
         );
@@ -253,6 +266,7 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
         }
         emit(
           state.copyWith(
+            agentState: RequestState.error,
             message: responsemap['message'],
           ),
         );
@@ -266,11 +280,12 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
     });
     //
     on<ClearCustomerAndSupliersFilters>((event, emit) async {
+      emit(
+        state.copyWith(
+          agentState: RequestState.loading,
+        ),
+      );
       add(GetCurrency());
-      add(GetCompanys());
-      add(GetCitys());
-      add(GetAccountTybe());
-      add(GetAgets());
       emit(
         state.copyWith(
           selectedcity: '',
@@ -451,8 +466,25 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
     //
     on<DocumentsCategoriesChanged>((event, emit) async {
       emit(state.copyWith(
+        selectedDocument:
+            Documents(guid: '', code: '', name: '', categoriesGuid: ''),
         selectedDocumentsCategorie: event.documentsCategorie,
       ));
+      print(state.selectedDocumentsCategorie);
+      List<Documents> filterdDocument = [];
+      for (var i = 0; i < state.orginalDocuments.length; i++) {
+        if (state.orginalDocuments[i].categoriesGuid ==
+            state.selectedDocumentsCategorie.guid) {
+          filterdDocument.add(state.orginalDocuments[i]);
+        }
+      }
+      print('filterdDocument');
+      print(filterdDocument);
+      emit(
+        state.copyWith(
+          documents: filterdDocument,
+        ),
+      );
     });
     //
     on<GetDocuments>((event, emit) async {
@@ -468,12 +500,27 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
       if (response.statusCode == 200) {
         emit(
           state.copyWith(
-            documents: List<DocumentsModel>.from(
+            orginalDocuments: List<DocumentsModel>.from(
               (responsemap['data'] as List).map(
                 (e) => DocumentsModel.fromJson(e),
               ),
             ),
             message: responsemap['message'],
+          ),
+        );
+        print(state.selectedDocumentsCategorie);
+        List<Documents> filterdDocument = [];
+        for (var i = 0; i < state.orginalDocuments.length; i++) {
+          if (state.orginalDocuments[i].categoriesGuid ==
+              state.selectedDocumentsCategorie.guid) {
+            filterdDocument.add(state.orginalDocuments[i]);
+          }
+        }
+        print('filterdDocument');
+        print(filterdDocument);
+        emit(
+          state.copyWith(
+            documents: filterdDocument,
           ),
         );
         print('documents');
@@ -543,6 +590,7 @@ class FiltesBloc extends Bloc<FiltersEvent, FiltersState> {
     on<ClearPurchasesAndSalesFilters>((event, emit) async {
       print("ClearPurchasesAndSalesFilters");
       emit(state.copyWith(
+        storesState: RequestState.loading,
         paymentMethodes: [
           PaymentMethode(code: '0', name: S().all),
           PaymentMethode(code: '1', name: S().delayed),

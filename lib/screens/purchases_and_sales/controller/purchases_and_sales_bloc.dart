@@ -68,31 +68,34 @@ class PurchasesAndSalesBloc
         print(state.toDate);
         add(GetDailyPruchasAndSale(
             type: '0',
-            firstStoreGuid:
-                event.context.read<FiltesBloc>().state.firstSelectedStores.guid,
+            firstStoreGuid: event.context
+                .read<FiltersBloc>()
+                .state
+                .firstSelectedStores
+                .guid,
             customerGuid:
-                event.context.read<FiltesBloc>().state.selectedcustomer.guid,
+                event.context.read<FiltersBloc>().state.selectedcustomer.guid,
             agentGuid:
-                event.context.read<FiltesBloc>().state.selectedagent.guid,
+                event.context.read<FiltersBloc>().state.selectedagent.guid,
             documentGuid:
-                event.context.read<FiltesBloc>().state.selectedDocument.guid,
+                event.context.read<FiltersBloc>().state.selectedDocument.guid,
             categoriesGuid: event.context
-                .read<FiltesBloc>()
+                .read<FiltersBloc>()
                 .state
                 .selectedDocumentsCategorie
                 .guid,
             projectDefaultGuid:
-                event.context.read<FiltesBloc>().state.selectedproject.guid,
+                event.context.read<FiltersBloc>().state.selectedproject.guid,
             companiesGuid:
-                event.context.read<FiltesBloc>().state.selectedcompany.guid,
+                event.context.read<FiltersBloc>().state.selectedcompany.guid,
             transportCompaniesGuid: event.context
-                .read<FiltesBloc>()
+                .read<FiltersBloc>()
                 .state
                 .selectedtransportCompanie
                 .guid,
             dueDated: state.dueDate,
             secondStoreGuid: event.context
-                .read<FiltesBloc>()
+                .read<FiltersBloc>()
                 .state
                 .secondSelectedStores
                 .guid,

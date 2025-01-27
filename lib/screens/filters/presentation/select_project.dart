@@ -14,7 +14,7 @@ class SelectProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         List<DropdownMenuItem<Project>> projectlist = [];
         for (var i = 0; i < state.projects.length; i++) {
@@ -57,7 +57,7 @@ class SelectProject extends StatelessWidget {
                   ? null
                   : state.selectedproject,
               onChanged: (value) {
-                context.read<FiltesBloc>().add(
+                context.read<FiltersBloc>().add(
                       ProjectChanged(
                         project: value,
                       ),

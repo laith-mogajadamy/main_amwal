@@ -15,7 +15,7 @@ class Selectcity extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         List<DropdownMenuItem<String>> citylist = [];
         for (var i = 0; i < state.citys.length; i++) {
@@ -53,7 +53,7 @@ class Selectcity extends StatelessWidget {
               items: citylist,
               value: (state.selectedcity == '') ? null : state.selectedcity,
               onChanged: (value) {
-                context.read<FiltesBloc>().add(
+                context.read<FiltersBloc>().add(
                       CityChanged(
                         city: value,
                       ),

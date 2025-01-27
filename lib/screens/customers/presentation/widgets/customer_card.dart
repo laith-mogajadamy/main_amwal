@@ -105,7 +105,7 @@ class CustomerCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              BlocBuilder<FiltesBloc, FiltersState>(
+              BlocBuilder<FiltersBloc, FiltersState>(
                 builder: (context, state) {
                   return TextButton(
                     onPressed: () {

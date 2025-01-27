@@ -70,7 +70,7 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
         return Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -108,6 +108,9 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  width: 10.w,
                 ),
                 Row(
                   children: [

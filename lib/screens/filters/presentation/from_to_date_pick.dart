@@ -56,7 +56,7 @@ class FromToDatePick extends StatelessWidget {
       }
     }
 
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -81,7 +81,7 @@ class FromToDatePick extends StatelessWidget {
                         ),
                       );
                     } else {
-                      context.read<FiltesBloc>().add(FromDateChanged(
+                      context.read<FiltersBloc>().add(FromDateChanged(
                           fromdate:
                               '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
                     }
@@ -123,7 +123,7 @@ class FromToDatePick extends StatelessWidget {
                         ),
                       );
                     } else {
-                      context.read<FiltesBloc>().add(ToDateChanged(
+                      context.read<FiltersBloc>().add(ToDateChanged(
                           todate:
                               '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
                     }

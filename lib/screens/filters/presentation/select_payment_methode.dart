@@ -14,7 +14,7 @@ class SelectPaymentMethode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<FiltesBloc, FiltersState>(
+    return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
         List<DropdownMenuItem<PaymentMethode>> paymentMethodelist = [];
         for (var i = 0; i < state.paymentMethodes.length; i++) {
@@ -57,7 +57,7 @@ class SelectPaymentMethode extends StatelessWidget {
                   ? null
                   : state.selectedpaymentMethodes,
               onChanged: (value) {
-                context.read<FiltesBloc>().add(
+                context.read<FiltersBloc>().add(
                       PaymentMethodeChanged(
                         paymentMethode: value,
                       ),
