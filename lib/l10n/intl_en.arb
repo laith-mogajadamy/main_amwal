@@ -1,5 +1,8 @@
 {
     "Changethelanguage": "Change the language",
+    "language": "The language",
+    "logout": "Logout",
+    "logingout": "loging out...",
     "Chooselanguage": "Choose the language",
     "email": "email",
     "username": "user name",

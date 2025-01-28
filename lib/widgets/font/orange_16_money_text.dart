@@ -17,10 +17,10 @@ class Orange16Moneytext extends StatelessWidget {
     double number = double.parse(text);
     isNegative = number < 0;
     double absoluteNumber = number.abs();
-    double roundedNumber = (absoluteNumber * 100).round() / 100;
+    double roundedNumber = (absoluteNumber * 1000).round() / 1000;
 
-    String roundedText = roundedNumber.toStringAsFixed(2);
-    if (roundedText.endsWith(".00")) {
+    String roundedText = roundedNumber.toStringAsFixed(3);
+    if (roundedText.endsWith(".000")) {
       roundedText = roundedText.substring(0, roundedText.indexOf("."));
     }
     String formattedText = roundedText.replaceAllMapped(

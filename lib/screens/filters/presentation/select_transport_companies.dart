@@ -50,7 +50,10 @@ class SelectTransportCompanies extends StatelessWidget {
               isExpanded: true,
               dropdownColor: AppColor.whiteColor,
               borderRadius: BorderRadius.circular(20.r),
-              hint: Black14text(text: S.of(context).transportationcompany),
+              hint: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Black14text(text: S.of(context).transportationcompany),
+              ),
               items: transportCompaniestlist,
               value: (state.selectedtransportCompanie ==
                       TransportCompanies(guid: '', code: '', name: ''))

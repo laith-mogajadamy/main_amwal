@@ -30,11 +30,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String language = getSystemLanguage();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider<EnterBloc>(
-          create: (context) => EnterBloc()..add(Getuser()),
+          create: (context) => EnterBloc()
+            ..add(Getuser())
+            ..add(LanguageChanged(language: language)),
         ),
         BlocProvider<CustomersBloc>(
           create: (context) => CustomersBloc(),
@@ -58,10 +59,8 @@ class MyApp extends StatelessWidget {
             builder: (BuildContext context, Widget? child) {
               return MaterialApp(
                 locale: Locale(
-                    // language,
-                    'ar'
-                    // state.language,
-                    ),
+                  state.language,
+                ),
                 localizationsDelegates: const [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,

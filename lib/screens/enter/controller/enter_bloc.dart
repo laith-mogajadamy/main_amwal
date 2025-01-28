@@ -3,10 +3,6 @@ import 'dart:convert';
 import 'package:mainamwal/core/services/auth.dart';
 import 'package:mainamwal/core/utils/formstatus.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
-import 'package:mainamwal/model/filters/account_type.dart';
-import 'package:mainamwal/model/customers_and_suppliers/agent.dart';
-import 'package:mainamwal/model/filters/company.dart';
-import 'package:mainamwal/model/filters/currency.dart';
 import 'package:mainamwal/model/enter/user.dart';
 import 'package:mainamwal/model/enter/usermodel.dart';
 import 'package:bloc/bloc.dart';
@@ -211,6 +207,7 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
               ),
               logoutStatus: SubmissionSuccess(),
               message: responsemap["message"],
+              name: '',
               email: "",
               password: "",
               token: "",

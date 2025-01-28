@@ -258,11 +258,11 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
           ),
         );
         if (state.page == 'pay' || state.page == 'sale') {
-          add(Getstores());
+          add(GetCustomersFilter(tybe: state.page));
         }
       } else {
         if (state.page == 'pay' || state.page == 'sale') {
-          add(Getstores());
+          add(GetCustomersFilter(tybe: state.page));
         }
         emit(
           state.copyWith(
@@ -565,7 +565,9 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
         );
         print('customersFilter');
         print(state.customersFilter);
+        add(Getstores());
       } else {
+        add(Getstores());
         emit(
           state.copyWith(
             message: responsemap['message'],

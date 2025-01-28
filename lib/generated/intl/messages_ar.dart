@@ -71,6 +71,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الموارد البشرية"),
         "invoicetype": MessageLookupByLibrary.simpleMessage("نوع الفاتورة"),
         "k": MessageLookupByLibrary.simpleMessage("ك"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "logingout":
+            MessageLookupByLibrary.simpleMessage("جار تسجيل الخروج..."),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "mobilenumber": MessageLookupByLibrary.simpleMessage("رقم خليوي"),
         "movementtype": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),

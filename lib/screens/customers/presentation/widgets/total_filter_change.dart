@@ -23,7 +23,7 @@ class TotalFilterChange extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: size.width / 2.8,
+                width: size.width / 2.4,
                 child: Center(
                   child: RadioListTile<String>(
                     title: FittedBox(
@@ -42,7 +42,7 @@ class TotalFilterChange extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: size.width / 2.2,
+                width: size.width / 2.4,
                 child: RadioListTile<String>(
                   title: FittedBox(
                     fit: BoxFit.scaleDown,

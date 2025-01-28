@@ -1,5 +1,8 @@
 {
     "Changethelanguage": "غير اللغة",
+    "language": "اللغة",
+    "logout": "تسجيل خروج",
+    "logingout": "جار تسجيل الخروج...",
     "Chooselanguage": "اختر اللغة",
     "email": "البريد الإلكتروني",
     "username": "اسم المستخدم",

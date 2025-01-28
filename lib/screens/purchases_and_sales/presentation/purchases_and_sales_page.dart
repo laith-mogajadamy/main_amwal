@@ -12,7 +12,6 @@ import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/widgets/font/white18text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/search_text_field.dart';
 
 class PurchasesAndSalesPage extends StatelessWidget {
   final String title;
@@ -45,9 +44,8 @@ class PurchasesAndSalesPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SearchTextField(controller: controller),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.h),
+                padding: EdgeInsets.symmetric(vertical: 5.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

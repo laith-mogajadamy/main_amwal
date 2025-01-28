@@ -13,8 +13,8 @@ class Auth {
       "password": password,
       "accept_logout": "true"
     };
+    print(data);
     var body = jsonEncode(data);
-
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",
@@ -52,20 +52,41 @@ class Auth {
             408);
       },
     );
+    var responsemap = jsonDecode(response.body);
+    print(responsemap);
+
     return response;
   }
 
   static Future<http.Response> logout(String token) async {
-    var url = Uri.parse("${Global.url}/logout");
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer ${Preferences.getToken()!}",
+      "p-connection": Preferences.getpconnection()!,
+      "p-host": Preferences.getphost()!,
+      "p-port": Preferences.getpport()!,
+      "p-database": Preferences.getpdatabase()!,
+      "p-username": Preferences.getpusername()!,
+      "p-password": Preferences.getppassword()!,
+      "POSGUID": Preferences.getPOSGUID()!,
+    };
+    var url = Uri.parse("${Global.url}/auth/logout");
     http.Response response = await http
-        .post(
+        .get(
       url,
-      headers: Global.headers,
+      headers: headers,
     )
         .timeout(
       const Duration(seconds: 3),
       onTimeout: () {
-        return logout(token);
+        return http.Response(
+            jsonEncode(
+              {
+                "message": 'timed out',
+              },
+            ),
+            408);
       },
     );
     return response;

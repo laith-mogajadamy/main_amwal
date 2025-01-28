@@ -60,6 +60,36 @@ class S {
     );
   }
 
+  /// `The language`
+  String get language {
+    return Intl.message(
+      'The language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `loging out...`
+  String get logingout {
+    return Intl.message(
+      'loging out...',
+      name: 'logingout',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Choose the language`
   String get Chooselanguage {
     return Intl.message(
