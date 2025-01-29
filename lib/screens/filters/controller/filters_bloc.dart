@@ -258,11 +258,23 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
           ),
         );
         if (state.page == 'pay' || state.page == 'sale') {
-          add(GetCustomersFilter(tybe: state.page));
+          add(
+            GetCustomersFilter(
+              tybe: state.page,
+              name: '',
+              search: false,
+            ),
+          );
         }
       } else {
         if (state.page == 'pay' || state.page == 'sale') {
-          add(GetCustomersFilter(tybe: state.page));
+          add(
+            GetCustomersFilter(
+              tybe: state.page,
+              name: '',
+              search: false,
+            ),
+          );
         }
         emit(
           state.copyWith(
@@ -545,7 +557,7 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
     on<GetCustomersFilter>((event, emit) async {
       print("GetCustomersFilter");
       http.Response response =
-          await VeriabelsRequest.getfiltercustomers(event.tybe);
+          await VeriabelsRequest.getfiltercustomers(event.tybe, event.name);
       var responsemap = await jsonDecode(response.body);
       print("message==${state.message}");
       print("*********");
@@ -565,9 +577,13 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
         );
         print('customersFilter');
         print(state.customersFilter);
-        add(Getstores());
+        if (!event.search) {
+          add(Getstores());
+        }
       } else {
-        add(Getstores());
+        if (!event.search) {
+          add(Getstores());
+        }
         emit(
           state.copyWith(
             message: responsemap['message'],

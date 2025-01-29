@@ -81,5 +81,6 @@
     "stores": "Stores",
     "transportationcompany": "Transportation company",
     "duedate": "due date",
-    "project": "project"
+    "project": "project",
+    "theamount": "the amount"
 }

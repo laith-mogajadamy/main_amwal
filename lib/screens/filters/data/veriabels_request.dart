@@ -212,7 +212,8 @@ class VeriabelsRequest {
   }
 
   //
-  static Future<http.Response> getfiltercustomers(String type) async {
+  static Future<http.Response> getfiltercustomers(
+      String type, String name) async {
     var url = Uri.parse("${Global.url}/accounting/dailyPrushAndSale-customers");
     Map<String, String> headers = {
       "Content-type": "application/json",
@@ -228,7 +229,9 @@ class VeriabelsRequest {
     };
     Map data = {
       "type": type,
+      "name": name,
     };
+    print(data);
     var body = jsonEncode(data);
     http.Response response = await http.post(url, headers: headers, body: body);
 

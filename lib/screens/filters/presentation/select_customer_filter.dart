@@ -50,53 +50,80 @@ class SelectCustomerFilter extends StatelessWidget {
                           SizedBox(
                             height: 5.h,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                                // boxShadow: [
-                                //   BoxShadow(
-                                //     blurRadius: 1.r,
-                                //     // ignore: deprecated_member_use
-                                //     color: AppColor.black.withOpacity(0.1),
-                                //   ),
-                                // ],
-                                ),
-                            child: TextFormField(
-                              controller: controller,
-                              style: GoogleFonts.cairo(
-                                fontSize: 14.sp,
-                                color: AppColor.apptitle,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.none,
-                              ),
-                              decoration: InputDecoration(
-                                filled: true,
-                                hintText: S.of(context).name,
-                                hintStyle: GoogleFonts.cairo(
-                                  fontSize: 14.sp,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                fillColor: AppColor.whiteColor,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: AppColor.appblueGray,
-                                    width: 1.w,
+                          BlocBuilder<FiltersBloc, FiltersState>(
+                            builder: (context, state) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                    // boxShadow: [
+                                    //   BoxShadow(
+                                    //     blurRadius: 1.r,
+                                    //     // ignore: deprecated_member_use
+                                    //     color: AppColor.black.withOpacity(0.1),
+                                    //   ),
+                                    // ],
+                                    ),
+                                child: TextFormField(
+                                  controller: controller,
+                                  style: GoogleFonts.cairo(
+                                    fontSize: 14.sp,
+                                    color: AppColor.apptitle,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.none,
                                   ),
-                                  borderRadius: BorderRadius.circular(
-                                    20.r,
+                                  decoration: InputDecoration(
+                                    suffixIcon: GestureDetector(
+                                      onTap: () {
+                                        context.read<FiltersBloc>().add(
+                                              GetCustomersFilter(
+                                                  tybe: state.page,
+                                                  name: controller.text,
+                                                  search: true),
+                                            );
+                                      },
+                                      child: Icon(
+                                        Icons.check_circle_rounded,
+                                        color: Colors.green,
+                                        size: 25.r,
+                                      ),
+                                    ),
+                                    filled: true,
+                                    hintText: S.of(context).name,
+                                    hintStyle: GoogleFonts.cairo(
+                                      fontSize: 14.sp,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    fillColor: AppColor.whiteColor,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppColor.appblueGray,
+                                        width: 1.w,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        20.r,
+                                      ),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppColor.appblueGray,
+                                        width: 1.w,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        20.r,
+                                      ),
+                                    ),
                                   ),
+                                  onTapOutside: (event) {
+                                    context.read<FiltersBloc>().add(
+                                          GetCustomersFilter(
+                                              tybe: state.page,
+                                              name: controller.text,
+                                              search: true),
+                                        );
+                                  },
                                 ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: AppColor.appblueGray,
-                                    width: 1.w,
-                                  ),
-                                  borderRadius: BorderRadius.circular(
-                                    20.r,
-                                  ),
-                                ),
-                              ),
-                            ),
+                              );
+                            },
                           )
                         ],
                       ),

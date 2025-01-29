@@ -82,5 +82,6 @@
     "stores": "المخازن",
     "transportationcompany": "شركة النقل",
     "duedate": "تاريخ الاستحقاق",
-    "project": "المشروع"
+    "project": "المشروع",
+    "theamount": "المبلغ"
 }

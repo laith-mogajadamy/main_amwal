@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "stores": MessageLookupByLibrary.simpleMessage("Stores"),
         "sum": MessageLookupByLibrary.simpleMessage("sum"),
         "suppliers": MessageLookupByLibrary.simpleMessage("suppliers"),
+        "theamount": MessageLookupByLibrary.simpleMessage("the amount"),
         "thelimitofdebtinabuy":
             MessageLookupByLibrary.simpleMessage("The limit of debt in a buy"),
         "thelimitofdebtinasale":

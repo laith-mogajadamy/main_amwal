@@ -21,6 +21,8 @@ class PurchasesAndSalesPage extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
     TextEditingController controller = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return BlocListener<FiltersBloc, FiltersState>(
@@ -32,6 +34,7 @@ class PurchasesAndSalesPage extends StatelessWidget {
             .add(GetDefDates(context: context));
       },
       child: Scaffold(
+        key: scaffoldkey,
         backgroundColor: AppColor.whiteColorBG,
         appBar: AppBar(
           backgroundColor: AppColor.appbuleBG,
@@ -57,7 +60,9 @@ class PurchasesAndSalesPage extends StatelessWidget {
                           enableDrag: true,
                           builder: (BuildContext context) {
                             return PurchasesAndSalesFilters(
-                                controller: controller);
+                              controller: controller,
+                              scaffoldkey: scaffoldkey,
+                            );
                           },
                         );
                       },

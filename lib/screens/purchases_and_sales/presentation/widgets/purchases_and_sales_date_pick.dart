@@ -12,7 +12,9 @@ import 'package:mainamwal/widgets/font/white16text.dart';
 class PurchasesAndSalesDatePick extends StatelessWidget {
   const PurchasesAndSalesDatePick({
     super.key,
+    required this.scaffoldkey,
   });
+  final GlobalKey<ScaffoldState> scaffoldkey;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,6 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
       if (initialDate != '') {
         initdate = DateTime.parse(initialDate);
       }
-      print(initdate);
       final DateTime? pickedDate = await showDatePicker(
         context: context,
         initialDate: initdate,
@@ -81,21 +82,40 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () async {
                         await pickDate(context, 'from', state.fromDate);
-                        if (fromselectedDate!
-                            .isAfter(DateTime.parse(state.toDate))) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.red,
-                              content: White16text(
-                                text: S.of(context).unvalidedate,
+
+                        if (state.toDate != '') {
+                          if (isSameDay(fromselectedDate!,
+                              DateTime.parse(state.toDate))) {
+                            print('same');
+                            print(fromselectedDate);
+                            print(DateTime.parse(state.toDate));
+                            context.read<PurchasesAndSalesBloc>().add(
+                                FromDateChanged(
+                                    fromdate:
+                                        '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
+                          }
+                          if (fromselectedDate!
+                              .isAfter(DateTime.parse(state.toDate))) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Colors.red,
+                                content: White16text(
+                                  text: S.of(context).unvalidedate,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            context.read<PurchasesAndSalesBloc>().add(
+                                FromDateChanged(
+                                    fromdate:
+                                        '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
+                          }
                         } else {
                           context.read<PurchasesAndSalesBloc>().add(FromDateChanged(
                               fromdate:
                                   '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
                         }
+                        fromselectedDate = null;
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
@@ -121,21 +141,37 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () async {
                         await pickDate(context, 'to', state.toDate);
-                        if (toselectedDate!
-                            .isBefore(DateTime.parse(state.fromDate))) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.red,
-                              content: White16text(
-                                text: S.of(context).unvalidedate,
+                        if (state.fromDate != '') {
+                          if (isSameDay(toselectedDate!,
+                              DateTime.parse(state.fromDate))) {
+                            print('same');
+                            print(toselectedDate);
+                            print(DateTime.parse(state.fromDate));
+                            context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
+                                todate:
+                                    '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
+                          }
+                          if (toselectedDate!
+                              .isBefore(DateTime.parse(state.fromDate))) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: Colors.red,
+                                content: White16text(
+                                  text: S.of(context).unvalidedate,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
+                                todate:
+                                    '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
+                          }
                         } else {
                           context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
                               todate:
                                   '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
                         }
+                        toselectedDate = null;
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
@@ -148,6 +184,32 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Container(
+                  height: 30.h,
+                  width: 30.w,
+                  decoration:
+                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                  child: IconButton(
+                    onPressed: () {
+                      context
+                          .read<PurchasesAndSalesBloc>()
+                          .add(FromDateChanged(fromdate: ''));
+                      context
+                          .read<PurchasesAndSalesBloc>()
+                          .add(ToDateChanged(todate: ''));
+                    },
+                    icon: Icon(
+                      Icons.delete, // Trash icon
+                      color: Colors.white,
+                      size: 20.r,
+                    ),
+                    padding:
+                        EdgeInsets.all(0), // Adjust padding to make it circular
+                  ),
                 ),
               ],
             ),
@@ -172,6 +234,29 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                         : S.of(context).nodate,
                   ),
                 ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                Container(
+                  height: 30.h,
+                  width: 30.w,
+                  decoration:
+                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                  child: IconButton(
+                    onPressed: () {
+                      context
+                          .read<PurchasesAndSalesBloc>()
+                          .add(DueDateChanged(duedate: ''));
+                    },
+                    icon: Icon(
+                      Icons.delete, // Trash icon
+                      color: Colors.white,
+                      size: 20.r,
+                    ),
+                    padding:
+                        EdgeInsets.all(0), // Adjust padding to make it circular
+                  ),
+                ),
               ],
             ),
           ],
@@ -179,4 +264,10 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
       },
     );
   }
+}
+
+bool isSameDay(DateTime date1, DateTime date2) {
+  return date1.year == date2.year &&
+      date1.month == date2.month &&
+      date1.day == date2.day;
 }

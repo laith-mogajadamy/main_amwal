@@ -54,7 +54,7 @@ class PurchasesAndSalesComponent extends StatelessWidget {
                       child: SizedBox(
                         width: size.width / 3.5,
                         child: Black14text(
-                          text: S.of(context).cash,
+                          text: S.of(context).theamount,
                         ),
                       ),
                     ),

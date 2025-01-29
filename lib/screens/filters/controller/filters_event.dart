@@ -225,11 +225,21 @@ class DocumentChanged extends FiltersEvent {
 
 class GetCustomersFilter extends FiltersEvent {
   final String tybe;
+  final String name;
+  final bool search;
 
-  GetCustomersFilter({required this.tybe});
+  GetCustomersFilter({
+    required this.tybe,
+    required this.name,
+    required this.search,
+  });
 
   @override
-  List<Object?> get props => [tybe];
+  List<Object?> get props => [
+        tybe,
+        name,
+        search,
+      ];
 }
 
 class CustomersFilterChanged extends FiltersEvent {
