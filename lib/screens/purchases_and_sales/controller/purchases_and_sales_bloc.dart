@@ -67,40 +67,36 @@ class PurchasesAndSalesBloc
         print("state.toDate=");
         print(state.toDate);
         add(GetDailyPruchasAndSale(
-            type: '0',
-            firstStoreGuid: event.context
-                .read<FiltersBloc>()
-                .state
-                .firstSelectedStores
-                .guid,
-            customerGuid:
-                event.context.read<FiltersBloc>().state.selectedcustomer.guid,
-            agentGuid:
-                event.context.read<FiltersBloc>().state.selectedagent.guid,
-            documentGuid:
-                event.context.read<FiltersBloc>().state.selectedDocument.guid,
-            categoriesGuid: event.context
-                .read<FiltersBloc>()
-                .state
-                .selectedDocumentsCategorie
-                .guid,
-            projectDefaultGuid:
-                event.context.read<FiltersBloc>().state.selectedproject.guid,
-            companiesGuid:
-                event.context.read<FiltersBloc>().state.selectedcompany.guid,
-            transportCompaniesGuid: event.context
-                .read<FiltersBloc>()
-                .state
-                .selectedtransportCompanie
-                .guid,
-            dueDated: state.dueDate,
-            secondStoreGuid: event.context
-                .read<FiltersBloc>()
-                .state
-                .secondSelectedStores
-                .guid,
-            dateFrom: state.fromDate,
-            dateTo: state.toDate));
+          type: '0',
+          firstStoreGuid:
+              event.context.read<FiltersBloc>().state.firstSelectedStores.guid,
+          customerGuid:
+              event.context.read<FiltersBloc>().state.selectedcustomer.guid,
+          agentGuid: event.context.read<FiltersBloc>().state.selectedagent.guid,
+          documentGuid:
+              event.context.read<FiltersBloc>().state.selectedDocument.guid,
+          categoriesGuid: event.context
+              .read<FiltersBloc>()
+              .state
+              .selectedDocumentsCategorie
+              .guid,
+          projectDefaultGuid:
+              event.context.read<FiltersBloc>().state.selectedproject.guid,
+          companiesGuid:
+              event.context.read<FiltersBloc>().state.selectedcompany.guid,
+          transportCompaniesGuid: event.context
+              .read<FiltersBloc>()
+              .state
+              .selectedtransportCompanie
+              .guid,
+          dueDated: state.dueDate,
+          secondStoreGuid:
+              event.context.read<FiltersBloc>().state.secondSelectedStores.guid,
+          dateFrom: state.fromDate,
+          dateTo: state.toDate,
+          currGuid:
+              event.context.read<FiltersBloc>().state.selectedcurrency.guid,
+        ));
       } else {
         emit(state.copyWith());
       }
@@ -137,6 +133,7 @@ class PurchasesAndSalesBloc
           event.secondStoreGuid,
           event.dateFrom,
           event.dateTo,
+          event.currGuid,
         );
         var responsemap = jsonDecode(response.body);
 

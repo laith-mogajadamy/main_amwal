@@ -13,10 +13,13 @@ class GetBoxStatment extends BoxEvent {
   final String? guid;
   final String? fromDate;
   final String? toDate;
+  final String? companyGuid;
+
   GetBoxStatment({
     required this.guid,
     required this.fromDate,
     required this.toDate,
+    required this.companyGuid,
   });
 
   @override
@@ -24,6 +27,7 @@ class GetBoxStatment extends BoxEvent {
         guid,
         fromDate,
         toDate,
+        companyGuid,
       ];
 }
 
@@ -87,12 +91,14 @@ class GetBoxOpeningBalance extends BoxEvent {
   final String? fromDate;
   final String? toDate;
   final bool? isCurrency;
+  final String? companyGuid;
 
   GetBoxOpeningBalance({
     this.guid,
     this.fromDate,
     this.toDate,
     this.isCurrency,
+    this.companyGuid,
   });
 
   @override
@@ -101,6 +107,7 @@ class GetBoxOpeningBalance extends BoxEvent {
         fromDate,
         toDate,
         isCurrency,
+        companyGuid,
       ];
 }
 
@@ -110,11 +117,14 @@ class GetBoxCreditDebitSum extends BoxEvent {
   final String? fromDate;
   final String? toDate;
   final bool? isCurrency;
+  final String? companyGuid;
+
   GetBoxCreditDebitSum({
     this.guid,
     this.fromDate,
     this.toDate,
     this.isCurrency,
+    this.companyGuid,
   });
 
   @override
@@ -123,5 +133,6 @@ class GetBoxCreditDebitSum extends BoxEvent {
         fromDate,
         toDate,
         isCurrency,
+        companyGuid,
       ];
 }

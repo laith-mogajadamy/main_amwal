@@ -36,7 +36,7 @@ class Auth {
         return http.Response(
             jsonEncode(
               {
-                "message": 'timed out',
+                "message": "Timed Out",
               },
             ),
             408); // Request Timeout response status code
@@ -46,7 +46,7 @@ class Auth {
         return http.Response(
             jsonEncode(
               {
-                "message": error.toString(),
+                "message": "Network Error",
               },
             ),
             408);
@@ -83,12 +83,23 @@ class Auth {
         return http.Response(
             jsonEncode(
               {
-                "message": 'timed out',
+                "message": "Timed Out",
+              },
+            ),
+            408);
+      },
+    ).onError(
+      (error, stackTrace) {
+        return http.Response(
+            jsonEncode(
+              {
+                "message": "Network Error",
               },
             ),
             408);
       },
     );
+
     return response;
   }
 }

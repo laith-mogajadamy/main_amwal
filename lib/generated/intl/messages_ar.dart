@@ -78,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobilenumber": MessageLookupByLibrary.simpleMessage("رقم خليوي"),
         "movementtype": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "networkerror": MessageLookupByLibrary.simpleMessage("خطأ بالشبكة"),
         "nodate": MessageLookupByLibrary.simpleMessage("لايوجد تاريخ"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "openningbalance":
@@ -92,7 +93,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "purchasesreturns":
             MessageLookupByLibrary.simpleMessage("مرتجع مشتريات"),
         "quantity": MessageLookupByLibrary.simpleMessage("الكمية"),
+        "rawmstore": MessageLookupByLibrary.simpleMessage("مخزن م أولية"),
         "receipts": MessageLookupByLibrary.simpleMessage("مقبوضات"),
+        "resultmstore": MessageLookupByLibrary.simpleMessage("مخزن م ناتجة"),
         "salecategoryname":
             MessageLookupByLibrary.simpleMessage("فئة أسعار البيع"),
         "sales": MessageLookupByLibrary.simpleMessage("المبيعات"),
@@ -113,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حد الدين في الشراء"),
         "thelimitofdebtinasale":
             MessageLookupByLibrary.simpleMessage("حد الدين في البيع"),
+        "timedout": MessageLookupByLibrary.simpleMessage("انتهت مدة الاتصال"),
         "to": MessageLookupByLibrary.simpleMessage("الى"),
         "total": MessageLookupByLibrary.simpleMessage("إجمالي"),
         "transportationcompany":

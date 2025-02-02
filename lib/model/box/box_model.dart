@@ -7,6 +7,7 @@ class BoxModel extends Box {
     required super.code,
     required super.currencyCode,
     required super.companyName,
+    required super.companyGuid,
     required super.closeBalance,
     required super.differentCurrency,
   });
@@ -17,6 +18,7 @@ class BoxModel extends Box {
         code: json['Code'] ?? '',
         currencyCode: json['CurrencyCode'] ?? '',
         companyName: json['CompanyName'] ?? '',
+        companyGuid: json['CompanyGuid'] ?? '',
         closeBalance: json['CLOSEBALANCE'] ?? '',
         differentCurrency: json['DifferentCurrency'] ?? '',
       );

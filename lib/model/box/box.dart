@@ -6,6 +6,7 @@ class Box extends Equatable {
   final String code;
   final String currencyCode;
   final String companyName;
+  final String companyGuid;
   final String closeBalance;
   final String differentCurrency;
 
@@ -15,6 +16,7 @@ class Box extends Equatable {
     required this.code,
     required this.currencyCode,
     required this.companyName,
+    required this.companyGuid,
     required this.closeBalance,
     required this.differentCurrency,
   });
@@ -26,6 +28,7 @@ class Box extends Equatable {
         code,
         currencyCode,
         companyName,
+        companyGuid,
         closeBalance,
         differentCurrency,
       ];

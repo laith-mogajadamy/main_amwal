@@ -6,7 +6,6 @@ import 'package:mainamwal/model/box/box.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/box_statment_grid_component.dart';
 import 'package:mainamwal/screens/box/presentation/widgets/box_from_to_date_pick.dart';
-import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
 import 'package:mainamwal/widgets/font/black_14_money_text.dart';
 import 'package:mainamwal/widgets/font/blue14text.dart';

@@ -50,6 +50,26 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Network Error`
+  String get networkerror {
+    return Intl.message(
+      'Network Error',
+      name: 'networkerror',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Timed Out`
+  String get timedout {
+    return Intl.message(
+      'Timed Out',
+      name: 'timedout',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Change the language`
   String get Changethelanguage {
     return Intl.message(
@@ -885,6 +905,26 @@ class S {
     return Intl.message(
       'the amount',
       name: 'theamount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `raw m store`
+  String get rawmstore {
+    return Intl.message(
+      'raw m store',
+      name: 'rawmstore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `result m store`
+  String get resultmstore {
+    return Intl.message(
+      'result m store',
+      name: 'resultmstore',
       desc: '',
       args: [],
     );

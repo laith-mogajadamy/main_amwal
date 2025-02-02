@@ -67,6 +67,7 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
         http.Response response = await BoxReqwest.getboxstatment(
           state.token,
           event.guid!,
+          event.companyGuid!,
           event.fromDate!,
           event.toDate!,
         );
@@ -191,6 +192,7 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
 
         http.Response response = await BoxReqwest.getboxopeningbalance(
           event.guid!,
+          event.companyGuid!,
           event.fromDate!,
           event.toDate!,
         );
@@ -246,6 +248,7 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
           event.guid!,
           event.fromDate!,
           event.toDate!,
+          event.companyGuid!,
         );
         var responsemap = jsonDecode(response.body);
 

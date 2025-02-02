@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
+import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/boxs_component.dart';
 import 'package:mainamwal/widgets/font/white18text.dart';
 
@@ -22,15 +24,20 @@ class BoxsPage extends StatelessWidget {
           text: title,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              child: BoxsComponent(),
-            ),
-          ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context.read<BoxBloc>().add(GetBoxs());
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: BoxsComponent(),
+              ),
+            ],
+          ),
         ),
       ),
     );

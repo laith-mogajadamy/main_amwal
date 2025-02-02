@@ -1,7 +1,6 @@
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/screens/filters/presentation/select_accont_type.dart';
@@ -38,6 +37,7 @@ class CustomersFilters extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.5),
             blurRadius: 50,
           ),
@@ -98,32 +98,8 @@ class CustomersFilters extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Black16text(
-                    text: "${S.of(context).currency}: ",
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
-                    child: const SelectCurrency(),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Black16text(
-                    text: "${S.of(context).bransh}: ",
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
-                    child: SelectCompany(),
-                  ),
-                ],
-              ),
+              const SelectCurrency(),
+              SelectCompany(),
             ],
           ),
           SizedBox(
@@ -132,32 +108,8 @@ class CustomersFilters extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Black16text(
-                    text: "${S.of(context).agent}: ",
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
-                    child: SelectAgent(),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Black16text(
-                    text: "${S.of(context).acounttybe}: ",
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
-                    child: SelectAccontType(),
-                  )
-                ],
-              ),
+              SelectAgent(),
+              SelectAccontType(),
             ],
           ),
           SizedBox(
@@ -165,19 +117,7 @@ class CustomersFilters extends StatelessWidget {
           ),
           Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Black16text(
-                    text: "${S.of(context).city}: ",
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
-                    child: Selectcity(),
-                  ),
-                ],
-              ),
+              Selectcity(),
             ],
           ),
           SizedBox(
@@ -187,11 +127,6 @@ class CustomersFilters extends StatelessWidget {
             builder: (context, state) {
               return ElevatedButton(
                 onPressed: () {
-                  print(state.selectedcurrency);
-                  print(state.selectedcompany);
-                  print(state.selectedaccounttype);
-                  print(state.selectedagent);
-                  print(state.selectedcity);
                   if (state.page == 'customers') {
                     context.read<CustomersBloc>().add(
                           GetCustomers(

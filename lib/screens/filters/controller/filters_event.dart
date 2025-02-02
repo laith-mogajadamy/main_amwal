@@ -13,28 +13,28 @@ class PageChanged extends FiltersEvent {
 }
 
 //
-class FromDateChanged extends FiltersEvent {
+class FiltterFromDateChanged extends FiltersEvent {
   final String? fromdate;
 
-  FromDateChanged({this.fromdate});
+  FiltterFromDateChanged({this.fromdate});
 
   @override
   List<Object?> get props => [fromdate];
 }
 
-class ToDateChanged extends FiltersEvent {
+class FiltterToDateChanged extends FiltersEvent {
   final String? todate;
 
-  ToDateChanged({this.todate});
+  FiltterToDateChanged({this.todate});
 
   @override
   List<Object?> get props => [todate];
 }
 
-class DueDateChanged extends FiltersEvent {
+class FiltterDueDateChanged extends FiltersEvent {
   final String? duedate;
 
-  DueDateChanged({this.duedate});
+  FiltterDueDateChanged({this.duedate});
 
   @override
   List<Object?> get props => [duedate];

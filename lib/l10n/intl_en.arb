@@ -1,4 +1,6 @@
 {
+    "networkerror": "Network Error",
+    "timedout": "Timed Out",
     "Changethelanguage": "Change the language",
     "language": "The language",
     "logout": "Logout",
@@ -82,5 +84,7 @@
     "transportationcompany": "Transportation company",
     "duedate": "due date",
     "project": "project",
-    "theamount": "the amount"
+    "theamount": "the amount",
+    "rawmstore": "raw m store",
+    "resultmstore": "result m store"
 }

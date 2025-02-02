@@ -22,7 +22,9 @@ class BoxReqwest {
       "POSGUID": Preferences.getPOSGUID()!,
     };
     http.Response response = await http.get(url, headers: headers);
-
+    var responsemap = jsonDecode(response.body);
+    print("responsemap=");
+    print(responsemap);
     return response;
   }
 
@@ -30,6 +32,7 @@ class BoxReqwest {
   static Future<http.Response> getboxstatment(
     String token,
     String guid,
+    String companyGuid,
     String fromdate,
     String todate,
   ) async {
@@ -50,6 +53,7 @@ class BoxReqwest {
       "Guid": guid,
       "FromDate": fromdate,
       "ToDate": todate,
+      "CompanyGuid": companyGuid,
     };
     print(data);
     var body = jsonEncode(data);
@@ -91,6 +95,7 @@ class BoxReqwest {
   //
   static Future<http.Response> getboxopeningbalance(
     String guid,
+    String companyGuid,
     String fromdate,
     String todate,
   ) async {
@@ -98,6 +103,7 @@ class BoxReqwest {
       "Guid": guid,
       "FromDate": fromdate,
       "ToDate": todate,
+      "CompanyGuid": companyGuid,
     };
     print(data);
 
@@ -127,11 +133,13 @@ class BoxReqwest {
     String guid,
     String fromdate,
     String todate,
+    String companyGuid,
   ) async {
     Map data = {
       "Guid": guid,
       "FromDate": fromdate,
       "ToDate": todate,
+      "CompanyGuid": companyGuid,
     };
     print(data);
 

@@ -43,6 +43,7 @@ class BoxStatmentPage extends StatelessWidget {
                           guid: box.guid,
                           fromDate: state.fromdate,
                           toDate: state.todate,
+                          companyGuid: box.companyGuid,
                           isCurrency:
                               (box.differentCurrency == '1') ? true : false,
                         ));
@@ -51,6 +52,7 @@ class BoxStatmentPage extends StatelessWidget {
                             guid: box.guid,
                             fromDate: state.fromdate,
                             toDate: state.todate,
+                            companyGuid: box.companyGuid,
                             isCurrency:
                                 (box.differentCurrency == '1') ? true : false,
                           ),
@@ -59,6 +61,7 @@ class BoxStatmentPage extends StatelessWidget {
                           guid: box.guid,
                           fromDate: state.fromdate,
                           toDate: state.todate,
+                          companyGuid: box.companyGuid,
                         ));
                   },
                   style: ElevatedButton.styleFrom(

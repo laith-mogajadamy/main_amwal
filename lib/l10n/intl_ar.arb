@@ -1,4 +1,6 @@
 {
+    "networkerror": "خطأ بالشبكة",
+    "timedout": "انتهت مدة الاتصال",
     "Changethelanguage": "غير اللغة",
     "language": "اللغة",
     "logout": "تسجيل خروج",
@@ -83,5 +85,7 @@
     "transportationcompany": "شركة النقل",
     "duedate": "تاريخ الاستحقاق",
     "project": "المشروع",
-    "theamount": "المبلغ"
+    "theamount": "المبلغ",
+    "rawmstore": "مخزن م أولية",
+    "resultmstore": "مخزن م ناتجة"
 }

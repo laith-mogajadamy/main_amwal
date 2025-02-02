@@ -6,6 +6,7 @@ import 'package:mainamwal/widgets/font/black14text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectFirstStore extends StatelessWidget {
   const SelectFirstStore({
@@ -25,45 +26,57 @@ class SelectFirstStore extends StatelessWidget {
             ),
           );
         }
-        return Container(
-          height: size.height / 22,
-          width: size.width / 2.5,
-          decoration: BoxDecoration(
-            color: AppColor.whiteColor,
-            borderRadius: BorderRadius.circular(20.r),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 10,
-                // ignore: deprecated_member_use
-                color: AppColor.black.withOpacity(0.2),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-            child: DropdownButton<Store>(
-              underline: const SizedBox.shrink(),
-              icon: const Icon(Icons.keyboard_arrow_down),
-              alignment: AlignmentDirectional.centerStart,
-              iconSize: 30.r,
-              isExpanded: true,
-              dropdownColor: AppColor.whiteColor,
-              borderRadius: BorderRadius.circular(20.r),
-              hint: Black14text(text: S.of(context).stores),
-              items: storelist,
-              value: (state.firstSelectedStores ==
-                      Store(guid: '', code: '', name: ''))
-                  ? null
-                  : state.firstSelectedStores,
-              onChanged: (value) {
-                context.read<FiltersBloc>().add(
-                      FirstStoreChanged(
-                        store: value,
-                      ),
-                    );
-              },
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Black16text(
+              text: "${S.of(context).rawmstore}: ",
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
+              child: Container(
+                height: size.height / 22,
+                width: size.width / 2.5,
+                decoration: BoxDecoration(
+                  color: AppColor.whiteColor,
+                  borderRadius: BorderRadius.circular(20.r),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      // ignore: deprecated_member_use
+                      color: AppColor.black.withOpacity(0.2),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                  child: DropdownButton<Store>(
+                    underline: const SizedBox.shrink(),
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    alignment: AlignmentDirectional.centerStart,
+                    iconSize: 30.r,
+                    isExpanded: true,
+                    dropdownColor: AppColor.whiteColor,
+                    borderRadius: BorderRadius.circular(20.r),
+                    hint: Black14text(text: S.of(context).stores),
+                    items: storelist,
+                    value: (state.firstSelectedStores ==
+                            Store(guid: '', code: '', name: ''))
+                        ? null
+                        : state.firstSelectedStores,
+                    onChanged: (value) {
+                      context.read<FiltersBloc>().add(
+                            FirstStoreChanged(
+                              store: value,
+                            ),
+                          );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
         );
       },
     );

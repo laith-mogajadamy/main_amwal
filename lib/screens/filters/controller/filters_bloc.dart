@@ -40,19 +40,19 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
       ));
     });
     //
-    on<FromDateChanged>((event, emit) async {
+    on<FiltterFromDateChanged>((event, emit) async {
       emit(state.copyWith(
         fromDate: event.fromdate,
       ));
     });
     //
-    on<ToDateChanged>((event, emit) async {
+    on<FiltterToDateChanged>((event, emit) async {
       emit(state.copyWith(
         toDate: event.todate,
       ));
     });
     //
-    on<DueDateChanged>((event, emit) async {
+    on<FiltterDueDateChanged>((event, emit) async {
       emit(state.copyWith(
         dueDate: event.duedate,
       ));
@@ -330,9 +330,9 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
         );
         print('transportCompanies');
         print(state.transportCompanies);
-        add(GetCompanys());
+        add(GetCurrency());
       } else {
-        add(GetCompanys());
+        add(GetCurrency());
         emit(
           state.copyWith(
             message: responsemap['message'],
@@ -619,6 +619,7 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
       DateTime initdate = DateTime.now();
       emit(
         state.copyWith(
+          selectedcustomer: CustomersFilter(guid: '', code: '', name: ''),
           selectedtransportCompanie:
               TransportCompanies(guid: '', code: '', name: ''),
           // selectedcompany: state.companys.firstWhere(

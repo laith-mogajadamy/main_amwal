@@ -27,6 +27,7 @@ class BoxFromToDatePick extends StatelessWidget {
       }
       print(initdate);
       final DateTime? pickedDate = await showDatePicker(
+        locale: Locale('en'),
         context: context,
         initialDate: initdate,
         firstDate: DateTime(2000),

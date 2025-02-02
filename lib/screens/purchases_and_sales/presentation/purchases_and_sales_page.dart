@@ -154,6 +154,11 @@ class PurchasesAndSalesPage extends StatelessWidget {
                                         .read<PurchasesAndSalesBloc>()
                                         .state
                                         .toDate,
+                                    currGuid: context
+                                        .read<FiltersBloc>()
+                                        .state
+                                        .selectedcurrency
+                                        .guid,
                                   ),
                                 );
                           },

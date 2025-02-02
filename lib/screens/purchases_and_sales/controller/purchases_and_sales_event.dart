@@ -16,6 +16,8 @@ class GetDailyPruchasAndSale extends PurchasesAndSalesEvent {
   final String secondStoreGuid;
   final String dateFrom;
   final String dateTo;
+  final String currGuid;
+
   GetDailyPruchasAndSale({
     required this.type,
     required this.firstStoreGuid,
@@ -30,6 +32,7 @@ class GetDailyPruchasAndSale extends PurchasesAndSalesEvent {
     required this.secondStoreGuid,
     required this.dateFrom,
     required this.dateTo,
+    required this.currGuid,
   });
 
   @override
@@ -47,6 +50,7 @@ class GetDailyPruchasAndSale extends PurchasesAndSalesEvent {
         secondStoreGuid,
         dateFrom,
         dateTo,
+        currGuid,
       ];
 }
 

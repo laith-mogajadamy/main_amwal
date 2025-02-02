@@ -1,5 +1,6 @@
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/filters/presentation/select_currency.dart';
 import 'package:mainamwal/screens/filters/presentation/select_customer_filter.dart';
 import 'package:mainamwal/screens/filters/presentation/select_document.dart';
 import 'package:mainamwal/screens/filters/presentation/select_document_category.dart';
@@ -10,7 +11,6 @@ import 'package:mainamwal/screens/filters/presentation/select_seconde_store.dart
 import 'package:mainamwal/screens/filters/presentation/select_transport_companies.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/widgets/purchases_and_sales_date_pick.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/blue16text.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/screens/filters/presentation/select_agent.dart';
@@ -35,341 +35,246 @@ class PurchasesAndSalesFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: size.height / 1.2,
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Container(
-          height: size.height / 1.2,
-          decoration: BoxDecoration(
-            color: AppColor.whiteColorBG,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20.r),
-              topLeft: Radius.circular(20.r),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColor.whiteColorBG,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(20.r),
+          topLeft: Radius.circular(20.r),
+        ),
+        boxShadow: [
+          BoxShadow(
+            // ignore: deprecated_member_use
+            color: AppColor.black.withOpacity(0.5),
+            blurRadius: 50,
+          ),
+        ],
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 3.h,
+            margin: EdgeInsets.symmetric(horizontal: 50.w),
+            decoration: BoxDecoration(
+              color: AppColor.apptitle,
+              borderRadius: BorderRadius.circular(20.r),
             ),
-            boxShadow: [
-              BoxShadow(
-                // ignore: deprecated_member_use
-                color: AppColor.black.withOpacity(0.5),
-                blurRadius: 50,
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Blue16text(text: S.of(context).advancedsearch),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  SvgPicture.asset(
+                    "assets/svg/sliders.svg",
+                    // ignore: deprecated_member_use
+                    color: AppColor.appblueGray,
+                  )
+                ],
               ),
             ],
           ),
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 3.h,
-                margin: EdgeInsets.symmetric(horizontal: 50.w),
-                decoration: BoxDecoration(
-                  color: AppColor.apptitle,
-                  borderRadius: BorderRadius.circular(20.r),
+          SizedBox(
+            height: 20.h,
+          ),
+          PurchasesAndSalesDatePick(
+            scaffoldkey: scaffoldkey,
+          ),
+          BlocBuilder<FiltersBloc, FiltersState>(
+            builder: (context, state) {
+              String code = state.selectedDocumentsCategorie.code;
+              List filters = [
+                const SelectCompany(),
+                SelectCurrency(),
+                SelectDocumentCategory(),
+                SelectDocument(),
+                SelectCustomerFilter(),
+                (code == '26' ||
+                        code == '36' ||
+                        code == '22' ||
+                        code == '32' ||
+                        code == '23' ||
+                        code == '33' ||
+                        code == '25' ||
+                        code == '35')
+                    ? null
+                    : SelectPaymentMethode(),
+                SelectAgent(),
+                SelectProject(),
+                (code == '26' ||
+                        code == '36' ||
+                        code == '22' ||
+                        code == '32' ||
+                        code == '23' ||
+                        code == '33')
+                    ? null
+                    : SelectFirstStore(),
+                (code == '26' ||
+                        code == '36' ||
+                        code == '22' ||
+                        code == '32' ||
+                        code == '25' ||
+                        code == '35')
+                    ? null
+                    : SelectTransportCompanies(),
+                (code == '34' ||
+                        code == '31' ||
+                        code == '24' ||
+                        code == '21' ||
+                        code == '26' ||
+                        code == '36' ||
+                        code == '22' ||
+                        code == '32' ||
+                        code == '23' ||
+                        code == '33')
+                    ? null
+                    : SelectSecondeStore(),
+              ];
+              print("code=$code");
+              print(filters);
+              return GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 2.3,
                 ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                itemCount: filters.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return filters[index];
+                },
+              );
+            },
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          BlocBuilder<FiltersBloc, FiltersState>(
+            builder: (context, state) {
+              return SizedBox(
+                height: size.height / 18,
+                width: size.width / 1.1,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // print(state.selectedcurrency);
+                    // print(state.selectedcompany);
+                    // print(state.selectedaccounttype);
+                    // print(state.selectedagent);
+                    // print(state.selectedcity);
+                    context.read<PurchasesAndSalesBloc>().add(
+                          GetDailyPruchasAndSale(
+                            type: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedpaymentMethodes
+                                .code,
+                            firstStoreGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .firstSelectedStores
+                                .guid,
+                            customerGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedcustomer
+                                .guid,
+                            agentGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedagent
+                                .guid,
+                            documentGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedDocument
+                                .guid,
+                            categoriesGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedDocumentsCategorie
+                                .guid,
+                            projectDefaultGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedproject
+                                .guid,
+                            companiesGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedcompany
+                                .guid,
+                            transportCompaniesGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedtransportCompanie
+                                .guid,
+                            dueDated: context
+                                .read<PurchasesAndSalesBloc>()
+                                .state
+                                .dueDate,
+                            secondStoreGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .secondSelectedStores
+                                .guid,
+                            dateFrom: context
+                                .read<PurchasesAndSalesBloc>()
+                                .state
+                                .fromDate,
+                            dateTo: context
+                                .read<PurchasesAndSalesBloc>()
+                                .state
+                                .toDate,
+                            currGuid: context
+                                .read<FiltersBloc>()
+                                .state
+                                .selectedcurrency
+                                .guid,
+                          ),
+                        );
+                    Navigator.pop(context);
+                    SystemChannels.textInput.invokeMethod('TextInput.hide');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.appblueGray,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Blue16text(text: S.of(context).advancedsearch),
+                      Expanded(child: White16text(text: S.of(context).search)),
                       SizedBox(
                         width: 10.w,
                       ),
-                      SvgPicture.asset(
-                        "assets/svg/sliders.svg",
-                        // ignore: deprecated_member_use
-                        color: AppColor.appblueGray,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              PurchasesAndSalesDatePick(
-                scaffoldkey: scaffoldkey,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).bransh}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: const SelectCompany(),
+                      Icon(
+                        Icons.search,
+                        color: AppColor.whiteColor,
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).movementtype}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectDocumentCategory(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).invoicetype}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectDocument(),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).paymentmethod}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectPaymentMethode(),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).customers}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectCustomerFilter(),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).agent}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectAgent(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).stores}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectFirstStore(),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).project}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectProject(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).transportationcompany}: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectTransportCompanies(),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Black16text(
-                        text: "${S.of(context).stores}2: ",
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 0.w, vertical: 5.h),
-                        child: SelectSecondeStore(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-              BlocBuilder<FiltersBloc, FiltersState>(
-                builder: (context, state) {
-                  return SizedBox(
-                    height: size.height / 18,
-                    width: size.width / 1.1,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // print(state.selectedcurrency);
-                        // print(state.selectedcompany);
-                        // print(state.selectedaccounttype);
-                        // print(state.selectedagent);
-                        // print(state.selectedcity);
-                        context.read<PurchasesAndSalesBloc>().add(
-                              GetDailyPruchasAndSale(
-                                type: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedpaymentMethodes
-                                    .code,
-                                firstStoreGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .firstSelectedStores
-                                    .guid,
-                                customerGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedcustomer
-                                    .guid,
-                                agentGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedagent
-                                    .guid,
-                                documentGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedDocument
-                                    .guid,
-                                categoriesGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedDocumentsCategorie
-                                    .guid,
-                                projectDefaultGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedproject
-                                    .guid,
-                                companiesGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedcompany
-                                    .guid,
-                                transportCompaniesGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .selectedtransportCompanie
-                                    .guid,
-                                dueDated: context
-                                    .read<PurchasesAndSalesBloc>()
-                                    .state
-                                    .dueDate,
-                                secondStoreGuid: context
-                                    .read<FiltersBloc>()
-                                    .state
-                                    .secondSelectedStores
-                                    .guid,
-                                dateFrom: context
-                                    .read<PurchasesAndSalesBloc>()
-                                    .state
-                                    .fromDate,
-                                dateTo: context
-                                    .read<PurchasesAndSalesBloc>()
-                                    .state
-                                    .toDate,
-                              ),
-                            );
-                        Navigator.pop(context);
-                        SystemChannels.textInput.invokeMethod('TextInput.hide');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.appblueGray,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.r),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                              child: White16text(text: S.of(context).search)),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Icon(
-                            Icons.search,
-                            color: AppColor.whiteColor,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-            ],
+                ),
+              );
+            },
           ),
-        ),
+          SizedBox(
+            height: 10.h,
+          ),
+        ],
       ),
     );
   }

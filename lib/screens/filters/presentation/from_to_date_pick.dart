@@ -26,6 +26,7 @@ class FromToDatePick extends StatelessWidget {
       }
       print(initdate);
       final DateTime? pickedDate = await showDatePicker(
+        locale: Locale('en'),
         context: context,
         initialDate: initdate,
         firstDate: DateTime(2000),
@@ -81,7 +82,7 @@ class FromToDatePick extends StatelessWidget {
                         ),
                       );
                     } else {
-                      context.read<FiltersBloc>().add(FromDateChanged(
+                      context.read<FiltersBloc>().add(FiltterFromDateChanged(
                           fromdate:
                               '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
                     }
@@ -123,7 +124,7 @@ class FromToDatePick extends StatelessWidget {
                         ),
                       );
                     } else {
-                      context.read<FiltersBloc>().add(ToDateChanged(
+                      context.read<FiltersBloc>().add(FiltterToDateChanged(
                           todate:
                               '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
                     }

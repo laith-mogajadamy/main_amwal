@@ -55,6 +55,8 @@ class CityChanged extends EnterEvent {
 }
 
 class LoginSubmitted extends EnterEvent {
+  LoginSubmitted();
+
   @override
   List<Object?> get props => [];
 }

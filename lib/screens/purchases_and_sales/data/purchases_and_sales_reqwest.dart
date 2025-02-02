@@ -39,6 +39,7 @@ class PurchasesAndSalesReqwest {
     String secondStoreGuid,
     String dateFrom,
     String dateTo,
+    String currGuid,
   ) async {
     Map data = {
       "type": type,
@@ -54,6 +55,7 @@ class PurchasesAndSalesReqwest {
       "SecondStoreGuid": secondStoreGuid,
       "DateFrom": dateFrom,
       "DateTo": dateTo,
+      "CurrGuid": currGuid,
     };
     print(data);
     var body = jsonEncode(data);

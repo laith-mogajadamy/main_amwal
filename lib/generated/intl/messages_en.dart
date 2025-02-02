@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobilenumber": MessageLookupByLibrary.simpleMessage("mobile number"),
         "movementtype": MessageLookupByLibrary.simpleMessage("Movement type"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "networkerror": MessageLookupByLibrary.simpleMessage("Network Error"),
         "nodate": MessageLookupByLibrary.simpleMessage("no date"),
         "notes": MessageLookupByLibrary.simpleMessage("notes"),
         "openningbalance":
@@ -95,7 +96,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "purchasesreturns":
             MessageLookupByLibrary.simpleMessage("purchases returns"),
         "quantity": MessageLookupByLibrary.simpleMessage("quantity"),
+        "rawmstore": MessageLookupByLibrary.simpleMessage("raw m store"),
         "receipts": MessageLookupByLibrary.simpleMessage("receipts"),
+        "resultmstore": MessageLookupByLibrary.simpleMessage("result m store"),
         "salecategoryname":
             MessageLookupByLibrary.simpleMessage("sale category name"),
         "sales": MessageLookupByLibrary.simpleMessage("sales"),
@@ -117,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The limit of debt in a buy"),
         "thelimitofdebtinasale":
             MessageLookupByLibrary.simpleMessage("The limit of debt in a sale"),
+        "timedout": MessageLookupByLibrary.simpleMessage("Timed Out"),
         "to": MessageLookupByLibrary.simpleMessage("to"),
         "total": MessageLookupByLibrary.simpleMessage("total"),
         "transportationcompany":

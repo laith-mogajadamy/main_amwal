@@ -2,6 +2,7 @@
 
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
+import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/widgets/font/black12text.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
         initdate = DateTime.parse(initialDate);
       }
       final DateTime? pickedDate = await showDatePicker(
+        locale: Locale('en'),
         context: context,
         initialDate: initdate,
         firstDate: DateTime(2000),
@@ -216,48 +218,56 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
             SizedBox(
               width: 0.w,
             ),
-            Row(
-              children: [
-                Black12text(text: "${S.of(context).duedate}:"),
-                SizedBox(
-                  width: 0.w,
-                ),
-                ElevatedButton(
-                  onPressed: () => pickDate(context, 'state', state.dueDate),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
-                      shape: const StadiumBorder()),
-                  child: Black12text(
-                    text: state.dueDate != ''
-                        ? state.dueDate
-                        : S.of(context).nodate,
-                  ),
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                Container(
-                  height: 30.h,
-                  width: 30.w,
-                  decoration:
-                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-                  child: IconButton(
-                    onPressed: () {
-                      context
-                          .read<PurchasesAndSalesBloc>()
-                          .add(DueDateChanged(duedate: ''));
-                    },
-                    icon: Icon(
-                      Icons.delete, // Trash icon
-                      color: Colors.white,
-                      size: 20.r,
-                    ),
-                    padding:
-                        EdgeInsets.all(0), // Adjust padding to make it circular
-                  ),
-                ),
-              ],
+            BlocBuilder<FiltersBloc, FiltersState>(
+              builder: (context, state) {
+                return (state.selectedDocumentsCategorie.code == '23' ||
+                        state.selectedDocumentsCategorie.code == '33')
+                    ? SizedBox.shrink()
+                    : Row(
+                        children: [
+                          Black12text(text: "${S.of(context).duedate}:"),
+                          SizedBox(
+                            width: 0.w,
+                          ),
+                          ElevatedButton(
+                            onPressed: () =>
+                                pickDate(context, 'state', state.dueDate),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColor.whiteColor,
+                                padding: const EdgeInsets.all(10),
+                                shape: const StadiumBorder()),
+                            child: Black12text(
+                              text: state.dueDate != ''
+                                  ? state.dueDate
+                                  : S.of(context).nodate,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Container(
+                            height: 30.h,
+                            width: 30.w,
+                            decoration: BoxDecoration(
+                                color: Colors.red, shape: BoxShape.circle),
+                            child: IconButton(
+                              onPressed: () {
+                                context
+                                    .read<PurchasesAndSalesBloc>()
+                                    .add(DueDateChanged(duedate: ''));
+                              },
+                              icon: Icon(
+                                Icons.delete, // Trash icon
+                                color: Colors.white,
+                                size: 20.r,
+                              ),
+                              padding: EdgeInsets.all(
+                                  0), // Adjust padding to make it circular
+                            ),
+                          ),
+                        ],
+                      );
+              },
             ),
           ],
         );
