@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/customer.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
@@ -9,8 +10,8 @@ import 'package:mainamwal/screens/customers/presentation/total_statment_componen
 import 'package:mainamwal/widgets/boxdecoration.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/customer_from_to_date_pick.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/total_filter_change.dart';
-import 'package:mainamwal/widgets/font/black_14_money_text.dart';
-import 'package:mainamwal/widgets/font/blue14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 class AcountStatmentComponent extends StatelessWidget {
   final Customer customer;
@@ -44,11 +45,18 @@ class AcountStatmentComponent extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Blue14text(text: " ${S.of(context).openningbalance} :"),
+                        AppText(
+                            text: " ${S.of(context).openningbalance} :",
+                            color: AppColor.appbuleBG,
+                            fontSize: 14),
                         (state.statmentOpeningBalance != '')
                             ? Expanded(
-                                child: Black14Moneytext(
-                                    text: state.statmentOpeningBalance),
+                                child: MoneyText(
+                                  text: state.statmentOpeningBalance,
+                                  color: AppColor.apptitle,
+                                  fontSize: 14,
+                                  disimalnumber: 3,
+                                ),
                               )
                             : SizedBox.shrink(),
                       ],

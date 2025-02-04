@@ -2,8 +2,7 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
-import 'package:mainamwal/widgets/font/blue16text.dart';
-import 'package:mainamwal/widgets/font/blue18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart'; // Import AppText
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,18 +41,27 @@ class AcountStatmentToggle extends StatelessWidget {
                     );
               },
               borderWidth: 0,
+              // ignore: deprecated_member_use
               selectedColor: AppColor.applightgray.withOpacity(0.5),
               borderRadius: BorderRadius.circular(20.r),
               children: [
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  child: Blue16text(text: S.of(context).agentcard),
+                  child: AppText(
+                    text: S.of(context).agentcard,
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                  ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  child: Blue16text(text: S.of(context).acountstatment),
+                  child: AppText(
+                    text: S.of(context).acountstatment,
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                  ),
                 ),
               ],
             ),

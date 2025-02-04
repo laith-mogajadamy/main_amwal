@@ -2,8 +2,7 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/enter/presentation/qr_code_page.dart';
-import 'package:mainamwal/widgets/font/orange18text%20.dart';
-import 'package:mainamwal/widgets/font/white18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart'; // Import AppText
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +11,7 @@ import 'package:lottie/lottie.dart';
 class OnBoardingThree extends StatelessWidget {
   final String image;
   final String text1;
+
   const OnBoardingThree({
     super.key,
     required this.image,
@@ -50,7 +50,11 @@ class OnBoardingThree extends StatelessWidget {
                   fit: BoxFit.contain,
                   repeat: false,
                 ),
-                White18text(text: text1),
+                AppText(
+                  text: text1,
+                  color: AppColor.whiteColor,
+                  fontSize: 18,
+                ),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -67,7 +71,11 @@ class OnBoardingThree extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Orange18text(text: S.of(context).startusingtheapp),
+                      child: AppText(
+                        text: S.of(context).startusingtheapp,
+                        color: AppColor.apporange,
+                        fontSize: 18,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,

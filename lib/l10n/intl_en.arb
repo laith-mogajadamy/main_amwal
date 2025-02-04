@@ -89,5 +89,6 @@
     "resultmstore": "result m store",
     "item": "item",
     "searchforitem": "search for item",
-    "ok": "OK"
+    "ok": "OK",
+    "resultcount": "result count"
 }

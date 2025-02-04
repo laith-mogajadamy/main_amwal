@@ -2,11 +2,10 @@ import 'package:get/get.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
-import 'package:mainamwal/widgets/font/black12text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class CustomerFromToDatePick extends StatelessWidget {
   const CustomerFromToDatePick({
@@ -71,7 +70,11 @@ class CustomerFromToDatePick extends StatelessWidget {
           children: [
             Row(
               children: [
-                Black12text(text: "${S.of(context).from}:"),
+                AppText(
+                  text: "${S.of(context).from}:",
+                  color: AppColor.apptitle,
+                  fontSize: 12,
+                ),
                 SizedBox(
                   width: 0.w,
                 ),
@@ -85,8 +88,10 @@ class CustomerFromToDatePick extends StatelessWidget {
                         '',
                         backgroundColor: Colors.red,
                         snackPosition: SnackPosition.BOTTOM,
-                        titleText: White16text(
+                        titleText: AppText(
                           text: S.of(context).unvalidedate,
+                          color: AppColor.whiteColor,
+                          fontSize: 16,
                         ),
                         messageText: SizedBox.shrink(),
                       );
@@ -100,10 +105,12 @@ class CustomerFromToDatePick extends StatelessWidget {
                       backgroundColor: AppColor.whiteColor,
                       padding: const EdgeInsets.all(10),
                       shape: const StadiumBorder()),
-                  child: Black12text(
+                  child: AppText(
                     text: state.fromdate != ''
                         ? state.fromdate
                         : S.of(context).nodate,
+                    color: AppColor.apptitle,
+                    fontSize: 12,
                   ),
                 ),
               ],
@@ -113,7 +120,11 @@ class CustomerFromToDatePick extends StatelessWidget {
             ),
             Row(
               children: [
-                Black12text(text: "${S.of(context).to}:"),
+                AppText(
+                  text: "${S.of(context).to}:",
+                  color: AppColor.apptitle,
+                  fontSize: 12,
+                ),
                 SizedBox(
                   width: 0.w,
                 ),
@@ -127,8 +138,10 @@ class CustomerFromToDatePick extends StatelessWidget {
                         '',
                         backgroundColor: Colors.red,
                         snackPosition: SnackPosition.BOTTOM,
-                        titleText: White16text(
+                        titleText: AppText(
                           text: S.of(context).unvalidedate,
+                          color: AppColor.whiteColor,
+                          fontSize: 16,
                         ),
                         messageText: SizedBox.shrink(),
                       );
@@ -142,10 +155,12 @@ class CustomerFromToDatePick extends StatelessWidget {
                       backgroundColor: AppColor.whiteColor,
                       padding: const EdgeInsets.all(10),
                       shape: const StadiumBorder()),
-                  child: Black12text(
+                  child: AppText(
                     text: state.todate != ''
                         ? state.todate
                         : S.of(context).nodate,
+                    color: AppColor.apptitle,
+                    fontSize: 12,
                   ),
                 ),
               ],
@@ -155,7 +170,11 @@ class CustomerFromToDatePick extends StatelessWidget {
             ),
             Row(
               children: [
-                Black12text(text: "${S.of(context).stateDate}:"),
+                AppText(
+                  text: "${S.of(context).stateDate}:",
+                  color: AppColor.apptitle,
+                  fontSize: 12,
+                ),
                 SizedBox(
                   width: 0.w,
                 ),
@@ -165,10 +184,12 @@ class CustomerFromToDatePick extends StatelessWidget {
                       backgroundColor: AppColor.whiteColor,
                       padding: const EdgeInsets.all(10),
                       shape: const StadiumBorder()),
-                  child: Black12text(
+                  child: AppText(
                     text: state.statedate != ''
                         ? state.statedate
                         : S.of(context).nodate,
+                    color: AppColor.apptitle,
+                    fontSize: 12,
                   ),
                 ),
               ],

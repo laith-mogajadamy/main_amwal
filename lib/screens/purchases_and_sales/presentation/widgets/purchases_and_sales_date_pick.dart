@@ -1,16 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:get/get.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
-import 'package:mainamwal/widgets/font/black12text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
 
 class PurchasesAndSalesDatePick extends StatelessWidget {
   const PurchasesAndSalesDatePick({
@@ -79,7 +76,10 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Black12text(text: "${S.of(context).from}:"),
+                    AppText(
+                        text: "${S.of(context).from}:",
+                        color: AppColor.apptitle,
+                        fontSize: 12),
                     SizedBox(
                       width: 0.w,
                     ),
@@ -119,11 +119,12 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                           backgroundColor: AppColor.whiteColor,
                           padding: const EdgeInsets.all(10),
                           shape: const StadiumBorder()),
-                      child: Black12text(
-                        text: state.fromDate != ''
-                            ? state.fromDate
-                            : S.of(context).nodate,
-                      ),
+                      child: AppText(
+                          text: state.fromDate != ''
+                              ? state.fromDate
+                              : S.of(context).nodate,
+                          color: AppColor.apptitle,
+                          fontSize: 12),
                     ),
                   ],
                 ),
@@ -132,7 +133,10 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Black12text(text: "${S.of(context).to}:"),
+                    AppText(
+                        text: "${S.of(context).to}:",
+                        color: AppColor.apptitle,
+                        fontSize: 12),
                     SizedBox(
                       width: 0.w,
                     ),
@@ -169,10 +173,12 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                           backgroundColor: AppColor.whiteColor,
                           padding: const EdgeInsets.all(10),
                           shape: const StadiumBorder()),
-                      child: Black12text(
+                      child: AppText(
                         text: state.toDate != ''
                             ? state.toDate
                             : S.of(context).nodate,
+                        color: AppColor.apptitle,
+                        fontSize: 12,
                       ),
                     ),
                   ],
@@ -215,7 +221,10 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                     ? SizedBox.shrink()
                     : Row(
                         children: [
-                          Black12text(text: "${S.of(context).duedate}:"),
+                          AppText(
+                              text: "${S.of(context).duedate}:",
+                              color: AppColor.apptitle,
+                              fontSize: 12),
                           SizedBox(
                             width: 0.w,
                           ),
@@ -226,10 +235,12 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                                 backgroundColor: AppColor.whiteColor,
                                 padding: const EdgeInsets.all(10),
                                 shape: const StadiumBorder()),
-                            child: Black12text(
+                            child: AppText(
                               text: state.dueDate != ''
                                   ? state.dueDate
                                   : S.of(context).nodate,
+                              color: AppColor.apptitle,
+                              fontSize: 12,
                             ),
                           ),
                           SizedBox(
@@ -285,7 +296,11 @@ void showErrorDialog(BuildContext context, String message) {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Black16text(text: S.of(context).ok),
+            child: AppText(
+              text: S.of(context).ok,
+              color: AppColor.apptitle,
+              fontSize: 16,
+            ),
           ),
         ],
       );

@@ -3,13 +3,9 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/customer.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/acount_statment.dart';
-import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/blue16text.dart';
-import 'package:mainamwal/widgets/font/blue18text.dart';
-import 'package:mainamwal/widgets/font/orange18text%20.dart';
-import 'package:mainamwal/widgets/font/orange_18_money_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart'; // updated this import
+import 'package:mainamwal/widgets/font/app_text.dart'; // added the AppText import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,8 +41,16 @@ class CustomerCard extends StatelessWidget {
         children: [
           Wrap(
             children: [
-              Blue18text(text: "${customer.name}-"),
-              Blue18text(text: customer.code),
+              AppText(
+                text: "${customer.name}-",
+                color: AppColor.appbuleBG,
+                fontSize: 18,
+              ),
+              AppText(
+                text: customer.code,
+                color: AppColor.appbuleBG,
+                fontSize: 18,
+              ),
             ],
           ),
           Row(
@@ -57,8 +61,10 @@ class CustomerCard extends StatelessWidget {
                 child: Row(
                   children: [
                     FittedBox(
-                        child: Orange18text(
-                            text: "${S.of(context).currentBalance}: ")),
+                        child: AppText(
+                            text: "${S.of(context).currentBalance}: ",
+                            color: AppColor.appbuleBG,
+                            fontSize: 18)),
                   ],
                 ),
               ),
@@ -67,7 +73,12 @@ class CustomerCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Orange18Moneytext(text: customer.currentBalance),
+                    MoneyText(
+                      text: customer.currentBalance,
+                      color: AppColor.appbuleBG,
+                      fontSize: 16,
+                      disimalnumber: 3,
+                    ),
                   ],
                 ),
               ),
@@ -80,8 +91,10 @@ class CustomerCard extends StatelessWidget {
                 child: Row(
                   children: [
                     FittedBox(
-                        child: Black16text(
-                            text: "${S.of(context).salesDebtLimit}: ")),
+                        child: AppText(
+                            text: "${S.of(context).salesDebtLimit}: ",
+                            color: AppColor.appbuleBG,
+                            fontSize: 16)),
                   ],
                 ),
               ),
@@ -89,7 +102,11 @@ class CustomerCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Black16text(text: customer.salesDebtLimit),
+                    AppText(
+                      text: customer.salesDebtLimit,
+                      color: AppColor.appbuleBG,
+                      fontSize: 16,
+                    ),
                   ],
                 ),
               ),
@@ -98,8 +115,16 @@ class CustomerCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Black16text(text: "${S.of(context).address}: "),
-              Black16text(text: customer.address),
+              AppText(
+                text: "${S.of(context).address}: ",
+                color: AppColor.appbuleBG,
+                fontSize: 16,
+              ),
+              AppText(
+                text: customer.address,
+                color: AppColor.appbuleBG,
+                fontSize: 16,
+              ),
             ],
           ),
           Row(
@@ -133,7 +158,11 @@ class CustomerCard extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Blue16text(text: "${S.of(context).showdetails}>"),
+                    child: AppText(
+                      text: "${S.of(context).showdetails}>",
+                      color: AppColor.appbuleBG,
+                      fontSize: 16,
+                    ),
                   );
                 },
               ),

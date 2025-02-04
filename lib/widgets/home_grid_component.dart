@@ -11,8 +11,9 @@ import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
+import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/warehous_page.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class HomeGridComponent extends StatelessWidget {
   const HomeGridComponent({
@@ -98,6 +99,7 @@ class HomeGridComponent extends StatelessWidget {
         S.of(context).warehouse,
         "assets/svg/warehouse orange svg.svg",
         () {
+          context.read<WarehousesBloc>().add(GetWarehouses(search: ''));
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => WarehousPage(),
@@ -155,8 +157,10 @@ class HomeGridComponent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Black16text(
+                      child: AppText(
                         text: griddata[index][0],
+                        color: AppColor.apptitle,
+                        fontSize: 16,
                       ),
                     ),
                     SvgPicture.asset(

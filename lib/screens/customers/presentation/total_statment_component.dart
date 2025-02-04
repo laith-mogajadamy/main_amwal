@@ -4,7 +4,7 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/statment_total.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/total_statment_card.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,26 +41,30 @@ class TotalStatmentComponent extends StatelessWidget {
                       width: size.width / 3.5,
                       child: Row(
                         children: [
-                          Black14text(
-                            text: "  ${S.of(context).date}/",
-                          ),
-                          Black14text(
-                            text: S.of(context).document,
-                          ),
+                          AppText(
+                              text: "  ${S.of(context).date}/",
+                              color: AppColor.apptitle,
+                              fontSize: 14),
+                          AppText(
+                              text: S.of(context).document,
+                              color: AppColor.apptitle,
+                              fontSize: 14),
                         ],
                       ),
                     ),
                     SizedBox(
                       width: size.width / 3.5,
-                      child: Black14text(
-                        text: S.of(context).debtor,
-                      ),
+                      child: AppText(
+                          text: S.of(context).debtor,
+                          color: AppColor.apptitle,
+                          fontSize: 14),
                     ),
                     SizedBox(
                       width: size.width / 3.5,
-                      child: Black14text(
-                        text: S.of(context).creditor,
-                      ),
+                      child: AppText(
+                          text: S.of(context).creditor,
+                          color: AppColor.apptitle,
+                          fontSize: 14),
                     ),
                   ],
                 ),

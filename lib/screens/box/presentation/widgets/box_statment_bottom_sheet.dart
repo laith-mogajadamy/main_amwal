@@ -1,12 +1,12 @@
+import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
-import 'package:mainamwal/widgets/font/blue18text.dart';
-import 'package:mainamwal/widgets/font/blue_16_money_text.dart';
-import 'package:mainamwal/widgets/font/orange18text%20.dart';
-import 'package:mainamwal/widgets/font/orange_16_money_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 class BoxStatmentBottomSheet extends StatelessWidget {
   const BoxStatmentBottomSheet({
@@ -44,18 +44,31 @@ class BoxStatmentBottomSheet extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: size.width / 3.5,
-                      child: Blue18text(text: S.of(context).sum),
+                      child: AppText(
+                          text: S.of(context).sum,
+                          color: AppColor.appbuleBG,
+                          fontSize: 18),
                     ),
                     SizedBox(
                       width: size.width / 3.5,
                       child: (state.statmentDebitsum != '')
-                          ? Blue16Moneytext(text: state.statmentDebitsum)
+                          ? MoneyText(
+                              text: state.statmentDebitsum,
+                              color: AppColor.appbuleBG,
+                              fontSize: 16,
+                              disimalnumber: 3,
+                            )
                           : SizedBox.shrink(),
                     ),
                     SizedBox(
                         width: size.width / 3.5,
                         child: (state.statmentCreditsum != '')
-                            ? Blue16Moneytext(text: state.statmentCreditsum)
+                            ? MoneyText(
+                                text: state.statmentCreditsum,
+                                color: AppColor.appbuleBG,
+                                fontSize: 16,
+                                disimalnumber: 3,
+                              )
                             : SizedBox.shrink()),
                   ],
                 ),
@@ -66,12 +79,21 @@ class BoxStatmentBottomSheet extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: size.width / 3.5,
-                      child: Orange18text(text: S.of(context).balance),
+                      child: AppText(
+                        text: S.of(context).balance,
+                        color: AppColor.apporange,
+                        fontSize: 18,
+                      ),
                     ),
                     SizedBox(
                         width: size.width / 3.5,
                         child: (state.statmentBalance != '')
-                            ? Orange16Moneytext(text: state.statmentBalance)
+                            ? MoneyText(
+                                text: state.statmentBalance,
+                                color: AppColor.apporange,
+                                fontSize: 16,
+                                disimalnumber: 3,
+                              )
                             : SizedBox.shrink()),
                   ],
                 ),

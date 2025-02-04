@@ -2,11 +2,10 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/account_type.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectAccontType extends StatelessWidget {
   const SelectAccontType({
@@ -27,7 +26,10 @@ class SelectAccontType extends StatelessWidget {
                 DropdownMenuItem(
                   value: state.accounttypes[i],
                   child: FittedBox(
-                      child: Black14text(text: state.accounttypes[i].name)),
+                      child: AppText(
+                          text: state.accounttypes[i].name,
+                          color: AppColor.apptitle,
+                          fontSize: 14)),
                 ),
               );
             }
@@ -38,7 +40,10 @@ class SelectAccontType extends StatelessWidget {
                 DropdownMenuItem(
                   value: state.accounttypes[i],
                   child: FittedBox(
-                      child: Black14text(text: state.accounttypes[i].name)),
+                      child: AppText(
+                          text: state.accounttypes[i].name,
+                          color: AppColor.apptitle,
+                          fontSize: 14)),
                 ),
               );
             }
@@ -47,8 +52,10 @@ class SelectAccontType extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
+            AppText(
               text: "${S.of(context).acounttybe}: ",
+              color: AppColor.apptitle,
+              fontSize: 16,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
@@ -76,7 +83,11 @@ class SelectAccontType extends StatelessWidget {
                     isExpanded: true,
                     dropdownColor: AppColor.whiteColor,
                     borderRadius: BorderRadius.circular(20.r),
-                    hint: Black14text(text: S.of(context).acounttybe),
+                    hint: AppText(
+                      text: S.of(context).acounttybe,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
                     items: accounttypelist,
                     value: (state.selectedaccounttype ==
                             const AccountType(name: '', val: ''))

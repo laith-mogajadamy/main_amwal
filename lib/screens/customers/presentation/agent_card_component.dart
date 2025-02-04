@@ -6,15 +6,11 @@ import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/aget_card_column.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
-import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/black_16_money_text.dart';
-import 'package:mainamwal/widgets/font/blue16text.dart';
-import 'package:mainamwal/widgets/font/orange16text.dart';
-import 'package:mainamwal/widgets/font/orange_16_money_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 class AgentCardComponent extends StatelessWidget {
   const AgentCardComponent({
@@ -67,11 +63,16 @@ class AgentCardComponent extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Blue16text(
-                                    text:
-                                        " ${S.of(context).openningbalance} :"),
-                                Black16Moneytext(
-                                    text: agentCard.openingBalance),
+                                AppText(
+                                    text: " ${S.of(context).openningbalance} :",
+                                    color: AppColor.appbuleBG,
+                                    fontSize: 16),
+                                MoneyText(
+                                  text: agentCard.openingBalance,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16,
+                                  disimalnumber: 3,
+                                ),
                               ],
                             ),
                           ),
@@ -105,10 +106,16 @@ class AgentCardComponent extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Orange16text(
-                                    text: " ${S.of(context).currentBalance} :"),
-                                Orange16Moneytext(
-                                    text: agentCard.currentBalance),
+                                AppText(
+                                    text: " ${S.of(context).currentBalance} :",
+                                    color: AppColor.apporange,
+                                    fontSize: 16),
+                                MoneyText(
+                                  text: agentCard.currentBalance,
+                                  color: AppColor.apporange,
+                                  fontSize: 16,
+                                  disimalnumber: 3,
+                                ),
                               ],
                             ),
                           ),
@@ -130,8 +137,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(text: "${S.of(context).city}:  "),
-                              Black16text(text: agentCard.city)
+                              AppText(
+                                  text: "${S.of(context).city}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.city,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),
@@ -139,8 +152,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(text: "${S.of(context).address}:  "),
-                              Black16text(text: agentCard.address)
+                              AppText(
+                                  text: "${S.of(context).address}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.address,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),
@@ -152,11 +171,17 @@ class AgentCardComponent extends StatelessWidget {
                                         EdgeInsets.symmetric(vertical: 5.h),
                                     child: Row(
                                       children: [
-                                        Blue16text(
+                                        AppText(
                                             text:
-                                                "${S.of(context).thelimitofdebtinasale}:  "),
-                                        Black16Moneytext(
-                                            text: agentCard.salesDebtLimit)
+                                                "${S.of(context).thelimitofdebtinasale}:  ",
+                                            color: AppColor.appbuleBG,
+                                            fontSize: 16),
+                                        MoneyText(
+                                          text: agentCard.salesDebtLimit,
+                                          color: AppColor.apptitle,
+                                          fontSize: 16,
+                                          disimalnumber: 3,
+                                        ),
                                       ],
                                     ),
                                   )
@@ -165,11 +190,16 @@ class AgentCardComponent extends StatelessWidget {
                                         EdgeInsets.symmetric(vertical: 5.h),
                                     child: Row(
                                       children: [
-                                        Blue16text(
+                                        AppText(
                                             text:
-                                                "${S.of(context).thelimitofdebtinabuy}:  "),
-                                        Black16Moneytext(
-                                            text: agentCard.buyDebtLimit)
+                                                "${S.of(context).thelimitofdebtinabuy}:  ",
+                                            color: AppColor.appbuleBG,
+                                            fontSize: 16),
+                                        MoneyText(
+                                            text: agentCard.buyDebtLimit,
+                                            color: AppColor.apptitle,
+                                            fontSize: 16,
+                                            disimalnumber: 3),
                                       ],
                                     ),
                                   );
@@ -179,8 +209,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(text: "${S.of(context).cycleday}:  "),
-                              Black16text(text: agentCard.cycleDayName)
+                              AppText(
+                                  text: "${S.of(context).cycleday}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.cycleDayName,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),
@@ -188,9 +224,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(
-                                  text: "${S.of(context).salecategoryname}:  "),
-                              Black16text(text: agentCard.salePriceCategoryName)
+                              AppText(
+                                  text: "${S.of(context).salecategoryname}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.salePriceCategoryName,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),
@@ -198,8 +239,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(text: "${S.of(context).workphone}:  "),
-                              Black16text(text: agentCard.workPhoneNumber)
+                              AppText(
+                                  text: "${S.of(context).workphone}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.workPhoneNumber,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),
@@ -207,9 +254,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(
-                                  text: "${S.of(context).mobilenumber}:  "),
-                              Black16text(text: agentCard.mobilephonenumber)
+                              AppText(
+                                  text: "${S.of(context).mobilenumber}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.mobilephonenumber,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),
@@ -217,8 +269,14 @@ class AgentCardComponent extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: 5.h),
                           child: Row(
                             children: [
-                              Blue16text(text: "${S.of(context).notes}:  "),
-                              Black16text(text: agentCard.notes)
+                              AppText(
+                                  text: "${S.of(context).notes}:  ",
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 16),
+                              AppText(
+                                  text: agentCard.notes,
+                                  color: AppColor.apptitle,
+                                  fontSize: 16),
                             ],
                           ),
                         ),

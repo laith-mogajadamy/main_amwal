@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/widgets/purchases_and_sales_card.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class PurchasesAndSalesComponent extends StatelessWidget {
   const PurchasesAndSalesComponent({
@@ -24,11 +24,12 @@ class PurchasesAndSalesComponent extends StatelessWidget {
             return SizedBox(
               height: size.height / 1.5,
               child: Container(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator(
-                    color: AppColor.appblueGray,
-                    strokeWidth: 4.w,
-                  )),
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(
+                  color: AppColor.appblueGray,
+                  strokeWidth: 4.w,
+                ),
+              ),
             );
           case RequestState.loaded:
             return Column(
@@ -40,11 +41,15 @@ class PurchasesAndSalesComponent extends StatelessWidget {
                       width: size.width / 3.5,
                       child: Row(
                         children: [
-                          Black14text(
+                          AppText(
                             text: "  ${S.of(context).date}/",
+                            color: AppColor.apptitle,
+                            fontSize: 14,
                           ),
-                          Black14text(
+                          AppText(
                             text: S.of(context).document,
+                            color: AppColor.apptitle,
+                            fontSize: 14,
                           ),
                         ],
                       ),
@@ -53,8 +58,10 @@ class PurchasesAndSalesComponent extends StatelessWidget {
                       padding: EdgeInsets.only(right: 30.w),
                       child: SizedBox(
                         width: size.width / 3.5,
-                        child: Black14text(
+                        child: AppText(
                           text: S.of(context).theamount,
+                          color: AppColor.apptitle,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -84,7 +91,11 @@ class PurchasesAndSalesComponent extends StatelessWidget {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.dailyPruchasAndSaleMessage),
+                child: AppText(
+                  text: state.dailyPruchasAndSaleMessage,
+                  color: AppColor.apptitle,
+                  fontSize: 14,
+                ),
               ),
             );
         }

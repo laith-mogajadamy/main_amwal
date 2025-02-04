@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class PasswordInput extends StatefulWidget {
   final String name;
@@ -39,7 +39,11 @@ class _PasswordInputState extends State<PasswordInput> {
           SizedBox(
             width: size.width,
           ),
-          Black16text(text: widget.name),
+          AppText(
+            text: widget.name,
+            color: AppColor.apptitle,
+            fontSize: 16,
+          ),
           SizedBox(
             height: 10.h,
           ),

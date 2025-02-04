@@ -6,14 +6,12 @@ import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/acount_statment_component.dart';
 import 'package:mainamwal/screens/customers/presentation/agent_card_component.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/acount_statment_bottom_sheet.dart';
-import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/acount_statment_toggle.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/orange18text%20.dart';
-import 'package:mainamwal/widgets/font/white18text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class AcountStatment extends StatefulWidget {
   const AcountStatment({
@@ -38,9 +36,10 @@ class _AcountStatmentState extends State<AcountStatment> {
       backgroundColor: AppColor.whiteColorBG,
       appBar: AppBar(
         backgroundColor: AppColor.appbuleBG,
-        title: White18text(
-          text: S.of(context).acountstatment,
-        ),
+        title: AppText(
+            text: S.of(context).acountstatment,
+            color: AppColor.whiteColor,
+            fontSize: 16),
         actions: [
           BlocBuilder<CustomersBloc, CustomersState>(
             builder: (context, state) {
@@ -112,7 +111,10 @@ class _AcountStatmentState extends State<AcountStatment> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            White18text(text: S.of(context).show),
+                            AppText(
+                                text: S.of(context).show,
+                                color: AppColor.whiteColor,
+                                fontSize: 16),
                             SizedBox(
                               width: 5.w,
                             ),
@@ -141,9 +143,10 @@ class _AcountStatmentState extends State<AcountStatment> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Orange18text(
-              text: "${widget.customer.name} (${currencyname.code})",
-            ),
+            AppText(
+                text: "${widget.customer.name} (${currencyname.code})",
+                color: AppColor.apporange,
+                fontSize: 18),
             SizedBox(
               height: 10.h,
               width: size.width,

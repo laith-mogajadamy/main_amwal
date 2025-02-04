@@ -1,11 +1,9 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/model/customers_and_suppliers/statment_total.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/blue_16_money_text.dart';
-import 'package:mainamwal/widgets/font/red_16_money_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 class TotalStatmentCard extends StatelessWidget {
   const TotalStatmentCard({
@@ -25,6 +23,7 @@ class TotalStatmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.1),
             blurRadius: 5,
           )
@@ -48,13 +47,23 @@ class TotalStatmentCard extends StatelessWidget {
             child: Column(
               children: [
                 FittedBox(
-                  child: Black14text(text: statmentTotal.docName),
+                  child: AppText(
+                      text: statmentTotal.docName,
+                      color: AppColor.apptitle,
+                      fontSize: 14),
                 ),
                 SizedBox(
                   height: 5.h,
                 ),
-                Black16text(text: statmentTotal.code),
-                Black16text(text: statmentTotal.securitiesDate),
+                AppText(
+                    text: statmentTotal.code,
+                    color: AppColor.apptitle,
+                    fontSize: 16),
+                AppText(
+                  text: statmentTotal.securitiesDate,
+                  color: AppColor.apptitle,
+                  fontSize: 16,
+                ),
               ],
             ),
           ),
@@ -66,17 +75,22 @@ class TotalStatmentCard extends StatelessWidget {
           SizedBox(
             width: size.width / 3.5,
             child: Center(
-              child: Blue16Moneytext(
+              child: MoneyText(
                 text: statmentTotal.debit,
+                color: AppColor.appbuleBG,
+                fontSize: 16,
+                disimalnumber: 3,
               ),
             ),
           ),
           SizedBox(
             width: size.width / 3.5,
             child: Center(
-              child: Red16Moneytext(
-                text: statmentTotal.credit,
-              ),
+              child: MoneyText(
+                  text: statmentTotal.credit,
+                  color: Colors.red,
+                  fontSize: 16,
+                  disimalnumber: 3),
             ),
           ),
         ],

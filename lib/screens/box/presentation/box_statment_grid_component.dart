@@ -5,10 +5,10 @@ import 'package:mainamwal/model/box/box.dart';
 import 'package:mainamwal/model/box/box_statment.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/widgets/box_statment_card.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class BoxStatmentGridComponent extends StatelessWidget {
   const BoxStatmentGridComponent({
@@ -44,25 +44,33 @@ class BoxStatmentGridComponent extends StatelessWidget {
                       width: size.width / 3.5,
                       child: Row(
                         children: [
-                          Black14text(
+                          AppText(
                             text: "  ${S.of(context).date}/",
+                            color: AppColor.apptitle,
+                            fontSize: 14,
                           ),
-                          Black14text(
+                          AppText(
                             text: S.of(context).document,
+                            color: AppColor.apptitle,
+                            fontSize: 14,
                           ),
                         ],
                       ),
                     ),
                     SizedBox(
                       width: size.width / 3.5,
-                      child: Black14text(
+                      child: AppText(
                         text: S.of(context).debtor,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
                       ),
                     ),
                     SizedBox(
                       width: size.width / 3.5,
-                      child: Black14text(
+                      child: AppText(
                         text: S.of(context).creditor,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
                       ),
                     ),
                   ],

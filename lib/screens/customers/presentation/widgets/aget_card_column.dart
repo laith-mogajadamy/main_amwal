@@ -1,7 +1,7 @@
+import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
-import 'package:mainamwal/widgets/font/black_14_money_text.dart';
-import 'package:mainamwal/widgets/font/blue16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart'; // Import AppText
+import 'package:mainamwal/widgets/font/money_text.dart'; // Import MoneyText
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +22,11 @@ class AgetCardColumn extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Blue16text(text: text1),
+        AppText(
+          text: text1,
+          color: AppColor.appbuleBG,
+          fontSize: 16,
+        ),
         SizedBox(
           height: 10.h,
         ),
@@ -32,7 +36,14 @@ class AgetCardColumn extends StatelessWidget {
           decoration: boxdecoration1(),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h),
-            child: FittedBox(child: Black14Moneytext(text: text2)),
+            child: FittedBox(
+              child: MoneyText(
+                text: text2,
+                color: AppColor.appbuleBG,
+                fontSize: 14,
+                disimalnumber: 3,
+              ),
+            ),
           ),
         ),
       ],

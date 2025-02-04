@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "quantity": MessageLookupByLibrary.simpleMessage("الكمية"),
         "rawmstore": MessageLookupByLibrary.simpleMessage("مخزن م أولية"),
         "receipts": MessageLookupByLibrary.simpleMessage("مقبوضات"),
+        "resultcount": MessageLookupByLibrary.simpleMessage("عدد النتائج"),
         "resultmstore": MessageLookupByLibrary.simpleMessage("مخزن م ناتجة"),
         "salecategoryname":
             MessageLookupByLibrary.simpleMessage("فئة أسعار البيع"),

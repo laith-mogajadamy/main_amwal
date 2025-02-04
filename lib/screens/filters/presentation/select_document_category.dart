@@ -2,11 +2,10 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/documents_categories.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectDocumentCategory extends StatelessWidget {
   const SelectDocumentCategory({
@@ -19,22 +18,29 @@ class SelectDocumentCategory extends StatelessWidget {
 
     return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
-        List<DropdownMenuItem<DocumentsCategories>> documentsCategorieslist =
-            [];
-        for (var i = 0; i < state.documentsCategories.length; i++) {
-          documentsCategorieslist.add(
-            DropdownMenuItem(
-              value: state.documentsCategories[i],
-              child: FittedBox(
-                  child: Black14text(text: state.documentsCategories[i].name)),
-            ),
-          );
-        }
+        List<DropdownMenuItem<DocumentsCategories>> documentsCategoriesList =
+            state.documentsCategories
+                .map(
+                  (category) => DropdownMenuItem(
+                    value: category,
+                    child: FittedBox(
+                      child: AppText(
+                        text: category.name,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                )
+                .toList();
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
+            AppText(
               text: "${S.of(context).movementtype}: ",
+              color: AppColor.apptitle,
+              fontSize: 16,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
@@ -47,7 +53,6 @@ class SelectDocumentCategory extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
-                      // ignore: deprecated_member_use
                       color: AppColor.black.withOpacity(0.2),
                     ),
                   ],
@@ -63,8 +68,12 @@ class SelectDocumentCategory extends StatelessWidget {
                     isExpanded: true,
                     dropdownColor: AppColor.whiteColor,
                     borderRadius: BorderRadius.circular(20.r),
-                    hint: Black14text(text: S.of(context).movementtype),
-                    items: documentsCategorieslist,
+                    hint: AppText(
+                      text: S.of(context).movementtype,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
+                    items: documentsCategoriesList,
                     value: (state.selectedDocumentsCategorie ==
                             DocumentsCategories(
                                 guid: '', code: '', name: '', iddefault: false))

@@ -8,9 +8,8 @@ import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/box_statment_page.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/orange16text.dart';
-import 'package:mainamwal/widgets/font/orange_16_money_text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 class BoxCard extends StatelessWidget {
   const BoxCard({
@@ -36,15 +35,20 @@ class BoxCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: (state.language == 'ar')
-                          ? Black16text(
-                              text:
-                                  "${box.code} / ${box.name} - ${box.companyName}")
-                          : Black16text(
-                              text:
-                                  "${box.code} / ${box.companyName} - ${box.name}"),
-                    ),
+                        fit: BoxFit.scaleDown,
+                        child: (state.language == 'ar')
+                            ? AppText(
+                                text:
+                                    "${box.code} / ${box.name} - ${box.companyName}",
+                                color: AppColor.apptitle,
+                                fontSize: 16,
+                              )
+                            : AppText(
+                                text:
+                                    "${box.code} / ${box.companyName} - ${box.name}",
+                                color: AppColor.apptitle,
+                                fontSize: 16,
+                              )),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -55,11 +59,19 @@ class BoxCard extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Orange16Moneytext(text: box.closeBalance),
+                            MoneyText(
+                              text: box.closeBalance,
+                              color: AppColor.apporange,
+                              fontSize: 16,
+                              disimalnumber: 3,
+                            ),
                             SizedBox(
                               width: 5.w,
                             ),
-                            Orange16text(text: box.currencyCode),
+                            AppText(
+                                text: box.currencyCode,
+                                color: AppColor.apporange,
+                                fontSize: 16),
                           ],
                         ),
                       ],

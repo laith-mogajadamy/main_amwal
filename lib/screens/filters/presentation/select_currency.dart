@@ -2,11 +2,10 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/currency.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectCurrency extends StatelessWidget {
   const SelectCurrency({
@@ -24,16 +23,21 @@ class SelectCurrency extends StatelessWidget {
           currencyslist.add(
             DropdownMenuItem(
               value: state.currencys[i],
-              child:
-                  FittedBox(child: Black14text(text: state.currencys[i].code)),
+              child: FittedBox(
+                  child: AppText(
+                      text: state.currencys[i].code,
+                      color: AppColor.apptitle,
+                      fontSize: 14)),
             ),
           );
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
+            AppText(
               text: "${S.of(context).currency}: ",
+              color: AppColor.apptitle,
+              fontSize: 16,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
@@ -61,12 +65,15 @@ class SelectCurrency extends StatelessWidget {
                     isExpanded: true,
                     dropdownColor: AppColor.whiteColor,
                     borderRadius: BorderRadius.circular(20.r),
-                    hint: Black14text(text: S.of(context).currency),
+                    hint: AppText(
+                      text: S.of(context).currency,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
                     items: currencyslist,
                     value: (state.selectedcurrency ==
                             const Currency(guid: '', code: '', iddefault: ''))
                         ? null
-                        //state.currencys[0]
                         : state.selectedcurrency,
                     onChanged: (value) {
                       context.read<FiltersBloc>().add(

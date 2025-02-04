@@ -11,14 +11,13 @@ import 'package:mainamwal/screens/filters/presentation/select_seconde_store.dart
 import 'package:mainamwal/screens/filters/presentation/select_transport_companies.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/widgets/purchases_and_sales_date_pick.dart';
-import 'package:mainamwal/widgets/font/blue16text.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:mainamwal/screens/filters/presentation/select_agent.dart';
 import 'package:mainamwal/screens/filters/presentation/select_company.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../core/utils/appcolors.dart';
@@ -32,6 +31,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
 
   final TextEditingController controller;
   final GlobalKey<ScaffoldState> scaffoldkey;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,7 +44,6 @@ class PurchasesAndSalesFilters extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.5),
             blurRadius: 50,
           ),
@@ -73,15 +72,18 @@ class PurchasesAndSalesFilters extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Blue16text(text: S.of(context).advancedsearch),
+                  AppText(
+                    text: S.of(context).advancedsearch,
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                  ),
                   SizedBox(
                     width: 10.w,
                   ),
                   SvgPicture.asset(
                     "assets/svg/sliders.svg",
-                    // ignore: deprecated_member_use
-                    color: AppColor.appblueGray,
-                  )
+                    color: AppColor.appbuleBG,
+                  ),
                 ],
               ),
             ],
@@ -142,8 +144,6 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                     ? SizedBox.shrink()
                     : SelectSecondeStore(),
               ];
-              print("code=$code");
-              print(filters);
               return GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
@@ -169,11 +169,6 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                 width: size.width / 1.1,
                 child: ElevatedButton(
                   onPressed: () {
-                    // print(state.selectedcurrency);
-                    // print(state.selectedcompany);
-                    // print(state.selectedaccounttype);
-                    // print(state.selectedagent);
-                    // print(state.selectedcity);
                     context.read<PurchasesAndSalesBloc>().add(
                           GetDailyPruchasAndSale(
                             type: context
@@ -257,7 +252,11 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(child: White16text(text: S.of(context).search)),
+                      Expanded(
+                          child: AppText(
+                              text: S.of(context).search,
+                              color: AppColor.whiteColor,
+                              fontSize: 16)),
                       SizedBox(
                         width: 10.w,
                       ),

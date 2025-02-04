@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/boxs_component.dart';
-import 'package:mainamwal/widgets/font/white18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,8 +20,10 @@ class BoxsPage extends StatelessWidget {
       backgroundColor: AppColor.whiteColorBG,
       appBar: AppBar(
         backgroundColor: AppColor.appbuleBG,
-        title: White18text(
+        title: AppText(
           text: title,
+          color: AppColor.whiteColor,
+          fontSize: 18,
         ),
       ),
       body: RefreshIndicator(

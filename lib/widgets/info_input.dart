@@ -1,5 +1,5 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +32,11 @@ class InfoInput extends StatelessWidget {
           SizedBox(
             width: size.width,
           ),
-          Black16text(text: name),
+          AppText(
+            text: name,
+            color: AppColor.apptitle,
+            fontSize: 16,
+          ),
           SizedBox(
             height: 10.h,
           ),

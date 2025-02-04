@@ -2,38 +2,46 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/transport_companies.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectTransportCompanies extends StatelessWidget {
   const SelectTransportCompanies({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
-        List<DropdownMenuItem<TransportCompanies>> transportCompaniestlist = [];
-        for (var i = 0; i < state.transportCompanies.length; i++) {
-          transportCompaniestlist.add(
-            DropdownMenuItem(
-              value: state.transportCompanies[i],
-              child: FittedBox(
-                  child: Black14text(text: state.transportCompanies[i].name)),
-            ),
-          );
-        }
+        List<DropdownMenuItem<TransportCompanies>> transportCompaniesList =
+            state.transportCompanies
+                .map(
+                  (company) => DropdownMenuItem(
+                    value: company,
+                    child: FittedBox(
+                      child: AppText(
+                        text: company.name,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                )
+                .toList();
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FittedBox(
               fit: BoxFit.scaleDown,
-              child: Black16text(
+              child: AppText(
                 text: "${S.of(context).transportationcompany}: ",
+                color: AppColor.apptitle,
+                fontSize: 16,
               ),
             ),
             Padding(
@@ -47,7 +55,6 @@ class SelectTransportCompanies extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
-                      // ignore: deprecated_member_use
                       color: AppColor.black.withOpacity(0.2),
                     ),
                   ],
@@ -65,10 +72,13 @@ class SelectTransportCompanies extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.r),
                     hint: FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: Black14text(
-                          text: S.of(context).transportationcompany),
+                      child: AppText(
+                        text: S.of(context).transportationcompany,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
+                      ),
                     ),
-                    items: transportCompaniestlist,
+                    items: transportCompaniesList,
                     value: (state.selectedtransportCompanie ==
                             TransportCompanies(guid: '', code: '', name: ''))
                         ? null

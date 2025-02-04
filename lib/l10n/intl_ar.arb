@@ -90,5 +90,6 @@
     "resultmstore": "مخزن م ناتجة",
     "item": "صنف",
     "searchforitem": "بحث عن صنف",
-    "ok": "موافق"
+    "ok": "موافق",
+    "resultcount": "عدد النتائج"
 }

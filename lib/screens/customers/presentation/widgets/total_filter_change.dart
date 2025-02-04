@@ -1,6 +1,7 @@
+import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +29,11 @@ class TotalFilterChange extends StatelessWidget {
                   child: RadioListTile<String>(
                     title: FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Black14text(text: S.of(context).total)),
+                        child: AppText(
+                          text: S.of(context).total,
+                          color: AppColor.apptitle,
+                          fontSize: 14,
+                        )),
                     value: '0',
                     groupValue: state.totalfiter,
                     isThreeLine: false,
@@ -46,7 +51,11 @@ class TotalFilterChange extends StatelessWidget {
                 child: RadioListTile<String>(
                   title: FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Black14text(text: S.of(context).detailed),
+                    child: AppText(
+                      text: S.of(context).detailed,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
                   ),
                   value: '3',
                   groupValue: state.totalfiter,

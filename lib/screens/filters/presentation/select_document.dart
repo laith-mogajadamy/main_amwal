@@ -2,11 +2,10 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/documents.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectDocument extends StatelessWidget {
   const SelectDocument({
@@ -19,21 +18,28 @@ class SelectDocument extends StatelessWidget {
 
     return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
-        List<DropdownMenuItem<Documents>> documentslist = [];
-        for (var i = 0; i < state.documents.length; i++) {
-          documentslist.add(
-            DropdownMenuItem(
-              value: state.documents[i],
-              child:
-                  FittedBox(child: Black14text(text: state.documents[i].name)),
-            ),
-          );
-        }
+        List<DropdownMenuItem<Documents>> documentsList = state.documents
+            .map(
+              (document) => DropdownMenuItem(
+                value: document,
+                child: FittedBox(
+                  child: AppText(
+                    text: document.name,
+                    color: AppColor.apptitle,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            )
+            .toList();
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
+            AppText(
               text: "${S.of(context).invoicetype}: ",
+              color: AppColor.apptitle,
+              fontSize: 16,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
@@ -46,7 +52,6 @@ class SelectDocument extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
-                      // ignore: deprecated_member_use
                       color: AppColor.black.withOpacity(0.2),
                     ),
                   ],
@@ -62,8 +67,12 @@ class SelectDocument extends StatelessWidget {
                     isExpanded: true,
                     dropdownColor: AppColor.whiteColor,
                     borderRadius: BorderRadius.circular(20.r),
-                    hint: Black14text(text: S.of(context).invoicetype),
-                    items: documentslist,
+                    hint: AppText(
+                      text: S.of(context).invoicetype,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
+                    items: documentsList,
                     value: (state.selectedDocument ==
                             Documents(
                                 guid: '',

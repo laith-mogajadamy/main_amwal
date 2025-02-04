@@ -5,8 +5,7 @@ import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_component.dart';
 import 'package:mainamwal/screens/customers/presentation/widgets/customers_filter.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
-import 'package:mainamwal/widgets/font/white18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:mainamwal/widgets/search_text_field.dart';
 
 import 'package:flutter/material.dart';
@@ -50,9 +49,7 @@ class CustomerPage extends StatelessWidget {
         backgroundColor: AppColor.whiteColorBG,
         appBar: AppBar(
           backgroundColor: AppColor.appbuleBG,
-          title: White18text(
-            text: title,
-          ),
+          title: AppText(text: title, color: AppColor.whiteColor, fontSize: 18),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
@@ -86,8 +83,12 @@ class CustomerPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                              child: White16text(
-                                  text: S.of(context).advancedsearch)),
+                            child: AppText(
+                              text: S.of(context).advancedsearch,
+                              color: AppColor.whiteColor,
+                              fontSize: 16,
+                            ),
+                          ),
                           SizedBox(
                             width: 10.w,
                           ),
@@ -133,7 +134,10 @@ class CustomerPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              White16text(text: S.of(context).search),
+                              AppText(
+                                  text: S.of(context).search,
+                                  color: AppColor.whiteColor,
+                                  fontSize: 16),
                               SizedBox(
                                 width: 10.w,
                               ),

@@ -1,13 +1,10 @@
 import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/model/purchases_and_sales/daily_pruchas_and_sale.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/blue_16_money_text.dart';
-import 'package:mainamwal/widgets/font/orange16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/white14text.dart';
 
 class DailyPruchasAndSaleCard extends StatelessWidget {
   const DailyPruchasAndSaleCard({
@@ -23,17 +20,17 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime date = DateTime.parse(dailyPruchasAndSale.securitiesDate);
     String formattedDate = DateFormat('yyyy-MM-dd', "en").format(date);
+
     return Container(
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.2),
             spreadRadius: 2.r,
             blurRadius: 5.r,
-          )
+          ),
         ],
       ),
       padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
@@ -52,12 +49,17 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5.h),
               child: Row(
                 children: [
-                  Orange16text(
+                  AppText(
                     text: "  ${dailyPruchasAndSale.securitiesNumber}",
+                    color: AppColor.apporange,
+                    fontSize: 16,
                   ),
-                  White14text(
-                      text:
-                          "  ${dailyPruchasAndSale.name} / ${dailyPruchasAndSale.customerName}"),
+                  AppText(
+                    text:
+                        "  ${dailyPruchasAndSale.name} / ${dailyPruchasAndSale.customerName}",
+                    color: AppColor.whiteColor,
+                    fontSize: 14,
+                  ),
                 ],
               ),
             ),
@@ -68,10 +70,13 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    decoration: BoxDecoration(),
                     padding: EdgeInsets.only(left: 5.w),
                     width: size.width / 3.5,
-                    child: Black16text(text: formattedDate),
+                    child: AppText(
+                      text: formattedDate,
+                      color: AppColor.apptitle,
+                      fontSize: 16,
+                    ),
                   ),
                   Container(
                     color: AppColor.apptitle,
@@ -85,8 +90,12 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
                 child: SizedBox(
                   width: size.width / 3.5,
                   child: Center(
-                    child: Blue16Moneytext(
-                        text: dailyPruchasAndSale.netAfterTax.toString()),
+                    child: MoneyText(
+                      text: dailyPruchasAndSale.netAfterTax.toString(),
+                      color: AppColor.appbuleBG,
+                      fontSize: 16,
+                      disimalnumber: 3,
+                    ),
                   ),
                 ),
               ),
@@ -105,8 +114,10 @@ class DailyPruchasAndSaleCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Black14text(
+                  AppText(
                     text: " ${dailyPruchasAndSale.remarks}",
+                    color: AppColor.apptitle,
+                    fontSize: 14,
                   ),
                 ],
               ),

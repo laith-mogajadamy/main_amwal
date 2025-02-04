@@ -2,11 +2,10 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/agent.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class SelectAgent extends StatelessWidget {
   const SelectAgent({
@@ -24,15 +23,21 @@ class SelectAgent extends StatelessWidget {
           agentslist.add(
             DropdownMenuItem(
               value: state.agents[i],
-              child: FittedBox(child: Black14text(text: state.agents[i].name)),
+              child: FittedBox(
+                  child: AppText(
+                      text: state.agents[i].name,
+                      color: AppColor.apptitle,
+                      fontSize: 14)),
             ),
           );
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
+            AppText(
               text: "${S.of(context).agent}: ",
+              color: AppColor.apptitle,
+              fontSize: 16,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
@@ -60,7 +65,11 @@ class SelectAgent extends StatelessWidget {
                     isExpanded: true,
                     dropdownColor: AppColor.whiteColor,
                     borderRadius: BorderRadius.circular(20.r),
-                    hint: Black14text(text: S.of(context).agent),
+                    hint: AppText(
+                      text: S.of(context).agent,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
                     items: agentslist,
                     value: (state.selectedagent ==
                             const Agent(guid: '', code: '', name: ''))

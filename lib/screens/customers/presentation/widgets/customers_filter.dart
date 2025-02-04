@@ -1,8 +1,6 @@
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/blue16text.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
 import 'package:mainamwal/screens/filters/presentation/select_accont_type.dart';
 import 'package:mainamwal/screens/filters/presentation/select_agent.dart';
 import 'package:mainamwal/screens/filters/presentation/select_city.dart';
@@ -11,10 +9,11 @@ import 'package:mainamwal/screens/filters/presentation/select_currency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../core/utils/appcolors.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class CustomersFilters extends StatelessWidget {
   const CustomersFilters({
@@ -37,7 +36,6 @@ class CustomersFilters extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.5),
             blurRadius: 50,
           ),
@@ -64,32 +62,20 @@ class CustomersFilters extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Blue16text(text: S.of(context).advancedsearch),
+                  AppText(
+                    text: S.of(context).advancedsearch,
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                  ),
                   SizedBox(
                     width: 10.w,
                   ),
                   SvgPicture.asset(
                     "assets/svg/sliders.svg",
-                    // ignore: deprecated_member_use
                     color: AppColor.appblueGray,
-                  )
+                  ),
                 ],
               ),
-              // ElevatedButton(
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: AppColor.whiteColorBG,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(20.r),
-              //       side: BorderSide(color: AppColor.appbuleBG, width: 2),
-              //     ),
-              //   ),
-              //   onPressed: () {
-              //     context.read<EnterBloc>().add(ClearFilters());
-              //   },
-              //   child: Blue16text(
-              //     text: S.of(context).clearall,
-              //   ),
-              // ),
             ],
           ),
           SizedBox(
@@ -164,7 +150,13 @@ class CustomersFilters extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(child: White16text(text: S.of(context).search)),
+                    Expanded(
+                      child: AppText(
+                        text: S.of(context).search,
+                        color: AppColor.whiteColor,
+                        fontSize: 16,
+                      ),
+                    ),
                     SizedBox(
                       width: 10.w,
                     ),

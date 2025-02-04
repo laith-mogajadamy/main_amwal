@@ -8,8 +8,7 @@ import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_component.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/widgets/purchases_and_sales_filter.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
-import 'package:mainamwal/widgets/font/white18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,12 +18,13 @@ class PurchasesAndSalesPage extends StatelessWidget {
     super.key,
     required this.title,
   });
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
-
     TextEditingController controller = TextEditingController();
     Size size = MediaQuery.of(context).size;
+
     return BlocListener<FiltersBloc, FiltersState>(
       listenWhen: (previous, current) =>
           previous.storesState != current.storesState,
@@ -38,8 +38,10 @@ class PurchasesAndSalesPage extends StatelessWidget {
         backgroundColor: AppColor.whiteColorBG,
         appBar: AppBar(
           backgroundColor: AppColor.appbuleBG,
-          title: White18text(
+          title: AppText(
             text: title,
+            color: AppColor.whiteColor,
+            fontSize: 18,
           ),
         ),
         body: Padding(
@@ -77,8 +79,12 @@ class PurchasesAndSalesPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                              child: White16text(
-                                  text: S.of(context).advancedsearch)),
+                            child: AppText(
+                              text: S.of(context).advancedsearch,
+                              color: AppColor.whiteColor,
+                              fontSize: 16,
+                            ),
+                          ),
                           SizedBox(
                             width: 10.w,
                           ),
@@ -172,7 +178,11 @@ class PurchasesAndSalesPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              White16text(text: S.of(context).search),
+                              AppText(
+                                text: S.of(context).search,
+                                color: AppColor.whiteColor,
+                                fontSize: 16,
+                              ),
                               SizedBox(
                                 width: 10.w,
                               ),

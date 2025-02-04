@@ -7,9 +7,7 @@ import 'package:mainamwal/core/utils/formstatus.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/enter/presentation/qr_code_page.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/black18text.dart';
-import 'package:mainamwal/widgets/font/blue14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -50,8 +48,10 @@ class HomeDrawer extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Black16text(
+                        AppText(
                           text: S.of(context).language,
+                          color: AppColor.apptitle,
+                          fontSize: 16,
                         ),
                         DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
@@ -61,11 +61,19 @@ class HomeDrawer extends StatelessWidget {
                             items: [
                               DropdownMenuItem(
                                 value: 'العربية',
-                                child: Blue14text(text: 'العربية'),
+                                child: AppText(
+                                  text: 'العربية',
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 14,
+                                ),
                               ),
                               DropdownMenuItem(
                                 value: 'English',
-                                child: Blue14text(text: 'English'),
+                                child: AppText(
+                                  text: 'English',
+                                  color: AppColor.appbuleBG,
+                                  fontSize: 14,
+                                ),
                               ),
                             ],
                             onChanged: (value) => context.read<EnterBloc>().add(
@@ -102,7 +110,11 @@ class HomeDrawer extends StatelessWidget {
                                 content: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Black18text(text: S.of(context).logingout),
+                                    AppText(
+                                      text: S.of(context).logingout,
+                                      color: AppColor.apptitle,
+                                      fontSize: 18,
+                                    ),
                                     SizedBox(
                                       height: 10.h,
                                     ),
@@ -161,8 +173,10 @@ class HomeDrawer extends StatelessWidget {
                             SizedBox(
                               width: 10.h,
                             ),
-                            Black16text(
+                            AppText(
                               text: S.of(context).logout,
+                              color: AppColor.apptitle,
+                              fontSize: 16,
                             ),
                           ],
                         ),

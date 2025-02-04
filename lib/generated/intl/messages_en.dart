@@ -100,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "quantity": MessageLookupByLibrary.simpleMessage("quantity"),
         "rawmstore": MessageLookupByLibrary.simpleMessage("raw m store"),
         "receipts": MessageLookupByLibrary.simpleMessage("receipts"),
+        "resultcount": MessageLookupByLibrary.simpleMessage("result count"),
         "resultmstore": MessageLookupByLibrary.simpleMessage("result m store"),
         "salecategoryname":
             MessageLookupByLibrary.simpleMessage("sale category name"),

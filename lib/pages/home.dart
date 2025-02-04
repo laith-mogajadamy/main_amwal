@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
-import 'package:mainamwal/widgets/font/black18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/widgets/home_drawer.dart';
@@ -32,7 +32,11 @@ class Home extends StatelessWidget {
                     top: size.height / 10, right: 20.w, left: 20.w),
                 child: Row(
                   children: [
-                    Black18text(text: S.of(context).fastaccess),
+                    AppText(
+                      text: S.of(context).fastaccess,
+                      color: AppColor.apptitle,
+                      fontSize: 18,
+                    ),
                   ],
                 ),
               ),

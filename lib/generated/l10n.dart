@@ -959,6 +959,16 @@ class S {
       args: [],
     );
   }
+
+  /// `result count`
+  String get resultcount {
+    return Intl.message(
+      'result count',
+      name: 'resultcount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,11 +1,10 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
 
 class Selectcity extends StatelessWidget {
   const Selectcity({
@@ -23,15 +22,21 @@ class Selectcity extends StatelessWidget {
           citylist.add(
             DropdownMenuItem(
               value: state.citys[i],
-              child: FittedBox(child: Black14text(text: state.citys[i])),
+              child: FittedBox(
+                  child: AppText(
+                      text: state.citys[i],
+                      color: AppColor.apptitle,
+                      fontSize: 14)),
             ),
           );
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
+            AppText(
               text: "${S.of(context).city}: ",
+              color: AppColor.apptitle,
+              fontSize: 16,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
@@ -59,7 +64,11 @@ class Selectcity extends StatelessWidget {
                     isExpanded: true,
                     dropdownColor: AppColor.whiteColor,
                     borderRadius: BorderRadius.circular(20.r),
-                    hint: Black14text(text: S.of(context).city),
+                    hint: AppText(
+                      text: S.of(context).city,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
                     items: citylist,
                     value:
                         (state.selectedcity == '') ? null : state.selectedcity,

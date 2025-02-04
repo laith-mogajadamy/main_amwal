@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:mainamwal/core/network/global.dart';
+import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/enter/qr_api.dart';
 import 'package:mainamwal/model/enter/qr_apimodel.dart';
 import 'package:mainamwal/screens/enter/presentation/Auth/login.dart';
-import 'package:mainamwal/widgets/font/black18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -32,7 +33,11 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Black18text(text: S.of(context).turnonthecameraandscan),
+        title: AppText(
+          text: S.of(context).turnonthecameraandscan,
+          color: AppColor.apptitle,
+          fontSize: 18,
+        ),
       ),
       body: MobileScanner(
         controller: controller,

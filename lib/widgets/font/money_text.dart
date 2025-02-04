@@ -1,26 +1,37 @@
-import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
-class Red16Moneytext extends StatelessWidget {
+class MoneyText extends StatelessWidget {
   final String text;
-  Red16Moneytext({
+  final Color color;
+  final int fontSize;
+  final int disimalnumber;
+
+  MoneyText({
     super.key,
     required this.text,
+    required this.color,
+    required this.fontSize,
+    required this.disimalnumber,
   });
 
   bool isNegative = true;
 
-  String formatNumber(String text) {
+  String formatNumber(
+    String text,
+    int disimalnumber,
+  ) {
+    int x = 10 ^ disimalnumber;
+    String y = '.'.padLeft(disimalnumber, '0');
     double number = double.parse(text);
     isNegative = number < 0;
     double absoluteNumber = number.abs();
-    double roundedNumber = (absoluteNumber * 1000).round() / 1000;
+    double roundedNumber = (absoluteNumber * x).round() / x;
 
-    String roundedText = roundedNumber.toStringAsFixed(3);
-    if (roundedText.endsWith(".000")) {
+    String roundedText = roundedNumber.toStringAsFixed(disimalnumber);
+    if (roundedText.endsWith(y)) {
       roundedText = roundedText.substring(0, roundedText.indexOf("."));
     }
     String formattedText = roundedText.replaceAllMapped(
@@ -38,10 +49,10 @@ class Red16Moneytext extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       textAlign: TextAlign.center,
-      formatNumber(text),
+      formatNumber(text, disimalnumber),
       style: GoogleFonts.cairo(
-        fontSize: 16.sp,
-        color: AppColor.redfont,
+        fontSize: fontSize.sp,
+        color: color,
         fontWeight: FontWeight.bold,
       ),
     );

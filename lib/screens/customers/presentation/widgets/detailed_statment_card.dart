@@ -3,11 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/customers_and_suppliers/statment_detailed.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/black_16_money_text.dart';
-import 'package:mainamwal/widgets/font/blue14text.dart';
-import 'package:mainamwal/widgets/font/orange16text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 // ignore: must_be_immutable
 class DetailedStatmentCard extends StatelessWidget {
@@ -42,11 +39,23 @@ class DetailedStatmentCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Black14text(text: statmentDetailed.docName),
-                Blue14text(text: " (${statmentDetailed.code})"),
+                AppText(
+                  text: statmentDetailed.docName,
+                  color: AppColor.apptitle,
+                  fontSize: 14,
+                ),
+                AppText(
+                  text: " (${statmentDetailed.code})",
+                  color: AppColor.appbuleBG,
+                  fontSize: 14,
+                ),
               ],
             ),
-            Black14text(text: statmentDetailed.securitiesDate),
+            AppText(
+              text: statmentDetailed.securitiesDate,
+              color: AppColor.apptitle,
+              fontSize: 14,
+            ),
           ],
         ),
         children: List.generate(
@@ -70,9 +79,11 @@ class DetailedStatmentCard extends StatelessWidget {
                                           width: size.width / 3.4,
                                           child: Row(
                                             children: [
-                                              Orange16text(
+                                              AppText(
                                                 text:
                                                     "  ${S.of(context).price} × ${S.of(context).k}",
+                                                color: AppColor.apporange,
+                                                fontSize: 16,
                                               ),
                                             ],
                                           ),
@@ -82,14 +93,18 @@ class DetailedStatmentCard extends StatelessWidget {
                                         ),
                                   SizedBox(
                                     width: size.width / 3.5,
-                                    child: Orange16text(
+                                    child: AppText(
                                       text: S.of(context).debtor,
+                                      color: AppColor.apporange,
+                                      fontSize: 16,
                                     ),
                                   ),
                                   SizedBox(
                                     width: size.width / 3.5,
-                                    child: Orange16text(
+                                    child: AppText(
                                       text: S.of(context).creditor,
+                                      color: AppColor.apporange,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -108,9 +123,11 @@ class DetailedStatmentCard extends StatelessWidget {
                               padding: EdgeInsets.symmetric(vertical: 5.h),
                               child: Wrap(
                                 children: [
-                                  Black14text(
+                                  AppText(
                                     text:
                                         " ${statmentDetailed.details[index].remarks}",
+                                    color: AppColor.apptitle,
+                                    fontSize: 14,
                                   ),
                                 ],
                               ),
@@ -130,21 +147,31 @@ class DetailedStatmentCard extends StatelessWidget {
                                         width: size.width / 7,
                                         child: FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Black16Moneytext(
+                                          child: MoneyText(
                                             text: statmentDetailed
                                                 .details[index].unitPrice
                                                 .toString(),
+                                            color: AppColor.apptitle,
+                                            fontSize: 16,
+                                            disimalnumber: 3,
                                           ),
                                         ),
                                       ),
-                                      Black16text(text: "×"),
+                                      AppText(
+                                        text: "×",
+                                        color: AppColor.apptitle,
+                                        fontSize: 16,
+                                      ),
                                       SizedBox(
                                         child: FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Black16Moneytext(
+                                          child: MoneyText(
                                             text: statmentDetailed
                                                 .details[index].quantity
                                                 .toString(),
+                                            color: AppColor.apptitle,
+                                            fontSize: 16,
+                                            disimalnumber: 3,
                                           ),
                                         ),
                                       ),
@@ -156,16 +183,22 @@ class DetailedStatmentCard extends StatelessWidget {
                                 ),
                           SizedBox(
                             width: size.width / 3.5,
-                            child: Black16Moneytext(
+                            child: MoneyText(
                               text: statmentDetailed.details[index].debit
                                   .toString(),
+                              color: AppColor.appbuleBG,
+                              fontSize: 16,
+                              disimalnumber: 3,
                             ),
                           ),
                           SizedBox(
                             width: size.width / 3.5,
-                            child: Black16Moneytext(
+                            child: MoneyText(
                               text: statmentDetailed.details[index].credit
                                   .toString(),
+                              color: Colors.red,
+                              fontSize: 16,
+                              disimalnumber: 3,
                             ),
                           ),
                         ],

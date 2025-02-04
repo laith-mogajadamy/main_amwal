@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/black18text.dart';
-import 'package:mainamwal/widgets/font/white16text.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

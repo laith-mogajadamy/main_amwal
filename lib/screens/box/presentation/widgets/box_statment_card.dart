@@ -1,14 +1,10 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/model/box/box.dart';
 import 'package:mainamwal/model/box/box_statment.dart';
-import 'package:mainamwal/widgets/font/black14text.dart';
-import 'package:mainamwal/widgets/font/black16text.dart';
-import 'package:mainamwal/widgets/font/blue_16_money_text.dart';
-import 'package:mainamwal/widgets/font/orange16text.dart';
-import 'package:mainamwal/widgets/font/red_16_money_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mainamwal/widgets/font/white14text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
+import 'package:mainamwal/widgets/font/money_text.dart';
 
 class BoxStatmentCard extends StatelessWidget {
   const BoxStatmentCard({
@@ -30,6 +26,7 @@ class BoxStatmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: AppColor.black.withOpacity(0.2),
             spreadRadius: 2.r,
             blurRadius: 5.r,
@@ -52,10 +49,15 @@ class BoxStatmentCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5.h),
               child: Row(
                 children: [
-                  Orange16text(
-                    text: "  ${boxstatment.docCode}",
+                  AppText(
+                      text: "  ${boxstatment.docCode}",
+                      color: AppColor.apporange,
+                      fontSize: 16),
+                  AppText(
+                    text: "  ${boxstatment.docName}",
+                    color: AppColor.whiteColor,
+                    fontSize: 16,
                   ),
-                  White14text(text: "  ${boxstatment.docName}"),
                 ],
               ),
             ),
@@ -73,7 +75,11 @@ class BoxStatmentCard extends StatelessWidget {
                     ),
                 padding: EdgeInsets.only(left: 5.w),
                 width: size.width / 3.5,
-                child: Black16text(text: boxstatment.securitiesDate),
+                child: AppText(
+                  text: boxstatment.securitiesDate,
+                  color: AppColor.apptitle,
+                  fontSize: 16,
+                ),
               ),
               Container(
                 color: AppColor.apptitle,
@@ -83,19 +89,27 @@ class BoxStatmentCard extends StatelessWidget {
               SizedBox(
                 width: size.width / 3.5,
                 child: Center(
-                  child: Blue16Moneytext(
-                      text: (box.differentCurrency == '0')
-                          ? boxstatment.debitAmount.toString()
-                          : boxstatment.debitcurrencyAmount.toString()),
+                  child: MoneyText(
+                    text: (box.differentCurrency == '0')
+                        ? boxstatment.debitAmount.toString()
+                        : boxstatment.debitcurrencyAmount.toString(),
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                    disimalnumber: 3,
+                  ),
                 ),
               ),
               SizedBox(
                 width: size.width / 3.5,
                 child: Center(
-                  child: Red16Moneytext(
-                      text: (box.differentCurrency == '0')
-                          ? boxstatment.creditAmount.toString()
-                          : boxstatment.creditcurrencyAmount.toString()),
+                  child: MoneyText(
+                    text: (box.differentCurrency == '0')
+                        ? boxstatment.creditAmount.toString()
+                        : boxstatment.creditcurrencyAmount.toString(),
+                    color: Colors.red,
+                    fontSize: 16,
+                    disimalnumber: 3,
+                  ),
                 ),
               ),
             ],
@@ -113,9 +127,10 @@ class BoxStatmentCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Black14text(
-                    text: " ${boxstatment.remarks}",
-                  ),
+                  AppText(
+                      text: " ${boxstatment.remarks}",
+                      color: AppColor.apptitle,
+                      fontSize: 14),
                 ],
               ),
             ),

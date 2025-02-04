@@ -1,7 +1,7 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/enter/presentation/qr_code_scan.dart';
-import 'package:mainamwal/widgets/font/black18text.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,9 +42,11 @@ class QRCodePage extends StatelessWidget {
                 width: size.width / 2,
                 fit: BoxFit.contain,
               ),
-              const Black18text(
-                  text:
-                      "قم بمسح QR Code من شاشة الحاسوب من أجل الربط مع المؤسسة"),
+              AppText(
+                text: "قم بمسح QR Code من شاشة الحاسوب من أجل الربط مع المؤسسة",
+                color: AppColor.apptitle,
+                fontSize: 18,
+              ),
               SizedBox(
                 height: 10.h,
               ),
