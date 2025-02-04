@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
                 ],
                 supportedLocales: S.delegate.supportedLocales,
                 debugShowCheckedModeBanner: false,
-                title: 'mainamwal',
+                title: 'Main Amwal',
                 theme: ThemeData(
                   cardColor: Colors.white,
                   scaffoldBackgroundColor: AppColor.whiteColorBG,

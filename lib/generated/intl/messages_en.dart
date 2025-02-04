@@ -74,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "humanresources":
             MessageLookupByLibrary.simpleMessage("human resources"),
         "invoicetype": MessageLookupByLibrary.simpleMessage("Invoice type"),
+        "item": MessageLookupByLibrary.simpleMessage("item"),
         "k": MessageLookupByLibrary.simpleMessage("k"),
         "language": MessageLookupByLibrary.simpleMessage("The language"),
         "logingout": MessageLookupByLibrary.simpleMessage("loging out..."),
@@ -84,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "networkerror": MessageLookupByLibrary.simpleMessage("Network Error"),
         "nodate": MessageLookupByLibrary.simpleMessage("no date"),
         "notes": MessageLookupByLibrary.simpleMessage("notes"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openningbalance":
             MessageLookupByLibrary.simpleMessage("openning balance"),
         "passwordvalidate":
@@ -106,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sales Debt Limit"),
         "salesreturns": MessageLookupByLibrary.simpleMessage("sales returns"),
         "search": MessageLookupByLibrary.simpleMessage("search"),
+        "searchforitem":
+            MessageLookupByLibrary.simpleMessage("search for item"),
         "show": MessageLookupByLibrary.simpleMessage("show"),
         "showdetails": MessageLookupByLibrary.simpleMessage("show details"),
         "skip": MessageLookupByLibrary.simpleMessage("skip"),

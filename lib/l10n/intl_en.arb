@@ -86,5 +86,8 @@
     "project": "project",
     "theamount": "the amount",
     "rawmstore": "raw m store",
-    "resultmstore": "result m store"
+    "resultmstore": "result m store",
+    "item": "item",
+    "searchforitem": "search for item",
+    "ok": "OK"
 }

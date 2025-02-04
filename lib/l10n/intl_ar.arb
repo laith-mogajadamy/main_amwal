@@ -87,5 +87,8 @@
     "project": "المشروع",
     "theamount": "المبلغ",
     "rawmstore": "مخزن م أولية",
-    "resultmstore": "مخزن م ناتجة"
+    "resultmstore": "مخزن م ناتجة",
+    "item": "صنف",
+    "searchforitem": "بحث عن صنف",
+    "ok": "موافق"
 }

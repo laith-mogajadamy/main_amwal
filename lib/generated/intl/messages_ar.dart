@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "humanresources":
             MessageLookupByLibrary.simpleMessage("الموارد البشرية"),
         "invoicetype": MessageLookupByLibrary.simpleMessage("نوع الفاتورة"),
+        "item": MessageLookupByLibrary.simpleMessage("صنف"),
         "k": MessageLookupByLibrary.simpleMessage("ك"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "logingout":
@@ -81,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "networkerror": MessageLookupByLibrary.simpleMessage("خطأ بالشبكة"),
         "nodate": MessageLookupByLibrary.simpleMessage("لايوجد تاريخ"),
         "notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
+        "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "openningbalance":
             MessageLookupByLibrary.simpleMessage("الرصيد الافتتاحي"),
         "passwordvalidate":
@@ -102,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "salesDebtLimit": MessageLookupByLibrary.simpleMessage("حد الدين"),
         "salesreturns": MessageLookupByLibrary.simpleMessage("مرتجع مبيعات"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
+        "searchforitem": MessageLookupByLibrary.simpleMessage("بحث عن صنف"),
         "show": MessageLookupByLibrary.simpleMessage("عرض"),
         "showdetails": MessageLookupByLibrary.simpleMessage("عرض التفاصيل"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),

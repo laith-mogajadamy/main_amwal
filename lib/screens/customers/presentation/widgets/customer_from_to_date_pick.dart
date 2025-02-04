@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
@@ -79,13 +80,15 @@ class CustomerFromToDatePick extends StatelessWidget {
                     await pickDate(context, 'from', state.fromdate);
                     if (fromselectedDate!
                         .isAfter(DateTime.parse(state.todate))) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.red,
-                          content: White16text(
-                            text: S.of(context).unvalidedate,
-                          ),
+                      Get.snackbar(
+                        '',
+                        '',
+                        backgroundColor: Colors.red,
+                        snackPosition: SnackPosition.BOTTOM,
+                        titleText: White16text(
+                          text: S.of(context).unvalidedate,
                         ),
+                        messageText: SizedBox.shrink(),
                       );
                     } else {
                       context.read<CustomersBloc>().add(ChangeFromDate(
@@ -119,13 +122,15 @@ class CustomerFromToDatePick extends StatelessWidget {
                     await pickDate(context, 'to', state.todate);
                     if (toselectedDate!
                         .isBefore(DateTime.parse(state.fromdate))) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.red,
-                          content: White16text(
-                            text: S.of(context).unvalidedate,
-                          ),
+                      Get.snackbar(
+                        '',
+                        '',
+                        backgroundColor: Colors.red,
+                        snackPosition: SnackPosition.BOTTOM,
+                        titleText: White16text(
+                          text: S.of(context).unvalidedate,
                         ),
+                        messageText: SizedBox.shrink(),
                       );
                     } else {
                       context.read<CustomersBloc>().add(ChangeToDate(

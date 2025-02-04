@@ -109,7 +109,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                         code == '33' ||
                         code == '25' ||
                         code == '35')
-                    ? null
+                    ? SizedBox.shrink()
                     : SelectPaymentMethode(),
                 SelectAgent(),
                 SelectProject(),
@@ -119,7 +119,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                         code == '32' ||
                         code == '23' ||
                         code == '33')
-                    ? null
+                    ? SizedBox.shrink()
                     : SelectFirstStore(),
                 (code == '26' ||
                         code == '36' ||
@@ -127,7 +127,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                         code == '32' ||
                         code == '25' ||
                         code == '35')
-                    ? null
+                    ? SizedBox.shrink()
                     : SelectTransportCompanies(),
                 (code == '34' ||
                         code == '31' ||
@@ -139,7 +139,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                         code == '32' ||
                         code == '23' ||
                         code == '33')
-                    ? null
+                    ? SizedBox.shrink()
                     : SelectSecondeStore(),
               ];
               print("code=$code");

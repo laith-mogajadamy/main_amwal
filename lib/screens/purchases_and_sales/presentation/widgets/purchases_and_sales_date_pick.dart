@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:get/get.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:mainamwal/widgets/font/black12text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/black16text.dart';
 import 'package:mainamwal/widgets/font/white16text.dart';
 
 class PurchasesAndSalesDatePick extends StatelessWidget {
@@ -98,14 +100,8 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                           }
                           if (fromselectedDate!
                               .isAfter(DateTime.parse(state.toDate))) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.red,
-                                content: White16text(
-                                  text: S.of(context).unvalidedate,
-                                ),
-                              ),
-                            );
+                            showErrorDialog(
+                                context, S.of(context).unvalidedate);
                           } else {
                             context.read<PurchasesAndSalesBloc>().add(
                                 FromDateChanged(
@@ -155,14 +151,8 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                           }
                           if (toselectedDate!
                               .isBefore(DateTime.parse(state.fromDate))) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.red,
-                                content: White16text(
-                                  text: S.of(context).unvalidedate,
-                                ),
-                              ),
-                            );
+                            showErrorDialog(
+                                context, S.of(context).unvalidedate);
                           } else {
                             context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
                                 todate:
@@ -280,4 +270,25 @@ bool isSameDay(DateTime date1, DateTime date2) {
   return date1.year == date2.year &&
       date1.month == date2.month &&
       date1.day == date2.day;
+}
+
+void showErrorDialog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        backgroundColor: AppColor.whiteColor,
+        title: Text(
+          message,
+          style: TextStyle(color: Colors.red, fontSize: 18.sp),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Black16text(text: S.of(context).ok),
+          ),
+        ],
+      );
+    },
+  );
 }

@@ -17,6 +17,7 @@ class SelectFirstStore extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return BlocBuilder<FiltersBloc, FiltersState>(
       builder: (context, state) {
+        String code = state.selectedDocumentsCategorie.code;
         List<DropdownMenuItem<Store>> storelist = [];
         for (var i = 0; i < state.stores.length; i++) {
           storelist.add(
@@ -29,9 +30,22 @@ class SelectFirstStore extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
-              text: "${S.of(context).rawmstore}: ",
-            ),
+            (code == '34' ||
+                    code == '31' ||
+                    code == '24' ||
+                    code == '21' ||
+                    code == '26' ||
+                    code == '36' ||
+                    code == '22' ||
+                    code == '32' ||
+                    code == '23' ||
+                    code == '33')
+                ? Black16text(
+                    text: "${S.of(context).stores}: ",
+                  )
+                : Black16text(
+                    text: "${S.of(context).rawmstore}: ",
+                  ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
               child: Container(

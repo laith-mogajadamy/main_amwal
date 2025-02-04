@@ -929,6 +929,36 @@ class S {
       args: [],
     );
   }
+
+  /// `item`
+  String get item {
+    return Intl.message(
+      'item',
+      name: 'item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `search for item`
+  String get searchforitem {
+    return Intl.message(
+      'search for item',
+      name: 'searchforitem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

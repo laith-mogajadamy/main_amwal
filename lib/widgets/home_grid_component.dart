@@ -11,6 +11,7 @@ import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
+import 'package:mainamwal/screens/warehouses/presentation/warehous_page.dart';
 import 'package:mainamwal/widgets/font/black16text.dart';
 
 class HomeGridComponent extends StatelessWidget {
@@ -93,7 +94,17 @@ class HomeGridComponent extends StatelessWidget {
           );
         }
       ],
-      [S.of(context).warehouse, "assets/svg/warehouse orange svg.svg", () {}],
+      [
+        S.of(context).warehouse,
+        "assets/svg/warehouse orange svg.svg",
+        () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => WarehousPage(),
+            ),
+          );
+        }
+      ],
       [S.of(context).generalanalysis, "assets/svg/chart orange svg.svg", () {}],
       [S.of(context).humanresources, "assets/svg/HR orange svg.svg", () {}],
       [

@@ -23,9 +23,13 @@ class SelectCustomerFilter extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Black16text(
-              text: "${S.of(context).customers}: ",
-            ),
+            (state.page == 'sale')
+                ? Black16text(
+                    text: "${S.of(context).customers}: ",
+                  )
+                : Black16text(
+                    text: "${S.of(context).suppliers}: ",
+                  ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 5.h),
               child: Container(

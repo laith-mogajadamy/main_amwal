@@ -63,9 +63,9 @@ class Home extends StatelessWidget {
           BlocBuilder<EnterBloc, EnterState>(
             builder: (context, state) {
               return Positioned(
-                top: 10.h,
-                left: (state.language == 'ar') ? null : 0,
-                right: (state.language == 'ar') ? 0 : null,
+                top: 20.h,
+                left: (state.language == 'ar') ? null : 5.w,
+                right: (state.language == 'ar') ? 5.w : null,
                 child: IconButton(
                   onPressed: () {
                     scaffoldState.currentState!.openDrawer();

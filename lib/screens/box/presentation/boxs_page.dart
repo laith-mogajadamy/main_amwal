@@ -25,6 +25,9 @@ class BoxsPage extends StatelessWidget {
         ),
       ),
       body: RefreshIndicator(
+        backgroundColor: AppColor.whiteColor,
+        color: AppColor.appbuleBG,
+        strokeWidth: 3.w,
         onRefresh: () async {
           context.read<BoxBloc>().add(GetBoxs());
         },

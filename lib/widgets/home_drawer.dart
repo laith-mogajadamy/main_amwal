@@ -37,7 +37,7 @@ class HomeDrawer extends StatelessWidget {
                       width: size.width / 2,
                       height: size.height / 5,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.transparent,
                         image: const DecorationImage(
                           image: AssetImage("assets/images/OB 2 image.png"),
                           fit: BoxFit.scaleDown,
@@ -56,6 +56,8 @@ class HomeDrawer extends StatelessWidget {
                         DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             borderRadius: BorderRadius.circular(20.r),
+                            alignment: AlignmentDirectional.bottomCenter,
+                            dropdownColor: AppColor.whiteColorBG,
                             items: [
                               DropdownMenuItem(
                                 value: 'العربية',
