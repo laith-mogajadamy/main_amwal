@@ -82,7 +82,7 @@ class DetailedStatmentCard extends StatelessWidget {
                                               AppText(
                                                 text:
                                                     "  ${S.of(context).price} × ${S.of(context).k}",
-                                                color: AppColor.apporange,
+                                                color: AppColor.orangefont,
                                                 fontSize: 16,
                                               ),
                                             ],
@@ -95,7 +95,7 @@ class DetailedStatmentCard extends StatelessWidget {
                                     width: size.width / 3.5,
                                     child: AppText(
                                       text: S.of(context).debtor,
-                                      color: AppColor.apporange,
+                                      color: AppColor.orangefont,
                                       fontSize: 16,
                                     ),
                                   ),
@@ -103,7 +103,7 @@ class DetailedStatmentCard extends StatelessWidget {
                                     width: size.width / 3.5,
                                     child: AppText(
                                       text: S.of(context).creditor,
-                                      color: AppColor.apporange,
+                                      color: AppColor.orangefont,
                                       fontSize: 16,
                                     ),
                                   ),

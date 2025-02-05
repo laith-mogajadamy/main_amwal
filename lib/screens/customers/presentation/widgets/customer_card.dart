@@ -61,10 +61,12 @@ class CustomerCard extends StatelessWidget {
                 child: Row(
                   children: [
                     FittedBox(
-                        child: AppText(
-                            text: "${S.of(context).currentBalance}: ",
-                            color: AppColor.appbuleBG,
-                            fontSize: 18)),
+                      child: AppText(
+                        text: "${S.of(context).currentBalance}: ",
+                        color: AppColor.orangefont,
+                        fontSize: 18,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -75,7 +77,7 @@ class CustomerCard extends StatelessWidget {
                   children: [
                     MoneyText(
                       text: customer.currentBalance,
-                      color: AppColor.appbuleBG,
+                      color: AppColor.orangefont,
                       fontSize: 16,
                       disimalnumber: 3,
                     ),
@@ -91,10 +93,12 @@ class CustomerCard extends StatelessWidget {
                 child: Row(
                   children: [
                     FittedBox(
-                        child: AppText(
-                            text: "${S.of(context).salesDebtLimit}: ",
-                            color: AppColor.appbuleBG,
-                            fontSize: 16)),
+                      child: AppText(
+                        text: "${S.of(context).salesDebtLimit}: ",
+                        color: AppColor.apptitle,
+                        fontSize: 16,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -104,7 +108,7 @@ class CustomerCard extends StatelessWidget {
                   children: [
                     AppText(
                       text: customer.salesDebtLimit,
-                      color: AppColor.appbuleBG,
+                      color: AppColor.apptitle,
                       fontSize: 16,
                     ),
                   ],
@@ -117,12 +121,12 @@ class CustomerCard extends StatelessWidget {
             children: [
               AppText(
                 text: "${S.of(context).address}: ",
-                color: AppColor.appbuleBG,
+                color: AppColor.apptitle,
                 fontSize: 16,
               ),
               AppText(
                 text: customer.address,
-                color: AppColor.appbuleBG,
+                color: AppColor.apptitle,
                 fontSize: 16,
               ),
             ],
@@ -160,7 +164,7 @@ class CustomerCard extends StatelessWidget {
                     },
                     child: AppText(
                       text: "${S.of(context).showdetails}>",
-                      color: AppColor.appbuleBG,
+                      color: AppColor.apptitle,
                       fontSize: 16,
                     ),
                   );

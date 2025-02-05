@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
+import 'package:mainamwal/model/warehouses/searched_warehouses.dart';
+import 'package:mainamwal/model/warehouses/searched_warehouses_model.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/model/warehouses/warehouses_model.dart';
 import 'package:mainamwal/screens/warehouses/data/warehouses_reqwest.dart';
@@ -69,8 +71,8 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
     // });
     on<ClearWarehouses>((event, emit) async {
       emit(state.copyWith(
-        warehouses: [],
-        warehousesState: RequestState.loaded,
+        searchedWarehouses: [],
+        searchedWarehousesState: RequestState.loaded,
       ));
     });
     //
@@ -83,10 +85,8 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
           warehouses: [],
           warehousesState: RequestState.loading,
         ));
-
-        http.Response response = await WarehousesReqwest.getWarehouses(
-          event.search,
-        );
+        http.Response response =
+            await WarehousesReqwest.getWarehousestatement();
         var responsemap = jsonDecode(response.body);
 
         if (response.statusCode == 200) {
@@ -112,6 +112,49 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
         emit(state.copyWith(
           warehousesState: RequestState.error,
           warehousesMessage: "Unauthenticated",
+        ));
+      }
+    });
+    //
+    on<GetSearchedWarehouses>((event, emit) async {
+      print("GetSearchedWarehouses");
+      String? ptoken = Preferences.getToken();
+      if (ptoken!.isNotEmpty) {
+        emit(state.copyWith(
+          token: ptoken,
+          searchedWarehouses: [],
+          searchedWarehousesState: RequestState.loading,
+        ));
+
+        http.Response response = await WarehousesReqwest.getSearchedWarehouses(
+          event.search,
+          event.storeGuid,
+        );
+        var responsemap = jsonDecode(response.body);
+
+        if (response.statusCode == 200) {
+          emit(state.copyWith(
+            searchedWarehouses: List<SearchedWarehousesModel>.from(
+              (responsemap['data'] as List).map(
+                (e) => SearchedWarehousesModel.fromJson(e),
+              ),
+            ),
+            searchedWarehousesState: RequestState.loaded,
+            searchedWarehousesMessage: responsemap['message'] ?? '',
+            //
+          ));
+          print("state.warehouses=");
+          print(state.searchedWarehouses);
+        } else {
+          emit(state.copyWith(
+            searchedWarehousesState: RequestState.error,
+            searchedWarehousesMessage: responsemap["message"] ?? '',
+          ));
+        }
+      } else {
+        emit(state.copyWith(
+          searchedWarehousesState: RequestState.error,
+          searchedWarehousesMessage: "Unauthenticated",
         ));
       }
     });

@@ -19,12 +19,9 @@ class MoneyText extends StatelessWidget {
 
   bool isNegative = true;
 
-  String formatNumber(
-    String text,
-    int disimalnumber,
-  ) {
+  String formatNumber(String text, int disimalnumber) {
     int x = 10 ^ disimalnumber;
-    String y = '.'.padLeft(disimalnumber, '0');
+    String y = '.'.padRight(disimalnumber + 1, '0');
     double number = double.parse(text);
     isNegative = number < 0;
     double absoluteNumber = number.abs();
@@ -34,10 +31,18 @@ class MoneyText extends StatelessWidget {
     if (roundedText.endsWith(y)) {
       roundedText = roundedText.substring(0, roundedText.indexOf("."));
     }
-    String formattedText = roundedText.replaceAllMapped(
+
+    // Split integer and decimal parts
+    List<String> parts = roundedText.split('.');
+    String integerPart = parts[0].replaceAllMapped(
       RegExp(r'\B(?=(\d{3})+(?!\d))'),
       (match) => ',',
     );
+
+    // Recombine integer and decimal parts without adding extra commas
+    String formattedText =
+        parts.length > 1 ? "$integerPart.${parts[1]}" : integerPart;
+
     if (isNegative) {
       return "($formattedText)";
     } else {

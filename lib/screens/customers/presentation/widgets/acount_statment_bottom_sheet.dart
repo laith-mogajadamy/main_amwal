@@ -65,7 +65,7 @@ class AcountStatmentBottomSheet extends StatelessWidget {
                         child: (state.statmentCreditsum != '')
                             ? MoneyText(
                                 text: state.statmentCreditsum,
-                                color: AppColor.appbuleBG,
+                                color: Colors.red,
                                 fontSize: 16,
                                 disimalnumber: 3,
                               )
@@ -81,7 +81,7 @@ class AcountStatmentBottomSheet extends StatelessWidget {
                       width: size.width / 3.5,
                       child: AppText(
                         text: S.of(context).balance,
-                        color: AppColor.appbuleBG,
+                        color: AppColor.orangefont,
                         fontSize: 18,
                       ),
                     ),
@@ -90,7 +90,7 @@ class AcountStatmentBottomSheet extends StatelessWidget {
                         child: (state.statmentBalance != '')
                             ? MoneyText(
                                 text: state.statmentBalance,
-                                color: AppColor.appbuleBG,
+                                color: AppColor.orangefont,
                                 fontSize: 16,
                                 disimalnumber: 3,
                               )

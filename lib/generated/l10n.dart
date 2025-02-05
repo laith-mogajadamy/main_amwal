@@ -969,6 +969,46 @@ class S {
       args: [],
     );
   }
+
+  /// `cost`
+  String get cost {
+    return Intl.message(
+      'cost',
+      name: 'cost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cost rate`
+  String get costRate {
+    return Intl.message(
+      'cost rate',
+      name: 'costRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `batch number`
+  String get batchnumber {
+    return Intl.message(
+      'batch number',
+      name: 'batchnumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `expiry date`
+  String get expirydate {
+    return Intl.message(
+      'expiry date',
+      name: 'expirydate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -2,17 +2,27 @@ part of 'warehouses_bloc.dart';
 
 abstract class WarehousesEvent extends Equatable {}
 
-class GetWarehouses extends WarehousesEvent {
+class GetSearchedWarehouses extends WarehousesEvent {
   final String search;
+  final String storeGuid;
 
-  GetWarehouses({
+  GetSearchedWarehouses({
     required this.search,
+    required this.storeGuid,
   });
 
   @override
   List<Object?> get props => [
         search,
+        storeGuid,
       ];
+}
+
+class GetWarehouses extends WarehousesEvent {
+  GetWarehouses();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class ClearWarehouses extends WarehousesEvent {

@@ -1,44 +1,35 @@
 import 'package:equatable/equatable.dart';
 
 class Warehouses extends Equatable {
-  final String tbCategoriesMainCode;
-  final String tbCategoriesMainName;
-  final String tbItemsBarcode;
-  final String tbItemsSubClassMainBarcode;
-  final String itemsName;
+  final String storeGuid;
+  final String storeCode;
   final String storeName;
-  final String batchNo;
-  final String expiryDate;
-  final String cost;
-  final String costRate;
-  final String currentQuantity;
+  final String companiesGuid;
+  final String companiesCode;
+  final String companiesName;
+  final String currentCost;
+  final String number;
 
   const Warehouses({
-    required this.tbCategoriesMainCode,
-    required this.tbCategoriesMainName,
-    required this.tbItemsBarcode,
-    required this.tbItemsSubClassMainBarcode,
-    required this.itemsName,
+    required this.storeGuid,
+    required this.storeCode,
     required this.storeName,
-    required this.batchNo,
-    required this.expiryDate,
-    required this.cost,
-    required this.costRate,
-    required this.currentQuantity,
+    required this.companiesGuid,
+    required this.companiesCode,
+    required this.companiesName,
+    required this.currentCost,
+    required this.number,
   });
 
   @override
   List<Object?> get props => [
-        tbCategoriesMainCode,
-        tbCategoriesMainName,
-        tbItemsBarcode,
-        tbItemsSubClassMainBarcode,
-        itemsName,
+        storeGuid,
+        storeCode,
         storeName,
-        batchNo,
-        expiryDate,
-        cost,
-        costRate,
-        currentQuantity,
+        companiesGuid,
+        companiesCode,
+        companiesName,
+        currentCost,
+        number,
       ];
 }

@@ -2,31 +2,25 @@ import 'package:mainamwal/model/warehouses/warehouses.dart';
 
 class WarehousesModel extends Warehouses {
   const WarehousesModel({
-    required super.tbCategoriesMainCode,
-    required super.tbCategoriesMainName,
-    required super.tbItemsBarcode,
-    required super.tbItemsSubClassMainBarcode,
-    required super.itemsName,
+    required super.storeGuid,
+    required super.storeCode,
     required super.storeName,
-    required super.batchNo,
-    required super.expiryDate,
-    required super.cost,
-    required super.costRate,
-    required super.currentQuantity,
+    required super.companiesGuid,
+    required super.companiesCode,
+    required super.companiesName,
+    required super.currentCost,
+    required super.number,
   });
 
   factory WarehousesModel.fromJson(Map<String, dynamic> json) =>
       WarehousesModel(
-        tbCategoriesMainCode: json['tbCategoriesMainCode'] ?? '',
-        tbCategoriesMainName: json['tbCategoriesMainName'] ?? '',
-        tbItemsBarcode: json['tbItemsBarcode'] ?? '',
-        tbItemsSubClassMainBarcode: json['tbItemsSubClassMainBarcode'] ?? '',
-        itemsName: json['ItemsName'] ?? '',
+        storeGuid: json['StoreGuid'] ?? '',
+        storeCode: json['StoreCode'] ?? '',
         storeName: json['StoreName'] ?? '',
-        batchNo: json['BatchNo'] ?? '',
-        expiryDate: json['ExpiryDate'] ?? '',
-        cost: json['Cost'] ?? '',
-        costRate: json['CostRate'] ?? '',
-        currentQuantity: json['CurrentQuantity'] ?? '',
+        companiesGuid: json['CompaniesGuid'] ?? '',
+        companiesCode: json['CompaniesCode'] ?? '',
+        companiesName: json['CompaniesName'] ?? '',
+        currentCost: json['CurrentCost'] ?? '',
+        number: json['Number'] ?? '',
       );
 }

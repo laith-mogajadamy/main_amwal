@@ -99,7 +99,7 @@ class HomeGridComponent extends StatelessWidget {
         S.of(context).warehouse,
         "assets/svg/warehouse orange svg.svg",
         () {
-          context.read<WarehousesBloc>().add(GetWarehouses(search: ''));
+          context.read<WarehousesBloc>().add(GetWarehouses());
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => WarehousPage(),

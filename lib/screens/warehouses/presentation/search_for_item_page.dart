@@ -4,16 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
+import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/searched_warehous_component.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 
 class SearchForItemPage extends StatelessWidget {
-  const SearchForItemPage({super.key});
+  final Warehouses warehouses;
+  const SearchForItemPage({super.key, required this.warehouses});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
+    context.read<WarehousesBloc>().add(
+          GetSearchedWarehouses(
+            search: controller.text,
+            storeGuid: warehouses.storeGuid,
+          ),
+        );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.appbuleBG,
@@ -44,8 +52,9 @@ class SearchForItemPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           context.read<WarehousesBloc>().add(
-                                GetWarehouses(
+                                GetSearchedWarehouses(
                                   search: controller.text,
+                                  storeGuid: warehouses.storeGuid,
                                 ),
                               );
                         },
@@ -109,7 +118,7 @@ class SearchForItemPage extends StatelessWidget {
               builder: (context, state) {
                 return AppText(
                   text:
-                      "${S.of(context).resultcount} :${state.warehouses.length.toString()}",
+                      "${S.of(context).resultcount} :${state.searchedWarehouses.length.toString()}",
                   color: AppColor.appbuleBG,
                   fontSize: 16,
                 );

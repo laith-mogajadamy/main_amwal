@@ -61,7 +61,7 @@ class BoxCard extends StatelessWidget {
                           children: [
                             MoneyText(
                               text: box.closeBalance,
-                              color: AppColor.apporange,
+                              color: AppColor.orangefont,
                               fontSize: 16,
                               disimalnumber: 3,
                             ),
@@ -69,9 +69,10 @@ class BoxCard extends StatelessWidget {
                               width: 5.w,
                             ),
                             AppText(
-                                text: box.currencyCode,
-                                color: AppColor.apporange,
-                                fontSize: 16),
+                              text: box.currencyCode,
+                              color: AppColor.orangefont,
+                              fontSize: 16,
+                            ),
                           ],
                         ),
                       ],

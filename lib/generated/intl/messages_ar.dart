@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agentcard": MessageLookupByLibrary.simpleMessage("بطاقة العميل"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "balance": MessageLookupByLibrary.simpleMessage("الرصيد"),
+        "batchnumber": MessageLookupByLibrary.simpleMessage("رقم الدفعة"),
         "boxsandbanks":
             MessageLookupByLibrary.simpleMessage("الصناديق والمصارف"),
         "bransh": MessageLookupByLibrary.simpleMessage("الفرع"),
@@ -44,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تغيير رمز المؤسسة"),
         "city": MessageLookupByLibrary.simpleMessage("المدينة"),
         "clearall": MessageLookupByLibrary.simpleMessage("مسح الكل"),
+        "cost": MessageLookupByLibrary.simpleMessage("التكلفة"),
+        "costRate": MessageLookupByLibrary.simpleMessage("معدل التكلفة"),
         "creditentries": MessageLookupByLibrary.simpleMessage("قيود دائنة"),
         "creditor": MessageLookupByLibrary.simpleMessage("دائن"),
         "currency": MessageLookupByLibrary.simpleMessage("العملة"),
@@ -60,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailvalidate":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني قصير جدا"),
+        "expirydate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
         "fastaccess": MessageLookupByLibrary.simpleMessage("وصول سريع"),
         "from": MessageLookupByLibrary.simpleMessage("من"),
         "fundsandbanks":

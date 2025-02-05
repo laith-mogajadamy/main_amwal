@@ -90,5 +90,9 @@
     "item": "item",
     "searchforitem": "search for item",
     "ok": "OK",
-    "resultcount": "result count"
+    "resultcount": "result count",
+    "cost": "cost",
+    "costRate": "cost rate",
+    "batchnumber": "batch number",
+    "expirydate": "expiry date"
 }

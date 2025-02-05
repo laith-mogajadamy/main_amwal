@@ -39,7 +39,7 @@ class AgetCardColumn extends StatelessWidget {
             child: FittedBox(
               child: MoneyText(
                 text: text2,
-                color: AppColor.appbuleBG,
+                color: AppColor.apptitle,
                 fontSize: 14,
                 disimalnumber: 3,
               ),

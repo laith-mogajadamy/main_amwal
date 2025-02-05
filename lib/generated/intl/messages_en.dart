@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agentcard": MessageLookupByLibrary.simpleMessage("agent card"),
         "all": MessageLookupByLibrary.simpleMessage("all"),
         "balance": MessageLookupByLibrary.simpleMessage("balance"),
+        "batchnumber": MessageLookupByLibrary.simpleMessage("batch number"),
         "boxsandbanks": MessageLookupByLibrary.simpleMessage("boxs and banks"),
         "bransh": MessageLookupByLibrary.simpleMessage("bransh"),
         "cash": MessageLookupByLibrary.simpleMessage("cash"),
@@ -47,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("chnage the company code"),
         "city": MessageLookupByLibrary.simpleMessage("city"),
         "clearall": MessageLookupByLibrary.simpleMessage("clear all"),
+        "cost": MessageLookupByLibrary.simpleMessage("cost"),
+        "costRate": MessageLookupByLibrary.simpleMessage("cost rate"),
         "creditentries": MessageLookupByLibrary.simpleMessage("credit entries"),
         "creditor": MessageLookupByLibrary.simpleMessage("creditor"),
         "currency": MessageLookupByLibrary.simpleMessage("currency"),
@@ -64,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("email"),
         "emailvalidate": MessageLookupByLibrary.simpleMessage(
             "Email or Username is too short"),
+        "expirydate": MessageLookupByLibrary.simpleMessage("expiry date"),
         "fastaccess": MessageLookupByLibrary.simpleMessage("fast access"),
         "from": MessageLookupByLibrary.simpleMessage("from"),
         "fundsandbanks":

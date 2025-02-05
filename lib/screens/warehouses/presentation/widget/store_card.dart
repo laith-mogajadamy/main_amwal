@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
+import 'package:mainamwal/screens/warehouses/presentation/search_for_item_page.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:mainamwal/widgets/font/money_text.dart';
@@ -17,28 +18,39 @@ class StoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-      decoration: boxdecoration2(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SvgPicture.asset(
-            fit: BoxFit.cover,
-            "assets/svg/warehouse orange svg.svg",
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => SearchForItemPage(
+              warehouses: warehouse,
+            ),
           ),
-          AppText(
-            text: warehouse.storeName,
-            color: AppColor.appbuleBG,
-            fontSize: 16,
-          ),
-          MoneyText(
-            text: warehouse.cost,
-            color: AppColor.apporange,
-            fontSize: 16,
-            disimalnumber: 3,
-          ),
-        ],
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+        decoration: boxdecoration2(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SvgPicture.asset(
+              fit: BoxFit.cover,
+              "assets/svg/warehouse orange svg.svg",
+            ),
+            AppText(
+              text: warehouse.storeName,
+              color: AppColor.appbuleBG,
+              fontSize: 16,
+            ),
+            MoneyText(
+              text: warehouse.currentCost,
+              color: AppColor.apporange,
+              fontSize: 16,
+              disimalnumber: 3,
+            ),
+          ],
+        ),
       ),
     );
   }

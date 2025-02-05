@@ -91,5 +91,9 @@
     "item": "صنف",
     "searchforitem": "بحث عن صنف",
     "ok": "موافق",
-    "resultcount": "عدد النتائج"
+    "resultcount": "عدد النتائج",
+    "cost": "التكلفة",
+    "costRate": "معدل التكلفة",
+    "batchnumber": "رقم الدفعة",
+    "expirydate": "تاريخ الانتهاء"
 }

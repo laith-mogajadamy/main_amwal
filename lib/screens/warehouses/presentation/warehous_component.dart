@@ -8,8 +8,11 @@ import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/widget/store_card.dart';
 
 class WarehousComponent extends StatelessWidget {
+  final ScrollController scrollController;
+
   const WarehousComponent({
     super.key,
+    required this.scrollController,
   });
 
   @override
@@ -30,6 +33,7 @@ class WarehousComponent extends StatelessWidget {
             );
           case RequestState.loaded:
             return GridView.builder(
+              controller: scrollController,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1.5,
@@ -44,7 +48,7 @@ class WarehousComponent extends StatelessWidget {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.warehousesMessage),
+                child: Text(state.searchedWarehousesMessage),
               ),
             );
         }
