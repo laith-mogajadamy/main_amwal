@@ -181,14 +181,29 @@ class HomeDrawer extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      children: [
+                        AppText(
+                          text: "${S.of(context).version}: 0.3.4",
+                          color: AppColor.apptitle,
+                          fontSize: 16,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                   ],
                 ),
                 Container(
-                    width: size.width / 2,
-                    padding: EdgeInsets.symmetric(vertical: 40.h),
-                    child:
-                        SvgPicture.asset("assets/svg/as horizantel logo.svg")),
+                  width: size.width / 2,
+                  padding: EdgeInsets.symmetric(vertical: 40.h),
+                  child: SvgPicture.asset("assets/svg/as horizantel logo.svg"),
+                ),
               ],
             ),
           ),

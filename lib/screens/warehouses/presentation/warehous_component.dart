@@ -38,9 +38,9 @@ class WarehousComponent extends StatelessWidget {
                 crossAxisCount: 2,
                 childAspectRatio: 1.5,
               ),
-              itemCount: state.warehouses.length,
+              itemCount: state.filteredWarehouses.length,
               itemBuilder: (BuildContext context, int index) {
-                Warehouses warehouse = state.warehouses[index];
+                Warehouses warehouse = state.filteredWarehouses[index];
                 return StoreCard(warehouse: warehouse);
               },
             );

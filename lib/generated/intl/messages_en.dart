@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agentcard": MessageLookupByLibrary.simpleMessage("agent card"),
         "all": MessageLookupByLibrary.simpleMessage("all"),
         "balance": MessageLookupByLibrary.simpleMessage("balance"),
-        "batchnumber": MessageLookupByLibrary.simpleMessage("batch number"),
+        "batchnumber": MessageLookupByLibrary.simpleMessage("batch"),
         "boxsandbanks": MessageLookupByLibrary.simpleMessage("boxs and banks"),
         "bransh": MessageLookupByLibrary.simpleMessage("bransh"),
         "cash": MessageLookupByLibrary.simpleMessage("cash"),
@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "city": MessageLookupByLibrary.simpleMessage("city"),
         "clearall": MessageLookupByLibrary.simpleMessage("clear all"),
         "cost": MessageLookupByLibrary.simpleMessage("cost"),
-        "costRate": MessageLookupByLibrary.simpleMessage("cost rate"),
+        "costRate": MessageLookupByLibrary.simpleMessage("rate"),
         "creditentries": MessageLookupByLibrary.simpleMessage("credit entries"),
         "creditor": MessageLookupByLibrary.simpleMessage("creditor"),
         "currency": MessageLookupByLibrary.simpleMessage("currency"),
@@ -139,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unvalidedate": MessageLookupByLibrary.simpleMessage(
             "please select a valide date range"),
         "username": MessageLookupByLibrary.simpleMessage("user name"),
+        "version": MessageLookupByLibrary.simpleMessage("version"),
         "warehouse": MessageLookupByLibrary.simpleMessage("warehouse"),
         "workphone": MessageLookupByLibrary.simpleMessage("work phone")
       };

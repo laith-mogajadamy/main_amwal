@@ -18,6 +18,13 @@ class GetSearchedWarehouses extends WarehousesEvent {
       ];
 }
 
+class ClearSearchedWarehouses extends WarehousesEvent {
+  ClearSearchedWarehouses();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class GetWarehouses extends WarehousesEvent {
   GetWarehouses();
 
@@ -65,4 +72,33 @@ class DueDateChanged extends WarehousesEvent {
 
   @override
   List<Object?> get props => [duedate];
+}
+
+class QRCodeScanned extends WarehousesEvent {
+  final String? scannedQR;
+  final Warehouses? warehouses;
+
+  QRCodeScanned({this.scannedQR, this.warehouses});
+
+  @override
+  List<Object?> get props => [
+        scannedQR,
+        warehouses,
+      ];
+}
+
+class GetWarehouseCompanys extends WarehousesEvent {
+  GetWarehouseCompanys();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class CompanyChanged extends WarehousesEvent {
+  final Company? company;
+
+  CompanyChanged({this.company});
+
+  @override
+  List<Object?> get props => [company];
 }

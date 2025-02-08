@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `version`
+  String get version {
+    return Intl.message(
+      'version',
+      name: 'version',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Network Error`
   String get networkerror {
     return Intl.message(
@@ -980,20 +990,20 @@ class S {
     );
   }
 
-  /// `cost rate`
+  /// `rate`
   String get costRate {
     return Intl.message(
-      'cost rate',
+      'rate',
       name: 'costRate',
       desc: '',
       args: [],
     );
   }
 
-  /// `batch number`
+  /// `batch`
   String get batchnumber {
     return Intl.message(
-      'batch number',
+      'batch',
       name: 'batchnumber',
       desc: '',
       args: [],

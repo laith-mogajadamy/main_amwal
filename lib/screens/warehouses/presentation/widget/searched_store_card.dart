@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/warehouses/searched_warehouses.dart';
@@ -16,6 +17,8 @@ class SearchedStoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime date = DateTime.parse(searchedWarehouse.expiryDate);
+    String formattedDate = DateFormat('yyyy-MM-dd', "en").format(date);
     return Container(
       decoration: BoxDecoration(
         color: AppColor.whiteColor,
@@ -32,32 +35,65 @@ class SearchedStoreCard extends StatelessWidget {
       child: ExpansionTile(
         shape: Border.all(color: Colors.transparent),
         childrenPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(
-                  text: searchedWarehouse.itemsName,
-                  color: AppColor.orangefont,
-                  fontSize: 14,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: AppText(
+                    text: searchedWarehouse.itemsName,
+                    color: AppColor.orangefont,
+                    fontSize: 14,
+                  ),
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                (searchedWarehouse.batchNo != '0')
+                    ? Row(
+                        children: [
+                          AppText(
+                              text: "${S.of(context).batchnumber}:",
+                              color: AppColor.apptitle,
+                              fontSize: 12),
+                          MoneyText(
+                            text: searchedWarehouse.batchNo,
+                            color: AppColor.appbuleBG,
+                            fontSize: 14,
+                            disimalnumber: 4,
+                          ),
+                        ],
+                      )
+                    : SizedBox.shrink(),
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 AppText(
                   text: searchedWarehouse.storeName,
                   color: AppColor.appbuleBG,
-                  fontSize: 14,
+                  fontSize: 12,
+                ),
+                Row(
+                  children: [
+                    AppText(
+                      text: "${S.of(context).quantity}:",
+                      color: AppColor.apptitle,
+                      fontSize: 12,
+                    ),
+                    MoneyText(
+                      text: searchedWarehouse.currentQuantity,
+                      color: AppColor.appbuleBG,
+                      fontSize: 13,
+                      disimalnumber: 4,
+                    ),
+                  ],
                 ),
               ],
-            ),
-            MoneyText(
-              text: searchedWarehouse.currentQuantity,
-              color: AppColor.appbuleBG,
-              fontSize: 14,
-              disimalnumber: 4,
             ),
           ],
         ),
@@ -66,25 +102,6 @@ class SearchedStoreCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppText(
-                    text: S.of(context).cost,
-                    color: AppColor.apptitle,
-                    fontSize: 14,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  MoneyText(
-                    text: searchedWarehouse.cost,
-                    color: AppColor.apptitle,
-                    fontSize: 14,
-                    disimalnumber: 3,
-                  ),
-                ],
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -98,7 +115,26 @@ class SearchedStoreCard extends StatelessWidget {
                   ),
                   MoneyText(
                     text: searchedWarehouse.costRate,
+                    color: AppColor.appbuleBG,
+                    fontSize: 14,
+                    disimalnumber: 3,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText(
+                    text: S.of(context).cost,
                     color: AppColor.apptitle,
+                    fontSize: 14,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  MoneyText(
+                    text: searchedWarehouse.cost,
+                    color: AppColor.appbuleBG,
                     fontSize: 14,
                     disimalnumber: 3,
                   ),
@@ -106,49 +142,26 @@ class SearchedStoreCard extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              (searchedWarehouse.batchNo == '0')
-                  ? SizedBox.shrink()
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        AppText(
-                            text: S.of(context).batchnumber,
-                            color: AppColor.apptitle,
-                            fontSize: 14),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        AppText(
-                          text: searchedWarehouse.batchNo,
-                          color: AppColor.apptitle,
-                          fontSize: 14,
-                        ),
-                      ],
+          (formattedDate == '1900-01-01')
+              ? SizedBox.shrink()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(
+                      text: S.of(context).expirydate,
+                      color: AppColor.apptitle,
+                      fontSize: 14,
                     ),
-              (searchedWarehouse.expiryDate == '1900-01-01 00:00:00.000')
-                  ? SizedBox.shrink()
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        AppText(
-                          text: S.of(context).expirydate,
-                          color: AppColor.apptitle,
-                          fontSize: 14,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        AppText(
-                          text: searchedWarehouse.expiryDate,
-                          color: AppColor.apptitle,
-                          fontSize: 14,
-                        ),
-                      ],
+                    SizedBox(
+                      width: 10,
                     ),
-            ],
-          )
+                    AppText(
+                      text: formattedDate,
+                      color: AppColor.appbuleBG,
+                      fontSize: 14,
+                    ),
+                  ],
+                ),
         ],
       ),
     );

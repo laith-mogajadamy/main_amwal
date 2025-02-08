@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
+import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/search_for_item_page.dart';
 import 'package:mainamwal/widgets/boxdecoration.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
@@ -20,6 +22,7 @@ class StoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<WarehousesBloc>().add(ClearSearchedWarehouses());
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => SearchForItemPage(

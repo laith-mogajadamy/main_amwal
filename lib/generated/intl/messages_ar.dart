@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agentcard": MessageLookupByLibrary.simpleMessage("بطاقة العميل"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "balance": MessageLookupByLibrary.simpleMessage("الرصيد"),
-        "batchnumber": MessageLookupByLibrary.simpleMessage("رقم الدفعة"),
+        "batchnumber": MessageLookupByLibrary.simpleMessage("الدفعة"),
         "boxsandbanks":
             MessageLookupByLibrary.simpleMessage("الصناديق والمصارف"),
         "bransh": MessageLookupByLibrary.simpleMessage("الفرع"),
@@ -46,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "city": MessageLookupByLibrary.simpleMessage("المدينة"),
         "clearall": MessageLookupByLibrary.simpleMessage("مسح الكل"),
         "cost": MessageLookupByLibrary.simpleMessage("التكلفة"),
-        "costRate": MessageLookupByLibrary.simpleMessage("معدل التكلفة"),
+        "costRate": MessageLookupByLibrary.simpleMessage("المعدل"),
         "creditentries": MessageLookupByLibrary.simpleMessage("قيود دائنة"),
         "creditor": MessageLookupByLibrary.simpleMessage("دائن"),
         "currency": MessageLookupByLibrary.simpleMessage("العملة"),
@@ -134,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unvalidedate":
             MessageLookupByLibrary.simpleMessage("الرجاء اختيار تاريخ صالح"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "version": MessageLookupByLibrary.simpleMessage("الاصدار"),
         "warehouse": MessageLookupByLibrary.simpleMessage("المخازن"),
         "workphone": MessageLookupByLibrary.simpleMessage("هاتف العمل")
       };

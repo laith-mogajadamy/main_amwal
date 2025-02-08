@@ -4,8 +4,12 @@ class WarehousesState extends Equatable {
   final String token;
   //
   final List<Warehouses> warehouses;
+  final List<Warehouses> filteredWarehouses;
   final RequestState warehousesState;
   final String warehousesMessage;
+  //
+  final List<Company> companys;
+  final Company selectedcompany;
   //
   final List<SearchedWarehouses> searchedWarehouses;
   final RequestState searchedWarehousesState;
@@ -15,12 +19,19 @@ class WarehousesState extends Equatable {
   final String toDate;
   final String dueDate;
   //
+  final String scannedQR;
+
   const WarehousesState({
     this.token = '',
     //
     this.warehouses = const [],
+    this.filteredWarehouses = const [],
     this.warehousesState = RequestState.loading,
     this.warehousesMessage = '',
+    //
+    this.companys = const [],
+    this.selectedcompany =
+        const Company(guid: '', code: '', name: '', iddefault: ''),
     //
     this.searchedWarehouses = const [],
     this.searchedWarehousesState = RequestState.loaded,
@@ -29,14 +40,21 @@ class WarehousesState extends Equatable {
     this.fromDate = '',
     this.toDate = '',
     this.dueDate = '',
+    //
+    this.scannedQR = '',
   });
 
   WarehousesState copyWith({
     String? token,
     //
     List<Warehouses>? warehouses,
+    List<Warehouses>? filteredWarehouses,
     RequestState? warehousesState,
     String? warehousesMessage,
+
+    //
+    List<Company>? companys,
+    Company? selectedcompany,
     //
     List<SearchedWarehouses>? searchedWarehouses,
     RequestState? searchedWarehousesState,
@@ -45,13 +63,20 @@ class WarehousesState extends Equatable {
     String? fromDate,
     String? toDate,
     String? dueDate,
+    //
+    String? scannedQR,
   }) {
     return WarehousesState(
       token: token ?? this.token,
       //
       warehouses: warehouses ?? this.warehouses,
+      filteredWarehouses: filteredWarehouses ?? this.filteredWarehouses,
       warehousesState: warehousesState ?? this.warehousesState,
       warehousesMessage: warehousesMessage ?? this.warehousesMessage,
+      //
+      companys: companys ?? this.companys,
+      selectedcompany: selectedcompany ?? this.selectedcompany,
+
       //
       searchedWarehouses: searchedWarehouses ?? this.searchedWarehouses,
       searchedWarehousesState:
@@ -63,6 +88,7 @@ class WarehousesState extends Equatable {
       toDate: toDate ?? this.toDate,
       dueDate: dueDate ?? this.dueDate,
       //
+      scannedQR: scannedQR ?? this.scannedQR,
     );
   }
 
@@ -71,8 +97,12 @@ class WarehousesState extends Equatable {
         token,
         //
         warehouses,
+        filteredWarehouses,
         warehousesState,
         warehousesMessage,
+        //
+        companys,
+        selectedcompany,
         //
         searchedWarehouses,
         searchedWarehousesState,
@@ -82,5 +112,6 @@ class WarehousesState extends Equatable {
         toDate,
         dueDate,
         //
+        scannedQR,
       ];
 }

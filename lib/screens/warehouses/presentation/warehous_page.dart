@@ -8,6 +8,7 @@ import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/search_for_item_page.dart';
 import 'package:mainamwal/screens/warehouses/presentation/warehous_component.dart';
+import 'package:mainamwal/screens/warehouses/presentation/widget/select_warehouse_company.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 
 class WarehousPage extends StatefulWidget {
@@ -54,6 +55,9 @@ class _WarehousPageState extends State<WarehousPage> {
           color: AppColor.whiteColor,
           fontSize: 18,
         ),
+        actions: [
+          SelectWarehouseCompany(),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: AnimatedOpacity(
@@ -62,6 +66,7 @@ class _WarehousPageState extends State<WarehousPage> {
         child: ElevatedButton(
           onPressed: () {
             if (isFabVisible) {
+              context.read<WarehousesBloc>().add(ClearSearchedWarehouses());
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => SearchForItemPage(

@@ -1,4 +1,5 @@
 {
+    "version": "الاصدار",
     "networkerror": "خطأ بالشبكة",
     "timedout": "انتهت مدة الاتصال",
     "Changethelanguage": "غير اللغة",
@@ -93,7 +94,7 @@
     "ok": "موافق",
     "resultcount": "عدد النتائج",
     "cost": "التكلفة",
-    "costRate": "معدل التكلفة",
-    "batchnumber": "رقم الدفعة",
+    "costRate": "المعدل",
+    "batchnumber": "الدفعة",
     "expirydate": "تاريخ الانتهاء"
 }

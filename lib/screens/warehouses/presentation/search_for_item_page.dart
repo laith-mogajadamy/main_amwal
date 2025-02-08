@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/searched_warehous_component.dart';
+import 'package:mainamwal/screens/warehouses/presentation/warehouses_qr_code_scan.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 
 class SearchForItemPage extends StatelessWidget {
@@ -15,13 +17,9 @@ class SearchForItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-    context.read<WarehousesBloc>().add(
-          GetSearchedWarehouses(
-            search: controller.text,
-            storeGuid: warehouses.storeGuid,
-          ),
-        );
+    TextEditingController controller = TextEditingController(
+      text: context.read<WarehousesBloc>().state.scannedQR,
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.appbuleBG,
@@ -30,6 +28,24 @@ class SearchForItemPage extends StatelessWidget {
           color: AppColor.whiteColor,
           fontSize: 18,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => WarehousesQrCodeScan(
+                    warehouses: warehouses,
+                  ),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.qr_code_scanner_rounded,
+              size: 45.r,
+              color: AppColor.whiteColor,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -57,6 +73,8 @@ class SearchForItemPage extends StatelessWidget {
                                   storeGuid: warehouses.storeGuid,
                                 ),
                               );
+                          SystemChannels.textInput
+                              .invokeMethod('TextInput.hide');
                         },
                         child: Icon(
                           Icons.search_rounded,
@@ -71,8 +89,10 @@ class SearchForItemPage extends StatelessWidget {
                         onTap: () {
                           controller.clear();
                           context.read<WarehousesBloc>().add(
-                                ClearWarehouses(),
+                                ClearSearchedWarehouses(),
                               );
+                          SystemChannels.textInput
+                              .invokeMethod('TextInput.hide');
                         },
                         child: Icon(
                           Icons.cancel,

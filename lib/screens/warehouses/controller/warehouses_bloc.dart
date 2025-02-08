@@ -7,10 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
+import 'package:mainamwal/model/filters/company.dart';
+import 'package:mainamwal/model/filters/company_model.dart';
 import 'package:mainamwal/model/warehouses/searched_warehouses.dart';
 import 'package:mainamwal/model/warehouses/searched_warehouses_model.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/model/warehouses/warehouses_model.dart';
+import 'package:mainamwal/screens/filters/data/veriabels_request.dart';
 import 'package:mainamwal/screens/warehouses/data/warehouses_reqwest.dart';
 
 part 'warehouses_event.dart';
@@ -37,42 +40,10 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
     });
     //
 
-    // on<GetDefDates>((event, emit) async {
-    //   print("GetDefDates");
-    //   http.Response response = await PurchasesAndSalesReqwest.getdefdates();
-    //   var responsemap = jsonDecode(response.body);
-
-    //   if (response.statusCode == 200) {
-    //     emit(state.copyWith(
-    //       fromDate: responsemap['data']?['CurrentPeriodStartDate'] ?? '',
-    //       toDate: responsemap['data']?['CurrentPeriodEndDate'] ?? '',
-    //     ));
-    //     DateTime now = DateTime.now();
-    //     DateTime fromDate = DateTime.parse(state.fromDate);
-    //     DateTime toDate = DateTime.parse(state.toDate);
-    //     if (now.isBefore(toDate) && now.isAfter(fromDate)) {
-    //       emit(state.copyWith(
-    //         fromDate: DateFormat('yyyy-MM-dd', "en").format(now),
-    //         toDate: DateFormat('yyyy-MM-dd', "en").format(now),
-    //       ));
-    //     } else {
-    //       emit(state.copyWith(
-    //         fromDate: responsemap['data']?['CurrentPeriodEndDate'] ?? '',
-    //         toDate: responsemap['data']?['CurrentPeriodEndDate'] ?? '',
-    //       ));
-    //     }
-    //     print("state.fromDate=");
-    //     print(state.fromDate);
-    //     print("state.toDate=");
-    //     print(state.toDate);
-    //   } else {
-    //     emit(state.copyWith());
-    //   }
-    // });
     on<ClearWarehouses>((event, emit) async {
       emit(state.copyWith(
-        searchedWarehouses: [],
-        searchedWarehousesState: RequestState.loaded,
+        warehouses: [],
+        warehousesState: RequestState.loaded,
       ));
     });
     //
@@ -102,6 +73,20 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
           ));
           print("state.warehouses=");
           print(state.warehouses);
+          List<Warehouses> filterdWarehouses = [];
+          for (var i = 0; i < state.warehouses.length; i++) {
+            if (state.warehouses[i].companiesGuid ==
+                state.selectedcompany.guid) {
+              filterdWarehouses.add(state.warehouses[i]);
+            }
+          }
+          print('filterdWarehouses');
+          print(filterdWarehouses);
+          emit(
+            state.copyWith(
+              filteredWarehouses: filterdWarehouses,
+            ),
+          );
         } else {
           emit(state.copyWith(
             warehousesState: RequestState.error,
@@ -114,6 +99,14 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
           warehousesMessage: "Unauthenticated",
         ));
       }
+    });
+    //
+    on<ClearSearchedWarehouses>((event, emit) async {
+      emit(state.copyWith(
+        searchedWarehouses: [],
+        searchedWarehousesState: RequestState.loaded,
+        scannedQR: '',
+      ));
     });
     //
     on<GetSearchedWarehouses>((event, emit) async {
@@ -157,6 +150,72 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
           searchedWarehousesMessage: "Unauthenticated",
         ));
       }
+    });
+    //
+    //
+    on<QRCodeScanned>((event, emit) async {
+      emit(state.copyWith(
+        scannedQR: event.scannedQR,
+      ));
+      add(
+        GetSearchedWarehouses(
+          search: state.scannedQR,
+          storeGuid: event.warehouses!.storeGuid,
+        ),
+      );
+    });
+    //
+    //
+    on<GetWarehouseCompanys>((event, emit) async {
+      print("GetWarehouseCompanys");
+      http.Response response = await VeriabelsRequest.getcompanys();
+      var responsemap = await jsonDecode(response.body);
+      print(responsemap);
+      print("statusCode==${response.statusCode}");
+      print("*********");
+      if (response.statusCode == 200) {
+        emit(
+          state.copyWith(
+            companys: List<CompanyModel>.from(
+              (responsemap['data'] as List).map(
+                (e) => CompanyModel.fromJson(e),
+              ),
+            ),
+          ),
+        );
+        emit(
+          state.copyWith(
+              selectedcompany: state.companys.firstWhere(
+            (element) => element.iddefault == '1',
+          )),
+        );
+        add(GetWarehouses());
+      } else {
+        emit(
+          state.copyWith(
+            warehousesMessage: 'error',
+          ),
+        );
+      }
+    });
+    //
+    on<CompanyChanged>((event, emit) async {
+      emit(state.copyWith(
+        selectedcompany: event.company,
+      ));
+      List<Warehouses> filterdWarehouses = [];
+      for (var i = 0; i < state.warehouses.length; i++) {
+        if (state.warehouses[i].companiesGuid == state.selectedcompany.guid) {
+          filterdWarehouses.add(state.warehouses[i]);
+        }
+      }
+      print('filterdWarehouses');
+      print(filterdWarehouses);
+      emit(
+        state.copyWith(
+          filteredWarehouses: filterdWarehouses,
+        ),
+      );
     });
     //
   }

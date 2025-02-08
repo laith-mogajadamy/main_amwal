@@ -31,7 +31,8 @@ class MoneyText extends StatelessWidget {
     if (roundedText.endsWith(y)) {
       roundedText = roundedText.substring(0, roundedText.indexOf("."));
     }
-
+    // Remove unnecessary trailing zeros
+    roundedText = roundedText.replaceAll(RegExp(r'(\.0+|(?<=\.\d)0+)$'), '');
     // Split integer and decimal parts
     List<String> parts = roundedText.split('.');
     String integerPart = parts[0].replaceAllMapped(

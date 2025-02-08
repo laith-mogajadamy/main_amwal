@@ -1,4 +1,5 @@
 {
+    "version": "version",
     "networkerror": "Network Error",
     "timedout": "Timed Out",
     "Changethelanguage": "Change the language",
@@ -92,7 +93,7 @@
     "ok": "OK",
     "resultcount": "result count",
     "cost": "cost",
-    "costRate": "cost rate",
-    "batchnumber": "batch number",
+    "costRate": "rate",
+    "batchnumber": "batch",
     "expirydate": "expiry date"
 }
