@@ -8,7 +8,7 @@ class BoxReqwest {
   static Future<http.Response> getboxs(
     String token,
   ) async {
-    var url = Uri.parse("${Global.url}/accounting/box");
+    var url = Uri.parse("${Global.url}/accounting/box?paginationFormate=none");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

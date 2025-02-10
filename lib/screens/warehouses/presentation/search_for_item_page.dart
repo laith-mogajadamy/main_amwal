@@ -59,50 +59,25 @@ class SearchForItemPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.none,
               ),
+              onEditingComplete: () {
+                context.read<WarehousesBloc>().add(
+                      GetSearchedWarehouses(
+                        search: controller.text,
+                        storeGuid: warehouses.storeGuid,
+                        companyGuid: context
+                            .read<WarehousesBloc>()
+                            .state
+                            .selectedcompany
+                            .guid,
+                        page: '1',
+                        perPage: '50',
+                      ),
+                    );
+                SystemChannels.textInput.invokeMethod('TextInput.hide');
+              },
               decoration: InputDecoration(
-                suffixIcon: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          context.read<WarehousesBloc>().add(
-                                GetSearchedWarehouses(
-                                  search: controller.text,
-                                  storeGuid: warehouses.storeGuid,
-                                ),
-                              );
-                          SystemChannels.textInput
-                              .invokeMethod('TextInput.hide');
-                        },
-                        child: Icon(
-                          Icons.search_rounded,
-                          color: AppColor.apporange,
-                          size: 25.r,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          controller.clear();
-                          context.read<WarehousesBloc>().add(
-                                ClearSearchedWarehouses(),
-                              );
-                          SystemChannels.textInput
-                              .invokeMethod('TextInput.hide');
-                        },
-                        child: Icon(
-                          Icons.cancel,
-                          color: Colors.red,
-                          size: 25.r,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                suffixIcon:
+                    SuffixIcon(controller: controller, warehouses: warehouses),
                 filled: true,
                 hintText: S.of(context).name,
                 hintStyle: GoogleFonts.cairo(
@@ -145,10 +120,76 @@ class SearchForItemPage extends StatelessWidget {
               },
             ),
             Expanded(
-              child: SearchedWarehousComponent(),
+              child: SearchedWarehousComponent(
+                controller: controller,
+                warehouses: warehouses,
+              ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SuffixIcon extends StatelessWidget {
+  const SuffixIcon({
+    super.key,
+    required this.controller,
+    required this.warehouses,
+  });
+
+  final TextEditingController controller;
+  final Warehouses warehouses;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: () {
+              context.read<WarehousesBloc>().add(
+                    GetSearchedWarehouses(
+                      search: controller.text,
+                      storeGuid: warehouses.storeGuid,
+                      companyGuid: context
+                          .read<WarehousesBloc>()
+                          .state
+                          .selectedcompany
+                          .guid,
+                      page: '1',
+                      perPage: '50',
+                    ),
+                  );
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
+            },
+            child: Icon(
+              Icons.search_rounded,
+              color: AppColor.apporange,
+              size: 25.r,
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          GestureDetector(
+            onTap: () {
+              controller.clear();
+              context.read<WarehousesBloc>().add(
+                    ClearSearchedWarehouses(),
+                  );
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
+            },
+            child: Icon(
+              Icons.cancel,
+              color: Colors.red,
+              size: 25.r,
+            ),
+          ),
+        ],
       ),
     );
   }

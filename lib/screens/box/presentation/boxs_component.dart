@@ -34,9 +34,10 @@ class BoxsComponent extends StatelessWidget {
                 Expanded(
                   child: SizedBox(
                     child: ListView.builder(
-                      itemCount: state.boxs.length,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      itemCount: state.filterdBoxs.length,
                       itemBuilder: (context, index) {
-                        Box box = state.boxs[index];
+                        Box box = state.filterdBoxs[index];
                         return BoxCard(box: box);
                       },
                     ),

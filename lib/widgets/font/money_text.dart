@@ -9,7 +9,7 @@ class MoneyText extends StatelessWidget {
   final int fontSize;
   final int disimalnumber;
 
-  MoneyText({
+  const MoneyText({
     super.key,
     required this.text,
     required this.color,
@@ -17,22 +17,17 @@ class MoneyText extends StatelessWidget {
     required this.disimalnumber,
   });
 
-  bool isNegative = true;
-
   String formatNumber(String text, int disimalnumber) {
-    int x = 10 ^ disimalnumber;
-    String y = '.'.padRight(disimalnumber + 1, '0');
     double number = double.parse(text);
-    isNegative = number < 0;
+    bool isNegative = number < 0; // Local variable instead of global
     double absoluteNumber = number.abs();
-    double roundedNumber = (absoluteNumber * x).round() / x;
 
-    String roundedText = roundedNumber.toStringAsFixed(disimalnumber);
-    if (roundedText.endsWith(y)) {
-      roundedText = roundedText.substring(0, roundedText.indexOf("."));
-    }
+    // Round to the required decimal places
+    String roundedText = absoluteNumber.toStringAsFixed(disimalnumber);
+
     // Remove unnecessary trailing zeros
     roundedText = roundedText.replaceAll(RegExp(r'(\.0+|(?<=\.\d)0+)$'), '');
+
     // Split integer and decimal parts
     List<String> parts = roundedText.split('.');
     String integerPart = parts[0].replaceAllMapped(
@@ -40,15 +35,11 @@ class MoneyText extends StatelessWidget {
       (match) => ',',
     );
 
-    // Recombine integer and decimal parts without adding extra commas
+    // Recombine integer and decimal parts
     String formattedText =
         parts.length > 1 ? "$integerPart.${parts[1]}" : integerPart;
 
-    if (isNegative) {
-      return "($formattedText)";
-    } else {
-      return formattedText;
-    }
+    return isNegative ? "($formattedText)" : formattedText;
   }
 
   @override

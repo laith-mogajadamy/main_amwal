@@ -5,16 +5,47 @@ abstract class WarehousesEvent extends Equatable {}
 class GetSearchedWarehouses extends WarehousesEvent {
   final String search;
   final String storeGuid;
+  final String companyGuid;
+  final String page;
+  final String perPage;
 
   GetSearchedWarehouses({
     required this.search,
     required this.storeGuid,
+    required this.companyGuid,
+    required this.page,
+    required this.perPage,
   });
 
   @override
   List<Object?> get props => [
         search,
         storeGuid,
+        companyGuid,
+        page,
+        perPage,
+      ];
+}
+
+class LoadMoreSearchedWarehouses extends WarehousesEvent {
+  final String search;
+  final String storeGuid;
+  final String companyGuid;
+  final String perPage;
+
+  LoadMoreSearchedWarehouses({
+    required this.search,
+    required this.storeGuid,
+    required this.companyGuid,
+    required this.perPage,
+  });
+
+  @override
+  List<Object?> get props => [
+        search,
+        storeGuid,
+        companyGuid,
+        perPage,
       ];
 }
 

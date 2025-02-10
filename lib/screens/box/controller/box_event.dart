@@ -136,3 +136,19 @@ class GetBoxCreditDebitSum extends BoxEvent {
         companyGuid,
       ];
 }
+
+class GetBoxsCompanys extends BoxEvent {
+  GetBoxsCompanys();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class CompanyChanged extends BoxEvent {
+  final Company? company;
+
+  CompanyChanged({this.company});
+
+  @override
+  List<Object?> get props => [company];
+}

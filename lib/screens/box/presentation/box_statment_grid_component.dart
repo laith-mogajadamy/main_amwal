@@ -76,8 +76,9 @@ class BoxStatmentGridComponent extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: size.height / 1.75,
+                  height: size.height / 1.8,
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     shrinkWrap: false,
                     itemCount: state.boxStatment.length,
                     itemBuilder: (context, index) {

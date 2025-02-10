@@ -4,12 +4,16 @@ class BoxState extends Equatable {
   final String token;
   //
   final List<Box> boxs;
+  final List<Box> filterdBoxs;
   final RequestState boxsState;
   final String boxsMessage;
   //
   final List<BoxStatment> boxStatment;
   final RequestState boxStatmentState;
   final String boxStatmentMessage;
+  //
+  final List<Company> companys;
+  final Company selectedcompany;
   //
   final String fromdate;
   final String todate;
@@ -24,12 +28,19 @@ class BoxState extends Equatable {
     this.token = '',
     //
     this.boxs = const [],
+    this.filterdBoxs = const [],
     this.boxsState = RequestState.loading,
     this.boxsMessage = '',
     //
     this.boxStatment = const [],
     this.boxStatmentState = RequestState.loading,
     this.boxStatmentMessage = '',
+    //
+
+    this.companys = const [],
+    this.selectedcompany =
+        const Company(guid: '', code: '', name: '', iddefault: ''),
+
     //
     this.fromdate = '',
     this.todate = '',
@@ -45,6 +56,7 @@ class BoxState extends Equatable {
     String? token,
     //
     List<Box>? boxs,
+    List<Box>? filterdBoxs,
     RequestState? boxsState,
     String? boxsMessage,
     //
@@ -52,7 +64,9 @@ class BoxState extends Equatable {
     RequestState? boxStatmentState,
     String? boxStatmentMessage,
     //
-
+    List<Company>? companys,
+    Company? selectedcompany,
+    //
     String? fromdate,
     String? todate,
     String? statedate,
@@ -67,12 +81,16 @@ class BoxState extends Equatable {
 
       //
       boxs: boxs ?? this.boxs,
+      filterdBoxs: filterdBoxs ?? this.filterdBoxs,
       boxsState: boxsState ?? this.boxsState,
       boxsMessage: boxsMessage ?? this.boxsMessage,
       //
       boxStatment: boxStatment ?? this.boxStatment,
       boxStatmentState: boxStatmentState ?? this.boxStatmentState,
       boxStatmentMessage: boxStatmentMessage ?? this.boxStatmentMessage,
+      //
+      companys: companys ?? this.companys,
+      selectedcompany: selectedcompany ?? this.selectedcompany,
       //
       fromdate: fromdate ?? this.fromdate,
       todate: todate ?? this.todate,
@@ -91,12 +109,17 @@ class BoxState extends Equatable {
         token,
         //
         boxs,
+        filterdBoxs,
         boxsState,
         boxsMessage,
         //
         boxStatment,
         boxStatmentState,
         boxStatmentMessage,
+        //
+
+        companys,
+        selectedcompany,
         //
         fromdate,
         todate,

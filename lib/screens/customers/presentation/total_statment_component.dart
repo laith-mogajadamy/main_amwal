@@ -72,6 +72,7 @@ class TotalStatmentComponent extends StatelessWidget {
                   height: size.height / 2.2,
                   child: ListView.builder(
                     shrinkWrap: false,
+                    physics: BouncingScrollPhysics(),
                     itemCount: state.statmentTotal.length,
                     itemBuilder: (context, index) {
                       StatmentTotal statmentTotal = state.statmentTotal[index];

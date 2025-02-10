@@ -117,11 +117,15 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
           token: ptoken,
           searchedWarehouses: [],
           searchedWarehousesState: RequestState.loading,
+          page: 1,
         ));
 
         http.Response response = await WarehousesReqwest.getSearchedWarehouses(
           event.search,
           event.storeGuid,
+          event.companyGuid,
+          event.page,
+          event.perPage,
         );
         var responsemap = jsonDecode(response.body);
 
@@ -152,6 +156,44 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
       }
     });
     //
+    on<LoadMoreSearchedWarehouses>((event, emit) async {
+      print("LoadMoreSearchedWarehouses");
+      emit(state.copyWith(
+        loadMoreState: RequestState.loading,
+        page: state.page + 1,
+      ));
+      http.Response response = await WarehousesReqwest.getSearchedWarehouses(
+        event.search,
+        event.storeGuid,
+        event.companyGuid,
+        state.page.toString(),
+        event.perPage,
+      );
+      var responsemap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        List<SearchedWarehouses> searchedWarehouses = state.searchedWarehouses;
+        List<SearchedWarehouses> newsearchedWarehouses =
+            List<SearchedWarehousesModel>.from(
+          (responsemap['data'] as List).map(
+            (e) => SearchedWarehousesModel.fromJson(e),
+          ),
+        );
+        searchedWarehouses.addAll(newsearchedWarehouses);
+        emit(state.copyWith(
+          searchedWarehouses: searchedWarehouses,
+          loadMoreState: RequestState.loaded,
+          searchedWarehousesMessage: responsemap['message'] ?? '',
+          //
+        ));
+        print("state.searchedWarehouses=");
+        print(state.searchedWarehouses);
+      } else {
+        emit(state.copyWith(
+          loadMoreState: RequestState.error,
+          searchedWarehousesMessage: responsemap["message"] ?? '',
+        ));
+      }
+    });
     //
     on<QRCodeScanned>((event, emit) async {
       emit(state.copyWith(
@@ -161,6 +203,9 @@ class WarehousesBloc extends Bloc<WarehousesEvent, WarehousesState> {
         GetSearchedWarehouses(
           search: state.scannedQR,
           storeGuid: event.warehouses!.storeGuid,
+          companyGuid: state.selectedcompany.guid,
+          page: '1',
+          perPage: '50',
         ),
       );
     });

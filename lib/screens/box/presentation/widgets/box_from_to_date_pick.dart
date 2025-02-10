@@ -65,102 +65,106 @@ class BoxFromToDatePick extends StatelessWidget {
 
     return BlocBuilder<BoxBloc, BoxState>(
       builder: (context, state) {
-        return Row(
+        return Column(
           children: [
             Row(
               children: [
-                AppText(
-                    text: "${S.of(context).from}:",
-                    color: AppColor.apptitle,
-                    fontSize: 12),
-                SizedBox(
-                  width: 0.w,
+                Row(
+                  children: [
+                    AppText(
+                        text: "${S.of(context).from}:",
+                        color: AppColor.apptitle,
+                        fontSize: 12),
+                    SizedBox(
+                      width: 0.w,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await pickDate(context, 'from', state.fromdate);
+                        if (fromselectedDate!
+                            .isAfter(DateTime.parse(state.todate))) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red,
+                              content: AppText(
+                                text: S.of(context).unvalidedate,
+                                color: AppColor.whiteColor,
+                                fontSize: 16,
+                              ),
+                            ),
+                          );
+                        } else {
+                          context.read<BoxBloc>().add(ChangeFromDate(
+                              fromdate:
+                                  '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.whiteColor,
+                          padding: const EdgeInsets.all(10),
+                          shape: const StadiumBorder()),
+                      child: AppText(
+                        text: state.fromdate != ''
+                            ? state.fromdate
+                            : S.of(context).nodate,
+                        color: AppColor.apptitle,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await pickDate(context, 'from', state.fromdate);
-                    if (fromselectedDate!
-                        .isAfter(DateTime.parse(state.todate))) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.red,
-                          content: AppText(
-                            text: S.of(context).unvalidedate,
-                            color: AppColor.whiteColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      );
-                    } else {
-                      context.read<BoxBloc>().add(ChangeFromDate(
-                          fromdate:
-                              '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
-                      shape: const StadiumBorder()),
-                  child: AppText(
-                    text: state.fromdate != ''
-                        ? state.fromdate
-                        : S.of(context).nodate,
-                    color: AppColor.apptitle,
-                    fontSize: 12,
-                  ),
+                SizedBox(
+                  width: 30.w,
+                ),
+                Row(
+                  children: [
+                    AppText(
+                      text: "${S.of(context).to}:",
+                      color: AppColor.apptitle,
+                      fontSize: 12,
+                    ),
+                    SizedBox(
+                      width: 0.w,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await pickDate(context, 'to', state.todate);
+                        if (toselectedDate!
+                            .isBefore(DateTime.parse(state.fromdate))) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red,
+                              content: AppText(
+                                text: S.of(context).unvalidedate,
+                                color: AppColor.whiteColor,
+                                fontSize: 16,
+                              ),
+                            ),
+                          );
+                        } else {
+                          context.read<BoxBloc>().add(ChangeToDate(
+                              todate:
+                                  '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.whiteColor,
+                          padding: const EdgeInsets.all(10),
+                          shape: const StadiumBorder()),
+                      child: AppText(
+                        text: state.todate != ''
+                            ? state.todate
+                            : S.of(context).nodate,
+                        color: AppColor.apptitle,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
             SizedBox(
-              width: 0.w,
-            ),
-            Row(
-              children: [
-                AppText(
-                  text: "${S.of(context).to}:",
-                  color: AppColor.apptitle,
-                  fontSize: 12,
-                ),
-                SizedBox(
-                  width: 0.w,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await pickDate(context, 'to', state.todate);
-                    if (toselectedDate!
-                        .isBefore(DateTime.parse(state.fromdate))) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.red,
-                          content: AppText(
-                            text: S.of(context).unvalidedate,
-                            color: AppColor.whiteColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      );
-                    } else {
-                      context.read<BoxBloc>().add(ChangeToDate(
-                          todate:
-                              '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
-                      shape: const StadiumBorder()),
-                  child: AppText(
-                    text: state.todate != ''
-                        ? state.todate
-                        : S.of(context).nodate,
-                    color: AppColor.apptitle,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 0.w,
+              height: 0.w,
             ),
             Row(
               children: [

@@ -6,7 +6,8 @@ import 'package:mainamwal/core/utils/prefrences.dart';
 
 class WarehousesReqwest {
   static Future<http.Response> getWarehousestatement() async {
-    var url = Uri.parse("${Global.url}/accounting/stores-statment");
+    var url = Uri.parse(
+        "${Global.url}/accounting/stores-statment?paginationFormate=none");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",
@@ -28,14 +29,20 @@ class WarehousesReqwest {
   static Future<http.Response> getSearchedWarehouses(
     String search,
     String storeGuid,
+    String companyGuid,
+    String page,
+    String perPage,
   ) async {
     Map data = {
       "search": search,
       "storeGuid": storeGuid,
+      "CompanyGuid": companyGuid,
     };
     print(data);
     var body = jsonEncode(data);
-    var url = Uri.parse("${Global.url}/accounting/store-statment");
+    var url = Uri.parse(
+        "${Global.url}/accounting/store-statment?page=$page&perPage=$perPage");
+    print(url);
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

@@ -14,6 +14,8 @@ class WarehousesState extends Equatable {
   final List<SearchedWarehouses> searchedWarehouses;
   final RequestState searchedWarehousesState;
   final String searchedWarehousesMessage;
+  final int page;
+  final RequestState loadMoreState;
   //
   final String fromDate;
   final String toDate;
@@ -36,6 +38,8 @@ class WarehousesState extends Equatable {
     this.searchedWarehouses = const [],
     this.searchedWarehousesState = RequestState.loaded,
     this.searchedWarehousesMessage = '',
+    this.page = 1,
+    this.loadMoreState = RequestState.loaded,
     //
     this.fromDate = '',
     this.toDate = '',
@@ -59,6 +63,8 @@ class WarehousesState extends Equatable {
     List<SearchedWarehouses>? searchedWarehouses,
     RequestState? searchedWarehousesState,
     String? searchedWarehousesMessage,
+    int? page,
+    RequestState? loadMoreState,
     //
     String? fromDate,
     String? toDate,
@@ -76,13 +82,15 @@ class WarehousesState extends Equatable {
       //
       companys: companys ?? this.companys,
       selectedcompany: selectedcompany ?? this.selectedcompany,
-
       //
       searchedWarehouses: searchedWarehouses ?? this.searchedWarehouses,
       searchedWarehousesState:
           searchedWarehousesState ?? this.searchedWarehousesState,
       searchedWarehousesMessage:
           searchedWarehousesMessage ?? this.searchedWarehousesMessage,
+      page: page ?? this.page,
+      loadMoreState: loadMoreState ?? this.loadMoreState,
+
       //
       fromDate: fromDate ?? this.fromDate,
       toDate: toDate ?? this.toDate,
@@ -107,6 +115,8 @@ class WarehousesState extends Equatable {
         searchedWarehouses,
         searchedWarehousesState,
         searchedWarehousesMessage,
+        page,
+        loadMoreState,
         //
         fromDate,
         toDate,

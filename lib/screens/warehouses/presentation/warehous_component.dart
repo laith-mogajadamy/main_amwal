@@ -38,6 +38,7 @@ class WarehousComponent extends StatelessWidget {
                 crossAxisCount: 2,
                 childAspectRatio: 1.5,
               ),
+              physics: AlwaysScrollableScrollPhysics(),
               itemCount: state.filteredWarehouses.length,
               itemBuilder: (BuildContext context, int index) {
                 Warehouses warehouse = state.filteredWarehouses[index];

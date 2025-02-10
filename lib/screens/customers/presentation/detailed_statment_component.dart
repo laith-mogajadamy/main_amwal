@@ -35,6 +35,7 @@ class DetailedStatmentComponent extends StatelessWidget {
               height: size.height / 2.1,
               child: ListView.builder(
                 shrinkWrap: false,
+                physics: BouncingScrollPhysics(),
                 itemCount: state.statmentDetailed.length,
                 itemBuilder: (context, index) {
                   StatmentDetailed statmentDetailed =

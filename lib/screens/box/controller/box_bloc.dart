@@ -9,7 +9,10 @@ import 'package:mainamwal/model/box/box.dart';
 import 'package:mainamwal/model/box/box_model.dart';
 import 'package:mainamwal/model/box/box_statment.dart';
 import 'package:mainamwal/model/box/box_statment_model.dart';
+import 'package:mainamwal/model/filters/company.dart';
+import 'package:mainamwal/model/filters/company_model.dart';
 import 'package:mainamwal/screens/box/data/box_reqwest.dart';
+import 'package:mainamwal/screens/filters/data/veriabels_request.dart';
 
 part 'box_event.dart';
 part 'box_state.dart';
@@ -41,6 +44,19 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
           ));
           print("state.boxs=");
           print(state.boxs);
+          List<Box> filterdBox = [];
+          for (var i = 0; i < state.boxs.length; i++) {
+            if (state.boxs[i].companyGuid == state.selectedcompany.guid) {
+              filterdBox.add(state.boxs[i]);
+            }
+          }
+          print('filterdBox');
+          print(filterdBox);
+          emit(
+            state.copyWith(
+              filterdBoxs: filterdBox,
+            ),
+          );
         } else {
           emit(state.copyWith(
             boxsState: RequestState.error,
@@ -300,6 +316,58 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
       } else {
         emit(state.copyWith());
       }
+    });
+    //
+    on<GetBoxsCompanys>((event, emit) async {
+      print("GetBoxsCompanys");
+      http.Response response = await VeriabelsRequest.getcompanys();
+      var responsemap = await jsonDecode(response.body);
+      print(responsemap);
+      print("statusCode==${response.statusCode}");
+      print("*********");
+      if (response.statusCode == 200) {
+        emit(
+          state.copyWith(
+            companys: List<CompanyModel>.from(
+              (responsemap['data'] as List).map(
+                (e) => CompanyModel.fromJson(e),
+              ),
+            ),
+          ),
+        );
+        emit(
+          state.copyWith(
+              selectedcompany: state.companys.firstWhere(
+            (element) => element.iddefault == '1',
+          )),
+        );
+        add(GetBoxs());
+      } else {
+        emit(
+          state.copyWith(
+            boxsMessage: 'error',
+          ),
+        );
+      }
+    });
+    //
+    on<CompanyChanged>((event, emit) async {
+      emit(state.copyWith(
+        selectedcompany: event.company,
+      ));
+      List<Box> filterdBox = [];
+      for (var i = 0; i < state.boxs.length; i++) {
+        if (state.boxs[i].companyGuid == state.selectedcompany.guid) {
+          filterdBox.add(state.boxs[i]);
+        }
+      }
+      print('filterdBox');
+      print(filterdBox);
+      emit(
+        state.copyWith(
+          filterdBoxs: filterdBox,
+        ),
+      );
     });
   }
 }

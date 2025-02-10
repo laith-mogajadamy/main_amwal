@@ -38,14 +38,12 @@ class BoxCard extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         child: (state.language == 'ar')
                             ? AppText(
-                                text:
-                                    "${box.code} / ${box.name} - ${box.companyName}",
+                                text: "${box.code} / ${box.name}",
                                 color: AppColor.apptitle,
                                 fontSize: 16,
                               )
                             : AppText(
-                                text:
-                                    "${box.code} / ${box.companyName} - ${box.name}",
+                                text: "${box.code} / ${box.name}",
                                 color: AppColor.apptitle,
                                 fontSize: 16,
                               )),
