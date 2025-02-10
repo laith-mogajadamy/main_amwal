@@ -33,7 +33,12 @@ class BoxsComponent extends StatelessWidget {
               children: [
                 Expanded(
                   child: SizedBox(
-                    child: ListView.builder(
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.9,
+                      ),
                       physics: AlwaysScrollableScrollPhysics(),
                       itemCount: state.filterdBoxs.length,
                       itemBuilder: (context, index) {

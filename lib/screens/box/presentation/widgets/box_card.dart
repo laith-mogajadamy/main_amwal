@@ -21,84 +21,89 @@ class BoxCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return BlocBuilder<EnterBloc, EnterState>(
       builder: (context, state) {
-        return Container(
-          decoration: boxdecoration2(),
-          margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 7.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: (state.language == 'ar')
-                            ? AppText(
-                                text: "${box.code} / ${box.name}",
-                                color: AppColor.apptitle,
-                                fontSize: 16,
-                              )
-                            : AppText(
-                                text: "${box.code} / ${box.name}",
-                                color: AppColor.apptitle,
-                                fontSize: 16,
-                              )),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset('assets/svg/coins-orange.svg'),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            MoneyText(
-                              text: box.closeBalance,
-                              color: AppColor.orangefont,
-                              fontSize: 16,
-                              disimalnumber: 3,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            AppText(
-                              text: box.currencyCode,
-                              color: AppColor.orangefont,
-                              fontSize: 16,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                IconButton(
-                  onPressed: () {
-                    context.read<BoxBloc>().add(
-                          GetDefDates(
-                            guid: box.guid,
-                          ),
-                        );
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => BoxStatmentPage(
-                          box: box,
-                        ),
-                      ),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    color: AppColor.appbuleBG,
-                    size: 20.r,
+        return InkWell(
+          onTap: () {
+            context.read<BoxBloc>().add(
+                  GetDefDates(
+                    guid: box.guid,
                   ),
+                );
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => BoxStatmentPage(
+                  box: box,
                 ),
-              ],
+              ),
+            );
+          },
+          child: Container(
+            decoration: boxdecoration2(),
+            margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 7.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/svg/safebox-svgrepo-com.svg',
+                    color: AppColor.apporange,
+                    height: size.height / 14,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: (state.language == 'ar')
+                        ? AppText(
+                            text: "${box.code} / ${box.name}",
+                            color: AppColor.apptitle,
+                            fontSize: 16,
+                          )
+                        : AppText(
+                            text: "${box.code} / ${box.name}",
+                            color: AppColor.apptitle,
+                            fontSize: 16,
+                          ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  MoneyText(
+                    text: box.closeBalance,
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                    disimalnumber: 3,
+                  ),
+                  SizedBox(
+                    height: 5.w,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset('assets/svg/coins-orange.svg'),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          AppText(
+                            text: box.currencyCode,
+                            color: AppColor.orangefont,
+                            fontSize: 14,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

@@ -188,7 +188,7 @@ class HomeDrawer extends StatelessWidget {
                     Row(
                       children: [
                         AppText(
-                          text: "${S.of(context).version}: 0.3.5",
+                          text: "${S.of(context).version}: 0.3.6",
                           color: AppColor.apptitle,
                           fontSize: 16,
                         ),
