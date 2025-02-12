@@ -48,7 +48,7 @@ class StoreCard extends StatelessWidget {
             ),
             MoneyText(
               text: warehouse.currentCost,
-              color: AppColor.apporange,
+              color: AppColor.appdarkorange,
               fontSize: 16,
               disimalnumber: 3,
             ),

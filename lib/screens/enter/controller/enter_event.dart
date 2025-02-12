@@ -55,7 +55,10 @@ class CityChanged extends EnterEvent {
 }
 
 class LoginSubmitted extends EnterEvent {
-  LoginSubmitted();
+  final String? username;
+  final String? password;
+
+  LoginSubmitted(this.username, this.password);
 
   @override
   List<Object?> get props => [];

@@ -122,8 +122,8 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
       emit(
         state.copyWith(
             formStatus: FormSubmitting(),
-            email: state.email,
-            password: state.password),
+            email: event.username,
+            password: event.password),
       );
       print("========");
       print(state.email);

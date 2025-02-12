@@ -1,5 +1,7 @@
+import 'package:flutter/services.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/formstatus.dart';
+import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/pages/pages.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
@@ -19,11 +21,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  String? useremail = Preferences.getemail();
+  String? userpassword = Preferences.getpassword();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
   void initState() {
+    email.text = useremail ?? '';
+    password.text = userpassword ?? '';
     super.initState();
   }
 
@@ -75,9 +81,7 @@ class _LoginState extends State<Login> {
                               InfoInput(
                                   name: S.of(context).username,
                                   hint: "",
-                                  validator: (value) => state.isValidEmail
-                                      ? null
-                                      : S.of(context).emailvalidate,
+                                  validator: (value) => null,
                                   onchange: (value) =>
                                       context.read<EnterBloc>().add(
                                             LoginEmailChanged(email: value),
@@ -87,17 +91,15 @@ class _LoginState extends State<Login> {
                                 height: 30.h,
                               ),
                               PasswordInput(
-                                  name: S.of(context).Password,
-                                  hint: "",
-                                  validator: (value) => state.isValidPassword
-                                      ? null
-                                      : S.of(context).passwordvalidate,
-                                  onchange: (value) => context
-                                      .read<EnterBloc>()
-                                      .add(
-                                        LoginPasswordChanged(password: value),
-                                      ),
-                                  controller: password),
+                                name: S.of(context).Password,
+                                hint: "",
+                                validator: (value) => null,
+                                onchange: (value) =>
+                                    context.read<EnterBloc>().add(
+                                          LoginPasswordChanged(password: value),
+                                        ),
+                                controller: password,
+                              ),
                               SizedBox(
                                 height: 30.h,
                               ),
@@ -143,13 +145,18 @@ class _LoginState extends State<Login> {
                                 },
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    SystemChannels.textInput
+                                        .invokeMethod('TextInput.hide');
                                     if (formKey.currentState!.validate()) {
                                       if ((state.formStatus
                                           is FormSubmitting)) {
                                       } else {
-                                        context
-                                            .read<EnterBloc>()
-                                            .add(LoginSubmitted());
+                                        context.read<EnterBloc>().add(
+                                              LoginSubmitted(
+                                                email.text,
+                                                password.text,
+                                              ),
+                                            );
                                       }
                                     }
                                   },

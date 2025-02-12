@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
@@ -18,9 +19,9 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime? fromselectedDate; // To store the selected date
-    DateTime? toselectedDate; // To store the selected date
-    DateTime? stateselecteddate; // To store the selected date
+    String? fromselectedDate; // To store the selected date
+    String? toselectedDate; // To store the selected date
+    // String? stateselecteddate;
 
     Future<void> pickDate(
         BuildContext context, String w, String initialDate) async {
@@ -30,7 +31,6 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
         initdate = DateTime.parse(initialDate);
       }
       final DateTime? pickedDate = await showDatePicker(
-        locale: Locale('en'),
         context: context,
         initialDate: initdate,
         firstDate: DateTime(2000),
@@ -51,18 +51,20 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
         },
       );
 
-      if (pickedDate != null && pickedDate != fromselectedDate) {
+      if (pickedDate != null) {
+        String formattedDate =
+            DateFormat('yyyy-MM-dd', 'en').format(pickedDate);
+
         if (w == "from") {
-          fromselectedDate = pickedDate;
+          fromselectedDate = formattedDate;
         }
         if (w == "to") {
-          toselectedDate = pickedDate;
+          toselectedDate = formattedDate;
         }
         if (w == "state") {
-          stateselecteddate = pickedDate;
-          context.read<PurchasesAndSalesBloc>().add(DueDateChanged(
-              duedate:
-                  '${stateselecteddate!.year.toString()}-${stateselecteddate!.month.toString().padLeft(2, '0')}-${stateselecteddate!.day.toString().padLeft(2, '0')}'));
+          context
+              .read<PurchasesAndSalesBloc>()
+              .add(DueDateChanged(duedate: formattedDate));
         }
       }
     }
@@ -86,32 +88,35 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () async {
                         await pickDate(context, 'from', state.fromDate);
-
                         if (state.toDate != '') {
-                          if (isSameDay(fromselectedDate!,
+                          if (isSameDay(DateTime.parse(fromselectedDate!),
                               DateTime.parse(state.toDate))) {
                             print('same');
                             print(fromselectedDate);
                             print(DateTime.parse(state.toDate));
                             context.read<PurchasesAndSalesBloc>().add(
-                                FromDateChanged(
-                                    fromdate:
-                                        '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
+                                  FromDateChanged(
+                                    fromdate: fromselectedDate,
+                                  ),
+                                );
                           }
-                          if (fromselectedDate!
+                          if (DateTime.parse(fromselectedDate!)
                               .isAfter(DateTime.parse(state.toDate))) {
                             showErrorDialog(
                                 context, S.of(context).unvalidedate);
                           } else {
                             context.read<PurchasesAndSalesBloc>().add(
-                                FromDateChanged(
-                                    fromdate:
-                                        '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
+                                  FromDateChanged(
+                                    fromdate: fromselectedDate,
+                                  ),
+                                );
                           }
                         } else {
-                          context.read<PurchasesAndSalesBloc>().add(FromDateChanged(
-                              fromdate:
-                                  '${fromselectedDate!.year.toString()}-${fromselectedDate!.month.toString().padLeft(2, '0')}-${fromselectedDate!.day.toString().padLeft(2, '0')}'));
+                          context.read<PurchasesAndSalesBloc>().add(
+                                FromDateChanged(
+                                  fromdate: fromselectedDate,
+                                ),
+                              );
                         }
                         fromselectedDate = null;
                       },
@@ -144,28 +149,30 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                       onPressed: () async {
                         await pickDate(context, 'to', state.toDate);
                         if (state.fromDate != '') {
-                          if (isSameDay(toselectedDate!,
+                          if (isSameDay(DateTime.parse(toselectedDate!),
                               DateTime.parse(state.fromDate))) {
                             print('same');
                             print(toselectedDate);
                             print(DateTime.parse(state.fromDate));
-                            context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
-                                todate:
-                                    '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
+                            context.read<PurchasesAndSalesBloc>().add(
+                                  ToDateChanged(
+                                    todate: toselectedDate,
+                                  ),
+                                );
                           }
-                          if (toselectedDate!
+                          if (DateTime.parse(toselectedDate!)
                               .isBefore(DateTime.parse(state.fromDate))) {
                             showErrorDialog(
                                 context, S.of(context).unvalidedate);
                           } else {
-                            context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
-                                todate:
-                                    '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
+                            context.read<PurchasesAndSalesBloc>().add(
+                                  ToDateChanged(todate: toselectedDate),
+                                );
                           }
                         } else {
-                          context.read<PurchasesAndSalesBloc>().add(ToDateChanged(
-                              todate:
-                                  '${toselectedDate!.year.toString()}-${toselectedDate!.month.toString().padLeft(2, '0')}-${toselectedDate!.day.toString().padLeft(2, '0')}'));
+                          context.read<PurchasesAndSalesBloc>().add(
+                                ToDateChanged(todate: toselectedDate),
+                              );
                         }
                         toselectedDate = null;
                       },
