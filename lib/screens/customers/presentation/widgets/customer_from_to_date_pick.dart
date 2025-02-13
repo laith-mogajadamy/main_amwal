@@ -68,104 +68,111 @@ class CustomerFromToDatePick extends StatelessWidget {
 
     return BlocBuilder<CustomersBloc, CustomersState>(
       builder: (context, state) {
-        return Row(
+        return Column(
           children: [
             Row(
               children: [
-                AppText(
-                  text: "${S.of(context).from}:",
-                  color: AppColor.apptitle,
-                  fontSize: 12,
+                Row(
+                  children: [
+                    AppText(
+                      text: "${S.of(context).from}:",
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
+                    SizedBox(
+                      width: 0.w,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await pickDate(context, 'from', state.fromdate);
+                        if (DateTime.parse(fromselectedDate)
+                            .isAfter(DateTime.parse(state.todate))) {
+                          Get.snackbar(
+                            '',
+                            '',
+                            backgroundColor: Colors.red,
+                            snackPosition: SnackPosition.BOTTOM,
+                            titleText: AppText(
+                              text: S.of(context).unvalidedate,
+                              color: AppColor.whiteColor,
+                              fontSize: 16,
+                            ),
+                            messageText: SizedBox.shrink(),
+                          );
+                        } else {
+                          context
+                              .read<CustomersBloc>()
+                              .add(ChangeFromDate(fromdate: fromselectedDate));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.whiteColor,
+                          padding: const EdgeInsets.all(10),
+                          shape: const StadiumBorder()),
+                      child: AppText(
+                        text: state.fromdate != ''
+                            ? state.fromdate
+                            : S.of(context).nodate,
+                        color: AppColor.apptitle,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  width: 0.w,
+                  width: 20.w,
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await pickDate(context, 'from', state.fromdate);
-                    if (DateTime.parse(fromselectedDate)
-                        .isAfter(DateTime.parse(state.todate))) {
-                      Get.snackbar(
-                        '',
-                        '',
-                        backgroundColor: Colors.red,
-                        snackPosition: SnackPosition.BOTTOM,
-                        titleText: AppText(
-                          text: S.of(context).unvalidedate,
-                          color: AppColor.whiteColor,
-                          fontSize: 16,
-                        ),
-                        messageText: SizedBox.shrink(),
-                      );
-                    } else {
-                      context
-                          .read<CustomersBloc>()
-                          .add(ChangeFromDate(fromdate: fromselectedDate));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
-                      shape: const StadiumBorder()),
-                  child: AppText(
-                    text: state.fromdate != ''
-                        ? state.fromdate
-                        : S.of(context).nodate,
-                    color: AppColor.apptitle,
-                    fontSize: 12,
-                  ),
+                Row(
+                  children: [
+                    AppText(
+                      text: "${S.of(context).to}:",
+                      color: AppColor.apptitle,
+                      fontSize: 14,
+                    ),
+                    SizedBox(
+                      width: 0.w,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await pickDate(context, 'to', state.todate);
+                        if (DateTime.parse(toselectedDate)
+                            .isBefore(DateTime.parse(state.fromdate))) {
+                          Get.snackbar(
+                            '',
+                            '',
+                            backgroundColor: Colors.red,
+                            snackPosition: SnackPosition.BOTTOM,
+                            titleText: AppText(
+                              text: S.of(context).unvalidedate,
+                              color: AppColor.whiteColor,
+                              fontSize: 16,
+                            ),
+                            messageText: SizedBox.shrink(),
+                          );
+                        } else {
+                          context
+                              .read<CustomersBloc>()
+                              .add(ChangeToDate(todate: toselectedDate));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.whiteColor,
+                          padding: const EdgeInsets.all(10),
+                          shape: const StadiumBorder()),
+                      child: AppText(
+                        text: state.todate != ''
+                            ? state.todate
+                            : S.of(context).nodate,
+                        color: AppColor.apptitle,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
             SizedBox(
               width: 0.w,
-            ),
-            Row(
-              children: [
-                AppText(
-                  text: "${S.of(context).to}:",
-                  color: AppColor.apptitle,
-                  fontSize: 12,
-                ),
-                SizedBox(
-                  width: 0.w,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await pickDate(context, 'to', state.todate);
-                    if (DateTime.parse(toselectedDate)
-                        .isBefore(DateTime.parse(state.fromdate))) {
-                      Get.snackbar(
-                        '',
-                        '',
-                        backgroundColor: Colors.red,
-                        snackPosition: SnackPosition.BOTTOM,
-                        titleText: AppText(
-                          text: S.of(context).unvalidedate,
-                          color: AppColor.whiteColor,
-                          fontSize: 16,
-                        ),
-                        messageText: SizedBox.shrink(),
-                      );
-                    } else {
-                      context
-                          .read<CustomersBloc>()
-                          .add(ChangeToDate(todate: toselectedDate));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
-                      shape: const StadiumBorder()),
-                  child: AppText(
-                    text: state.todate != ''
-                        ? state.todate
-                        : S.of(context).nodate,
-                    color: AppColor.apptitle,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
             ),
             SizedBox(
               width: 0.w,
@@ -175,7 +182,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                 AppText(
                   text: "${S.of(context).stateDate}:",
                   color: AppColor.apptitle,
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
                 SizedBox(
                   width: 0.w,

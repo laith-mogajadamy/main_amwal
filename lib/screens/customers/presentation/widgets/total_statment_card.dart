@@ -49,7 +49,7 @@ class TotalStatmentCard extends StatelessWidget {
                 FittedBox(
                   child: AppText(
                       text: statmentTotal.docName,
-                      color: AppColor.apptitle,
+                      color: AppColor.orangefont,
                       fontSize: 14),
                 ),
                 SizedBox(
@@ -57,7 +57,7 @@ class TotalStatmentCard extends StatelessWidget {
                 ),
                 AppText(
                     text: statmentTotal.code,
-                    color: AppColor.apptitle,
+                    color: AppColor.appbuleBG,
                     fontSize: 16),
                 AppText(
                   text: statmentTotal.securitiesDate,

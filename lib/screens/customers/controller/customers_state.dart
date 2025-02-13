@@ -28,6 +28,9 @@ class CustomersState extends Equatable {
   final RequestState statmentDetailedState;
   final String statmentDetailedMessage;
   //
+  final int statmentPage;
+  final RequestState statmentLoadMoreState;
+  //
   final String statmentOpeningBalance;
   final String statmentDebitsum;
   final String statmentCreditsum;
@@ -89,6 +92,9 @@ class CustomersState extends Equatable {
     this.statmentDetailedState = RequestState.error,
     this.statmentDetailedMessage = '',
     //
+    this.statmentPage = 1,
+    this.statmentLoadMoreState = RequestState.loaded,
+    //
     this.statmentOpeningBalance = '',
     this.statmentCreditsum = '',
     this.statmentDebitsum = '',
@@ -124,6 +130,9 @@ class CustomersState extends Equatable {
     List<StatmentDetailed>? statmentDetailed,
     RequestState? statmentDetailedState,
     String? statmentDetailedMessage,
+    //
+    int? statmentPage,
+    RequestState? statmentLoadMoreState,
     //
     String? statmentOpeningBalance,
     String? statmentCreditsum,
@@ -163,6 +172,10 @@ class CustomersState extends Equatable {
       statmentDetailedMessage:
           statmentDetailedMessage ?? this.statmentDetailedMessage,
       //
+      statmentPage: statmentPage ?? this.statmentPage,
+      statmentLoadMoreState:
+          statmentLoadMoreState ?? this.statmentLoadMoreState,
+      //
       statmentOpeningBalance:
           statmentOpeningBalance ?? this.statmentOpeningBalance,
       statmentCreditsum: statmentCreditsum ?? this.statmentCreditsum,
@@ -199,6 +212,9 @@ class CustomersState extends Equatable {
         statmentDetailed,
         statmentDetailedState,
         statmentDetailedMessage,
+        //
+        statmentPage,
+        statmentLoadMoreState,
         //
         statmentOpeningBalance,
         statmentCreditsum,

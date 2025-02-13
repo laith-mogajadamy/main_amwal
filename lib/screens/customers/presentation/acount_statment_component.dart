@@ -71,8 +71,14 @@ class AcountStatmentComponent extends StatelessWidget {
             BlocBuilder<CustomersBloc, CustomersState>(
               builder: (context, state) {
                 return (state.totalfiter == '0')
-                    ? TotalStatmentComponent(size: size)
-                    : DetailedStatmentComponent(size: size);
+                    ? TotalStatmentComponent(
+                        size: size,
+                        customer: customer,
+                      )
+                    : DetailedStatmentComponent(
+                        size: size,
+                        customer: customer,
+                      );
               },
             )
           ],

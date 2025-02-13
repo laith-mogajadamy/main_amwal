@@ -120,6 +120,8 @@ class CustomersReqwest {
     String tybe,
     String fromdate,
     String todate,
+    int page,
+    int perPage,
   ) async {
     Map data = {
       "Guid": guid,
@@ -129,7 +131,8 @@ class CustomersReqwest {
     };
     print(data);
     var body = jsonEncode(data);
-    var url = Uri.parse("${Global.url}/accounting/statment");
+    var url = Uri.parse(
+        "${Global.url}/accounting/statment?page=$page&perPage=$perPage");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

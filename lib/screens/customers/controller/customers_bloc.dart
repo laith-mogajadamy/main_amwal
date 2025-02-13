@@ -424,11 +424,13 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
           emit(state.copyWith(
             statmentTotalState: RequestState.loading,
             token: ptoken,
+            statmentPage: 1,
           ));
         } else {
           emit(state.copyWith(
             statmentDetailedState: RequestState.loading,
             token: ptoken,
+            statmentPage: 1,
           ));
         }
 
@@ -437,6 +439,8 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
           event.tybe!,
           event.fromDate!,
           event.toDate!,
+          1,
+          25,
         );
         var responsemap = jsonDecode(response.body);
 
@@ -579,5 +583,68 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
         emit(state.copyWith());
       }
     });
+    //
+    on<LoadMoreStatment>((event, emit) async {
+      print("LoadMoreStatment");
+      emit(state.copyWith(
+        statmentLoadMoreState: RequestState.loading,
+        statmentPage: state.statmentPage + 1,
+      ));
+      http.Response response = await CustomersReqwest.getstatment(
+        event.guid!,
+        event.tybe!,
+        state.fromdate,
+        state.todate,
+        state.statmentPage,
+        event.perPage,
+      );
+      var responsemap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        if (event.tybe == '0') {
+          print(state.statmentTotal.length);
+
+          List<StatmentTotal> statmentTotal = state.statmentTotal;
+          List<StatmentTotal> newstatmentTotal = List<StatmentTotalModel>.from(
+            (responsemap['data']?['data'] as List).map(
+              (e) => StatmentTotalModel.fromJson(e),
+            ),
+          );
+          statmentTotal.addAll(newstatmentTotal);
+          emit(state.copyWith(
+            statmentTotal: statmentTotal,
+            statmentLoadMoreState: RequestState.loaded,
+            //
+          ));
+          print("state.statmentTotal=");
+          print(state.statmentTotal);
+          print(state.statmentTotal.length);
+        } else {
+          print(state.statmentDetailed.length);
+
+          List<StatmentDetailed> statmentDetailed = state.statmentDetailed;
+          List<StatmentDetailed> newstatmentDetailed =
+              List<StatmentDetailedModel>.from(
+            (responsemap['data']?['data'] as List).map(
+              (e) => StatmentDetailedModel.fromJson(e),
+            ),
+          );
+          statmentDetailed.addAll(newstatmentDetailed);
+          emit(state.copyWith(
+            statmentDetailed: statmentDetailed,
+            statmentLoadMoreState: RequestState.loaded,
+            //
+          ));
+          print("state.statmentDetailed=");
+          print(state.statmentDetailed);
+          print(state.statmentDetailed.length);
+        }
+      } else {
+        emit(state.copyWith(
+          statmentLoadMoreState: RequestState.error,
+          statmentTotalMessage: responsemap["message"] ?? '',
+        ));
+      }
+    });
+    //
   }
 }

@@ -253,3 +253,23 @@ class GetStatmentCreditDebitSum extends CustomersEvent {
         toDate,
       ];
 }
+
+class LoadMoreStatment extends CustomersEvent {
+  final String? guid;
+  final String? tybe;
+
+  final int perPage;
+
+  LoadMoreStatment({
+    this.guid,
+    this.tybe,
+    required this.perPage,
+  });
+
+  @override
+  List<Object?> get props => [
+        guid,
+        tybe,
+        perPage,
+      ];
+}
