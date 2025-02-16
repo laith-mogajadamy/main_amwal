@@ -40,6 +40,7 @@ class PurchasesAndSalesReqwest {
     String dateFrom,
     String dateTo,
     String currGuid,
+    int page,
   ) async {
     Map data = {
       "type": type,
@@ -59,7 +60,8 @@ class PurchasesAndSalesReqwest {
     };
     print(data);
     var body = jsonEncode(data);
-    var url = Uri.parse("${Global.url}/accounting/dailyPrushAndSale");
+    var url = Uri.parse(
+        "${Global.url}/accounting/dailyPrushAndSale?page=$page&perPage=25");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

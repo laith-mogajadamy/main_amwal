@@ -11,6 +11,8 @@ class PurchasesAndSalesState extends Equatable {
   final String toDate;
   final String dueDate;
   //
+  final int page;
+  final RequestState loadMoreState;
   const PurchasesAndSalesState({
     this.token = '',
     //
@@ -21,6 +23,9 @@ class PurchasesAndSalesState extends Equatable {
     this.fromDate = '',
     this.toDate = '',
     this.dueDate = '',
+    //
+    this.page = 1,
+    this.loadMoreState = RequestState.loaded,
   });
 
   PurchasesAndSalesState copyWith({
@@ -33,6 +38,9 @@ class PurchasesAndSalesState extends Equatable {
     String? fromDate,
     String? toDate,
     String? dueDate,
+    //
+    int? page,
+    RequestState? loadMoreState,
   }) {
     return PurchasesAndSalesState(
       token: token ?? this.token,
@@ -48,6 +56,8 @@ class PurchasesAndSalesState extends Equatable {
       toDate: toDate ?? this.toDate,
       dueDate: dueDate ?? this.dueDate,
       //
+      page: page ?? this.page,
+      loadMoreState: loadMoreState ?? this.loadMoreState,
     );
   }
 
@@ -62,6 +72,9 @@ class PurchasesAndSalesState extends Equatable {
         fromDate,
         toDate,
         dueDate,
+        //
+        page,
+        loadMoreState,
         //
       ];
 }

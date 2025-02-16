@@ -78,6 +78,7 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
         emit(state.copyWith(
           boxStatmentState: RequestState.loading,
           token: ptoken,
+          page: 1,
         ));
 
         http.Response response = await BoxReqwest.getboxstatment(
@@ -86,6 +87,7 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
           event.companyGuid!,
           event.fromDate!,
           event.toDate!,
+          1,
         );
         var responsemap = jsonDecode(response.body);
 
@@ -368,6 +370,46 @@ class BoxBloc extends Bloc<BoxEvent, BoxState> {
           filterdBoxs: filterdBox,
         ),
       );
+    });
+    on<LoadMoreBoxStatment>((event, emit) async {
+      print("LoadMoreBoxStatment");
+      emit(state.copyWith(
+        loadMoreState: RequestState.loading,
+        page: state.page + 1,
+      ));
+      http.Response response = await BoxReqwest.getboxstatment(
+        state.token,
+        event.guid!,
+        event.companyGuid!,
+        state.fromdate,
+        state.todate,
+        state.page,
+      );
+      var responsemap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        print(state.boxStatment.length);
+        List<BoxStatment> boxStatment = state.boxStatment;
+        List<BoxStatment> newboxStatment = List<BoxStatmentModel>.from(
+          (responsemap['data'] as List).map(
+            (e) => BoxStatmentModel.fromJson(e),
+          ),
+        );
+        boxStatment.addAll(newboxStatment);
+        emit(state.copyWith(
+          boxStatment: boxStatment,
+          loadMoreState: RequestState.loaded,
+          boxStatmentMessage: responsemap['message'] ?? '',
+          //
+        ));
+        print(state.boxStatment.length);
+        print("state.boxStatment=");
+        print(state.boxStatment);
+      } else {
+        emit(state.copyWith(
+          loadMoreState: RequestState.error,
+          boxStatmentMessage: responsemap["message"] ?? '',
+        ));
+      }
     });
   }
 }

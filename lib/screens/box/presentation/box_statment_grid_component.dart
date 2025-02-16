@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 
-class BoxStatmentGridComponent extends StatelessWidget {
+class BoxStatmentGridComponent extends StatefulWidget {
   const BoxStatmentGridComponent({
     super.key,
     required this.size,
@@ -21,13 +21,45 @@ class BoxStatmentGridComponent extends StatelessWidget {
   final Box box;
 
   @override
+  State<BoxStatmentGridComponent> createState() =>
+      _BoxStatmentGridComponentState();
+}
+
+class _BoxStatmentGridComponentState extends State<BoxStatmentGridComponent> {
+  final ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      context.read<BoxBloc>().add(
+            LoadMoreBoxStatment(
+              guid: widget.box.guid,
+              companyGuid: widget.box.companyGuid,
+            ),
+          );
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<BoxBloc, BoxState>(
       builder: (context, state) {
         switch (state.boxStatmentState) {
           case RequestState.loading:
             return SizedBox(
-              height: size.height / 3,
+              height: widget.size.height / 3,
               child: Container(
                   alignment: Alignment.center,
                   child: CircularProgressIndicator(
@@ -41,7 +73,7 @@ class BoxStatmentGridComponent extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: size.width / 3.5,
+                      width: widget.size.width / 3.5,
                       child: Row(
                         children: [
                           AppText(
@@ -58,7 +90,7 @@ class BoxStatmentGridComponent extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: size.width / 3.5,
+                      width: widget.size.width / 3.5,
                       child: AppText(
                         text: S.of(context).debtor,
                         color: AppColor.apptitle,
@@ -66,7 +98,7 @@ class BoxStatmentGridComponent extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: size.width / 3.5,
+                      width: widget.size.width / 3.5,
                       child: AppText(
                         text: S.of(context).creditor,
                         color: AppColor.apptitle,
@@ -76,21 +108,31 @@ class BoxStatmentGridComponent extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: size.height / 1.8,
+                  height: widget.size.height / 1.8,
                   child: ListView.builder(
+                    controller: scrollController,
                     physics: BouncingScrollPhysics(),
                     shrinkWrap: false,
                     itemCount: state.boxStatment.length,
                     itemBuilder: (context, index) {
                       BoxStatment boxStatment = state.boxStatment[index];
                       return BoxStatmentCard(
-                        size: size,
+                        size: widget.size,
                         boxstatment: boxStatment,
-                        box: box,
+                        box: widget.box,
                       );
                     },
                   ),
-                )
+                ),
+                (state.loadMoreState == RequestState.loading)
+                    ? Container(
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          color: AppColor.appblueGray,
+                          strokeWidth: 4.w,
+                        ),
+                      )
+                    : SizedBox.shrink(),
               ],
             );
           case RequestState.error:

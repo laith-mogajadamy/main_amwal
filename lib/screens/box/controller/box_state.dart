@@ -12,6 +12,9 @@ class BoxState extends Equatable {
   final RequestState boxStatmentState;
   final String boxStatmentMessage;
   //
+  final int page;
+  final RequestState loadMoreState;
+  //
   final List<Company> companys;
   final Company selectedcompany;
   //
@@ -36,7 +39,9 @@ class BoxState extends Equatable {
     this.boxStatmentState = RequestState.loading,
     this.boxStatmentMessage = '',
     //
-
+    this.page = 1,
+    this.loadMoreState = RequestState.loaded,
+    //
     this.companys = const [],
     this.selectedcompany =
         const Company(guid: '', code: '', name: '', iddefault: ''),
@@ -64,6 +69,9 @@ class BoxState extends Equatable {
     RequestState? boxStatmentState,
     String? boxStatmentMessage,
     //
+    int? page,
+    RequestState? loadMoreState,
+    //
     List<Company>? companys,
     Company? selectedcompany,
     //
@@ -88,6 +96,10 @@ class BoxState extends Equatable {
       boxStatment: boxStatment ?? this.boxStatment,
       boxStatmentState: boxStatmentState ?? this.boxStatmentState,
       boxStatmentMessage: boxStatmentMessage ?? this.boxStatmentMessage,
+      //
+
+      page: page ?? this.page,
+      loadMoreState: loadMoreState ?? this.loadMoreState,
       //
       companys: companys ?? this.companys,
       selectedcompany: selectedcompany ?? this.selectedcompany,
@@ -117,7 +129,9 @@ class BoxState extends Equatable {
         boxStatmentState,
         boxStatmentMessage,
         //
-
+        page,
+        loadMoreState,
+        //
         companys,
         selectedcompany,
         //

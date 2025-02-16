@@ -134,6 +134,7 @@ class PurchasesAndSalesBloc
           event.dateFrom,
           event.dateTo,
           event.currGuid,
+          state.page,
         );
         var responsemap = jsonDecode(response.body);
 
@@ -164,5 +165,57 @@ class PurchasesAndSalesBloc
       }
     });
     //
+    on<LoadMoreDailyPruchasAndSale>((event, emit) async {
+      print("LoadMoreDailyPruchasAndSale");
+      emit(state.copyWith(
+        loadMoreState: RequestState.loading,
+        page: state.page + 1,
+      ));
+      http.Response response =
+          await PurchasesAndSalesReqwest.getPurchasesAndSales(
+        event.type,
+        event.firstStoreGuid,
+        event.customerGuid,
+        event.agentGuid,
+        event.documentGuid,
+        event.categoriesGuid,
+        event.projectDefaultGuid,
+        event.companiesGuid,
+        event.transportCompaniesGuid,
+        event.dueDated,
+        event.secondStoreGuid,
+        event.dateFrom,
+        event.dateTo,
+        event.currGuid,
+        state.page,
+      );
+      var responsemap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        print(state.dailyPruchasAndSale.length);
+        List<DailyPruchasAndSale> dailyPruchasAndSale =
+            state.dailyPruchasAndSale;
+        List<DailyPruchasAndSale> newdailyPruchasAndSale =
+            List<DailyPruchasAndSaleModel>.from(
+          (responsemap['data'] as List).map(
+            (e) => DailyPruchasAndSaleModel.fromJson(e),
+          ),
+        );
+        dailyPruchasAndSale.addAll(newdailyPruchasAndSale);
+        emit(state.copyWith(
+          dailyPruchasAndSale: dailyPruchasAndSale,
+          loadMoreState: RequestState.loaded,
+          dailyPruchasAndSaleMessage: responsemap['message'] ?? '',
+          //
+        ));
+        print(state.dailyPruchasAndSale.length);
+        print("state.dailyPruchasAndSale=");
+        print(state.dailyPruchasAndSale);
+      } else {
+        emit(state.copyWith(
+          loadMoreState: RequestState.error,
+          dailyPruchasAndSaleMessage: responsemap["message"] ?? '',
+        ));
+      }
+    });
   }
 }

@@ -32,6 +32,24 @@ class GetBoxStatment extends BoxEvent {
 }
 
 //
+class LoadMoreBoxStatment extends BoxEvent {
+  final String? guid;
+
+  final String? companyGuid;
+
+  LoadMoreBoxStatment({
+    required this.guid,
+    required this.companyGuid,
+  });
+
+  @override
+  List<Object?> get props => [
+        guid,
+        companyGuid,
+      ];
+}
+
+//
 class GetDefDates extends BoxEvent {
   final String? guid;
 
