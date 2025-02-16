@@ -72,7 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الحسابات العامة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "humanresources":
-            MessageLookupByLibrary.simpleMessage("الموارد البشرية"),
+            MessageLookupByLibrary.simpleMessage("الموارد \nالبشرية"),
         "invoicetype": MessageLookupByLibrary.simpleMessage("نوع الفاتورة"),
         "item": MessageLookupByLibrary.simpleMessage("صنف"),
         "k": MessageLookupByLibrary.simpleMessage("ك"),

@@ -273,3 +273,59 @@ class LoadMoreStatment extends CustomersEvent {
         perPage,
       ];
 }
+
+class LoadMoreCustomers extends CustomersEvent {
+  final Currency? currency;
+  final Company? company;
+  final String? city;
+  final Agent? agent;
+  final AccountType? accountType;
+  final String? name;
+
+  LoadMoreCustomers({
+    this.currency,
+    this.company,
+    this.city,
+    this.agent,
+    this.accountType,
+    this.name,
+  });
+
+  @override
+  List<Object?> get props => [
+        currency,
+        company,
+        city,
+        agent,
+        accountType,
+        name,
+      ];
+}
+
+class LoadMoreSuppliers extends CustomersEvent {
+  final Currency? currency;
+  final Company? company;
+  final String? city;
+  final Agent? agent;
+  final AccountType? accountType;
+  final String? name;
+
+  LoadMoreSuppliers({
+    this.currency,
+    this.company,
+    this.city,
+    this.agent,
+    this.accountType,
+    this.name,
+  });
+
+  @override
+  List<Object?> get props => [
+        currency,
+        company,
+        city,
+        agent,
+        accountType,
+        name,
+      ];
+}

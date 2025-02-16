@@ -39,6 +39,7 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
         emit(state.copyWith(
           customerState: RequestState.loading,
           token: ptoken,
+          customerPage: 1,
         ));
         List filters = [];
         if (event.currency != null) {
@@ -98,8 +99,11 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
         }
 
         print(filters);
-        http.Response response =
-            await CustomersReqwest.getcustomers(state.token, filters);
+        http.Response response = await CustomersReqwest.getcustomers(
+          state.token,
+          filters,
+          1,
+        );
         var responsemap = jsonDecode(response.body);
 
         if (response.statusCode == 200) {
@@ -195,8 +199,11 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
         }
 
         print(filters);
-        http.Response response =
-            await CustomersReqwest.getsuppliers(state.token, filters);
+        http.Response response = await CustomersReqwest.getsuppliers(
+          state.token,
+          filters,
+          1,
+        );
         var responsemap = jsonDecode(response.body);
         if (response.statusCode == 200) {
           emit(state.copyWith(
@@ -448,7 +455,7 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
           if (event.tybe == '0') {
             emit(state.copyWith(
               statmentTotal: List<StatmentTotalModel>.from(
-                (responsemap['data']?['data'] as List).map(
+                (responsemap['data'] as List).map(
                   (e) => StatmentTotalModel.fromJson(e),
                 ),
               ),
@@ -461,7 +468,7 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
           } else {
             emit(state.copyWith(
               statmentDetailed: List<StatmentDetailedModel>.from(
-                (responsemap['data']?['data'] as List).map(
+                (responsemap['data'] as List).map(
                   (e) => StatmentDetailedModel.fromJson(e),
                 ),
               ),
@@ -605,7 +612,7 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
 
           List<StatmentTotal> statmentTotal = state.statmentTotal;
           List<StatmentTotal> newstatmentTotal = List<StatmentTotalModel>.from(
-            (responsemap['data']?['data'] as List).map(
+            (responsemap['data'] as List).map(
               (e) => StatmentTotalModel.fromJson(e),
             ),
           );
@@ -624,7 +631,7 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
           List<StatmentDetailed> statmentDetailed = state.statmentDetailed;
           List<StatmentDetailed> newstatmentDetailed =
               List<StatmentDetailedModel>.from(
-            (responsemap['data']?['data'] as List).map(
+            (responsemap['data'] as List).map(
               (e) => StatmentDetailedModel.fromJson(e),
             ),
           );
@@ -646,5 +653,196 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
       }
     });
     //
+    on<LoadMoreCustomers>((event, emit) async {
+      print("LoadMoreCustomers");
+
+      emit(state.copyWith(
+        customerLoadMoreState: RequestState.loading,
+        customerPage: state.customerPage + 1,
+      ));
+      List filters = [];
+      if (event.currency != null) {
+        filters.add(
+          {
+            "id": "DealingCurrencyGuid",
+            "filterFns": "equals",
+            "value": event.currency?.guid ?? "",
+          },
+        );
+      }
+      if (event.name != '' && event.name != null) {
+        filters.add(
+          {
+            "id": "Name",
+            "filterFns": "contains",
+            "value": event.name ?? "",
+          },
+        );
+      }
+      if (event.city != '' && event.city != null) {
+        filters.add(
+          {
+            "id": "City",
+            "filterFns": "equals",
+            "value": event.city ?? "",
+          },
+        );
+      }
+      if (event.company != null) {
+        filters.add(
+          {
+            "id": "CompaniesGuid",
+            "filterFns": "equals",
+            "value": event.company?.guid ?? "",
+          },
+        );
+      }
+      if (event.accountType != null) {
+        filters.add(
+          {
+            "id": "AccountType",
+            "filterFns": "equals",
+            "value": event.accountType?.val ?? "",
+          },
+        );
+      }
+      if (event.agent != null &&
+          event.agent != Agent(guid: '', code: '', name: '')) {
+        filters.add(
+          {
+            "id": "AgentGuid",
+            "filterFns": "equals",
+            "value": event.agent?.guid ?? "",
+          },
+        );
+      }
+
+      print(filters);
+      http.Response response = await CustomersReqwest.getcustomers(
+        state.token,
+        filters,
+        state.customerPage,
+      );
+      var responsemap = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        List<Customer> customers = state.customers;
+        List<CustomerModel> newcustomers = List<CustomerModel>.from(
+          (responsemap['data'] as List).map(
+            (e) => CustomerModel.fromJson(e),
+          ),
+        );
+        customers.addAll(newcustomers);
+        emit(state.copyWith(
+          customers: customers,
+          customerLoadMoreState: RequestState.loaded,
+          //
+        ));
+        print("state.customers=");
+        print(state.customers);
+        print(state.customers.length);
+      } else {
+        emit(state.copyWith(
+          customerLoadMoreState: RequestState.error,
+          customerMessage: responsemap["message"] ?? '',
+        ));
+      }
+    });
+    //
+    on<LoadMoreSuppliers>((event, emit) async {
+      print("LoadMoreSuppliers");
+
+      emit(state.copyWith(
+        customerLoadMoreState: RequestState.loading,
+        customerPage: state.customerPage + 1,
+      ));
+      List filters = [];
+      if (event.currency != null) {
+        filters.add(
+          {
+            "id": "DealingCurrencyGuid",
+            "filterFns": "equals",
+            "value": event.currency?.guid ?? "",
+          },
+        );
+      }
+      if (event.name != '' && event.name != null) {
+        filters.add(
+          {
+            "id": "Name",
+            "filterFns": "contains",
+            "value": event.name ?? "",
+          },
+        );
+      }
+      if (event.city != '' && event.city != null) {
+        filters.add(
+          {
+            "id": "City",
+            "filterFns": "equals",
+            "value": event.city ?? "",
+          },
+        );
+      }
+      if (event.company != null) {
+        filters.add(
+          {
+            "id": "CompaniesGuid",
+            "filterFns": "equals",
+            "value": event.company?.guid ?? "",
+          },
+        );
+      }
+      if (event.accountType != null) {
+        filters.add(
+          {
+            "id": "AccountType",
+            "filterFns": "equals",
+            "value": event.accountType?.val ?? "",
+          },
+        );
+      }
+      if (event.agent != null &&
+          event.agent != Agent(guid: '', code: '', name: '')) {
+        filters.add(
+          {
+            "id": "AgentGuid",
+            "filterFns": "equals",
+            "value": event.agent?.guid ?? "",
+          },
+        );
+      }
+
+      print(filters);
+      http.Response response = await CustomersReqwest.getsuppliers(
+        state.token,
+        filters,
+        state.customerPage,
+      );
+      var responsemap = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        List<Customer> customers = state.customers;
+        List<CustomerModel> newcustomers = List<CustomerModel>.from(
+          (responsemap['data'] as List).map(
+            (e) => CustomerModel.fromJson(e),
+          ),
+        );
+        customers.addAll(newcustomers);
+        emit(state.copyWith(
+          customers: customers,
+          customerLoadMoreState: RequestState.loaded,
+          //
+        ));
+        print("state.supliers=");
+        print(state.customers);
+        print(state.customers.length);
+      } else {
+        emit(state.copyWith(
+          customerLoadMoreState: RequestState.error,
+          customerMessage: responsemap["message"] ?? '',
+        ));
+      }
+    });
   }
 }

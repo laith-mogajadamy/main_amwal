@@ -12,7 +12,7 @@ class CustomersState extends Equatable {
   final String fromdate;
   final String todate;
   final String statedate;
-//
+  //
   final String totalfiter;
   //
   final bool acountstatmentpage;
@@ -36,13 +36,16 @@ class CustomersState extends Equatable {
   final String statmentCreditsum;
   final String statmentBalance;
 
+  // Customer Pagination & Load More
+  final int customerPage;
+  final RequestState customerLoadMoreState;
+
   const CustomersState({
     this.token = '',
     //
     this.customers = const [],
     this.customerState = RequestState.loading,
     this.customerMessage = '',
-
     //
     this.filter = false,
     //
@@ -83,7 +86,6 @@ class CustomersState extends Equatable {
         purchasesReturned: ''),
     this.agentCardState = RequestState.loading,
     //
-    //
     this.statmentTotal = const [],
     this.statmentTotalState = RequestState.error,
     this.statmentTotalMessage = '',
@@ -99,6 +101,10 @@ class CustomersState extends Equatable {
     this.statmentCreditsum = '',
     this.statmentDebitsum = '',
     this.statmentBalance = '',
+    //
+    // Pagination & Load More for Customers
+    this.customerPage = 1,
+    this.customerLoadMoreState = RequestState.loaded,
   });
 
   CustomersState copyWith({
@@ -107,7 +113,6 @@ class CustomersState extends Equatable {
     List<Customer>? customers,
     RequestState? customerState,
     String? customerMessage,
-
     //
     bool? filter,
     //
@@ -138,15 +143,16 @@ class CustomersState extends Equatable {
     String? statmentCreditsum,
     String? statmentDebitsum,
     String? statmentBalance,
+    //
+    int? customerPage,
+    RequestState? customerLoadMoreState,
   }) {
     return CustomersState(
       token: token ?? this.token,
-
       //
       customers: customers ?? this.customers,
       customerState: customerState ?? this.customerState,
       customerMessage: customerMessage ?? this.customerMessage,
-
       //
       filter: filter ?? this.filter,
       //
@@ -154,7 +160,6 @@ class CustomersState extends Equatable {
       todate: todate ?? this.todate,
       statedate: statedate ?? this.statedate,
       //
-
       totalfiter: totalfiter ?? this.totalfiter,
       //
       acountstatmentpage: acountstatmentpage ?? this.acountstatmentpage,
@@ -181,6 +186,11 @@ class CustomersState extends Equatable {
       statmentCreditsum: statmentCreditsum ?? this.statmentCreditsum,
       statmentDebitsum: statmentDebitsum ?? this.statmentDebitsum,
       statmentBalance: statmentBalance ?? this.statmentBalance,
+      //
+      // Customer Pagination & Load More
+      customerPage: customerPage ?? this.customerPage,
+      customerLoadMoreState:
+          customerLoadMoreState ?? this.customerLoadMoreState,
     );
   }
 
@@ -220,5 +230,8 @@ class CustomersState extends Equatable {
         statmentCreditsum,
         statmentDebitsum,
         statmentBalance,
+        //
+        customerPage,
+        customerLoadMoreState,
       ];
 }

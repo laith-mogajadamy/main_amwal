@@ -4,10 +4,14 @@ import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:http/http.dart' as http;
 
 class CustomersReqwest {
-  static Future<http.Response> getcustomers(String token, List filters) async {
+  static Future<http.Response> getcustomers(
+    String token,
+    List filters,
+    int page,
+  ) async {
     String sortingBase64 = base64Encode(utf8.encode(jsonEncode(filters)));
     var url = Uri.parse(
-        "${Global.url}/accounting/client?filters=$sortingBase64&page=all");
+        "${Global.url}/accounting/client?filters=$sortingBase64&page=$page&perPage=25");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",
@@ -26,10 +30,14 @@ class CustomersReqwest {
     return response;
   }
 
-  static Future<http.Response> getsuppliers(String token, List filters) async {
+  static Future<http.Response> getsuppliers(
+    String token,
+    List filters,
+    int page,
+  ) async {
     String sortingBase64 = base64Encode(utf8.encode(jsonEncode(filters)));
     var url = Uri.parse(
-        "${Global.url}/accounting/supplier?filters=$sortingBase64&page=all");
+        "${Global.url}/accounting/supplier?filters=$sortingBase64&page=$page&perPage=25");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

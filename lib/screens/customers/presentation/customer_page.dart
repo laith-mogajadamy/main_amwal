@@ -155,7 +155,7 @@ class CustomerPage extends StatelessWidget {
               ),
               Expanded(
                 child: CustomerComponent(
-                  event: event,
+                  name: controller.text.trim(),
                 ),
               ),
             ],

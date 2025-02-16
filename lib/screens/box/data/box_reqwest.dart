@@ -38,7 +38,7 @@ class BoxReqwest {
     int page,
   ) async {
     var url = Uri.parse(
-        "${Global.url}/accounting/box-statment?page=$page&perPage=10");
+        "${Global.url}/accounting/box-statment?page=$page&perPage=25");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

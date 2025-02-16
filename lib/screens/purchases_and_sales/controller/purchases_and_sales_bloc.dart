@@ -116,6 +116,7 @@ class PurchasesAndSalesBloc
           token: ptoken,
           dailyPruchasAndSale: [],
           dailyPruchasAndSaleState: RequestState.loading,
+          page: 1,
         ));
 
         http.Response response =
@@ -134,7 +135,7 @@ class PurchasesAndSalesBloc
           event.dateFrom,
           event.dateTo,
           event.currGuid,
-          state.page,
+          1,
         );
         var responsemap = jsonDecode(response.body);
 
