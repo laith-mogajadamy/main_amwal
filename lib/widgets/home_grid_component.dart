@@ -9,6 +9,7 @@ import 'package:mainamwal/screens/box/presentation/boxs_page.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/general_analysis/presentation/general_analysis_page.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
@@ -107,7 +108,19 @@ class HomeGridComponent extends StatelessWidget {
           );
         }
       ],
-      [S.of(context).generalanalysis, "assets/svg/chart orange svg.svg", () {}],
+      [
+        S.of(context).generalanalysis,
+        "assets/svg/chart orange svg.svg",
+        () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => GeneralAnalysisPage(
+                title: S.of(context).generalanalysis,
+              ),
+            ),
+          );
+        }
+      ],
       [S.of(context).humanresources, "assets/svg/HR orange svg.svg", () {}],
       [
         S.of(context).fundsandbanks,
