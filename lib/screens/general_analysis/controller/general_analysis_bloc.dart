@@ -21,7 +21,21 @@ class GeneralAnalysisBloc
     on<DueDateChanged>(_onDueDateChanged);
     on<ClearGeneralAnalysis>(_onClearGeneralAnalysis);
     on<GetChiledGeneralAnalysis>(_onGetChiledGeneralAnalysis);
+    on<GetParentsGeneralAnalysis>(_onGetParentesGeneralAnalysis);
+
     on<LoadMoreGeneralAnalysis>(_onLoadMoreGeneralAnalysis);
+    on<AddToPath>(_addToPath);
+    on<RemoveUtilPath>(_removeUntil);
+  }
+  void _addToPath(AddToPath event, Emitter<GeneralAnalysisState> emit) {
+    emit(state.copyWith(path: [...state.path, event.accountData!]));
+  }
+
+  void _removeUntil(RemoveUtilPath event, Emitter<GeneralAnalysisState> emit) {
+    final newPath = state.path
+        .takeWhile((item) => item.accountGuid != event.accountData!.accountGuid)
+        .toList();
+    emit(state.copyWith(path: newPath));
   }
 
   void _onFromDateChanged(
@@ -46,6 +60,7 @@ class GeneralAnalysisBloc
       chiledsGeneralAnalysisState: RequestState.loading,
       parentsGeneralAnalysiss: [],
       parentsGeneralAnalysisState: RequestState.loading,
+      path: [],
     ));
   }
 
@@ -60,7 +75,27 @@ class GeneralAnalysisBloc
         chiledsGeneralAnalysisState: RequestState.loading,
         page: 1,
       ));
-      await _fetchGeneralAnalysis(event, emit);
+      await _fetchChiledGeneralAnalysis(event, emit);
+    } else {
+      emit(state.copyWith(
+        chiledsGeneralAnalysisState: RequestState.error,
+        chiledsGeneralAnalysisMessage: "Unauthenticated",
+      ));
+    }
+  }
+
+  Future<void> _onGetParentesGeneralAnalysis(GetParentsGeneralAnalysis event,
+      Emitter<GeneralAnalysisState> emit) async {
+    print("_onGetParentesGeneralAnalysis");
+    String? ptoken = Preferences.getToken();
+    if (ptoken?.isNotEmpty ?? false) {
+      emit(state.copyWith(
+        token: ptoken!,
+        chiledsGeneralAnalysiss: [],
+        chiledsGeneralAnalysisState: RequestState.loading,
+        page: 1,
+      ));
+      await _fetchParentsGeneralAnalysis(event, emit);
     } else {
       emit(state.copyWith(
         chiledsGeneralAnalysisState: RequestState.error,
@@ -74,10 +109,10 @@ class GeneralAnalysisBloc
     print("LoadMoreGeneralAnalysis");
     emit(state.copyWith(
         loadMoreState: RequestState.loading, page: state.page + 1));
-    await _fetchGeneralAnalysis(event, emit, isLoadMore: true);
+    await _fetchChiledGeneralAnalysis(event, emit, isLoadMore: true);
   }
 
-  Future<void> _fetchGeneralAnalysis(
+  Future<void> _fetchChiledGeneralAnalysis(
       dynamic event, Emitter<GeneralAnalysisState> emit,
       {bool isLoadMore = false}) async {
     http.Response response = await GeneralAnalysisReqwest.getGeneralAnalysis(
@@ -106,6 +141,35 @@ class GeneralAnalysisBloc
             isLoadMore ? state.chiledsGeneralAnalysisState : RequestState.error,
         loadMoreState: isLoadMore ? RequestState.error : state.loadMoreState,
         chiledsGeneralAnalysisMessage: responsemap["message"] ?? '',
+      ));
+    }
+  }
+
+  Future<void> _fetchParentsGeneralAnalysis(
+    GetParentsGeneralAnalysis event,
+    Emitter<GeneralAnalysisState> emit,
+  ) async {
+    http.Response response = await GeneralAnalysisReqwest.getGeneralAnalysis(
+      event.parentGuid,
+      event.aLER,
+      event.mainDTL,
+      1,
+    );
+    var responsemap = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      List<AccountData> newEntries = List<AccountDataModel>.from(
+        (responsemap['data'] as List).map((e) => AccountDataModel.fromJson(e)),
+      );
+
+      emit(state.copyWith(
+        parentsGeneralAnalysiss: newEntries,
+        parentsGeneralAnalysisState: RequestState.loaded,
+        parentsGeneralAnalysisMessage: responsemap['message'] ?? '',
+      ));
+    } else {
+      emit(state.copyWith(
+        parentsGeneralAnalysisState: state.chiledsGeneralAnalysisState,
+        parentsGeneralAnalysisMessage: responsemap["message"] ?? '',
       ));
     }
   }

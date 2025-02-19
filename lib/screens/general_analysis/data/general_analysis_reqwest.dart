@@ -39,7 +39,7 @@ class GeneralAnalysisReqwest {
     print(data);
     var body = jsonEncode(data);
     var url = Uri.parse(
-        "${Global.url}/accounting/dailyPrushAndSale?page=$page&perPage=25");
+        "${Global.url}/accounting/account-treeList?page=$page&perPage=25");
     Map<String, String> headers = {
       "Content-type": "application/json",
       "Accept": "application/json",

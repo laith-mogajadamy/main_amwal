@@ -93,3 +93,21 @@ class LoadMoreGeneralAnalysis extends GeneralAnalysisEvent {
         mainDTL,
       ];
 }
+
+class AddToPath extends GeneralAnalysisEvent {
+  final AccountData? accountData;
+
+  AddToPath({this.accountData});
+
+  @override
+  List<Object?> get props => [accountData];
+}
+
+class RemoveUtilPath extends GeneralAnalysisEvent {
+  final AccountData? accountData;
+
+  RemoveUtilPath({this.accountData});
+
+  @override
+  List<Object?> get props => [accountData];
+}

@@ -9,6 +9,7 @@ import 'package:mainamwal/screens/box/presentation/boxs_page.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/presentation/general_analysis_page.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/presentation/purchases_and_sales_page.dart';
@@ -112,6 +113,7 @@ class HomeGridComponent extends StatelessWidget {
         S.of(context).generalanalysis,
         "assets/svg/chart orange svg.svg",
         () {
+          context.read<GeneralAnalysisBloc>().add(ClearGeneralAnalysis());
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => GeneralAnalysisPage(

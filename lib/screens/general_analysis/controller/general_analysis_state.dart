@@ -11,6 +11,8 @@ class GeneralAnalysisState extends Equatable {
   final RequestState parentsGeneralAnalysisState;
   final String parentsGeneralAnalysisMessage;
   //
+  final List<AccountData> path;
+  //
   final String fromDate;
   final String toDate;
   final String dueDate;
@@ -27,6 +29,8 @@ class GeneralAnalysisState extends Equatable {
     this.parentsGeneralAnalysiss = const [],
     this.parentsGeneralAnalysisState = RequestState.loading,
     this.parentsGeneralAnalysisMessage = '',
+    //
+    this.path = const [],
     //
     this.fromDate = '',
     this.toDate = '',
@@ -46,6 +50,8 @@ class GeneralAnalysisState extends Equatable {
     List<AccountData>? parentsGeneralAnalysiss,
     RequestState? parentsGeneralAnalysisState,
     String? parentsGeneralAnalysisMessage,
+    //
+    List<AccountData>? path,
     //
     String? fromDate,
     String? toDate,
@@ -71,6 +77,8 @@ class GeneralAnalysisState extends Equatable {
       parentsGeneralAnalysisMessage:
           parentsGeneralAnalysisMessage ?? this.parentsGeneralAnalysisMessage,
       //
+      path: path ?? this.path,
+      //
       fromDate: fromDate ?? this.fromDate,
       toDate: toDate ?? this.toDate,
       dueDate: dueDate ?? this.dueDate,
@@ -91,6 +99,8 @@ class GeneralAnalysisState extends Equatable {
         parentsGeneralAnalysiss,
         parentsGeneralAnalysisState,
         parentsGeneralAnalysisMessage,
+        //
+        path,
         //
         fromDate,
         toDate,

@@ -12,6 +12,7 @@ import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/enter/presentation/OnBoarding/splash.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<WarehousesBloc>(
           create: (context) => WarehousesBloc(),
+        ),
+        BlocProvider<GeneralAnalysisBloc>(
+          create: (context) => GeneralAnalysisBloc(),
         ),
       ],
       child: BlocBuilder<EnterBloc, EnterState>(
