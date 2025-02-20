@@ -8,6 +8,7 @@ class AccountData extends Equatable {
   final String currencyCode;
   final String closeBalance;
   final String closeBalanceFC;
+  final String mainCurrCode;
   final String mainDTL;
 
   const AccountData({
@@ -18,6 +19,7 @@ class AccountData extends Equatable {
     required this.currencyCode,
     required this.closeBalance,
     required this.closeBalanceFC,
+    required this.mainCurrCode,
     required this.mainDTL,
   });
 
@@ -30,6 +32,7 @@ class AccountData extends Equatable {
         currencyCode,
         closeBalance,
         closeBalanceFC,
+        mainCurrCode,
         mainDTL,
       ];
 }

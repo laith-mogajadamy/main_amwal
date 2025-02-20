@@ -111,3 +111,19 @@ class RemoveUtilPath extends GeneralAnalysisEvent {
   @override
   List<Object?> get props => [accountData];
 }
+
+class GetGeneralAnalysisCompanys extends GeneralAnalysisEvent {
+  GetGeneralAnalysisCompanys();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class CompanyChanged extends GeneralAnalysisEvent {
+  final Company? company;
+
+  CompanyChanged({this.company});
+
+  @override
+  List<Object?> get props => [company];
+}

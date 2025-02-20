@@ -29,12 +29,14 @@ class GeneralAnalysisReqwest {
     String parentGuid,
     String aLER,
     String mainDTL,
+    String companyGuid,
     int page,
   ) async {
     Map data = {
       "ParentGuid": parentGuid,
       "ALER": aLER,
       "MainDTL": mainDTL,
+      "CompanyGuid": companyGuid,
     };
     print(data);
     var body = jsonEncode(data);

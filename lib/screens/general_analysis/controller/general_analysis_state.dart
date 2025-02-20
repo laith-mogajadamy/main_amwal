@@ -19,6 +19,10 @@ class GeneralAnalysisState extends Equatable {
   //
   final int page;
   final RequestState loadMoreState;
+  //
+  final List<Company> companys;
+  final Company selectedcompany;
+
   const GeneralAnalysisState({
     this.token = '',
     //
@@ -38,6 +42,10 @@ class GeneralAnalysisState extends Equatable {
     //
     this.page = 1,
     this.loadMoreState = RequestState.loaded,
+    //
+    this.companys = const [],
+    this.selectedcompany =
+        const Company(guid: '', code: '', name: '', iddefault: ''),
   });
 
   GeneralAnalysisState copyWith({
@@ -59,6 +67,9 @@ class GeneralAnalysisState extends Equatable {
     //
     int? page,
     RequestState? loadMoreState,
+    //
+    List<Company>? companys,
+    Company? selectedcompany,
   }) {
     return GeneralAnalysisState(
       token: token ?? this.token,
@@ -85,6 +96,9 @@ class GeneralAnalysisState extends Equatable {
       //
       page: page ?? this.page,
       loadMoreState: loadMoreState ?? this.loadMoreState,
+      //
+      companys: companys ?? this.companys,
+      selectedcompany: selectedcompany ?? this.selectedcompany,
     );
   }
 
@@ -109,5 +123,7 @@ class GeneralAnalysisState extends Equatable {
         page,
         loadMoreState,
         //
+        companys,
+        selectedcompany,
       ];
 }

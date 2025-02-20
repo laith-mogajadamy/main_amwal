@@ -6,8 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
+import 'package:mainamwal/model/filters/company.dart';
+import 'package:mainamwal/model/filters/company_model.dart';
 import 'package:mainamwal/model/general_analysis/account_data.dart';
 import 'package:mainamwal/model/general_analysis/account_data_model.dart';
+import 'package:mainamwal/screens/filters/data/veriabels_request.dart';
 import 'package:mainamwal/screens/general_analysis/data/general_analysis_reqwest.dart';
 
 part 'general_analysis_event.dart';
@@ -26,6 +29,8 @@ class GeneralAnalysisBloc
     on<LoadMoreGeneralAnalysis>(_onLoadMoreGeneralAnalysis);
     on<AddToPath>(_addToPath);
     on<RemoveUtilPath>(_removeUntil);
+    on<GetGeneralAnalysisCompanys>(_getGeneralAnalysisCompanys);
+    on<CompanyChanged>(_companyChanged);
   }
   void _addToPath(AddToPath event, Emitter<GeneralAnalysisState> emit) {
     emit(state.copyWith(path: [...state.path, event.accountData!]));
@@ -119,6 +124,7 @@ class GeneralAnalysisBloc
       event.parentGuid,
       event.aLER,
       event.mainDTL,
+      state.selectedcompany.guid,
       state.page,
     );
     var responsemap = jsonDecode(response.body);
@@ -153,6 +159,7 @@ class GeneralAnalysisBloc
       event.parentGuid,
       event.aLER,
       event.mainDTL,
+      state.selectedcompany.guid,
       1,
     );
     var responsemap = jsonDecode(response.body);
@@ -172,5 +179,73 @@ class GeneralAnalysisBloc
         parentsGeneralAnalysisMessage: responsemap["message"] ?? '',
       ));
     }
+  }
+
+  Future<void> _getGeneralAnalysisCompanys(GetGeneralAnalysisCompanys event,
+      Emitter<GeneralAnalysisState> emit) async {
+    print("GetBoxsCompanys");
+    http.Response response = await VeriabelsRequest.getcompanys();
+    var responsemap = await jsonDecode(response.body);
+    print(responsemap);
+    print("statusCode==${response.statusCode}");
+    print("*********");
+    if (response.statusCode == 200) {
+      emit(
+        state.copyWith(
+          companys: List<CompanyModel>.from(
+            (responsemap['data'] as List).map(
+              (e) => CompanyModel.fromJson(e),
+            ),
+          ),
+        ),
+      );
+      emit(
+        state.copyWith(
+            selectedcompany: state.companys.firstWhere(
+          (element) => element.iddefault == '1',
+        )),
+      );
+      add(
+        GetParentsGeneralAnalysis(
+          parentGuid: "00000000-0000-0000-0000-000000000000",
+          aLER: "'E','R'",
+          mainDTL: "-1",
+        ),
+      );
+      add(
+        GetChiledGeneralAnalysis(
+          parentGuid: "00000000-0000-0000-0000-000000000000",
+          aLER: "",
+          mainDTL: "0",
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          parentsGeneralAnalysisMessage: 'error',
+        ),
+      );
+    }
+  }
+
+  void _companyChanged(
+      CompanyChanged event, Emitter<GeneralAnalysisState> emit) {
+    emit(state.copyWith(
+      selectedcompany: event.company,
+    ));
+    add(
+      GetParentsGeneralAnalysis(
+        parentGuid: "00000000-0000-0000-0000-000000000000",
+        aLER: "'E','R'",
+        mainDTL: "-1",
+      ),
+    );
+    add(
+      GetChiledGeneralAnalysis(
+        parentGuid: "00000000-0000-0000-0000-000000000000",
+        aLER: "",
+        mainDTL: "0",
+      ),
+    );
   }
 }

@@ -15,10 +15,11 @@ class ParentsGeneralAnalysisCard extends StatelessWidget {
   const ParentsGeneralAnalysisCard({
     super.key,
     required this.accountData,
+    required this.scrollController,
   });
 
   final AccountData accountData;
-
+  final ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,6 +43,11 @@ class ParentsGeneralAnalysisCard extends StatelessWidget {
                   aLER: "",
                   mainDTL: "0",
                 ));
+            scrollController.animateTo(
+              0.0,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeInOut,
+            );
           },
           child: Container(
             decoration: boxdecoration2(),

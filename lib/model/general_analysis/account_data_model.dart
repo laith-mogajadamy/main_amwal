@@ -9,6 +9,7 @@ class AccountDataModel extends AccountData {
     required super.currencyCode,
     required super.closeBalance,
     required super.closeBalanceFC,
+    required super.mainCurrCode,
     required super.mainDTL,
   });
 
@@ -21,6 +22,7 @@ class AccountDataModel extends AccountData {
         currencyCode: json['CurrencyCode'] ?? '',
         closeBalance: json['CloseBalance'] ?? '',
         closeBalanceFC: json['CloseBalanceFC'] ?? '',
+        mainCurrCode: json['MainCurrCode'] ?? '',
         mainDTL: json['MainDTL'] ?? '',
       );
 }

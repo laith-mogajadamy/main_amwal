@@ -65,7 +65,10 @@ class _ParentsGeneralAnalysisComponentState
               itemCount: state.parentsGeneralAnalysiss.length,
               itemBuilder: (context, index) {
                 AccountData accountData = state.parentsGeneralAnalysiss[index];
-                return ParentsGeneralAnalysisCard(accountData: accountData);
+                return ParentsGeneralAnalysisCard(
+                  accountData: accountData,
+                  scrollController: scrollController,
+                );
               },
             );
           case RequestState.error:

@@ -70,7 +70,10 @@ class _ChiledsGeneralAnalysisComponentState
                       AccountData accountData =
                           state.chiledsGeneralAnalysiss[index];
                       return ChiledsGeneralAnalysisCard(
-                          size: size, accountData: accountData);
+                        size: size,
+                        accountData: accountData,
+                        scrollController: scrollController,
+                      );
                     },
                   ),
                 ),
