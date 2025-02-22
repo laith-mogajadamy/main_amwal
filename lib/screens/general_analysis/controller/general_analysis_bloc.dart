@@ -37,10 +37,14 @@ class GeneralAnalysisBloc
   }
 
   void _removeUntil(RemoveUtilPath event, Emitter<GeneralAnalysisState> emit) {
-    final newPath = state.path
-        .takeWhile((item) => item.accountGuid != event.accountData!.accountGuid)
-        .toList();
-    emit(state.copyWith(path: newPath));
+    final index = state.path.indexWhere(
+      (item) => item.accountGuid == event.accountData!.accountGuid,
+    );
+
+    if (index != -1) {
+      final newPath = state.path.sublist(0, index + 1);
+      emit(state.copyWith(path: newPath));
+    }
   }
 
   void _onFromDateChanged(
@@ -65,7 +69,18 @@ class GeneralAnalysisBloc
       chiledsGeneralAnalysisState: RequestState.loading,
       parentsGeneralAnalysiss: [],
       parentsGeneralAnalysisState: RequestState.loading,
-      path: [],
+      path: [
+        AccountData(
+            accountGuid: '',
+            parentGuid: '',
+            accountCode: 'رئيسي',
+            accountName: '',
+            currencyCode: '',
+            closeBalance: '',
+            closeBalanceFC: '',
+            mainCurrCode: '',
+            mainDTL: ''),
+      ],
     ));
   }
 
@@ -197,6 +212,18 @@ class GeneralAnalysisBloc
               (e) => CompanyModel.fromJson(e),
             ),
           ),
+          path: [
+            AccountData(
+                accountGuid: '',
+                parentGuid: '',
+                accountCode: 'رئيسي',
+                accountName: '',
+                currencyCode: '',
+                closeBalance: '',
+                closeBalanceFC: '',
+                mainCurrCode: '',
+                mainDTL: ''),
+          ],
         ),
       );
       emit(
@@ -208,7 +235,7 @@ class GeneralAnalysisBloc
       add(
         GetParentsGeneralAnalysis(
           parentGuid: "00000000-0000-0000-0000-000000000000",
-          aLER: "'E','R'",
+          aLER: "'A','L','E','R'",
           mainDTL: "-1",
         ),
       );

@@ -32,7 +32,7 @@ class GeneralAnalysisPage extends StatelessWidget {
         actions: [
           BlocBuilder<GeneralAnalysisBloc, GeneralAnalysisState>(
             builder: (context, state) {
-              if (state.path.isEmpty) {
+              if (state.path.length < 2) {
                 return SelectGeneralAnalysisCompany();
               } else {
                 return SizedBox.shrink();
@@ -52,14 +52,24 @@ class GeneralAnalysisPage extends StatelessWidget {
             builder: (context, state) {
               if (state.parentsGeneralAnalysiss.isNotEmpty) {
                 return SizedBox(
-                    height: size.height / 4,
+                    height: (state.chiledsGeneralAnalysiss.isEmpty)
+                        ? size.height / 1.2
+                        : size.height / 4,
                     child: ParentsGeneralAnalysisComponent());
               } else {
                 return SizedBox.shrink();
               }
             },
           ),
-          Expanded(child: ChiledsGeneralAnalysisComponent()),
+          BlocBuilder<GeneralAnalysisBloc, GeneralAnalysisState>(
+            builder: (context, state) {
+              if (state.chiledsGeneralAnalysiss.isNotEmpty) {
+                return Expanded(child: ChiledsGeneralAnalysisComponent());
+              } else {
+                return SizedBox.shrink();
+              }
+            },
+          ),
         ],
       ),
     );

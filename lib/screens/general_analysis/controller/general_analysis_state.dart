@@ -34,7 +34,18 @@ class GeneralAnalysisState extends Equatable {
     this.parentsGeneralAnalysisState = RequestState.loading,
     this.parentsGeneralAnalysisMessage = '',
     //
-    this.path = const [],
+    this.path = const [
+      AccountData(
+          accountGuid: '',
+          parentGuid: '',
+          accountCode: 'رئيسي',
+          accountName: '',
+          currencyCode: '',
+          closeBalance: '',
+          closeBalanceFC: '',
+          mainCurrCode: '',
+          mainDTL: ''),
+    ],
     //
     this.fromDate = '',
     this.toDate = '',

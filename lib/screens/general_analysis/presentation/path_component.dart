@@ -36,23 +36,45 @@ class PathComponent extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
-                          accountData: state.path[index],
-                        ));
-                    context
-                        .read<GeneralAnalysisBloc>()
-                        .add(GetParentsGeneralAnalysis(
-                          parentGuid: state.path[index].parentGuid,
-                          aLER: (index == 0) ? "'R','E'" : '',
-                          mainDTL: "-1",
-                        ));
-                    context
-                        .read<GeneralAnalysisBloc>()
-                        .add(GetChiledGeneralAnalysis(
-                          parentGuid: state.path[index].parentGuid,
-                          aLER: "",
-                          mainDTL: "0",
-                        ));
+                    if (state.path[index].accountCode == 'رئيسي') {
+                      context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
+                            accountData: state.path[index],
+                          ));
+                      context.read<GeneralAnalysisBloc>().add(
+                            GetParentsGeneralAnalysis(
+                              parentGuid:
+                                  "00000000-0000-0000-0000-000000000000",
+                              aLER: "'A','L','E','R'",
+                              mainDTL: "-1",
+                            ),
+                          );
+                      context.read<GeneralAnalysisBloc>().add(
+                            GetChiledGeneralAnalysis(
+                              parentGuid:
+                                  "00000000-0000-0000-0000-000000000000",
+                              aLER: "",
+                              mainDTL: "0",
+                            ),
+                          );
+                    } else {
+                      context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
+                            accountData: state.path[index],
+                          ));
+                      context
+                          .read<GeneralAnalysisBloc>()
+                          .add(GetParentsGeneralAnalysis(
+                            parentGuid: state.path[index].accountGuid,
+                            aLER: '',
+                            mainDTL: "-1",
+                          ));
+                      context
+                          .read<GeneralAnalysisBloc>()
+                          .add(GetChiledGeneralAnalysis(
+                            parentGuid: state.path[index].accountGuid,
+                            aLER: "",
+                            mainDTL: "0",
+                          ));
+                    }
                   },
                   child: Container(
                     padding: EdgeInsets.all(3),

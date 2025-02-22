@@ -50,6 +50,7 @@ class ParentsGeneralAnalysisCard extends StatelessWidget {
             );
           },
           child: Container(
+            width: size.width / 1.8,
             decoration: boxdecoration2(),
             margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
             child: Padding(
@@ -66,22 +67,19 @@ class ParentsGeneralAnalysisCard extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: (state.language == 'ar')
-                        ? AppText(
-                            text:
-                                "${accountData.accountCode} / ${accountData.accountName}",
-                            color: AppColor.apptitle,
-                            fontSize: 16,
-                          )
-                        : AppText(
-                            text:
-                                "${accountData.accountName} / ${accountData.accountCode}",
-                            color: AppColor.apptitle,
-                            fontSize: 16,
-                          ),
-                  ),
+                  (state.language == 'ar')
+                      ? AppText(
+                          text:
+                              "${accountData.accountCode} / ${accountData.accountName}",
+                          color: AppColor.apptitle,
+                          fontSize: 16,
+                        )
+                      : AppText(
+                          text:
+                              "${accountData.accountName} / ${accountData.accountCode}",
+                          color: AppColor.apptitle,
+                          fontSize: 16,
+                        ),
                   SizedBox(
                     height: 10.h,
                   ),

@@ -59,18 +59,38 @@ class _ParentsGeneralAnalysisComponentState
                   )),
             );
           case RequestState.loaded:
-            return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              controller: scrollController,
-              itemCount: state.parentsGeneralAnalysiss.length,
-              itemBuilder: (context, index) {
-                AccountData accountData = state.parentsGeneralAnalysiss[index];
-                return ParentsGeneralAnalysisCard(
-                  accountData: accountData,
-                  scrollController: scrollController,
-                );
-              },
-            );
+            return (state.chiledsGeneralAnalysiss.isNotEmpty)
+                ? ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    controller: scrollController,
+                    itemCount: state.parentsGeneralAnalysiss.length,
+                    itemBuilder: (context, index) {
+                      AccountData accountData =
+                          state.parentsGeneralAnalysiss[index];
+                      return ParentsGeneralAnalysisCard(
+                        accountData: accountData,
+                        scrollController: scrollController,
+                      );
+                    },
+                  )
+                : GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.8,
+                    ),
+                    scrollDirection: Axis.vertical,
+                    controller: scrollController,
+                    itemCount: state.parentsGeneralAnalysiss.length,
+                    itemBuilder: (context, index) {
+                      AccountData accountData =
+                          state.parentsGeneralAnalysiss[index];
+                      return ParentsGeneralAnalysisCard(
+                        accountData: accountData,
+                        scrollController: scrollController,
+                      );
+                    },
+                  );
           case RequestState.error:
             return SizedBox(
               height: 280.h,
