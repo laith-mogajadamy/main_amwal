@@ -289,7 +289,11 @@ class AgentCardComponent extends StatelessWidget {
               return SizedBox(
                 height: 280.h,
                 child: Center(
-                  child: Text("no data"),
+                  child: AppText(
+                    text: "Error",
+                    color: AppColor.redfont,
+                    fontSize: 14,
+                  ),
                 ),
               );
           }

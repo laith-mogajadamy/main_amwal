@@ -7,6 +7,7 @@ import 'package:mainamwal/model/warehouses/searched_warehouses.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/widget/searched_store_card.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class SearchedWarehousComponent extends StatefulWidget {
   final TextEditingController controller;
@@ -98,7 +99,11 @@ class _SearchedWarehousComponentState extends State<SearchedWarehousComponent> {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.searchedWarehousesMessage),
+                child: AppText(
+                  text: state.searchedWarehousesMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

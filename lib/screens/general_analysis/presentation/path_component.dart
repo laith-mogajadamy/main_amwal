@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
+import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 
@@ -36,44 +37,57 @@ class PathComponent extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    if (state.path[index].accountCode == 'رئيسي') {
-                      context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
-                            accountData: state.path[index],
-                          ));
-                      context.read<GeneralAnalysisBloc>().add(
-                            GetParentsGeneralAnalysis(
-                              parentGuid:
-                                  "00000000-0000-0000-0000-000000000000",
-                              aLER: "'A','L','E','R'",
+                    if (context
+                                .read<GeneralAnalysisBloc>()
+                                .state
+                                .parentsGeneralAnalysisState ==
+                            RequestState.loading ||
+                        context
+                                .read<GeneralAnalysisBloc>()
+                                .state
+                                .chiledsGeneralAnalysisState ==
+                            RequestState.loading) {
+                      //nothing
+                    } else {
+                      if (state.path[index].accountCode == 'رئيسي') {
+                        context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
+                              accountData: state.path[index],
+                            ));
+                        context.read<GeneralAnalysisBloc>().add(
+                              GetParentsGeneralAnalysis(
+                                parentGuid:
+                                    "00000000-0000-0000-0000-000000000000",
+                                aLER: "'A','L','E','R'",
+                                mainDTL: "-1",
+                              ),
+                            );
+                        context.read<GeneralAnalysisBloc>().add(
+                              GetChiledGeneralAnalysis(
+                                parentGuid:
+                                    "00000000-0000-0000-0000-000000000000",
+                                aLER: "",
+                                mainDTL: "0",
+                              ),
+                            );
+                      } else {
+                        context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
+                              accountData: state.path[index],
+                            ));
+                        context
+                            .read<GeneralAnalysisBloc>()
+                            .add(GetParentsGeneralAnalysis(
+                              parentGuid: state.path[index].accountGuid,
+                              aLER: '',
                               mainDTL: "-1",
-                            ),
-                          );
-                      context.read<GeneralAnalysisBloc>().add(
-                            GetChiledGeneralAnalysis(
-                              parentGuid:
-                                  "00000000-0000-0000-0000-000000000000",
+                            ));
+                        context
+                            .read<GeneralAnalysisBloc>()
+                            .add(GetChiledGeneralAnalysis(
+                              parentGuid: state.path[index].accountGuid,
                               aLER: "",
                               mainDTL: "0",
-                            ),
-                          );
-                    } else {
-                      context.read<GeneralAnalysisBloc>().add(RemoveUtilPath(
-                            accountData: state.path[index],
-                          ));
-                      context
-                          .read<GeneralAnalysisBloc>()
-                          .add(GetParentsGeneralAnalysis(
-                            parentGuid: state.path[index].accountGuid,
-                            aLER: '',
-                            mainDTL: "-1",
-                          ));
-                      context
-                          .read<GeneralAnalysisBloc>()
-                          .add(GetChiledGeneralAnalysis(
-                            parentGuid: state.path[index].accountGuid,
-                            aLER: "",
-                            mainDTL: "0",
-                          ));
+                            ));
+                      }
                     }
                   },
                   child: Container(

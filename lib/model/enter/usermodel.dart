@@ -15,11 +15,5 @@ class UserModel extends User {
         name: json['Name'] ?? '',
         number: json['number'] ?? 0,
         isAdmin: json['isAdmin'] ?? false,
-        // languages: List<LanguageModel>.from(
-        //   ((json['languages'] ?? []) as List).map(
-        //     (e) => LanguageModel.fromJson(e),
-        //   ),
-        // ),
-        // location: json["lawyer"]?['location'] ?? '',
       );
 }

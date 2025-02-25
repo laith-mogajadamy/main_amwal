@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
+import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/model/general_analysis/account_data.dart';
 
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
@@ -28,26 +29,39 @@ class ParentsGeneralAnalysisCard extends StatelessWidget {
       builder: (context, state) {
         return InkWell(
           onTap: () {
-            context.read<GeneralAnalysisBloc>().add(
-                  AddToPath(
-                    accountData: accountData,
-                  ),
-                );
-            context.read<GeneralAnalysisBloc>().add(GetParentsGeneralAnalysis(
-                  parentGuid: accountData.accountGuid,
-                  aLER: "",
-                  mainDTL: "-1",
-                ));
-            context.read<GeneralAnalysisBloc>().add(GetChiledGeneralAnalysis(
-                  parentGuid: accountData.accountGuid,
-                  aLER: "",
-                  mainDTL: "0",
-                ));
-            scrollController.animateTo(
-              0.0,
-              duration: Duration(seconds: 1),
-              curve: Curves.easeInOut,
-            );
+            if (context
+                        .read<GeneralAnalysisBloc>()
+                        .state
+                        .parentsGeneralAnalysisState ==
+                    RequestState.loading ||
+                context
+                        .read<GeneralAnalysisBloc>()
+                        .state
+                        .chiledsGeneralAnalysisState ==
+                    RequestState.loading) {
+              //nothing
+            } else {
+              context.read<GeneralAnalysisBloc>().add(
+                    AddToPath(
+                      accountData: accountData,
+                    ),
+                  );
+              context.read<GeneralAnalysisBloc>().add(GetParentsGeneralAnalysis(
+                    parentGuid: accountData.accountGuid,
+                    aLER: "",
+                    mainDTL: "-1",
+                  ));
+              context.read<GeneralAnalysisBloc>().add(GetChiledGeneralAnalysis(
+                    parentGuid: accountData.accountGuid,
+                    aLER: "",
+                    mainDTL: "0",
+                  ));
+              scrollController.animateTo(
+                0.0,
+                duration: Duration(seconds: 1),
+                curve: Curves.easeInOut,
+              );
+            }
           },
           child: Container(
             width: size.width / 1.8,

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:mainamwal/core/services/auth.dart';
 import 'package:mainamwal/core/utils/formstatus.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
+import 'package:mainamwal/core/utils/user_hive.dart';
 import 'package:mainamwal/model/enter/user.dart';
 import 'package:mainamwal/model/enter/usermodel.dart';
 import 'package:bloc/bloc.dart';
@@ -26,8 +27,11 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
         print(state.formStatus);
       } else {
         print("getuser");
-        String? useremail = Preferences.getemail();
-        String? userpassword = Preferences.getpassword();
+        final userRepository = UserRepository();
+        await userRepository.init();
+        Map<String, String?> user = userRepository.getUser();
+        String? useremail = user['username'] ?? '';
+        String? userpassword = user['password'] ?? '';
         print("-------------------");
         print(useremail);
         print(userpassword);
@@ -36,7 +40,7 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
           formStatus: FormSubmitting(),
         ));
 
-        http.Response response = await Auth.login(useremail!, userpassword!);
+        http.Response response = await Auth.login(useremail, userpassword);
         var responsemap = await jsonDecode(response.body);
         print("message==${state.message}");
         print("*********");
@@ -164,10 +168,9 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
           Preferences.savetoken(responsemap['data']?['token']);
           print("token:${responsemap['data']?['token']}");
           print("user:${state.user}");
-
-          Preferences.saveemail(state.email);
-          Preferences.savepassword(state.password);
-
+          final userRepository = UserRepository();
+          await userRepository.init(); // Initialize Hive storage
+          await userRepository.saveUser(state.email, state.password);
           print(state.formStatus);
         } else {
           emit(
@@ -196,6 +199,9 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
       print("*********");
       if (response.statusCode == 200) {
         Preferences.clear();
+        final userRepository = UserRepository();
+        await userRepository.init(); // Initialize Hive storage
+        await userRepository.deleteUser();
         emit(
           state.copyWith(
               user: const User(

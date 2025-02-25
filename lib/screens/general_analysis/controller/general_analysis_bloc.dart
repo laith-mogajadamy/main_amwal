@@ -33,7 +33,11 @@ class GeneralAnalysisBloc
     on<CompanyChanged>(_companyChanged);
   }
   void _addToPath(AddToPath event, Emitter<GeneralAnalysisState> emit) {
-    emit(state.copyWith(path: [...state.path, event.accountData!]));
+    if (state.path.contains(event.accountData)) {
+      //nothing
+    } else {
+      emit(state.copyWith(path: [...state.path, event.accountData!]));
+    }
   }
 
   void _removeUntil(RemoveUtilPath event, Emitter<GeneralAnalysisState> emit) {
@@ -91,11 +95,19 @@ class GeneralAnalysisBloc
     if (ptoken?.isNotEmpty ?? false) {
       emit(state.copyWith(
         token: ptoken!,
+        parentsGeneralAnalysiss: [],
+        parentsGeneralAnalysisState: RequestState.loading,
         chiledsGeneralAnalysiss: [],
         chiledsGeneralAnalysisState: RequestState.loading,
         page: 1,
+        allTreeGeneralAnalysisState: RequestState.loading,
       ));
       await _fetchChiledGeneralAnalysis(event, emit);
+      if (state.parentsGeneralAnalysisState == RequestState.loaded) {
+        emit(state.copyWith(
+          allTreeGeneralAnalysisState: RequestState.loaded,
+        ));
+      }
     } else {
       emit(state.copyWith(
         chiledsGeneralAnalysisState: RequestState.error,
@@ -111,11 +123,19 @@ class GeneralAnalysisBloc
     if (ptoken?.isNotEmpty ?? false) {
       emit(state.copyWith(
         token: ptoken!,
+        parentsGeneralAnalysiss: [],
+        parentsGeneralAnalysisState: RequestState.loading,
         chiledsGeneralAnalysiss: [],
         chiledsGeneralAnalysisState: RequestState.loading,
         page: 1,
+        allTreeGeneralAnalysisState: RequestState.loading,
       ));
       await _fetchParentsGeneralAnalysis(event, emit);
+      if (state.chiledsGeneralAnalysisState == RequestState.loaded) {
+        emit(state.copyWith(
+          allTreeGeneralAnalysisState: RequestState.loaded,
+        ));
+      }
     } else {
       emit(state.copyWith(
         chiledsGeneralAnalysisState: RequestState.error,

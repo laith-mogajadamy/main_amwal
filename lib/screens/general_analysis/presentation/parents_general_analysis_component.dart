@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/presentation/widgets/parents_general_analysis_card.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class ParentsGeneralAnalysisComponent extends StatefulWidget {
   const ParentsGeneralAnalysisComponent({
@@ -95,7 +96,11 @@ class _ParentsGeneralAnalysisComponentState
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.parentsGeneralAnalysisMessage),
+                child: AppText(
+                  text: state.parentsGeneralAnalysisMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/presentation/widgets/chileds_general_analysis_card.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class ChiledsGeneralAnalysisComponent extends StatefulWidget {
   const ChiledsGeneralAnalysisComponent({
@@ -92,7 +93,11 @@ class _ChiledsGeneralAnalysisComponentState
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.chiledsGeneralAnalysisMessage),
+                child: AppText(
+                  text: state.chiledsGeneralAnalysisMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

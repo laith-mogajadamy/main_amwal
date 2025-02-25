@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/model/warehouses/warehouses.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
 import 'package:mainamwal/screens/warehouses/presentation/widget/store_card.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class WarehousComponent extends StatelessWidget {
   final ScrollController scrollController;
@@ -49,7 +50,11 @@ class WarehousComponent extends StatelessWidget {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.searchedWarehousesMessage),
+                child: AppText(
+                  text: state.warehousesMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

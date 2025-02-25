@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/screens/box/presentation/widgets/box_card.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class BoxsComponent extends StatelessWidget {
   const BoxsComponent({
@@ -54,7 +55,11 @@ class BoxsComponent extends StatelessWidget {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.boxsMessage),
+                child: AppText(
+                  text: state.boxsMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

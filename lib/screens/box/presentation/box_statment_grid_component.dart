@@ -139,7 +139,11 @@ class _BoxStatmentGridComponentState extends State<BoxStatmentGridComponent> {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text("no data"),
+                child: AppText(
+                  text: state.boxStatmentMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

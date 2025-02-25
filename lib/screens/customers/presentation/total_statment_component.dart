@@ -132,7 +132,11 @@ class _TotalStatmentComponentState extends State<TotalStatmentComponent> {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text("no data"),
+                child: AppText(
+                  text: state.statmentTotalMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

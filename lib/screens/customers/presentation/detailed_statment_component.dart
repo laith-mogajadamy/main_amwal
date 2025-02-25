@@ -7,6 +7,7 @@ import 'package:mainamwal/screens/customers/presentation/widgets/detailed_statme
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class DetailedStatmentComponent extends StatefulWidget {
   const DetailedStatmentComponent({
@@ -100,7 +101,11 @@ class _DetailedStatmentComponentState extends State<DetailedStatmentComponent> {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text("no data"),
+                child: AppText(
+                  text: state.statmentDetailedMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

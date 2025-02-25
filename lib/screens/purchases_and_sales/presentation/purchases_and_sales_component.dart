@@ -165,7 +165,7 @@ class _PurchasesAndSalesComponentState
               child: Center(
                 child: AppText(
                   text: state.dailyPruchasAndSaleMessage,
-                  color: AppColor.apptitle,
+                  color: AppColor.redfont,
                   fontSize: 14,
                 ),
               ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/widgets/font/app_text.dart';
 
 class CustomerComponent extends StatefulWidget {
   final String name;
@@ -102,7 +103,11 @@ class _CustomerComponentState extends State<CustomerComponent> {
             return SizedBox(
               height: 280.h,
               child: Center(
-                child: Text(state.customerMessage),
+                child: AppText(
+                  text: state.customerMessage,
+                  color: AppColor.redfont,
+                  fontSize: 14,
+                ),
               ),
             );
         }

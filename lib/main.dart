@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/find_locale.dart';
 import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
+import 'package:mainamwal/core/utils/user_hive.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
@@ -15,10 +17,15 @@ import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
 import 'package:mainamwal/screens/warehouses/controller/warehouses_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Preferences.init();
+  final appDocumentDirectory = await getTemporaryDirectory();
+  Hive.init(appDocumentDirectory.path);
+  final userRepository = UserRepository();
+  await userRepository.init(); // Initialize Hive storage
   runApp(const MyApp());
 }
 
