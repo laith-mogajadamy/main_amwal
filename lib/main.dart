@@ -12,7 +12,7 @@ import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
-import 'package:mainamwal/screens/enter/presentation/OnBoarding/splash.dart';
+import 'package:mainamwal/screens/enter/presentation/Auth/splash.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<EnterBloc>(
           create: (context) => EnterBloc()
             ..add(Getuser())
-            ..add(LanguageChanged(language: language)),
+            ..add(LanguageChanged(language: language))
+            ..add(Getvirsion()),
         ),
         BlocProvider<CustomersBloc>(
           create: (context) => CustomersBloc(),

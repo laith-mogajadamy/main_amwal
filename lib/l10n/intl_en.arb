@@ -1,5 +1,8 @@
 {
     "version": "version",
+    "update": "up date",
+    "cancel": "cancel",
+    "thereisanupdate": "there is an update",
     "networkerror": "Network Error",
     "timedout": "Timed Out",
     "Changethelanguage": "Change the language",

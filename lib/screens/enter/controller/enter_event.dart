@@ -2,6 +2,13 @@ part of 'enter_bloc.dart';
 
 abstract class EnterEvent extends Equatable {}
 
+class Getvirsion extends EnterEvent {
+  Getvirsion();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class Getuser extends EnterEvent {
   Getuser();
 

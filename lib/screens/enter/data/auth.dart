@@ -102,4 +102,48 @@ class Auth {
 
     return response;
   }
+
+  static Future<http.Response> getvirsion(
+    String key,
+  ) async {
+    Map data = {
+      "key": key,
+    };
+    print(data);
+    var body = jsonEncode(data);
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Accept": "application/json",
+    };
+    var url =
+        Uri.parse("http://apps.as2093.com/amwalapi/v1/getApplicationVersion");
+    http.Response response =
+        await http.post(url, headers: headers, body: body).timeout(
+      const Duration(seconds: 3),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            jsonEncode(
+              {
+                "message": "Timed Out",
+              },
+            ),
+            408); // Request Timeout response status code
+      },
+    ).onError(
+      (error, stackTrace) {
+        return http.Response(
+            jsonEncode(
+              {
+                "message": "Network Error",
+              },
+            ),
+            408);
+      },
+    );
+    var responsemap = jsonDecode(response.body);
+    print(responsemap);
+
+    return response;
+  }
 }

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 import 'dart:convert';
-import 'package:mainamwal/core/services/auth.dart';
+import 'package:mainamwal/core/utils/enums.dart';
+import 'package:mainamwal/screens/enter/data/auth.dart';
 import 'package:mainamwal/core/utils/formstatus.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/core/utils/user_hive.dart';
@@ -15,6 +16,37 @@ part 'enter_state.dart';
 
 class EnterBloc extends Bloc<EnterEvent, EnterState> {
   EnterBloc() : super(const EnterState()) {
+    on<Getvirsion>((event, emit) async {
+      print("Getvirsion");
+      emit(state.copyWith(
+        formStatus: FormSubmitting(),
+      ));
+
+      http.Response response = await Auth.getvirsion("5");
+      var responsemap = await jsonDecode(response.body);
+
+      print("=========");
+      print(responsemap);
+
+      if (response.statusCode == 200) {
+        emit(
+          state.copyWith(
+            version: double.tryParse(responsemap["data"]?["version"] ?? '1'),
+            updateUrl: responsemap["data"]?["url"] ?? '',
+            versionState: RequestState.loaded,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            versionState: RequestState.error,
+            version: 2,
+          ),
+        );
+        print(state.version);
+      }
+    });
+    //
     on<Getuser>((event, emit) async {
       String? api = Preferences.getAPI();
       if (api!.isEmpty) {

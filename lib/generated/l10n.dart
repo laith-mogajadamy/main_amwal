@@ -60,6 +60,36 @@ class S {
     );
   }
 
+  /// `up date`
+  String get update {
+    return Intl.message(
+      'up date',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cancel`
+  String get cancel {
+    return Intl.message(
+      'cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `there is an update`
+  String get thereisanupdate {
+    return Intl.message(
+      'there is an update',
+      name: 'thereisanupdate',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Network Error`
   String get networkerror {
     return Intl.message(

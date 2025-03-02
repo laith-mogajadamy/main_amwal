@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "batchnumber": MessageLookupByLibrary.simpleMessage("batch"),
         "boxsandbanks": MessageLookupByLibrary.simpleMessage("boxs and banks"),
         "bransh": MessageLookupByLibrary.simpleMessage("bransh"),
+        "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
         "cash": MessageLookupByLibrary.simpleMessage("cash"),
         "chnagecompcode":
             MessageLookupByLibrary.simpleMessage("chnage the company code"),
@@ -129,6 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The limit of debt in a buy"),
         "thelimitofdebtinasale":
             MessageLookupByLibrary.simpleMessage("The limit of debt in a sale"),
+        "thereisanupdate":
+            MessageLookupByLibrary.simpleMessage("there is an update"),
         "timedout": MessageLookupByLibrary.simpleMessage("Timed Out"),
         "to": MessageLookupByLibrary.simpleMessage("to"),
         "total": MessageLookupByLibrary.simpleMessage("total"),
@@ -138,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" scan the QR code"),
         "unvalidedate": MessageLookupByLibrary.simpleMessage(
             "please select a valide date range"),
+        "update": MessageLookupByLibrary.simpleMessage("up date"),
         "username": MessageLookupByLibrary.simpleMessage("user name"),
         "version": MessageLookupByLibrary.simpleMessage("version"),
         "warehouse": MessageLookupByLibrary.simpleMessage("warehouse"),

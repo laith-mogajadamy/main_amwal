@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "boxsandbanks":
             MessageLookupByLibrary.simpleMessage("الصناديق والمصارف"),
         "bransh": MessageLookupByLibrary.simpleMessage("الفرع"),
+        "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
         "chnagecompcode":
             MessageLookupByLibrary.simpleMessage("تغيير رمز المؤسسة"),
@@ -124,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حد الدين في الشراء"),
         "thelimitofdebtinasale":
             MessageLookupByLibrary.simpleMessage("حد الدين في البيع"),
+        "thereisanupdate": MessageLookupByLibrary.simpleMessage("يوجد تحديث"),
         "timedout": MessageLookupByLibrary.simpleMessage("انتهت مدة الاتصال"),
         "to": MessageLookupByLibrary.simpleMessage("الى"),
         "total": MessageLookupByLibrary.simpleMessage("إجمالي"),
@@ -133,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تشغيل الكاميرا ومسح QR"),
         "unvalidedate":
             MessageLookupByLibrary.simpleMessage("الرجاء اختيار تاريخ صالح"),
+        "update": MessageLookupByLibrary.simpleMessage("تحديث"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "version": MessageLookupByLibrary.simpleMessage("الاصدار"),
         "warehouse": MessageLookupByLibrary.simpleMessage("المخازن"),
