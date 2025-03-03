@@ -40,7 +40,7 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
         emit(
           state.copyWith(
             versionState: RequestState.error,
-            version: 2,
+            version: 1,
           ),
         );
         print(state.version);

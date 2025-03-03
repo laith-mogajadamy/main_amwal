@@ -77,7 +77,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                     AppText(
                       text: "${S.of(context).from}:",
                       color: AppColor.apptitle,
-                      fontSize: 14,
+                      fontSize: 16,
                     ),
                     SizedBox(
                       width: 0.w,
@@ -114,7 +114,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                             ? state.fromdate
                             : S.of(context).nodate,
                         color: AppColor.apptitle,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -127,7 +127,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                     AppText(
                       text: "${S.of(context).to}:",
                       color: AppColor.apptitle,
-                      fontSize: 14,
+                      fontSize: 16,
                     ),
                     SizedBox(
                       width: 0.w,
@@ -164,7 +164,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                             ? state.todate
                             : S.of(context).nodate,
                         color: AppColor.apptitle,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -182,7 +182,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                 AppText(
                   text: "${S.of(context).stateDate}:",
                   color: AppColor.apptitle,
-                  fontSize: 14,
+                  fontSize: 16,
                 ),
                 SizedBox(
                   width: 0.w,
@@ -198,7 +198,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                         ? state.statedate
                         : S.of(context).nodate,
                     color: AppColor.apptitle,
-                    fontSize: 12,
+                    fontSize: 14,
                   ),
                 ),
               ],
