@@ -33,7 +33,7 @@ class EnterState extends Equatable {
   final String updateUrl;
 
   const EnterState({
-    this.islogedin = '',
+    this.islogedin = 'false',
     this.logoutStatus = const InitialFormStatus(),
     this.language = 'en',
     this.user = const User(

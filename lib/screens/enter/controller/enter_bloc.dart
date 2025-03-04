@@ -105,9 +105,10 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
         } else {
           emit(
             state.copyWith(
-                formStatus: SubmissionFailed(state.message),
-                message: responsemap['message'],
-                islogedin: "false"),
+              formStatus: SubmissionFailed(state.message),
+              message: responsemap['message'],
+              islogedin: "false",
+            ),
           );
           print(state.formStatus);
         }

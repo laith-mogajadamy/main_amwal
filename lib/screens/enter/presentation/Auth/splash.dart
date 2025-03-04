@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/generated/l10n.dart';
@@ -146,36 +144,31 @@ class _SplashState extends State<Splash> {
     );
   }
 
-  Future<Null> goto(BuildContext context, EnterState state) {
-    return Future.delayed(
-      const Duration(seconds: 1),
-      () {
-        bool? firsttime = Preferences.getIsFirstTime();
-        if (firsttime!) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const OBPage(),
-            ),
-          );
-        } else {
-          if (state.islogedin == "true") {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MyPages(),
-              ),
-            );
-          } else if (state.islogedin == "false") {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => const Login(),
-              ),
-            );
-          }
-        }
-      },
-    );
+  goto(BuildContext context, EnterState state) {
+    bool? firsttime = Preferences.getIsFirstTime();
+    if (firsttime!) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OBPage(),
+        ),
+      );
+    } else {
+      if (state.islogedin == "true") {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MyPages(),
+          ),
+        );
+      } else if (state.islogedin == "false") {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const Login(),
+          ),
+        );
+      }
+    }
   }
 
   Future<void> openBrowser(String url) async {

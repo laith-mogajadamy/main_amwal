@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/formstatus.dart';
-import 'package:mainamwal/core/utils/prefrences.dart';
+import 'package:mainamwal/core/utils/user_hive.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/pages/pages.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
@@ -21,15 +21,24 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String? useremail = Preferences.getemail();
-  String? userpassword = Preferences.getpassword();
+  final userRepository = UserRepository();
+
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  getusername() async {
+    await userRepository.init();
+    Map<String, String?> user = userRepository.getUser();
+    String? useremail = user['username'] ?? '';
+    String? userpassword = user['password'] ?? '';
+    email.text = useremail;
+    password.text = userpassword;
+  }
+
   @override
   void initState() {
-    email.text = useremail ?? '';
-    password.text = userpassword ?? '';
+    getusername();
     super.initState();
   }
 
