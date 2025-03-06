@@ -2,6 +2,7 @@
     "version": "version",
     "update": "up date",
     "cancel": "cancel",
+    "checkforupdate": "check for update",
     "thereisanupdate": "there is an update",
     "networkerror": "Network Error",
     "timedout": "Timed Out",

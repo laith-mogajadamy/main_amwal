@@ -71,6 +71,7 @@ class CustomerFromToDatePick extends StatelessWidget {
         return Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
@@ -80,7 +81,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                       fontSize: 16,
                     ),
                     SizedBox(
-                      width: 0.w,
+                      width: 5.w,
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -107,7 +108,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
                           shape: const StadiumBorder()),
                       child: AppText(
                         text: state.fromdate != ''
@@ -119,9 +120,6 @@ class CustomerFromToDatePick extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: 20.w,
-                ),
                 Row(
                   children: [
                     AppText(
@@ -130,7 +128,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                       fontSize: 16,
                     ),
                     SizedBox(
-                      width: 0.w,
+                      width: 5.w,
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -157,7 +155,7 @@ class CustomerFromToDatePick extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
                           shape: const StadiumBorder()),
                       child: AppText(
                         text: state.todate != ''
@@ -185,20 +183,20 @@ class CustomerFromToDatePick extends StatelessWidget {
                   fontSize: 16,
                 ),
                 SizedBox(
-                  width: 0.w,
+                  width: 5.w,
                 ),
                 ElevatedButton(
                   onPressed: () => pickDate(context, 'state', state.statedate),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       shape: const StadiumBorder()),
                   child: AppText(
                     text: state.statedate != ''
                         ? state.statedate
                         : S.of(context).nodate,
                     color: AppColor.apptitle,
-                    fontSize: 14,
+                    fontSize: 16,
                   ),
                 ),
               ],

@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `check for update`
+  String get checkforupdate {
+    return Intl.message(
+      'check for update',
+      name: 'checkforupdate',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `there is an update`
   String get thereisanupdate {
     return Intl.message(

@@ -18,13 +18,13 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
   EnterBloc() : super(const EnterState()) {
     on<Getvirsion>((event, emit) async {
       print("Getvirsion");
-      emit(state.copyWith(
-        formStatus: FormSubmitting(),
-      ));
-
+      emit(
+        state.copyWith(
+          versionState: RequestState.loading,
+        ),
+      );
       http.Response response = await Auth.getvirsion("5");
       var responsemap = await jsonDecode(response.body);
-
       print("=========");
       print(responsemap);
 
@@ -115,6 +115,7 @@ class EnterBloc extends Bloc<EnterEvent, EnterState> {
         print("state.user");
         print(state.user);
       }
+      add(Getvirsion());
     });
     //
 

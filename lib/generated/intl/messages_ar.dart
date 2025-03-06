@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bransh": MessageLookupByLibrary.simpleMessage("الفرع"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "cash": MessageLookupByLibrary.simpleMessage("نقدي"),
+        "checkforupdate":
+            MessageLookupByLibrary.simpleMessage("فحص وجود تحديثات"),
         "chnagecompcode":
             MessageLookupByLibrary.simpleMessage("تغيير رمز المؤسسة"),
         "city": MessageLookupByLibrary.simpleMessage("المدينة"),

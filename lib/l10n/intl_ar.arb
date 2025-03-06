@@ -2,6 +2,7 @@
     "version": "الاصدار",
     "update": "تحديث",
     "cancel": "الغاء",
+    "checkforupdate": "فحص وجود تحديثات",
     "thereisanupdate": "يوجد تحديث",
     "networkerror": "خطأ بالشبكة",
     "timedout": "انتهت مدة الاتصال",

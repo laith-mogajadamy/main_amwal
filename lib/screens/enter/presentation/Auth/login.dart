@@ -3,6 +3,7 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/formstatus.dart';
 import 'package:mainamwal/core/utils/user_hive.dart';
 import 'package:mainamwal/generated/l10n.dart';
+import 'package:mainamwal/pages/home.dart';
 import 'package:mainamwal/pages/pages.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/enter/presentation/qr_code_page.dart';
@@ -132,7 +133,7 @@ class _LoginState extends State<Login> {
                                     Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const MyPages(),
+                                        builder: (context) => const Home(),
                                       ),
                                       (route) => false,
                                     );
@@ -180,7 +181,7 @@ class _LoginState extends State<Login> {
                                   child: (state.formStatus is FormSubmitting)
                                       ? CircularProgressIndicator(
                                           color: AppColor.whiteColor,
-                                          strokeWidth: 4.w,
+                                          strokeWidth: 2.w,
                                         )
                                       : Text(
                                           S.of(context).LogInbotton,

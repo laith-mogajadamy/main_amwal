@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bransh": MessageLookupByLibrary.simpleMessage("bransh"),
         "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
         "cash": MessageLookupByLibrary.simpleMessage("cash"),
+        "checkforupdate":
+            MessageLookupByLibrary.simpleMessage("check for update"),
         "chnagecompcode":
             MessageLookupByLibrary.simpleMessage("chnage the company code"),
         "city": MessageLookupByLibrary.simpleMessage("city"),

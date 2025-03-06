@@ -44,8 +44,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<EnterBloc>(
           create: (context) => EnterBloc()
             ..add(Getuser())
-            ..add(LanguageChanged(language: language))
-            ..add(Getvirsion()),
+            ..add(LanguageChanged(language: language)),
         ),
         BlocProvider<CustomersBloc>(
           create: (context) => CustomersBloc(),

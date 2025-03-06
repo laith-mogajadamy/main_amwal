@@ -17,7 +17,6 @@ class TotalFilterChange extends StatelessWidget {
     return BlocBuilder<CustomersBloc, CustomersState>(
       builder: (context, state) {
         String? selectedValue = '0';
-
         return SizedBox(
           height: size.height / 20,
           child: Row(

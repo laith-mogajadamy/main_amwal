@@ -1,32 +1,18 @@
-import 'package:mainamwal/core/utils/appcolors.dart';
-import 'package:mainamwal/core/utils/prefrences.dart';
-import 'package:mainamwal/generated/l10n.dart';
-import 'package:mainamwal/pages/home.dart';
-import 'package:mainamwal/pages/pages.dart';
-import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
-import 'package:mainamwal/screens/enter/presentation/Auth/login.dart';
-import 'package:mainamwal/screens/enter/presentation/OnBoarding/obPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mainamwal/core/utils/appcolors.dart';
+import 'package:mainamwal/core/utils/enums.dart';
+import 'package:mainamwal/generated/l10n.dart';
+import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({super.key});
+const double virsion = 1.0;
 
-  @override
-  State<Splash> createState() => _SplashState();
-}
+class Virsioncheckbutton extends StatelessWidget {
+  const Virsioncheckbutton({super.key});
 
-class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  static const double virsion = 1.0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,11 +22,10 @@ class _SplashState extends State<Splash> {
           previous.versionState != current.versionState,
       listener: (context, state) async {
         if (virsion == state.version) {
-          await goto(context, state);
         } else if (virsion < state.version) {
           showDialog(
             context: context,
-            barrierDismissible: false,
+            barrierDismissible: true,
             builder: (_) {
               return AlertDialog(
                 backgroundColor: AppColor.whiteColor,
@@ -63,8 +48,8 @@ class _SplashState extends State<Splash> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                            onPressed: () async {
-                              await goto(context, state);
+                            onPressed: () {
+                              Navigator.pop(context);
                             },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(
@@ -115,69 +100,47 @@ class _SplashState extends State<Splash> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: AppColor.whiteColorBG,
-          body: SizedBox(
-            height: size.height,
-            width: size.width,
-            child: Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                SizedBox(
-                  height: size.height,
-                  width: size.width,
-                  child: Image.asset(
-                    "assets/images/splash image.png",
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 100.h),
-                  child: SvgPicture.asset(
-                    'assets/svg/splash logo.svg',
-                  ),
-                )
-              ],
-            ),
+        return InkWell(
+          onTap: () {
+            if (state.versionState == RequestState.loading) {
+            } else {
+              context.read<EnterBloc>().add(
+                    Getvirsion(),
+                  );
+            }
+          },
+          child: Row(
+            children: [
+              (state.versionState == RequestState.loading)
+                  ? CircularProgressIndicator(
+                      color: AppColor.appbuleBG,
+                      strokeWidth: 4.w,
+                    )
+                  : Icon(
+                      Icons.refresh_rounded,
+                      color: AppColor.appbuleBG,
+                    ),
+              SizedBox(
+                width: 10.h,
+              ),
+              AppText(
+                text: S.of(context).checkforupdate,
+                color: AppColor.apptitle,
+                fontSize: 16,
+              ),
+            ],
           ),
         );
       },
     );
   }
+}
 
-  goto(BuildContext context, EnterState state) {
-    bool? firsttime = Preferences.getIsFirstTime();
-    if (firsttime!) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const OBPage(),
-        ),
-      );
-    } else {
-      if (state.islogedin == "true") {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Home(),
-          ),
-        );
-      } else {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const Login(),
-          ),
-        );
-      }
-    }
-  }
-
-  Future<void> openBrowser(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Could not launch $url';
-    }
+Future<void> openBrowser(String url) async {
+  final Uri uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $url';
   }
 }
