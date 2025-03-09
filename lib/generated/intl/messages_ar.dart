@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acountstatment": MessageLookupByLibrary.simpleMessage("كشف الحساب"),
         "acounttybe": MessageLookupByLibrary.simpleMessage("نوع الحساب"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
-        "advancedsearch": MessageLookupByLibrary.simpleMessage("بحث متقدم"),
+        "advancedsearch": MessageLookupByLibrary.simpleMessage("متقدم"),
         "agent": MessageLookupByLibrary.simpleMessage("المندوب"),
         "agentcard": MessageLookupByLibrary.simpleMessage("بطاقة العميل"),
         "all": MessageLookupByLibrary.simpleMessage("الكل"),

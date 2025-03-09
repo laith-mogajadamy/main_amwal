@@ -50,50 +50,50 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `version`
+  /// `Version`
   String get version {
     return Intl.message(
-      'version',
+      'Version',
       name: 'version',
       desc: '',
       args: [],
     );
   }
 
-  /// `up date`
+  /// `Up Date`
   String get update {
     return Intl.message(
-      'up date',
+      'Up Date',
       name: 'update',
       desc: '',
       args: [],
     );
   }
 
-  /// `cancel`
+  /// `Cancel`
   String get cancel {
     return Intl.message(
-      'cancel',
+      'Cancel',
       name: 'cancel',
       desc: '',
       args: [],
     );
   }
 
-  /// `check for update`
+  /// `Check For Update`
   String get checkforupdate {
     return Intl.message(
-      'check for update',
+      'Check For Update',
       name: 'checkforupdate',
       desc: '',
       args: [],
     );
   }
 
-  /// `there is an update`
+  /// `There Is An Update`
   String get thereisanupdate {
     return Intl.message(
-      'there is an update',
+      'There Is An Update',
       name: 'thereisanupdate',
       desc: '',
       args: [],
@@ -120,20 +120,20 @@ class S {
     );
   }
 
-  /// `Change the language`
+  /// `Change The Language`
   String get Changethelanguage {
     return Intl.message(
-      'Change the language',
+      'Change The Language',
       name: 'Changethelanguage',
       desc: '',
       args: [],
     );
   }
 
-  /// `The language`
+  /// `The Language`
   String get language {
     return Intl.message(
-      'The language',
+      'The Language',
       name: 'language',
       desc: '',
       args: [],
@@ -150,50 +150,50 @@ class S {
     );
   }
 
-  /// `loging out...`
+  /// `Loging Out...`
   String get logingout {
     return Intl.message(
-      'loging out...',
+      'Loging Out...',
       name: 'logingout',
       desc: '',
       args: [],
     );
   }
 
-  /// `Choose the language`
+  /// `Choose The Language`
   String get Chooselanguage {
     return Intl.message(
-      'Choose the language',
+      'Choose The Language',
       name: 'Chooselanguage',
       desc: '',
       args: [],
     );
   }
 
-  /// `email`
+  /// `Email`
   String get email {
     return Intl.message(
-      'email',
+      'Email',
       name: 'email',
       desc: '',
       args: [],
     );
   }
 
-  /// `user name`
+  /// `User Name`
   String get username {
     return Intl.message(
-      'user name',
+      'User Name',
       name: 'username',
       desc: '',
       args: [],
     );
   }
 
-  /// `Email or Username is too short`
+  /// `Email Or Username Is Too Short`
   String get emailvalidate {
     return Intl.message(
-      'Email or Username is too short',
+      'Email Or Username Is Too Short',
       name: 'emailvalidate',
       desc: '',
       args: [],
@@ -210,20 +210,20 @@ class S {
     );
   }
 
-  /// `Re-type Password `
+  /// `Re-Type Password `
   String get RetypePassword {
     return Intl.message(
-      'Re-type Password ',
+      'Re-Type Password ',
       name: 'RetypePassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password is too short`
+  /// `Password Is Too Short`
   String get passwordvalidate {
     return Intl.message(
-      'Password is too short',
+      'Password Is Too Short',
       name: 'passwordvalidate',
       desc: '',
       args: [],
@@ -240,40 +240,40 @@ class S {
     );
   }
 
-  /// `skip`
+  /// `Skip`
   String get skip {
     return Intl.message(
-      'skip',
+      'Skip',
       name: 'skip',
       desc: '',
       args: [],
     );
   }
 
-  /// `chnage the company code`
+  /// `Chnage The Company Code`
   String get chnagecompcode {
     return Intl.message(
-      'chnage the company code',
+      'Chnage The Company Code',
       name: 'chnagecompcode',
       desc: '',
       args: [],
     );
   }
 
-  /// `start using the app`
+  /// `Start Using The App`
   String get startusingtheapp {
     return Intl.message(
-      'start using the app',
+      'Start Using The App',
       name: 'startusingtheapp',
       desc: '',
       args: [],
     );
   }
 
-  /// ` scan the QR code`
+  /// `Scan The QR Code`
   String get turnonthecameraandscan {
     return Intl.message(
-      ' scan the QR code',
+      'Scan The QR Code',
       name: 'turnonthecameraandscan',
       desc: '',
       args: [],
@@ -290,110 +290,110 @@ class S {
     );
   }
 
-  /// `fast access`
+  /// `Fast Access`
   String get fastaccess {
     return Intl.message(
-      'fast access',
+      'Fast Access',
       name: 'fastaccess',
       desc: '',
       args: [],
     );
   }
 
-  /// `customers`
+  /// `Customers`
   String get customers {
     return Intl.message(
-      'customers',
+      'Customers',
       name: 'customers',
       desc: '',
       args: [],
     );
   }
 
-  /// `suppliers`
+  /// `Suppliers`
   String get suppliers {
     return Intl.message(
-      'suppliers',
+      'Suppliers',
       name: 'suppliers',
       desc: '',
       args: [],
     );
   }
 
-  /// `purchases`
+  /// `Purchases`
   String get purchases {
     return Intl.message(
-      'purchases',
+      'Purchases',
       name: 'purchases',
       desc: '',
       args: [],
     );
   }
 
-  /// `sales`
+  /// `Sales`
   String get sales {
     return Intl.message(
-      'sales',
+      'Sales',
       name: 'sales',
       desc: '',
       args: [],
     );
   }
 
-  /// `warehouse`
+  /// `Stores`
   String get warehouse {
     return Intl.message(
-      'warehouse',
+      'Stores',
       name: 'warehouse',
       desc: '',
       args: [],
     );
   }
 
-  /// `general analysis`
+  /// `General Analysis`
   String get generalanalysis {
     return Intl.message(
-      'general analysis',
+      'General Analysis',
       name: 'generalanalysis',
       desc: '',
       args: [],
     );
   }
 
-  /// `human resources`
+  /// `Human Resources`
   String get humanresources {
     return Intl.message(
-      'human resources',
+      'Human Resources',
       name: 'humanresources',
       desc: '',
       args: [],
     );
   }
 
-  /// `funds and banks`
+  /// `Funds And Banks`
   String get fundsandbanks {
     return Intl.message(
-      'funds and banks',
+      'Funds And Banks',
       name: 'fundsandbanks',
       desc: '',
       args: [],
     );
   }
 
-  /// `search`
+  /// `Search`
   String get search {
     return Intl.message(
-      'search',
+      'Search',
       name: 'search',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sales Debt Limit`
+  /// `Debt Limit`
   String get salesDebtLimit {
     return Intl.message(
-      'Sales Debt Limit',
+      'Debt Limit',
       name: 'salesDebtLimit',
       desc: '',
       args: [],
@@ -420,10 +420,10 @@ class S {
     );
   }
 
-  /// `show details`
+  /// `Show Details`
   String get showdetails {
     return Intl.message(
-      'show details',
+      'Show Details',
       name: 'showdetails',
       desc: '',
       args: [],
@@ -440,90 +440,90 @@ class S {
     );
   }
 
-  /// `advanced search`
+  /// `Advanced`
   String get advancedsearch {
     return Intl.message(
-      'advanced search',
+      'Advanced',
       name: 'advancedsearch',
       desc: '',
       args: [],
     );
   }
 
-  /// `currency`
+  /// `Currency`
   String get currency {
     return Intl.message(
-      'currency',
+      'Currency',
       name: 'currency',
       desc: '',
       args: [],
     );
   }
 
-  /// `bransh`
+  /// `Bransh`
   String get bransh {
     return Intl.message(
-      'bransh',
+      'Bransh',
       name: 'bransh',
       desc: '',
       args: [],
     );
   }
 
-  /// `agent`
+  /// `Agent`
   String get agent {
     return Intl.message(
-      'agent',
+      'Agent',
       name: 'agent',
       desc: '',
       args: [],
     );
   }
 
-  /// `acount tybe`
+  /// `Acount Tybe`
   String get acounttybe {
     return Intl.message(
-      'acount tybe',
+      'Acount Tybe',
       name: 'acounttybe',
       desc: '',
       args: [],
     );
   }
 
-  /// `city`
+  /// `City`
   String get city {
     return Intl.message(
-      'city',
+      'City',
       name: 'city',
       desc: '',
       args: [],
     );
   }
 
-  /// `account statment`
+  /// `Account Statment`
   String get acountstatment {
     return Intl.message(
-      'account statment',
+      'Account Statment',
       name: 'acountstatment',
       desc: '',
       args: [],
     );
   }
 
-  /// `agent card`
+  /// `Agent Card`
   String get agentcard {
     return Intl.message(
-      'agent card',
+      'Agent Card',
       name: 'agentcard',
       desc: '',
       args: [],
     );
   }
 
-  /// `total`
+  /// `Total`
   String get total {
     return Intl.message(
-      'total',
+      'Total',
       name: 'total',
       desc: '',
       args: [],
@@ -540,250 +540,250 @@ class S {
     );
   }
 
-  /// `no date`
+  /// `No Date`
   String get nodate {
     return Intl.message(
-      'no date',
+      'No Date',
       name: 'nodate',
       desc: '',
       args: [],
     );
   }
 
-  /// `from`
+  /// `From`
   String get from {
     return Intl.message(
-      'from',
+      'From',
       name: 'from',
       desc: '',
       args: [],
     );
   }
 
-  /// `to`
+  /// `To`
   String get to {
     return Intl.message(
-      'to',
+      'To',
       name: 'to',
       desc: '',
       args: [],
     );
   }
 
-  /// `show`
+  /// `Show`
   String get show {
     return Intl.message(
-      'show',
+      'Show',
       name: 'show',
       desc: '',
       args: [],
     );
   }
 
-  /// `openning balance`
+  /// `Openning Balance`
   String get openningbalance {
     return Intl.message(
-      'openning balance',
+      'Openning Balance',
       name: 'openningbalance',
       desc: '',
       args: [],
     );
   }
 
-  /// `document`
+  /// `Document`
   String get document {
     return Intl.message(
-      'document',
+      'Document',
       name: 'document',
       desc: '',
       args: [],
     );
   }
 
-  /// `date`
+  /// `Date`
   String get date {
     return Intl.message(
-      'date',
+      'Date',
       name: 'date',
       desc: '',
       args: [],
     );
   }
 
-  /// `debtor`
+  /// `Debtor`
   String get debtor {
     return Intl.message(
-      'debtor',
+      'Debtor',
       name: 'debtor',
       desc: '',
       args: [],
     );
   }
 
-  /// `creditor`
+  /// `Creditor`
   String get creditor {
     return Intl.message(
-      'creditor',
+      'Creditor',
       name: 'creditor',
       desc: '',
       args: [],
     );
   }
 
-  /// `sum`
+  /// `Sum`
   String get sum {
     return Intl.message(
-      'sum',
+      'Sum',
       name: 'sum',
       desc: '',
       args: [],
     );
   }
 
-  /// `balance`
+  /// `Balance`
   String get balance {
     return Intl.message(
-      'balance',
+      'Balance',
       name: 'balance',
       desc: '',
       args: [],
     );
   }
 
-  /// `sales returns`
+  /// `Sales Returns`
   String get salesreturns {
     return Intl.message(
-      'sales returns',
+      'Sales Returns',
       name: 'salesreturns',
       desc: '',
       args: [],
     );
   }
 
-  /// `purchases returns`
+  /// `Purchases Returns`
   String get purchasesreturns {
     return Intl.message(
-      'purchases returns',
+      'Purchases Returns',
       name: 'purchasesreturns',
       desc: '',
       args: [],
     );
   }
 
-  /// `payments`
+  /// `Payments`
   String get payments {
     return Intl.message(
-      'payments',
+      'Payments',
       name: 'payments',
       desc: '',
       args: [],
     );
   }
 
-  /// `receipts`
+  /// `Receipts`
   String get receipts {
     return Intl.message(
-      'receipts',
+      'Receipts',
       name: 'receipts',
       desc: '',
       args: [],
     );
   }
 
-  /// `debit entries`
+  /// `Debit Entries`
   String get debitentries {
     return Intl.message(
-      'debit entries',
+      'Debit Entries',
       name: 'debitentries',
       desc: '',
       args: [],
     );
   }
 
-  /// `credit entries`
+  /// `Credit Entries`
   String get creditentries {
     return Intl.message(
-      'credit entries',
+      'Credit Entries',
       name: 'creditentries',
       desc: '',
       args: [],
     );
   }
 
-  /// `clear all`
+  /// `Clear All`
   String get clearall {
     return Intl.message(
-      'clear all',
+      'Clear All',
       name: 'clearall',
       desc: '',
       args: [],
     );
   }
 
-  /// `The limit of debt in a sale`
+  /// `The Limit Of Debt In A Sale`
   String get thelimitofdebtinasale {
     return Intl.message(
-      'The limit of debt in a sale',
+      'The Limit Of Debt In A Sale',
       name: 'thelimitofdebtinasale',
       desc: '',
       args: [],
     );
   }
 
-  /// `The limit of debt in a buy`
+  /// `The Limit Of Debt In A Buy`
   String get thelimitofdebtinabuy {
     return Intl.message(
-      'The limit of debt in a buy',
+      'The Limit Of Debt In A Buy',
       name: 'thelimitofdebtinabuy',
       desc: '',
       args: [],
     );
   }
 
-  /// `cycle day`
+  /// `Cycle Day`
   String get cycleday {
     return Intl.message(
-      'cycle day',
+      'Cycle Day',
       name: 'cycleday',
       desc: '',
       args: [],
     );
   }
 
-  /// `sale category name`
+  /// `Sale Category Name`
   String get salecategoryname {
     return Intl.message(
-      'sale category name',
+      'Sale Category Name',
       name: 'salecategoryname',
       desc: '',
       args: [],
     );
   }
 
-  /// `work phone`
+  /// `Work Phone`
   String get workphone {
     return Intl.message(
-      'work phone',
+      'Work Phone',
       name: 'workphone',
       desc: '',
       args: [],
     );
   }
 
-  /// `mobile number`
+  /// `Mobile Number`
   String get mobilenumber {
     return Intl.message(
-      'mobile number',
+      'Mobile Number',
       name: 'mobilenumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `notes`
+  /// `Notes`
   String get notes {
     return Intl.message(
-      'notes',
+      'Notes',
       name: 'notes',
       desc: '',
       args: [],
@@ -800,110 +800,110 @@ class S {
     );
   }
 
-  /// `price`
+  /// `Price`
   String get price {
     return Intl.message(
-      'price',
+      'Price',
       name: 'price',
       desc: '',
       args: [],
     );
   }
 
-  /// `quantity`
+  /// `Quantity`
   String get quantity {
     return Intl.message(
-      'quantity',
+      'Quantity',
       name: 'quantity',
       desc: '',
       args: [],
     );
   }
 
-  /// `k`
+  /// `K`
   String get k {
     return Intl.message(
-      'k',
+      'K',
       name: 'k',
       desc: '',
       args: [],
     );
   }
 
-  /// `please select a valide date range`
+  /// `Please Select A Valide Date Range`
   String get unvalidedate {
     return Intl.message(
-      'please select a valide date range',
+      'Please Select A Valide Date Range',
       name: 'unvalidedate',
       desc: '',
       args: [],
     );
   }
 
-  /// `boxs and banks`
+  /// `Boxs And Banks`
   String get boxsandbanks {
     return Intl.message(
-      'boxs and banks',
+      'Boxs And Banks',
       name: 'boxsandbanks',
       desc: '',
       args: [],
     );
   }
 
-  /// `all`
+  /// `All`
   String get all {
     return Intl.message(
-      'all',
+      'All',
       name: 'all',
       desc: '',
       args: [],
     );
   }
 
-  /// `delayed`
+  /// `Delayed`
   String get delayed {
     return Intl.message(
-      'delayed',
+      'Delayed',
       name: 'delayed',
       desc: '',
       args: [],
     );
   }
 
-  /// `cash`
+  /// `Cash`
   String get cash {
     return Intl.message(
-      'cash',
+      'Cash',
       name: 'cash',
       desc: '',
       args: [],
     );
   }
 
-  /// `Movement type`
+  /// `Movement Type`
   String get movementtype {
     return Intl.message(
-      'Movement type',
+      'Movement Type',
       name: 'movementtype',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invoice type`
+  /// `Invoice Type`
   String get invoicetype {
     return Intl.message(
-      'Invoice type',
+      'Invoice Type',
       name: 'invoicetype',
       desc: '',
       args: [],
     );
   }
 
-  /// `Payment method`
+  /// `Payment Method`
   String get paymentmethod {
     return Intl.message(
-      'Payment method',
+      'Payment Method',
       name: 'paymentmethod',
       desc: '',
       args: [],
@@ -920,80 +920,80 @@ class S {
     );
   }
 
-  /// `Transportation company`
+  /// `Transportation Company`
   String get transportationcompany {
     return Intl.message(
-      'Transportation company',
+      'Transportation Company',
       name: 'transportationcompany',
       desc: '',
       args: [],
     );
   }
 
-  /// `due date`
+  /// `Due Date`
   String get duedate {
     return Intl.message(
-      'due date',
+      'Due Date',
       name: 'duedate',
       desc: '',
       args: [],
     );
   }
 
-  /// `project`
+  /// `Project`
   String get project {
     return Intl.message(
-      'project',
+      'Project',
       name: 'project',
       desc: '',
       args: [],
     );
   }
 
-  /// `the amount`
+  /// `The Amount`
   String get theamount {
     return Intl.message(
-      'the amount',
+      'The Amount',
       name: 'theamount',
       desc: '',
       args: [],
     );
   }
 
-  /// `raw m store`
+  /// `Raw M Store`
   String get rawmstore {
     return Intl.message(
-      'raw m store',
+      'Raw M Store',
       name: 'rawmstore',
       desc: '',
       args: [],
     );
   }
 
-  /// `result m store`
+  /// `Result M Store`
   String get resultmstore {
     return Intl.message(
-      'result m store',
+      'Result M Store',
       name: 'resultmstore',
       desc: '',
       args: [],
     );
   }
 
-  /// `item`
+  /// `Item`
   String get item {
     return Intl.message(
-      'item',
+      'Item',
       name: 'item',
       desc: '',
       args: [],
     );
   }
 
-  /// `search for item`
+  /// `Search For Item`
   String get searchforitem {
     return Intl.message(
-      'search for item',
+      'Search For Item',
       name: 'searchforitem',
       desc: '',
       args: [],
@@ -1010,50 +1010,50 @@ class S {
     );
   }
 
-  /// `result count`
+  /// `Result Count`
   String get resultcount {
     return Intl.message(
-      'result count',
+      'Result Count',
       name: 'resultcount',
       desc: '',
       args: [],
     );
   }
 
-  /// `cost`
+  /// `Cost`
   String get cost {
     return Intl.message(
-      'cost',
+      'Cost',
       name: 'cost',
       desc: '',
       args: [],
     );
   }
 
-  /// `rate`
+  /// `Rate`
   String get costRate {
     return Intl.message(
-      'rate',
+      'Rate',
       name: 'costRate',
       desc: '',
       args: [],
     );
   }
 
-  /// `batch`
+  /// `Batch`
   String get batchnumber {
     return Intl.message(
-      'batch',
+      'Batch',
       name: 'batchnumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `expiry date`
+  /// `Expiry Date`
   String get expirydate {
     return Intl.message(
-      'expiry date',
+      'Expiry Date',
       name: 'expirydate',
       desc: '',
       args: [],

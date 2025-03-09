@@ -9,6 +9,7 @@ class CustomerModel extends Customer {
     required super.currentBalance,
     required super.address,
     required super.salesDebtLimit,
+    required super.buyDebtLimit,
     required super.dealingCurrencyGuid,
   });
 
@@ -20,6 +21,7 @@ class CustomerModel extends Customer {
         currentBalance: json['CurrentBalance'] ?? '',
         address: json['Address'] ?? '',
         salesDebtLimit: json['SalesDebtLimit'] ?? '',
+        buyDebtLimit: json['BuyDebtLimit'] ?? '',
         dealingCurrencyGuid: json['DealingCurrencyGuid'] ?? '',
       );
 }

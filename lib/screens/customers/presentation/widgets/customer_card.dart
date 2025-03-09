@@ -42,12 +42,12 @@ class CustomerCard extends StatelessWidget {
           Wrap(
             children: [
               AppText(
-                text: "${customer.name}-",
+                text: "${customer.code}-",
                 color: AppColor.appbuleBG,
                 fontSize: 18,
               ),
               AppText(
-                text: customer.code,
+                text: customer.name,
                 color: AppColor.appbuleBG,
                 fontSize: 18,
               ),
@@ -106,10 +106,16 @@ class CustomerCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppText(
-                      text: customer.salesDebtLimit,
-                      color: AppColor.apptitle,
-                      fontSize: 16,
+                    BlocBuilder<FiltersBloc, FiltersState>(
+                      builder: (context, state) {
+                        return AppText(
+                          text: (state.page == 'suppliers')
+                              ? customer.buyDebtLimit
+                              : customer.salesDebtLimit,
+                          color: AppColor.apptitle,
+                          fontSize: 16,
+                        );
+                      },
                     ),
                   ],
                 ),

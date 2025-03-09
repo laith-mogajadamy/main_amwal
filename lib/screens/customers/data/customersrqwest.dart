@@ -25,8 +25,9 @@ class CustomersReqwest {
       "POSGUID": Preferences.getPOSGUID()!,
     };
     http.Response response = await http.get(url, headers: headers);
-    var resmap = jsonDecode(response.body);
-    print(resmap);
+    var responsemap = jsonDecode(response.body);
+    print("customersresponsemap=");
+    print(responsemap);
     return response;
   }
 
@@ -51,7 +52,9 @@ class CustomersReqwest {
       "POSGUID": Preferences.getPOSGUID()!,
     };
     http.Response response = await http.get(url, headers: headers);
-
+    var responsemap = jsonDecode(response.body);
+    print("suppliersresponsemap=");
+    print(responsemap);
     return response;
   }
 

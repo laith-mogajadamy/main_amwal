@@ -8,6 +8,8 @@ class Customer extends Equatable {
   final String currentBalance;
   final String address;
   final String salesDebtLimit;
+  final String buyDebtLimit;
+
   final String dealingCurrencyGuid;
 
   const Customer({
@@ -18,6 +20,7 @@ class Customer extends Equatable {
     required this.currentBalance,
     required this.address,
     required this.salesDebtLimit,
+    required this.buyDebtLimit,
     required this.dealingCurrencyGuid,
   });
 
@@ -30,6 +33,7 @@ class Customer extends Equatable {
         currentBalance,
         address,
         salesDebtLimit,
+        buyDebtLimit,
         dealingCurrencyGuid,
       ];
 }
