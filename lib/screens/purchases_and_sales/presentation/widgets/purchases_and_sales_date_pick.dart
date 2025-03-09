@@ -74,16 +74,17 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
         return Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     AppText(
-                        text: "${S.of(context).from}:",
-                        color: AppColor.apptitle,
-                        fontSize: 12),
+                      text: "${S.of(context).from}:",
+                      color: AppColor.apptitle,
+                      fontSize: 16,
+                    ),
                     SizedBox(
-                      width: 0.w,
+                      width: 5.w,
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -122,14 +123,15 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
                           shape: const StadiumBorder()),
                       child: AppText(
-                          text: state.fromDate != ''
-                              ? state.fromDate
-                              : S.of(context).nodate,
-                          color: AppColor.apptitle,
-                          fontSize: 12),
+                        text: state.fromDate != ''
+                            ? state.fromDate
+                            : S.of(context).nodate,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),
@@ -139,11 +141,12 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                 Row(
                   children: [
                     AppText(
-                        text: "${S.of(context).to}:",
-                        color: AppColor.apptitle,
-                        fontSize: 12),
+                      text: "${S.of(context).to}:",
+                      color: AppColor.apptitle,
+                      fontSize: 16,
+                    ),
                     SizedBox(
-                      width: 0.w,
+                      width: 5.w,
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -185,7 +188,7 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                             ? state.toDate
                             : S.of(context).nodate,
                         color: AppColor.apptitle,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -229,25 +232,26 @@ class PurchasesAndSalesDatePick extends StatelessWidget {
                     : Row(
                         children: [
                           AppText(
-                              text: "${S.of(context).duedate}:",
-                              color: AppColor.apptitle,
-                              fontSize: 12),
+                            text: "${S.of(context).duedate}:",
+                            color: AppColor.apptitle,
+                            fontSize: 16,
+                          ),
                           SizedBox(
-                            width: 0.w,
+                            width: 5.w,
                           ),
                           ElevatedButton(
                             onPressed: () =>
                                 pickDate(context, 'state', state.dueDate),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColor.whiteColor,
-                                padding: const EdgeInsets.all(10),
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
                                 shape: const StadiumBorder()),
                             child: AppText(
                               text: state.dueDate != ''
                                   ? state.dueDate
                                   : S.of(context).nodate,
                               color: AppColor.apptitle,
-                              fontSize: 12,
+                              fontSize: 14,
                             ),
                           ),
                           SizedBox(

@@ -104,7 +104,9 @@ class _TotalStatmentComponentState extends State<TotalStatmentComponent> {
                   ],
                 ),
                 SizedBox(
-                  height: widget.size.height / 2.2,
+                  height: (state.statmentLoadMoreState == RequestState.loading)
+                      ? widget.size.height / 2.8
+                      : widget.size.height / 2.5,
                   child: ListView.builder(
                     controller: scrollController,
                     shrinkWrap: false,

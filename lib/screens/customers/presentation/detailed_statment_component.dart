@@ -71,7 +71,9 @@ class _DetailedStatmentComponentState extends State<DetailedStatmentComponent> {
             return Column(
               children: [
                 SizedBox(
-                  height: widget.size.height / 2.1,
+                  height: (state.statmentLoadMoreState == RequestState.loading)
+                      ? widget.size.height / 2.6
+                      : widget.size.height / 2.3,
                   child: ListView.builder(
                     shrinkWrap: false,
                     controller: scrollController,

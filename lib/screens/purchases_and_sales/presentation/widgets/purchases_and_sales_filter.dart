@@ -150,7 +150,7 @@ class PurchasesAndSalesFilters extends StatelessWidget {
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 2.3,
+                  childAspectRatio: 2.1,
                 ),
                 itemCount: filters.length,
                 itemBuilder: (BuildContext context, int index) {

@@ -23,12 +23,15 @@ class HomeDrawer extends StatelessWidget {
       backgroundColor: AppColor.whiteColorBG,
       width: size.width / 1.5,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
+        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
+                SizedBox(
+                  height: 20.h,
+                ),
                 Container(
                   width: size.width / 2,
                   height: size.height / 5,
@@ -71,7 +74,7 @@ class HomeDrawer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
-                      text: "${S.of(context).version}: 0.4.6",
+                      text: "${S.of(context).version}: 0.4.9",
                       color: AppColor.apptitle,
                       fontSize: 16,
                     ),

@@ -72,15 +72,16 @@ class BoxFromToDatePick extends StatelessWidget {
         return Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     AppText(
                         text: "${S.of(context).from}:",
                         color: AppColor.apptitle,
-                        fontSize: 12),
+                        fontSize: 16),
                     SizedBox(
-                      width: 0.w,
+                      width: 5.w,
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -105,14 +106,14 @@ class BoxFromToDatePick extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
                           shape: const StadiumBorder()),
                       child: AppText(
                         text: state.fromdate != ''
                             ? state.fromdate
                             : S.of(context).nodate,
                         color: AppColor.apptitle,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -125,10 +126,10 @@ class BoxFromToDatePick extends StatelessWidget {
                     AppText(
                       text: "${S.of(context).to}:",
                       color: AppColor.apptitle,
-                      fontSize: 12,
+                      fontSize: 16,
                     ),
                     SizedBox(
-                      width: 0.w,
+                      width: 5.w,
                     ),
                     ElevatedButton(
                       onPressed: () async {
@@ -155,14 +156,14 @@ class BoxFromToDatePick extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.whiteColor,
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
                           shape: const StadiumBorder()),
                       child: AppText(
                         text: state.todate != ''
                             ? state.todate
                             : S.of(context).nodate,
                         color: AppColor.apptitle,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -177,23 +178,23 @@ class BoxFromToDatePick extends StatelessWidget {
                 AppText(
                   text: "${S.of(context).stateDate}:",
                   color: AppColor.apptitle,
-                  fontSize: 12,
+                  fontSize: 16,
                 ),
                 SizedBox(
-                  width: 0.w,
+                  width: 5.w,
                 ),
                 ElevatedButton(
                   onPressed: () => pickDate(context, 'state', state.statedate),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColor.whiteColor,
-                      padding: const EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       shape: const StadiumBorder()),
                   child: AppText(
                     text: state.statedate != ''
                         ? state.statedate
                         : S.of(context).nodate,
                     color: AppColor.apptitle,
-                    fontSize: 12,
+                    fontSize: 14,
                   ),
                 ),
               ],
