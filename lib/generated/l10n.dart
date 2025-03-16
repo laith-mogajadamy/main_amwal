@@ -380,6 +380,16 @@ class S {
     );
   }
 
+  /// `Daily Movment`
+  String get DailyMovment {
+    return Intl.message(
+      'Daily Movment',
+      name: 'DailyMovment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Search`
   String get search {
     return Intl.message(

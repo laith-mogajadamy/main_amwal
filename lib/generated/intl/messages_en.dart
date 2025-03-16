@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change The Language"),
         "Chooselanguage":
             MessageLookupByLibrary.simpleMessage("Choose The Language"),
+        "DailyMovment": MessageLookupByLibrary.simpleMessage("Daily Movment"),
         "LogInbotton": MessageLookupByLibrary.simpleMessage("Log In"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
         "RetypePassword":

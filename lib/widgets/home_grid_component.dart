@@ -8,6 +8,7 @@ import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/box/presentation/boxs_page.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
 import 'package:mainamwal/screens/customers/presentation/customer_page.dart';
+import 'package:mainamwal/screens/daily_movment/presentation/daily_movment_page.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/controller/general_analysis_bloc.dart';
 import 'package:mainamwal/screens/general_analysis/presentation/general_analysis_page.dart';
@@ -123,7 +124,19 @@ class HomeGridComponent extends StatelessWidget {
           );
         }
       ],
-      [S.of(context).humanresources, "assets/svg/HR orange svg.svg", () {}],
+      [
+        S.of(context).DailyMovment,
+        "assets/svg/diary-svgrepo-com.svg",
+        () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => DailyMovmentPage(
+                title: S.of(context).DailyMovment,
+              ),
+            ),
+          );
+        }
+      ],
       [
         S.of(context).fundsandbanks,
         "assets/svg/fundes orange svg.svg",
@@ -180,6 +193,9 @@ class HomeGridComponent extends StatelessWidget {
                     ),
                     SvgPicture.asset(
                       fit: BoxFit.scaleDown,
+                      color: AppColor.orangefont,
+                      height: 30.h,
+                      width: 30.w,
                       griddata[index][1],
                     )
                   ],

@@ -11,6 +11,7 @@ import 'package:mainamwal/core/utils/user_hive.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/box/controller/box_bloc.dart';
 import 'package:mainamwal/screens/customers/controller/customers_bloc.dart';
+import 'package:mainamwal/screens/daily_movment/controller/daily_movment_bloc.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/enter/presentation/Auth/splash.dart';
 import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
@@ -63,6 +64,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<GeneralAnalysisBloc>(
           create: (context) => GeneralAnalysisBloc(),
+        ),
+        BlocProvider<DailyMovmentBloc>(
+          create: (context) => DailyMovmentBloc(),
         ),
       ],
       child: BlocBuilder<EnterBloc, EnterState>(
