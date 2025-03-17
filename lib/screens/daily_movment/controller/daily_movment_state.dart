@@ -16,6 +16,11 @@ class DailyMovmentState extends Equatable {
   //
   final List<Company> companys; // Added companys list
   final Company selectedcompany; // Added selectedcompany
+  //
+  final List<DocumentsCategories>
+      documentsCategories; // Added documentsCategories list
+  final DocumentsCategories
+      selectedDocumentsCategorie; // Added selectedDocumentsCategorie
 
   const DailyMovmentState({
     this.token = '',
@@ -38,6 +43,15 @@ class DailyMovmentState extends Equatable {
       name: '',
       iddefault: '',
     ), // Default empty Company instance
+    //
+    this.documentsCategories =
+        const [], // Default empty list for documentsCategories
+    this.selectedDocumentsCategorie = const DocumentsCategories(
+      guid: '',
+      code: '',
+      name: '',
+      iddefault: false,
+    ), // Default empty DocumentsCategories instance
   });
 
   DailyMovmentState copyWith({
@@ -56,10 +70,12 @@ class DailyMovmentState extends Equatable {
     //
     List<Company>? companys,
     Company? selectedcompany,
+    //
+    List<DocumentsCategories>? documentsCategories,
+    DocumentsCategories? selectedDocumentsCategorie,
   }) {
     return DailyMovmentState(
       token: token ?? this.token,
-
       //
       dailyMovment: dailyMovment ?? this.dailyMovment,
       dailyMovmentState: dailyMovmentState ?? this.dailyMovmentState,
@@ -74,6 +90,10 @@ class DailyMovmentState extends Equatable {
       //
       companys: companys ?? this.companys,
       selectedcompany: selectedcompany ?? this.selectedcompany,
+      //
+      documentsCategories: documentsCategories ?? this.documentsCategories,
+      selectedDocumentsCategorie:
+          selectedDocumentsCategorie ?? this.selectedDocumentsCategorie,
     );
   }
 
@@ -94,5 +114,8 @@ class DailyMovmentState extends Equatable {
         //
         companys,
         selectedcompany,
+        //
+        documentsCategories,
+        selectedDocumentsCategorie,
       ];
 }

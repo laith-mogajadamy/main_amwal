@@ -17,8 +17,7 @@ class ClearDailyMovment extends DailyMovmentEvent {
 }
 
 class GetDefDates extends DailyMovmentEvent {
-  final BuildContext context;
-  GetDefDates({required this.context});
+  GetDefDates();
   @override
   List<Object?> get props => [];
 }
@@ -72,4 +71,22 @@ class CompanyChanged extends DailyMovmentEvent {
 
   @override
   List<Object?> get props => [company];
+}
+
+class GetDocumentsCategories extends DailyMovmentEvent {
+  final String tybe;
+
+  GetDocumentsCategories({required this.tybe});
+
+  @override
+  List<Object?> get props => [tybe];
+}
+
+class DocumentsCategoriesChanged extends DailyMovmentEvent {
+  final DocumentsCategories? documentsCategorie;
+
+  DocumentsCategoriesChanged({this.documentsCategorie});
+
+  @override
+  List<Object?> get props => [documentsCategorie];
 }

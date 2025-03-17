@@ -68,28 +68,44 @@ class _DailyMovmentComponentState extends State<DailyMovmentComponent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: size.width / 3.5,
+                      width: size.width / 4,
                       child: Row(
                         children: [
                           AppText(
                             text: "  ${S.of(context).date}/",
                             color: AppColor.apptitle,
-                            fontSize: 14,
+                            fontSize: 12,
                           ),
                           AppText(
                             text: S.of(context).document,
                             color: AppColor.apptitle,
-                            fontSize: 14,
+                            fontSize: 12,
                           ),
                         ],
                       ),
                     ),
+                    SizedBox(
+                      width: size.width / 5,
+                      child: AppText(
+                        text: S.of(context).debtor,
+                        color: AppColor.apptitle,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.width / 5,
+                      child: AppText(
+                        text: S.of(context).creditor,
+                        color: AppColor.redfont,
+                        fontSize: 14,
+                      ),
+                    ),
                     Padding(
-                      padding: EdgeInsets.only(right: 30.w),
+                      padding: EdgeInsets.only(right: 0.w),
                       child: SizedBox(
-                        width: size.width / 3.5,
+                        width: size.width / 5,
                         child: AppText(
-                          text: S.of(context).theamount,
+                          text: S.of(context).delayed,
                           color: AppColor.apptitle,
                           fontSize: 14,
                         ),

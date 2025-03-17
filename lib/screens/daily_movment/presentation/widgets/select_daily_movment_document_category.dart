@@ -1,7 +1,7 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/documents_categories.dart';
-import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
+import 'package:mainamwal/screens/daily_movment/controller/daily_movment_bloc.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class SelectDailyMovmentDocumentCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<FiltersBloc, FiltersState>(
+    return BlocBuilder<DailyMovmentBloc, DailyMovmentState>(
       builder: (context, state) {
         List<DropdownMenuItem<DocumentsCategories>> documentsCategoriesList =
             state.documentsCategories
@@ -80,7 +80,7 @@ class SelectDailyMovmentDocumentCategory extends StatelessWidget {
                         ? null
                         : state.selectedDocumentsCategorie,
                     onChanged: (value) {
-                      context.read<FiltersBloc>().add(
+                      context.read<DailyMovmentBloc>().add(
                             DocumentsCategoriesChanged(
                               documentsCategorie: value,
                             ),

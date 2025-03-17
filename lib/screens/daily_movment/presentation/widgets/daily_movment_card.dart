@@ -20,7 +20,7 @@ class DailyMovmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime date = DateTime.parse(dailyMovment.securitiesDate);
-    String formattedDate = DateFormat('yyyy-MM-dd', "en").format(date);
+    String formattedDate = DateFormat('HH:mm', "en").format(date);
 
     return Container(
       decoration: BoxDecoration(
@@ -72,7 +72,7 @@ class DailyMovmentCard extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 5.w),
-                    width: size.width / 3.5,
+                    width: size.width / 5,
                     child: AppText(
                       text: formattedDate,
                       color: AppColor.apptitle,
@@ -86,13 +86,35 @@ class DailyMovmentCard extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                width: size.width / 5,
+                child: Center(
+                  child: MoneyText(
+                    text: dailyMovment.debet.toString(),
+                    color: AppColor.appbuleBG,
+                    fontSize: 16,
+                    disimalnumber: 3,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: size.width / 5,
+                child: Center(
+                  child: MoneyText(
+                    text: dailyMovment.credit.toString(),
+                    color: AppColor.redfont,
+                    fontSize: 16,
+                    disimalnumber: 3,
+                  ),
+                ),
+              ),
               Padding(
-                padding: EdgeInsets.only(right: 30.w),
+                padding: EdgeInsets.only(right: 0.w),
                 child: SizedBox(
-                  width: size.width / 3.5,
+                  width: size.width / 5,
                   child: Center(
                     child: MoneyText(
-                      text: dailyMovment.credit.toString(),
+                      text: dailyMovment.ageL.toString(),
                       color: AppColor.appbuleBG,
                       fontSize: 16,
                       disimalnumber: 3,

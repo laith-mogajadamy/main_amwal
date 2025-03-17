@@ -1,7 +1,7 @@
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/filters/company.dart';
-import 'package:mainamwal/screens/box/controller/box_bloc.dart';
+import 'package:mainamwal/screens/daily_movment/controller/daily_movment_bloc.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class SelectDailyMovmentCompany extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<BoxBloc, BoxState>(
+    return BlocBuilder<DailyMovmentBloc, DailyMovmentState>(
       builder: (context, state) {
         List<DropdownMenuItem<Company>> companyslist = [];
         for (var i = 0; i < state.companys.length; i++) {
@@ -69,7 +69,7 @@ class SelectDailyMovmentCompany extends StatelessWidget {
                     ? null
                     : state.selectedcompany,
                 onChanged: (value) {
-                  context.read<BoxBloc>().add(
+                  context.read<DailyMovmentBloc>().add(
                         CompanyChanged(
                           company: value,
                         ),
