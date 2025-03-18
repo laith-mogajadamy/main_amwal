@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
@@ -51,7 +50,7 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
   }
 
   Future<void> _onGetCompanys(
-      GetCompanys event, Emitter<DailyMovmentState> emit) async {
+      dynamic event, Emitter<DailyMovmentState> emit) async {
     final response = await VeriabelsRequest.getcompanys();
     final responseMap = jsonDecode(response.body);
 
@@ -60,16 +59,14 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
         (responseMap['data'] as List).map((e) => CompanyModel.fromJson(e)),
       );
       emit(state.copyWith(companys: companyList));
-      DateTime initDate = DateTime.now();
       emit(
         state.copyWith(
           selectedcompany:
               companyList.firstWhere((element) => element.iddefault == '1'),
-          fromDate: DateFormat('yyyy-MM-dd', 'en').format(initDate),
         ),
       );
-      add(GetDocumentsCategories(tybe: 'sale'));
-      add(GetDailyMovment());
+      // add(GetDocumentsCategories(tybe: 'all'));
+      print(companyList);
     }
   }
 
@@ -80,23 +77,35 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
   }
 
   Future<void> _onGetDocumentsCategories(
-      GetDocumentsCategories event, Emitter<DailyMovmentState> emit) async {
-    final response = await VeriabelsRequest.getdocumentscategories(event.tybe);
+      dynamic event, Emitter<DailyMovmentState> emit) async {
+    final response = await VeriabelsRequest.getdocumentscategories('all');
     final responseMap = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      final categories = List<DocumentsCategoriesModel>.from(
-        (responseMap['data'] as List)
-            .map((e) => DocumentsCategoriesModel.fromJson(e)),
-      );
-      emit(state.copyWith(documentsCategories: categories));
-      emit(
-        state.copyWith(
-          selectedDocumentsCategorie:
-              categories.firstWhere((element) => element.iddefault == true),
+      List<DocumentsCategories> categories = [
+        DocumentsCategories(
+          guid: '',
+          code: '',
+          name: 'الكل',
+          iddefault: false,
         ),
-      );
+      ];
+      categories = categories
+        ..addAll(List<DocumentsCategoriesModel>.from(
+          (responseMap['data'] as List)
+              .map((e) => DocumentsCategoriesModel.fromJson(e)),
+        ));
+
+      emit(state.copyWith(documentsCategories: categories));
+      // emit(
+      //   state.copyWith(
+      //     selectedDocumentsCategorie:
+      //         categories.firstWhere((element) => element.iddefault == true),
+      //   ),
+      // );
+      print(categories);
     }
+    // add(GetDailyMovment());
   }
 
   void _onDocumentsCategoriesChanged(
@@ -130,6 +139,8 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
 
   Future<void> _onGetDailyMovment(
       GetDailyMovment event, Emitter<DailyMovmentState> emit) async {
+    await _onGetCompanys(event, emit);
+    await _onGetDocumentsCategories(event, emit);
     String? token = Preferences.getToken();
     if (token?.isNotEmpty ?? false) {
       emit(state.copyWith(
@@ -137,8 +148,8 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
           dailyMovment: [],
           dailyMovmentState: RequestState.loading,
           page: 1));
-      final response = await DailyMovmentReqwest.getDailyMovment(
-          state.fromDate, state.selectedcompany.guid, 1);
+      final response = await DailyMovmentReqwest.getDailyMovment(state.fromDate,
+          state.selectedcompany.guid, state.selectedDocumentsCategorie.code, 1);
       final responseMap = jsonDecode(response.body);
       if (response.statusCode == 200) {
         emit(state.copyWith(
@@ -159,7 +170,10 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
     emit(state.copyWith(
         loadMoreState: RequestState.loading, page: state.page + 1));
     final response = await DailyMovmentReqwest.getDailyMovment(
-        state.fromDate, state.selectedcompany.guid, state.page);
+        state.fromDate,
+        state.selectedcompany.guid,
+        state.selectedDocumentsCategorie.guid,
+        state.page);
     final responseMap = jsonDecode(response.body);
     if (response.statusCode == 200) {
       List<DailyMovment> updatedList = List.from(state.dailyMovment)

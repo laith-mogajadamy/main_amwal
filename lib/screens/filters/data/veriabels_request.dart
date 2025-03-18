@@ -207,7 +207,8 @@ class VeriabelsRequest {
     };
     var body = jsonEncode(data);
     http.Response response = await http.post(url, headers: headers, body: body);
-
+    final responseMap = jsonDecode(response.body);
+    print(responseMap);
     return response;
   }
 

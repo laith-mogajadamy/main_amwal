@@ -28,11 +28,13 @@ class DailyMovmentReqwest {
   static Future<http.Response> getDailyMovment(
     String date,
     String companiesGuid,
+    String categoriesCode,
     int page,
   ) async {
     Map data = {
       "Date": date,
       "CompaniesGuid": companiesGuid,
+      "CategoriesCode": categoriesCode,
     };
     print(data);
     var body = jsonEncode(data);

@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/screens/daily_movment/controller/daily_movment_bloc.dart';
@@ -22,10 +23,11 @@ class DailyMovmentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
-    TextEditingController controller = TextEditingController();
     Size size = MediaQuery.of(context).size;
-    context.read<DailyMovmentBloc>().add(GetCompanys());
-
+    DateTime initDate = DateTime.now();
+    String f = DateFormat('yyyy-MM-dd', 'en').format(initDate);
+    context.read<DailyMovmentBloc>().add(FromDateChanged(fromdate: f));
+    context.read<DailyMovmentBloc>().add(GetDailyMovment());
     return Scaffold(
       key: scaffoldkey,
       backgroundColor: AppColor.whiteColorBG,
