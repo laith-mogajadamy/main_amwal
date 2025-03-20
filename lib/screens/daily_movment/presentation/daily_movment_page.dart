@@ -13,7 +13,7 @@ import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DailyMovmentPage extends StatelessWidget {
+class DailyMovmentPage extends StatefulWidget {
   final String title;
   const DailyMovmentPage({
     super.key,
@@ -21,20 +21,33 @@ class DailyMovmentPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
-    Size size = MediaQuery.of(context).size;
+  State<DailyMovmentPage> createState() => _DailyMovmentPageState();
+}
+
+class _DailyMovmentPageState extends State<DailyMovmentPage> {
+  @override
+  void initState() {
     DateTime initDate = DateTime.now();
     String f = DateFormat('yyyy-MM-dd', 'en').format(initDate);
     context.read<DailyMovmentBloc>().add(FromDateChanged(fromdate: f));
-    context.read<DailyMovmentBloc>().add(GetDailyMovment());
+    context.read<DailyMovmentBloc>().add(GetCompanys());
+    context.read<DailyMovmentBloc>().add(GetDocumentsCategories(tybe: 'all'));
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       key: scaffoldkey,
       backgroundColor: AppColor.whiteColorBG,
       appBar: AppBar(
         backgroundColor: AppColor.appbuleBG,
         title: AppText(
-          text: title,
+          text: widget.title,
           color: AppColor.whiteColor,
           fontSize: 18,
         ),
@@ -74,7 +87,7 @@ class DailyMovmentPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               AppText(
-                                text: S.of(context).search,
+                                text: S.of(context).show,
                                 color: AppColor.whiteColor,
                                 fontSize: 16,
                               ),

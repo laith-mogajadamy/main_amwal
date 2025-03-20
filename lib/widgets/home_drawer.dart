@@ -74,7 +74,7 @@ class HomeDrawer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppText(
-                      text: "${S.of(context).version}: 0.5.2",
+                      text: "${S.of(context).version}: 0.5.4",
                       color: AppColor.apptitle,
                       fontSize: 16,
                     ),

@@ -139,8 +139,6 @@ class DailyMovmentBloc extends Bloc<DailyMovmentEvent, DailyMovmentState> {
 
   Future<void> _onGetDailyMovment(
       GetDailyMovment event, Emitter<DailyMovmentState> emit) async {
-    await _onGetCompanys(event, emit);
-    await _onGetDocumentsCategories(event, emit);
     String? token = Preferences.getToken();
     if (token?.isNotEmpty ?? false) {
       emit(state.copyWith(
