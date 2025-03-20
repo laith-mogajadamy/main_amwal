@@ -133,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The Limit Of Debt In A Sale"),
         "thereisanupdate":
             MessageLookupByLibrary.simpleMessage("There Is An Update"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "timedout": MessageLookupByLibrary.simpleMessage("Timed Out"),
         "to": MessageLookupByLibrary.simpleMessage("To"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),

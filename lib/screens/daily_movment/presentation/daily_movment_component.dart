@@ -2,15 +2,11 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/enums.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/model/daily_movment/daily_movment.dart';
-import 'package:mainamwal/model/purchases_and_sales/daily_pruchas_and_sale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mainamwal/screens/daily_movment/controller/daily_movment_bloc.dart';
 import 'package:mainamwal/screens/daily_movment/presentation/widgets/daily_movment_card.dart';
-import 'package:mainamwal/screens/filters/controller/filters_bloc.dart';
-import 'package:mainamwal/screens/purchases_and_sales/controller/purchases_and_sales_bloc.dart';
-import 'package:mainamwal/screens/purchases_and_sales/presentation/widgets/purchases_and_sales_card.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 
 class DailyMovmentComponent extends StatefulWidget {
@@ -68,18 +64,13 @@ class _DailyMovmentComponentState extends State<DailyMovmentComponent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: size.width / 4,
+                      width: size.width / 5,
                       child: Row(
                         children: [
                           AppText(
-                            text: "  ${S.of(context).date}/",
+                            text: "   ${S.of(context).time}",
                             color: AppColor.apptitle,
-                            fontSize: 12,
-                          ),
-                          AppText(
-                            text: S.of(context).document,
-                            color: AppColor.apptitle,
-                            fontSize: 12,
+                            fontSize: 14,
                           ),
                         ],
                       ),
@@ -87,7 +78,7 @@ class _DailyMovmentComponentState extends State<DailyMovmentComponent> {
                     SizedBox(
                       width: size.width / 5,
                       child: AppText(
-                        text: S.of(context).debtor,
+                        text: S.of(context).receipts,
                         color: AppColor.apptitle,
                         fontSize: 14,
                       ),
@@ -95,7 +86,7 @@ class _DailyMovmentComponentState extends State<DailyMovmentComponent> {
                     SizedBox(
                       width: size.width / 5,
                       child: AppText(
-                        text: S.of(context).creditor,
+                        text: S.of(context).payments,
                         color: AppColor.redfont,
                         fontSize: 14,
                       ),

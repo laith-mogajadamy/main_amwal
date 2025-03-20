@@ -101,5 +101,6 @@
     "cost": "التكلفة",
     "costRate": "المعدل",
     "batchnumber": "الدفعة",
-    "expirydate": "تاريخ الانتهاء"
+    "expirydate": "تاريخ الانتهاء",
+    "time": "الوقت"
 }

@@ -100,5 +100,6 @@
     "cost": "Cost",
     "costRate": "Rate",
     "batchnumber": "Batch",
-    "expirydate": "Expiry Date"
+    "expirydate": "Expiry Date",
+    "time": "Time"
 }

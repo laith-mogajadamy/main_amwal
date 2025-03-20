@@ -2,7 +2,6 @@ import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/core/utils/prefrences.dart';
 import 'package:mainamwal/generated/l10n.dart';
 import 'package:mainamwal/pages/home.dart';
-import 'package:mainamwal/pages/pages.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
 import 'package:mainamwal/screens/enter/presentation/Auth/login.dart';
 import 'package:mainamwal/screens/enter/presentation/OnBoarding/obPage.dart';
@@ -148,25 +147,28 @@ class _SplashState extends State<Splash> {
   goto(BuildContext context, EnterState state) {
     bool? firsttime = Preferences.getIsFirstTime();
     if (firsttime!) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => const OBPage(),
         ),
+        (route) => false,
       );
     } else {
       if (state.islogedin == "true") {
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => const Home(),
           ),
+          (route) => false,
         );
       } else {
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => const Login(),
           ),
+          (route) => false,
         );
       }
     }

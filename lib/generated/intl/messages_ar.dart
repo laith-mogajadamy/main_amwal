@@ -129,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thelimitofdebtinasale":
             MessageLookupByLibrary.simpleMessage("حد الدين في البيع"),
         "thereisanupdate": MessageLookupByLibrary.simpleMessage("يوجد تحديث"),
+        "time": MessageLookupByLibrary.simpleMessage("الوقت"),
         "timedout": MessageLookupByLibrary.simpleMessage("انتهت مدة الاتصال"),
         "to": MessageLookupByLibrary.simpleMessage("الى"),
         "total": MessageLookupByLibrary.simpleMessage("إجمالي"),
