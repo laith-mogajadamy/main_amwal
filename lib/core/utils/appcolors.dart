@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
 class AppColor {
-  static final apporange = fromCssColor('#F2B737');
+  static final apporange = fromCssColor('#EFAC14');
   static final appdarkorange = fromCssColor('#BA933E');
   static final appbuleBG = fromCssColor('#11495E');
   static final whiteColor = fromCssColor('#FFFFFF');

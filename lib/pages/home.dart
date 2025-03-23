@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mainamwal/core/utils/appcolors.dart';
 import 'package:mainamwal/generated/l10n.dart';
+import 'package:mainamwal/model/barChartData/bar_chart_data_model.dart';
 import 'package:mainamwal/screens/enter/controller/enter_bloc.dart';
+import 'package:mainamwal/widgets/bar_chart.dart';
 import 'package:mainamwal/widgets/font/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +15,33 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<BarChartDataModel> sampleData = [
+      BarChartDataModel(
+        label: "Jan",
+        value: 50,
+        color: AppColor.appbuleBG,
+      ),
+      BarChartDataModel(
+        label: "Feb",
+        value: 80,
+        color: AppColor.apporange,
+      ),
+      BarChartDataModel(
+        label: "Mar",
+        value: 40,
+        color: AppColor.appbuleBG,
+      ),
+      BarChartDataModel(
+        label: "Apr",
+        value: 70,
+        color: AppColor.apporange,
+      ),
+      BarChartDataModel(
+        label: "May",
+        value: 90,
+        color: AppColor.appbuleBG,
+      ),
+    ];
     GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -20,6 +49,7 @@ class Home extends StatelessWidget {
       drawer: HomeDrawer(size: size),
       backgroundColor: AppColor.whiteColorBG,
       body: Stack(
+        alignment: AlignmentDirectional.topCenter,
         children: [
           Column(
             children: [
@@ -47,7 +77,6 @@ class Home extends StatelessWidget {
           ),
           Positioned(
             top: size.height / 8,
-            left: size.width / 18,
             child: Container(
               height: size.height / 5,
               width: size.width / 1.11,
@@ -62,6 +91,7 @@ class Home extends StatelessWidget {
                   ),
                 ],
               ),
+              child: BarChartWidget(data: sampleData),
             ),
           ),
           BlocBuilder<EnterBloc, EnterState>(
