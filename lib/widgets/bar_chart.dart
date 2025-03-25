@@ -20,7 +20,26 @@ class BarChartWidget extends StatelessWidget {
           maxY: data.map((e) => e.value).reduce((a, b) => a > b ? a : b) +
               10, // Adjust max Y dynamically
           minY: 0,
-          barTouchData: BarTouchData(enabled: true),
+          barTouchData: BarTouchData(
+            enabled: true,
+            touchTooltipData: BarTouchTooltipData(
+              getTooltipColor: (group) {
+                return AppColor.applightgray;
+              },
+              tooltipRoundedRadius: 10.r,
+              tooltipPadding: EdgeInsets.all(8),
+              getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                return BarTooltipItem(
+                  '${rod.toY.toInt()} USD', // Change text format
+                  TextStyle(
+                    color: AppColor.apptitle, // Change text color
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+          ),
           titlesData: FlTitlesData(
             leftTitles: AxisTitles(
               axisNameWidget: AppText(
@@ -49,6 +68,8 @@ class BarChartWidget extends StatelessWidget {
               ),
               sideTitles: SideTitles(
                 showTitles: true,
+                interval: 20, // Control step size
+                reservedSize: 20, // Space for labels
                 getTitlesWidget: (value, meta) {
                   if (value.toInt() < data.length) {
                     return Padding(

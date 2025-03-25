@@ -16,32 +16,20 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<BarChartDataModel> sampleData = [
-      BarChartDataModel(
-        label: "Jan",
-        value: 50,
-        color: AppColor.appbuleBG,
-      ),
-      BarChartDataModel(
-        label: "Feb",
-        value: 80,
-        color: AppColor.apporange,
-      ),
-      BarChartDataModel(
-        label: "Mar",
-        value: 40,
-        color: AppColor.appbuleBG,
-      ),
-      BarChartDataModel(
-        label: "Apr",
-        value: 70,
-        color: AppColor.apporange,
-      ),
-      BarChartDataModel(
-        label: "May",
-        value: 90,
-        color: AppColor.appbuleBG,
-      ),
+      BarChartDataModel(label: "Jan", value: 50, color: AppColor.appbuleBG),
+      BarChartDataModel(label: "Feb", value: 80, color: AppColor.apporange),
+      BarChartDataModel(label: "Mar", value: 40, color: AppColor.appbuleBG),
+      BarChartDataModel(label: "Apr", value: 70, color: AppColor.apporange),
+      BarChartDataModel(label: "May", value: 90, color: AppColor.appbuleBG),
+      BarChartDataModel(label: "Jun", value: 60, color: AppColor.apporange),
+      BarChartDataModel(label: "Jul", value: 100, color: AppColor.appbuleBG),
+      BarChartDataModel(label: "Aug", value: 85, color: AppColor.apporange),
+      BarChartDataModel(label: "Sep", value: 75, color: AppColor.appbuleBG),
+      BarChartDataModel(label: "Oct", value: 95, color: AppColor.apporange),
+      BarChartDataModel(label: "Nov", value: 65, color: AppColor.appbuleBG),
+      BarChartDataModel(label: "Dec", value: 110, color: AppColor.apporange),
     ];
+
     GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
